@@ -229,27 +229,27 @@
 
 ## Fase 6: Endurecimento de Segurança
 
-- [ ] **T06.01 — Store de Rate Limiting Atômico no PostgreSQL (`rate_limit_counter`)**
+- [x] **T06.01 — Store de Rate Limiting Atômico no PostgreSQL (`rate_limit_counter`)**
   - **Contexto:** Implementar adaptador `PostgresRateLimiter` com upsert SQL atômico em janela fixa e hash SHA-256 de IPs.
   - **Arquivos:** `packages/infrastructure/src/security/postgres-rate-limiter.ts`.
   - **[DoD]:** Rate limiting funciona consistentemente sem perda de contagem entre instâncias.
 
-- [ ] **T06.02 — Teste de Concorrência em Ambiente Serverless Simulado**
+- [x] **T06.02 — Teste de Concorrência em Ambiente Serverless Simulado**
   - **Contexto:** Criar teste de integração disparando requisições paralelas simultâneas validando que o limite de requisições não é ultrapassado.
   - **Arquivos:** `packages/infrastructure/src/security/__tests__/postgres-rate-limiter.spec.ts`.
   - **[DoD]:** Teste concorrente atesta bloqueio exato no limiar especificado.
 
-- [ ] **T06.03 — Content Security Policy (CSP) com Nonce e Headers de Proteção**
+- [x] **T06.03 — Content Security Policy (CSP) com Nonce e Headers de Proteção**
   - **Contexto:** Injetar cabeçalhos CSP estritos (`script-src`, `connect-src` para Plausible/Turnstile), `X-Frame-Options: DENY`, `X-Content-Type-Options: nosniff`.
   - **Arquivos:** `apps/web/next.config.ts`, `apps/web/middleware.ts`.
   - **[DoD]:** Respostas HTTP incluem cabeçalhos de segurança validados por scanner.
 
-- [ ] **T06.04 — Endurecimento de Rotação de Refresh Token**
+- [x] **T06.04 — Endurecimento de Rotação de Refresh Token**
   - **Contexto:** Detecção de reuso de refresh token revogado invalidando toda a família de sessões do usuário.
   - **Arquivos:** `packages/application/src/use-cases/auth/refresh-session.ts`.
   - **[DoD]:** Uso de token revogado bloqueia a sessão imediatamente.
 
-- [ ] **T06.05 — Validação e Testes da Fase 6 via TestSprite MCP**
+- [x] **T06.05 — Validação e Testes da Fase 6 via TestSprite MCP**
   - **Contexto:** Acionar o MCP TestSprite para testar os mecanismos de segurança: rate limiting atômico no PostgreSQL, detecção de reuso de refresh token, headers de proteção HTTP e conformidade de CSP.
   - **Ferramentas:** TestSprite MCP (`testsprite_generate_backend_test_plan`, `testsprite_generate_code_and_execute`).
   - **[DoD]:** Testes de segurança e concorrência executados e aprovados pelo TestSprite sem vulnerabilidades identificadas.
