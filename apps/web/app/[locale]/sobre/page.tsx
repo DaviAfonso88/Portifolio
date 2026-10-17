@@ -57,7 +57,7 @@ export default async function SobrePage({ params }: SobrePageProps) {
           {/* Photo Frame */}
           <div className="relative aspect-[4/5] w-full rounded-[6px] border border-rule bg-surface-sunken overflow-hidden shadow-sm">
             <Image
-              src="/images/perfil.jpg"
+              src="/images/perfil.png"
               alt="Davi Afonso"
               fill
               priority
