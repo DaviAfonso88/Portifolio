@@ -64,46 +64,46 @@
 
 ## Fase 2: Portfólio Institucional & Vitrine Pública
 
-- [ ] **T02.01 [P] — Cabeçalho, Navegação e Colofão (Layout Público)**
+- [x] **T02.01 [P] — Cabeçalho, Navegação e Colofão (Layout Público)**
   - **Contexto:** Construir Header responsivo com seletor de idioma, toggle de tema e Footer técnico estilo colofão (`design/Main.dc.html`).
   - **Arquivos:** `apps/web/components/public/header.tsx`, `apps/web/components/public/footer.tsx`.
   - **[DoD]:** Cabeçalho e rodapé exibidos com contraste AA e navegação funcional por teclado.
 
-- [ ] **T02.02 [P] — Página Home (`US-01`)**
+- [x] **T02.02 [P] — Página Home (`US-01`)**
   - **Contexto:** Implementar apresentação profissional, frase de impacto, cards de projetos em destaque e artigos recentes.
   - **Arquivos:** `apps/web/app/[locale]/page.tsx`, `apps/web/components/public/project-highlight-card.tsx`.
   - **[DoD]:** Home atende a todos os critérios da `US-01` e renderiza em resoluções de 320px a 1920px.
 
-- [ ] **T02.03 [P] — Páginas Sobre Mim, Habilidades e Conhecimentos (`US-02`)**
+- [x] **T02.03 [P] — Páginas Sobre Mim, Habilidades e Conhecimentos (`US-02`)**
   - **Contexto:** Implementar páginas institucionais com foto e biografia (Sobre), habilidades com contexto prático real (sem barras percentuais) e fundamentos arquiteturais (Conhecimentos).
   - **Arquivos:** `apps/web/app/[locale]/sobre/page.tsx`, `apps/web/app/[locale]/habilidades/page.tsx`, `apps/web/app/[locale]/conhecimentos/page.tsx`.
   - **[DoD]:** Conteúdo 100% tipado e traduzido nos dois idiomas (`pt-BR` e `en`).
 
-- [ ] **T02.04 [P] — Páginas de Experiências e Projetos (`US-03`)**
+- [x] **T02.04 [P] — Páginas de Experiências e Projetos (`US-03`)**
   - **Contexto:** Listagem cronológica de experiências e catálogo de projetos com página de detalhe em duas camadas (negócio e engenharia técnica).
   - **Arquivos:** `apps/web/app/[locale]/experiencias/page.tsx`, `apps/web/app/[locale]/projetos/page.tsx`, `apps/web/app/[locale]/projetos/[slug]/page.tsx`.
   - **[DoD]:** Detalhe de projeto expõe desafios de engenharia e impacto de negócio.
 
-- [ ] **T02.05 — Caso de Uso e Adaptadores de Contato (`US-04`, `BR-012`)**
+- [x] **T02.05 — Caso de Uso e Adaptadores de Contato (`US-04`, `BR-012`)**
   - **Contexto:** Implementar caso de uso `SubmitContactMessageUseCase`, adaptador Drizzle para `contact_message`, adaptador Turnstile e adaptador Resend.
   - **Arquivos:** `packages/application/src/use-cases/submit-contact-message.ts`, `packages/infrastructure/src/services/turnstile.ts`, `packages/infrastructure/src/services/resend.ts`.
   - **[DoD]:** Mensagem persistida no banco mesmo se a API de e-mail falhar. Testes unitários com dublês passando.
 
-- [ ] **T02.06 — Endpoint e Formulário de Contato (`US-04`)**
+- [x] **T02.06 — Endpoint e Formulário de Contato (`US-04`)**
   - **Contexto:** Endpoint `POST /api/v1/contact` no Fastify com validação Zod e rate limit de 3/hora por IP. Formulário React com feedback de sucesso/erro e widget Cloudflare Turnstile.
   - **Arquivos:** `packages/http/src/routes/contact.ts`, `apps/web/app/[locale]/contato/page.tsx`, `apps/web/components/public/contact-form.tsx`.
   - **[DoD]:** Formulário envia mensagem com sucesso, valida captcha e impede disparos abusivos.
 
-- [ ] **T02.07 [P] — Página de Política de Privacidade e SEO Base**
+- [x] **T02.07 [P] — Página de Política de Privacidade e SEO Base**
   - **Contexto:** Página `/privacidade` em conformidade LGPD/GDPR declarando retenção de 24 meses das mensagens de contato e ausência de cookies de terceiros.
   - **Arquivos:** `apps/web/app/[locale]/privacidade/page.tsx`, `apps/web/app/[locale]/opengraph-image.tsx`.
   - **[DoD]:** Metadados OpenGraph e canonical links presentes.
 
-- [ ] **T02.08 — Publicação do Domínio (`davidev.net.br`) — Marco Obrigatório**
+- [x] **T02.08 — Publicação do Domínio (`davidev.net.br`) — Marco Obrigatório**
   - **Contexto:** Deploy na Vercel e apontamento DNS do domínio oficial.
   - **[DoD]:** Vitrine do portfólio acessível publicamente em `davidev.net.br` nos dois idiomas.
 
-- [ ] **T02.09 — Validação e Testes da Fase 2 via TestSprite MCP**
+- [x] **T02.09 — Validação e Testes da Fase 2 via TestSprite MCP**
   - **Contexto:** Acionar o MCP TestSprite para gerar e executar planos de testes frontend e backend cobrindo as páginas institucionais (Home, Sobre, Habilidades, Conhecimentos, Experiências, Projetos) e o fluxo do formulário de contato (`POST /api/v1/contact`).
   - **Ferramentas:** TestSprite MCP (`testsprite_generate_frontend_test_plan`, `testsprite_generate_backend_test_plan`, `testsprite_generate_code_and_execute`).
   - **[DoD]:** Testes de UI e API executados e aprovados no TestSprite, assegurando responsividade, envio de contato e ausência de regressões na vitrine.
