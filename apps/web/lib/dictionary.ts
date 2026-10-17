@@ -252,7 +252,7 @@ const dictionaries: Record<string, Dictionary> = {
       ctaProjects: 'Ver projetos',
       ctaHowBuilt: 'Como este site foi construído',
       stackTitle: 'Stack principal',
-      stackItems: ['IA & Spec-Kit', 'C# / .NET', 'Node.js', 'React', 'TypeScript', 'Next.js', 'PostgreSQL', 'Docker'],
+      stackItems: ['Claude Code', 'IA & Spec-Kit', 'C# / .NET', 'Node.js', 'React', 'TypeScript', 'Next.js', 'PostgreSQL', 'Docker'],
       roleTitle: 'Atuação',
       roleValue: 'Full Stack (.NET, React) & AI Engineering',
       locationTitle: 'Base',
@@ -276,7 +276,7 @@ const dictionaries: Record<string, Dictionary> = {
       headline: 'Bacharel em Sistemas de Informação, desenvolvedor Full Stack e especialista em engenharia de software com inteligência artificial.',
       paragraphs: [
         'Sou desenvolvedor de software Full Stack e Bacharel em Sistemas de Informação. Minha atuação une a solidez do desenvolvimento backend corporativo — utilizando C#, ecossistema .NET (ASP.NET Core, Entity Framework) e Node.js (TypeScript, Fastify, Express) — com a construção de interfaces web modernas e reativas em React e Next.js.',
-        'Sou especialista na transição da inteligência artificial de experimentações soltas ("vibe coding") para engenharia estruturada e previsível. Domino e aplico Spec-Driven Development (SDD), GitHub Spec-Kit e Harness Engineering — criando ambientes onde modelos de linguagem operam sob rédeas estritas de arquitetura, contratos de API e testes automatizados. Na Rumo Soluções, liderei iniciativas de capacitação corporativa, ministrando treinamentos e aulas para todos os funcionários sobre esses métodos e arquitetando sistemas de missão crítica com IA.',
+        'Sou especialista na transição da inteligência artificial de experimentações soltas ("vibe coding") para engenharia estruturada e previsível. Domino e aplico ambientes avançados de codificação agêntica (Claude Code, OpenAI Codex, OpenCode e Kiro), Spec-Driven Development (SDD), GitHub Spec-Kit e Harness Engineering — criando ambientes onde modelos de linguagem operam sob rédeas estritas de arquitetura, contratos de API e testes automatizados. Na Rumo Soluções, liderei iniciativas de capacitação corporativa, ministrando treinamentos e aulas para todos os funcionários sobre esses métodos e arquitetando sistemas de missão crítica com IA.',
         'Acredito no código como consequência direta de uma especificação bem consolidada. Seja projetando arquiteturas hexagonais e DDD, seja conectando agentes via Model Context Protocol (MCP) a ferramentas como Context7 e Serena, meu objetivo é entregar software testável, resiliente e escalável.',
       ],
       focusTitle: 'Foco',
@@ -324,6 +324,11 @@ const dictionaries: Record<string, Dictionary> = {
               name: 'Spec-Driven Development (SDD) & Spec-Kit',
               description:
                 'Metodologia em que a especificação é a fonte única da verdade. Hierarquia de autoridade rigorosa (PRD → Architecture → Spec → Plan → Tasks → Code), padronização com comandos Spec-Kit e separação clara entre produto e especificação executável.',
+            },
+            {
+              name: 'Claude Code, Codex, OpenCode & Kiro',
+              description:
+                'Domínio prático de ferramentas líderes de codificação agêntica e ambientes CLI autônomos (Claude Code, OpenAI Codex, OpenCode e Kiro). Uso de agentes para refatoração semântica, execução automatizada de testes, integração com terminal e aplicação estrita de especificações.',
             },
             {
               name: 'Model Context Protocol (MCP)',
@@ -483,10 +488,15 @@ const dictionaries: Record<string, Dictionary> = {
             'Concepção e desenvolvimento do sistema de Ordem de Serviço (OS / Projeto CRC) do zero utilizando .NET, React, Docker e práticas modernas de engenharia, estabelecendo um harness corporativo rigoroso com regras duráveis (snapshot congelado imutável, soft delete universal e fluxo linear de OS).',
             'Desenvolvimento de soluções potencializadas por IA para geração automatizada de documentação técnica, wikis no Azure DevOps e padronização dos processos de engenharia de software.',
             'Integração e orquestração de servidores Model Context Protocol (MCP) — incluindo Context7 para documentação em tempo real, Serena para navegação semântica via LSP e TestSprite para controle de qualidade automatizado.',
+            'Adoção e capacitação da equipe em ferramentas avançadas de desenvolvimento agêntico (Claude Code, OpenAI Codex, OpenCode e Kiro) integradas a Spec-Kit para acelerar a entrega e garantir conformidade arquitetural.',
             'Desenvolvimento e sustentação de funcionalidades críticas para sistemas corporativos, com foco em disponibilidade, estabilidade e regras de negócio.',
             'Construção de rotinas de automação (RPA) e pipelines eficientes para integração de dados entre sistemas e serviços.',
           ],
           technologies: [
+            'Claude Code',
+            'Codex',
+            'OpenCode',
+            'Kiro',
             'Inteligência Artificial',
             'Spec-Driven Dev',
             'Spec-Kit',
@@ -936,7 +946,7 @@ const dictionaries: Record<string, Dictionary> = {
       ctaProjects: 'View projects',
       ctaHowBuilt: 'How this site was built',
       stackTitle: 'Core stack',
-      stackItems: ['AI & Spec-Kit', 'C# / .NET', 'Node.js', 'React', 'TypeScript', 'Next.js', 'PostgreSQL', 'Docker'],
+      stackItems: ['Claude Code', 'AI & Spec-Kit', 'C# / .NET', 'Node.js', 'React', 'TypeScript', 'Next.js', 'PostgreSQL', 'Docker'],
       roleTitle: 'Role',
       roleValue: 'Full Stack (.NET, React) & AI Engineering',
       locationTitle: 'Location',
@@ -960,7 +970,7 @@ const dictionaries: Record<string, Dictionary> = {
       headline: 'Information Systems graduate, Full Stack developer, and specialist in AI-driven software engineering.',
       paragraphs: [
         'I am a Full Stack Software Developer with a Bachelor’s degree in Information Systems. My work bridges enterprise backend engineering — using C#, the .NET ecosystem (ASP.NET Core, Entity Framework), and Node.js (TypeScript, Fastify, Express) — with modern, responsive frontend interfaces built with React and Next.js.',
-        'I specialize in moving artificial intelligence from chaotic "vibe coding" to disciplined, predictable engineering. I implement Spec-Driven Development (SDD), GitHub Spec-Kit, and Harness Engineering — establishing environments where language models operate under strict architectural guardrails, API contracts, and automated verification loops. At Rumo Soluções, I spearheaded internal company-wide training on these methodologies and engineered mission-critical systems with AI.',
+        'I specialize in moving artificial intelligence from chaotic "vibe coding" to disciplined, predictable engineering. I implement cutting-edge agentic coding environments (Claude Code, OpenAI Codex, OpenCode, and Kiro), Spec-Driven Development (SDD), GitHub Spec-Kit, and Harness Engineering — establishing environments where language models operate under strict architectural guardrails, API contracts, and automated verification loops. At Rumo Soluções, I spearheaded internal company-wide training on these methodologies and engineered mission-critical systems with AI.',
         'I treat code as the direct consequence of an unambiguous specification. Whether designing hexagonal architectures and DDD or integrating agents via the Model Context Protocol (MCP) with tools like Context7 and Serena, my goal is delivering testable, resilient, and enterprise-grade software.',
       ],
       focusTitle: 'Focus',
@@ -1008,6 +1018,11 @@ const dictionaries: Record<string, Dictionary> = {
               name: 'Spec-Driven Development (SDD) & Spec-Kit',
               description:
                 'Methodology where the specification serves as the single source of truth. Strict artifact authority hierarchy (PRD → Architecture → Spec → Plan → Tasks → Code), standardized Spec-Kit workflows, and clear separation between product intent and executable spec.',
+            },
+            {
+              name: 'Claude Code, Codex, OpenCode & Kiro',
+              description:
+                'Hands-on mastery of leading agentic coding environments and autonomous CLI tools (Claude Code, OpenAI Codex, OpenCode, and Kiro). Leveraging terminal agents for semantic refactoring, automated test execution, shell integration, and rigorous specification adherence.',
             },
             {
               name: 'Model Context Protocol (MCP)',
@@ -1167,10 +1182,15 @@ const dictionaries: Record<string, Dictionary> = {
             'Architected and built the Work Order (OS / CRC Project) management system from scratch using .NET, React, and Docker, establishing a strict corporate harness with durable rules (immutable frozen snapshot, universal soft delete, and linear OS lifecycle).',
             'Engineered AI-powered solutions for automated technical documentation generation, Azure DevOps wikis, and development process standardization.',
             'Integrated and orchestrated Model Context Protocol (MCP) servers — including Context7 for real-time documentation, Serena for LSP semantic navigation, and TestSprite for automated quality control.',
+            'Adopted and trained engineering staff on advanced agentic coding tools (Claude Code, OpenAI Codex, OpenCode, and Kiro) integrated with Spec-Kit to accelerate delivery and enforce software quality standards.',
             'Engineered and scaled critical enterprise features focused on high availability, stability, and business domain requirements.',
             'Built automated process workflows (RPA) and efficient data pipelines across distributed enterprise platforms.',
           ],
           technologies: [
+            'Claude Code',
+            'Codex',
+            'OpenCode',
+            'Kiro',
             'Artificial Intelligence',
             'Spec-Driven Dev',
             'Spec-Kit',
