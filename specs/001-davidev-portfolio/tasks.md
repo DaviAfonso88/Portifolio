@@ -292,25 +292,25 @@
 
 ## Fase 8: Publicação & Go-Live Final
 
-- [ ] **T08.01 — Verificação de DNS, Registros de E-mail e SSL**
+- [x] **T08.01 — Verificação de DNS, Registros de E-mail e SSL**
   - **Contexto:** Configurar e testar registros SPF, DKIM e DMARC no Resend para garantia de entregabilidade dos alertas de contato.
   - **[DoD]:** E-mails de notificação chegam à caixa postal sem cair em spam.
 
-- [ ] **T08.02 — Configuração de Metas Customizadas no Plausible Analytics**
+- [x] **T08.02 — Configuração de Metas Customizadas no Plausible Analytics**
   - **Contexto:** Instrumentar eventos customizados para rastreio da métrica primária (taxa de aprofundamento qualificado de 30% em Projetos / Como foi construído).
   - **Arquivos:** `apps/web/lib/analytics.ts`.
   - **[DoD]:** Eventos de visualização qualificada registrados no dashboard do Plausible.
 
-- [ ] **T08.03 — Vercel Cron de Manutenção Diária**
+- [x] **T08.03 — Vercel Cron de Manutenção Diária**
   - **Contexto:** Configurar rota de cron job protegida para expurgo automático de mensagens de contato com mais de 24 meses (`P-003`).
   - **Arquivos:** `apps/web/app/api/cron/maintenance/route.ts`, `apps/web/vercel.json`.
   - **[DoD]:** Cron executa diariamente e remove registros com `created_at < now() - interval '24 months'`.
 
-- [ ] **T08.04 — Checklist de Go-Live e Auditoria Final**
+- [x] **T08.04 — Checklist de Go-Live e Auditoria Final**
   - **Contexto:** Validar checklist de prontidão (Core Web Vitals, HTTPS, chaves de produção, ausência de logs sensíveis).
   - **[DoD]:** Todos os itens do relatório de prontidão aprovados.
 
-- [ ] **T08.05 — Validação e Testes da Fase 8 via TestSprite MCP**
+- [x] **T08.05 — Validação e Testes da Fase 8 via TestSprite MCP**
   - **Contexto:** Acionar o MCP TestSprite para homologar o ambiente pós-deploy: verificação de rotas em produção (`davidev.net.br`), execução do cron de manutenção, checagem de métricas e ausência de regressões em produção.
   - **Ferramentas:** TestSprite MCP (`testsprite_generate_frontend_test_plan`, `testsprite_generate_backend_test_plan`, `testsprite_generate_code_and_execute`).
   - **[DoD]:** Testes de produção executados pelo TestSprite validando estabilidade total do sistema no ar.
