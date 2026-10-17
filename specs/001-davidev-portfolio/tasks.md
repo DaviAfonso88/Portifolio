@@ -205,22 +205,22 @@
 
 ## Fase 5: Versionamento Editorial
 
-- [ ] **T05.01 — Entidade `PostVersion` e Lógica de Hash SHA-256 (`BR-005`)**
+- [x] **T05.01 — Entidade `PostVersion` e Lógica de Hash SHA-256 (`BR-005`)**
   - **Contexto:** Gerar nova versão de post apenas sob alteração real do corpo textual pós-publicação comparando `content_hash`.
   - **Arquivos:** `packages/domain/src/entities/post-version.ts`, `packages/application/src/use-cases/posts/update-post.ts`.
   - **[DoD]:** Salvar post publicado alterando apenas tags ou imagem de capa não cria versão duplicada.
 
-- [ ] **T05.02 — Rota de Histórico de Versões no CMS**
+- [x] **T05.02 — Rota de Histórico de Versões no CMS**
   - **Contexto:** Endpoint `GET /api/v1/admin/posts/{id}/versions` retornando histórico sumário (sem corpo longo) e listagem no painel.
   - **Arquivos:** `packages/http/src/routes/admin-post-versions.ts`, `apps/web/app/admin/posts/editor/components/version-history-drawer.tsx`.
   - **[DoD]:** Administrador visualiza lista de versões com numeração e data de alteração.
 
-- [ ] **T05.03 — Sinalização Pública de Atualização (`US-12`)**
+- [x] **T05.03 — Sinalização Pública de Atualização (`US-12`)**
   - **Contexto:** Exibição da data de publicação e de última atualização na página do artigo (`/blog/[slug]`) quando divergentes.
   - **Arquivos:** `apps/web/app/[locale]/blog/[slug]/page.tsx`.
   - **[DoD]:** Artigo com edição posterior exibe *"Publicado em DD/MM/AAAA · Atualizado em DD/MM/AAAA"*.
 
-- [ ] **T05.04 — Validação e Testes da Fase 5 via TestSprite MCP**
+- [x] **T05.04 — Validação e Testes da Fase 5 via TestSprite MCP**
   - **Contexto:** Acionar o MCP TestSprite para testar o versionamento editorial: geração de versão condicionada a alteração textual (`BR-005`), recuperação do histórico de versões e sinalização pública de última atualização.
   - **Ferramentas:** TestSprite MCP (`testsprite_generate_backend_test_plan`, `testsprite_generate_frontend_test_plan`, `testsprite_generate_code_and_execute`).
   - **[DoD]:** Testes do TestSprite aprovados confirmando hash SHA-256 e exibição correta de versões.
