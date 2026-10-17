@@ -432,37 +432,52 @@ const dictionaries: Record<string, Dictionary> = {
     },
     experiences: {
       badge: 'Experiências',
-      headline: 'O que construí e os desafios que superei.',
+      headline: 'O que eu resolvi, e onde atuei.',
       intro:
-        'Trajetória profissional focada em desenvolvimento Full Stack, engenharia de software e criação de produtos digitais com código limpo e manutenível.',
+        'Trajetória profissional com foco em desenvolvimento corporativo, engenharia de software Full Stack, automações (RPA), APIs e soluções potencializadas por IA.',
       positions: [
         {
-          period: '2024 — Atual',
-          company: 'Desenvolvedor Full Stack & Projetos de Software',
+          period: '2026 — Atual',
+          company: 'Rumo Soluções',
+          role: 'Analista Desenvolvedor Júnior',
+          regime: 'CLT · Híbrido · Lagoa Santa, MG',
+          summary:
+            'Atuação no desenvolvimento, sustentação e evolução de sistemas corporativos escaláveis, automação de processos (RPA), arquitetura de APIs e integração de soluções potencializadas por IA.',
+          highlights: [
+            'Desenvolvimento e evolução de sistemas corporativos críticos com foco em disponibilidade, estabilidade e atendimento aos requisitos de negócio.',
+            'Construção de rotinas de automação (RPA) e pipelines eficientes para integração de dados entre sistemas e serviços.',
+            'Implementação e consumo de APIs RESTful seguras, modelagem e otimização de bancos de dados relacionais e NoSQL.',
+            'Participação ativa no ciclo de DevOps, conteinerização com Docker e ritos ágeis de entrega contínua.',
+          ],
+          technologies: ['C# / .NET', 'Node.js', 'TypeScript', 'React', 'RPA', 'APIs RESTful', 'PostgreSQL', 'Docker'],
+        },
+        {
+          period: '2025 — 2026',
+          company: 'Rumo Soluções',
+          role: 'Estagiário de Desenvolvimento Web',
+          regime: 'Estágio · Híbrido · Lagoa Santa, MG',
+          summary:
+            'Apoio técnico no ciclo completo de desenvolvimento web, codificação de interfaces de usuário, manutenção de serviços backend e testes de integração.',
+          highlights: [
+            'Implementação e estilização de interfaces web modernas e responsivas alinhadas às diretrizes de design da empresa.',
+            'Correção de bugs, refatoração de código legado e apoio na elaboração de documentação técnica e de endpoints.',
+            'Integração contínua em equipe ágil, participando de code reviews, reuniões diárias e planejamento de sprints.',
+          ],
+          technologies: ['JavaScript', 'TypeScript', 'HTML5 & CSS3', 'React', 'Node.js', 'Git', 'SQL'],
+        },
+        {
+          period: '2023 — Atual',
+          company: 'Projetos Autônomos & Soluções Digitais',
           role: 'Desenvolvedor Full Stack',
           regime: 'Projetos · Remoto / Híbrido',
           summary:
-            'Desenvolvimento e sustentação de aplicações web completas, integrando frontend moderno em React/Next.js e backends resilientes com Node.js e C# / .NET.',
+            'Concepção, arquitetura e entrega de plataformas web completas para clientes e iniciativas comunitárias, integrando frontend reativo e backends resilientes.',
           highlights: [
-            'Arquitetei e implementei a plataforma SaltWeb para a juventude da PIB Lagoa Santa, com foco em usabilidade, performance e gerenciamento comunitário.',
-            'Desenvolvi a plataforma FIT.IA, integrando inteligência artificial generativa com backend em Express e frontend dinâmico em React.',
-            'Construí o projeto DaviDev em arquitetura hexagonal estrita, com zero dependências externas no domínio e monorepo pnpm.',
+            'Arquitetei e lancei a plataforma SaltWeb para a juventude da PIB Lagoa Santa, proporcionando experiência rápida e engajamento comunitário.',
+            'Desenvolvi a plataforma FIT.IA, integrando inteligência artificial generativa com backend em Express e frontend em React.',
+            'Construí o projeto DaviDev em arquitetura hexagonal estrita, monorepo pnpm e boas práticas com Next.js 15 e Fastify.',
           ],
-          technologies: ['TypeScript', 'React', 'Next.js', 'C# / .NET', 'Node.js', 'Tailwind CSS', 'PostgreSQL', 'Docker'],
-        },
-        {
-          period: '2022 — 2024',
-          company: 'Sistemas de Informação & Engenharia de Aplicações',
-          role: 'Desenvolvedor de Software',
-          regime: 'Acadêmico & Projetos',
-          summary:
-            'Desenvolvimento de sistemas corporativos, APIs RESTful e modelagem de bancos de dados relacionais e orientados a documentos durante a formação em Sistemas de Informação.',
-          highlights: [
-            'Implementei o sistema SalesWebMvc em C# / ASP.NET Core MVC com Entity Framework Core, migrações automatizadas e relatórios de vendas.',
-            'Desenvolvi APIs RESTful com Node.js e Express conectadas a MongoDB (Mongoose) para catalogação de produtos e processamento de dados.',
-            'Projetei esquemas de dados normalizados e apliquei princípios de POO e Clean Code em múltiplos projetos práticos.',
-          ],
-          technologies: ['C# / .NET', 'ASP.NET Core', 'Entity Framework Core', 'Node.js', 'Express', 'MongoDB', 'MySQL'],
+          technologies: ['React', 'Next.js 15', 'TypeScript', 'Node.js', 'Tailwind CSS', 'PostgreSQL', 'MongoDB', 'IA Generativa'],
         },
       ],
     },
@@ -1047,37 +1062,52 @@ const dictionaries: Record<string, Dictionary> = {
     },
     experiences: {
       badge: 'Experience',
-      headline: 'What I built and the challenges I solved.',
+      headline: 'What I built, and where I delivered value.',
       intro:
-        'Career trajectory focused on Full Stack development, software engineering, and delivering digital products with clean, maintainable code.',
+        'Professional trajectory focused on enterprise software engineering, Full Stack web development, automation (RPA), APIs, and AI-powered solutions.',
       positions: [
         {
-          period: '2024 — Present',
-          company: 'Full Stack Developer & Software Projects',
+          period: '2026 — Present',
+          company: 'Rumo Soluções',
+          role: 'Junior Developer Analyst',
+          regime: 'Full-time · Hybrid · Lagoa Santa, Brazil',
+          summary:
+            'Engineering, maintaining, and scaling enterprise systems, business process automation (RPA), RESTful API architectures, and AI-powered service integrations.',
+          highlights: [
+            'Engineered and scaled critical enterprise features focused on high availability, stability, and alignment with business requirements.',
+            'Developed automated process workflows (RPA) and efficient data pipelines across distributed platforms.',
+            'Built and integrated secure RESTful APIs with relational and NoSQL database modeling and query optimization.',
+            'Participated actively in agile DevOps workflows, Docker containerization, and continuous delivery pipelines.',
+          ],
+          technologies: ['C# / .NET', 'Node.js', 'TypeScript', 'React', 'RPA', 'RESTful APIs', 'PostgreSQL', 'Docker'],
+        },
+        {
+          period: '2025 — 2026',
+          company: 'Rumo Soluções',
+          role: 'Web Development Intern',
+          regime: 'Internship · Hybrid · Lagoa Santa, Brazil',
+          summary:
+            'Technical support across the full web development lifecycle, crafting user interfaces, maintaining backend services, and performing integration tests.',
+          highlights: [
+            'Built responsive, modern web interfaces matching corporate design guidelines and usability standards.',
+            'Investigated and resolved bugs, refactored legacy components, and authored technical documentation for API endpoints.',
+            'Collaborated within an agile team participating in daily standups, sprint planning, and peer code reviews.',
+          ],
+          technologies: ['JavaScript', 'TypeScript', 'HTML5 & CSS3', 'React', 'Node.js', 'Git', 'SQL'],
+        },
+        {
+          period: '2023 — Present',
+          company: 'Independent Software Projects & Digital Solutions',
           role: 'Full Stack Software Developer',
           regime: 'Projects · Remote / Hybrid',
           summary:
-            'End-to-end development and maintenance of web applications, integrating modern React/Next.js frontends with resilient Node.js and C# / .NET backends.',
+            'End-to-end design, architecture, and delivery of web applications for clients and community organizations, uniting responsive frontends with resilient backends.',
           highlights: [
-            'Architected and implemented the SaltWeb platform for PIB Lagoa Santa youth, focusing on usability, performance, and community management.',
-            'Engineered the FIT.IA platform, integrating generative AI with an Express backend and dynamic React user interface.',
-            'Built DaviDev using strict hexagonal architecture, ensuring zero external dependencies in the domain core within a pnpm monorepo.',
+            'Architected and deployed the SaltWeb platform for PIB Lagoa Santa youth, delivering high performance and community engagement.',
+            'Engineered the FIT.IA assistant, integrating generative AI with an Express backend and dynamic React user interface.',
+            'Built the DaviDev platform with strict hexagonal architecture, pnpm monorepo structure, Next.js 15, and in-process Fastify.',
           ],
-          technologies: ['TypeScript', 'React', 'Next.js', 'C# / .NET', 'Node.js', 'Tailwind CSS', 'PostgreSQL', 'Docker'],
-        },
-        {
-          period: '2022 — 2024',
-          company: 'Information Systems & Application Development',
-          role: 'Software Developer',
-          regime: 'Academic & Projects',
-          summary:
-            'Development of enterprise management systems, RESTful APIs, and relational and document database modeling throughout Information Systems degree.',
-          highlights: [
-            'Implemented SalesWebMvc in C# / ASP.NET Core MVC with Entity Framework Core, automated migrations, and sales reporting.',
-            'Built RESTful APIs with Node.js and Express connected to MongoDB (Mongoose) for product cataloging and data management.',
-            'Designed normalized database schemas and applied OOP and Clean Code principles across practical projects.',
-          ],
-          technologies: ['C# / .NET', 'ASP.NET Core', 'Entity Framework Core', 'Node.js', 'Express', 'MongoDB', 'MySQL'],
+          technologies: ['React', 'Next.js 15', 'TypeScript', 'Node.js', 'Tailwind CSS', 'PostgreSQL', 'MongoDB', 'Generative AI'],
         },
       ],
     },
