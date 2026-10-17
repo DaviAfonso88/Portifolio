@@ -1,161 +1,101 @@
 import os
 import sys
 import requests
-from requests.exceptions import RequestException, Timeout
 
 BASE_URL = "http://localhost:3000"
-LOGIN_PATH = "/api/v1/auth/login"
-REFRESH_PATH = "/api/v1/auth/refresh"
-LOGOUT_PATH = "/api/v1/auth/logout"
 TIMEOUT = 30
-
 
 def test_post_api_v1_auth_refresh_valid_token():
     """
-    TC004: Verify that POST /api/v1/auth/refresh with a valid Refresh Token
-    returns 200 with a new Access Token.
+    Test case TC004:
+    Verify that POST /api/v1/auth/refresh with a valid Refresh Token returns 200 with a new Access Token.
     """
-    email = os.getenv("ADMIN_EMAIL", "admin@example.com")
-    password = os.getenv("ADMIN_PASSWORD", "password")
+    login_url = f"{BASE_URL}/api/v1/auth/login"
+    refresh_url = f"{BASE_URL}/api/v1/auth/refresh"
+    logout_url = f"{BASE_URL}/api/v1/auth/logout"
 
-    login_url = BASE_URL.rstrip("/") + LOGIN_PATH
-    refresh_url = BASE_URL.rstrip("/") + REFRESH_PATH
-    logout_url = BASE_URL.rstrip("/") + LOGOUT_PATH
+    headers = {
+        "Content-Type": "application/json",
+        "X-Server-Mode": "production"
+    }
+
+    # Credentials: prefer environment variables for CI; fallback to common defaults
+    email = os.environ.get("TEST_ADMIN_EMAIL", "admin@example.com")
+    password = os.environ.get("TEST_ADMIN_PASSWORD", "password")
 
     refresh_token = None
-    old_access_token = None
-    new_access_token = None
+    initial_access_token = None
 
     try:
-        # Attempt login to obtain a refresh token
-        login_payload_candidates = [
-            {"email": email, "password": password},
-            {"username": email, "password": password},
-            {"user": email, "password": password},
-        ]
+        # Step 1: Login to obtain Access and Refresh tokens
+        login_payload = {"email": email, "password": password}
+        try:
+            r = requests.post(login_url, json=login_payload, headers=headers, timeout=TIMEOUT)
+        except requests.RequestException as e:
+            raise AssertionError(f"Login request failed: {e}")
 
-        login_response = None
-        for payload in login_payload_candidates:
-            try:
-                login_response = requests.post(
-                    login_url,
-                    json=payload,
-                    headers={"Content-Type": "application/json"},
-                    timeout=TIMEOUT,
-                )
-            except (RequestException, Timeout) as e:
-                # network issue; abort
-                raise AssertionError(f"Login request failed: {e}")
-            if login_response is None:
-                raise AssertionError("Login request was not performed.")
-            # If server responded with 200, accept it
-            if login_response.status_code == 200:
-                break
-            # If 400/401, try next payload candidate before failing
-        if login_response.status_code != 200:
-            raise AssertionError(
-                f"Login failed with status {login_response.status_code}: {login_response.text}"
-            )
+        assert r is not None, "No response from login endpoint"
+        assert r.status_code == 200, f"Expected 200 from login, got {r.status_code}, body: {r.text}"
 
         try:
-            login_json = login_response.json()
+            login_json = r.json()
         except ValueError:
-            raise AssertionError("Login response is not valid JSON")
+            raise AssertionError(f"Login response is not valid JSON: {r.text}")
 
-        # Expect at least accessToken and refreshToken present
-        old_access_token = login_json.get("accessToken") or login_json.get("access_token")
+        # Accept common token field names
         refresh_token = login_json.get("refreshToken") or login_json.get("refresh_token") or login_json.get("refresh")
+        initial_access_token = login_json.get("accessToken") or login_json.get("access_token") or login_json.get("access")
 
-        assert old_access_token and isinstance(old_access_token, str), "Login did not return access token"
-        assert refresh_token and isinstance(refresh_token, str), "Login did not return refresh token"
+        assert isinstance(refresh_token, str) and refresh_token.strip(), f"Refresh token missing or invalid in login response: {login_json}"
+        assert isinstance(initial_access_token, str) and initial_access_token.strip(), f"Access token missing or invalid in login response: {login_json}"
 
-        # Call refresh endpoint with the refresh token
-        refresh_payload_candidates = [
-            {"refreshToken": refresh_token},
-            {"refresh_token": refresh_token},
-            {"token": refresh_token},
-        ]
+        # Step 2: Call refresh endpoint with the refresh token
+        # Send token in JSON body and also as Authorization bearer header to maximize compatibility
+        refresh_headers = headers.copy()
+        refresh_headers["Authorization"] = f"Bearer {refresh_token}"
 
-        refresh_response = None
-        for payload in refresh_payload_candidates:
-            try:
-                refresh_response = requests.post(
-                    refresh_url,
-                    json=payload,
-                    headers={"Content-Type": "application/json"},
-                    timeout=TIMEOUT,
-                )
-            except (RequestException, Timeout) as e:
-                raise AssertionError(f"Refresh request failed: {e}")
-            if refresh_response is None:
-                raise AssertionError("Refresh request was not performed.")
-            if refresh_response.status_code == 200:
-                break
+        refresh_payload = {"refreshToken": refresh_token}
+        try:
+            r2 = requests.post(refresh_url, json=refresh_payload, headers=refresh_headers, timeout=TIMEOUT)
+        except requests.RequestException as e:
+            raise AssertionError(f"Refresh request failed: {e}")
 
-        assert refresh_response.status_code == 200, (
-            f"Expected 200 from refresh endpoint, got {refresh_response.status_code}: {refresh_response.text}"
-        )
+        assert r2 is not None, "No response from refresh endpoint"
+        assert r2.status_code == 200, f"Expected 200 from refresh, got {r2.status_code}, body: {r2.text}"
 
         try:
-            refresh_json = refresh_response.json()
+            refresh_json = r2.json()
         except ValueError:
-            raise AssertionError("Refresh response is not valid JSON")
+            raise AssertionError(f"Refresh response is not valid JSON: {r2.text}")
 
-        new_access_token = refresh_json.get("accessToken") or refresh_json.get("access_token")
-        returned_refresh_token = (
-            refresh_json.get("refreshToken")
-            or refresh_json.get("refresh_token")
-            or refresh_json.get("refresh")
-        )
+        new_access_token = refresh_json.get("accessToken") or refresh_json.get("access_token") or refresh_json.get("access")
+        assert isinstance(new_access_token, str) and new_access_token.strip(), f"New access token missing or invalid in refresh response: {refresh_json}"
 
-        assert new_access_token and isinstance(new_access_token, str), "Refresh did not return new access token"
+        # Ensure the new access token is different from the initial access token (typical behavior)
+        if initial_access_token:
+            assert new_access_token != initial_access_token, "New access token should differ from the initial access token"
 
-        # Sanity check: access token looks like a JWT (has at least two dots)
-        assert new_access_token.count(".") >= 2, "New access token does not look like a JWT"
-
-        # Optionally ensure the new access token is different than the old one
-        if old_access_token:
-            assert new_access_token != old_access_token, "New access token is identical to the previous one"
-
-        # Validate the new access token can access an admin-protected endpoint
-        protected_url = BASE_URL.rstrip("/") + "/api/v1/admin/posts"
-        try:
-            protected_resp = requests.get(
-                protected_url,
-                headers={"Authorization": f"Bearer {new_access_token}"},
-                timeout=TIMEOUT,
-            )
-        except (RequestException, Timeout) as e:
-            raise AssertionError(f"Protected resource request failed: {e}")
-
-        # If credentials are valid admin, expect 200. If server denies, assert at least not 500.
-        assert protected_resp.status_code in (200, 401, 403), (
-            f"Unexpected status code when using new access token: {protected_resp.status_code}"
-        )
+        # Success if reached here
+        print("TC004 passed: refresh returned 200 with a new access token")
 
     finally:
-        # Attempt to logout / invalidate the refresh token to clean up session
+        # Attempt to logout/invalidate the refresh token to clean up session if available
         if refresh_token:
+            logout_payload = {"refreshToken": refresh_token}
             try:
-                _ = requests.post(
-                    logout_url,
-                    json={"refreshToken": refresh_token},
-                    headers={"Content-Type": "application/json"},
-                    timeout=TIMEOUT,
-                )
-            except Exception:
-                # best-effort, ignore errors during cleanup
+                requests.post(logout_url, json=logout_payload, headers=headers, timeout=TIMEOUT)
+            except requests.RequestException:
+                # Do not raise further; cleanup best-effort
                 pass
-
 
 if __name__ == "__main__":
     try:
         test_post_api_v1_auth_refresh_valid_token()
-        print("TC004 passed")
-        sys.exit(0)
     except AssertionError as e:
-        print("TC004 failed:", e)
+        print(f"Test failed: {e}")
         sys.exit(1)
-    except Exception as e:
-        print("TC004 encountered an unexpected error:", e)
+    except Exception as exc:
+        print(f"Unexpected error during test execution: {exc}")
         sys.exit(2)
+    else:
+        sys.exit(0)

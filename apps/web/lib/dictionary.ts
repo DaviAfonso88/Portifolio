@@ -245,16 +245,16 @@ const dictionaries: Record<string, Dictionary> = {
       copyright: '© 2026 Davi Afonso',
     },
     home: {
-      badge: 'Desenvolvedor Full Stack · Brasil',
-      headline: 'Construo sistemas robustos — do backend ao design de interface.',
+      badge: 'Desenvolvedor Full Stack & Engenharia de IA · Brasil',
+      headline: 'Engenharia de software com rigor arquitetural e inteligência artificial de ponta a ponta.',
       subheadline:
-        'Bacharel em Sistemas de Informação focado em C# / .NET, Node.js, React e arquitetura de software limpa. Este site é, ele próprio, um produto de software: arquitetura hexagonal, monorepo pnpm, especificações e engenharia de ponta a ponta abertas.',
+        'Bacharel em Sistemas de Informação focado em C# / .NET, React, arquitetura limpa e Spec-Driven Development (SDD). Da concepção com Spec-Kit ao harness de execução com IA, construo sistemas robustos, auditáveis e de alto impacto corporativo.',
       ctaProjects: 'Ver projetos',
       ctaHowBuilt: 'Como este site foi construído',
       stackTitle: 'Stack principal',
-      stackItems: ['C# / .NET', 'Node.js', 'React', 'TypeScript', 'Next.js', 'PostgreSQL', 'MongoDB', 'Docker'],
+      stackItems: ['IA & Spec-Kit', 'C# / .NET', 'Node.js', 'React', 'TypeScript', 'Next.js', 'PostgreSQL', 'Docker'],
       roleTitle: 'Atuação',
-      roleValue: 'Full Stack (.NET, Node, React)',
+      roleValue: 'Full Stack (.NET, React) & AI Engineering',
       locationTitle: 'Base',
       locationValue: 'Lagoa Santa, MG · Remoto / Híbrido',
       availabilityTitle: 'Disponibilidade',
@@ -266,21 +266,21 @@ const dictionaries: Record<string, Dictionary> = {
       recentWritingTitle: 'Escrito recentemente',
       allArticlesLink: 'Todos os artigos →',
       differentialNumber: '03 — O diferencial',
-      differentialTitle: 'O processo de engenharia também está aberto.',
+      differentialTitle: 'O processo guiado por especificação e harness de IA.',
       differentialBody:
-        'Especificações, decisões arquiteturais com ADRs, separação hexagonal e registro de trade-offs. A página de engenharia mostra o raciocínio completo por trás de cada linha de código.',
+        'Especificações como fonte única da verdade (SDD), Model Context Protocol (MCP), agentes ancorados em regras duráveis e ADRs documentadas. Mostro o raciocínio completo e auditável por trás de cada linha.',
       differentialCta: 'Ver como foi construído',
     },
     about: {
       badge: 'Sobre mim',
-      headline: 'Bacharel em Sistemas de Informação, desenvolvedor Full Stack focado em resolver problemas reais com software.',
+      headline: 'Bacharel em Sistemas de Informação, desenvolvedor Full Stack e especialista em engenharia de software com inteligência artificial.',
       paragraphs: [
-        'Sou desenvolvedor de software Full Stack e Bacharel em Sistemas de Informação. Minha atuação combina a solidez do desenvolvimento backend — utilizando C#, ecossistema .NET (ASP.NET Core, Entity Framework) e Node.js (TypeScript, Fastify, Express) — com a construção de interfaces web modernas e reativas em React e Next.js.',
-        'Acredito que um bom software nasce do equilíbrio entre rigor arquitetural e impacto prático no negócio. Aplico princípios de Arquitetura Hexagonal, Domain-Driven Design (DDD) e modelagem relacional rigorosa no banco de dados para criar sistemas testáveis, manuteníveis e prontos para produção.',
-        'Além da engenharia tradicional, integro metodologias modernas de desenvolvimento orientado a especificações e inteligência artificial para acelerar entregas sem abrir mão da qualidade de código e conformidade com padrões de engenharia.',
+        'Sou desenvolvedor de software Full Stack e Bacharel em Sistemas de Informação. Minha atuação une a solidez do desenvolvimento backend corporativo — utilizando C#, ecossistema .NET (ASP.NET Core, Entity Framework) e Node.js (TypeScript, Fastify, Express) — com a construção de interfaces web modernas e reativas em React e Next.js.',
+        'Sou especialista na transição da inteligência artificial de experimentações soltas ("vibe coding") para engenharia estruturada e previsível. Domino e aplico Spec-Driven Development (SDD), GitHub Spec-Kit e Harness Engineering — criando ambientes onde modelos de linguagem operam sob rédeas estritas de arquitetura, contratos de API e testes automatizados. Na Rumo Soluções, liderei iniciativas de capacitação corporativa, ministrando treinamentos e aulas para todos os funcionários sobre esses métodos e arquitetando sistemas de missão crítica com IA.',
+        'Acredito no código como consequência direta de uma especificação bem consolidada. Seja projetando arquiteturas hexagonais e DDD, seja conectando agentes via Model Context Protocol (MCP) a ferramentas como Context7 e Serena, meu objetivo é entregar software testável, resiliente e escalável.',
       ],
       focusTitle: 'Foco',
-      focusValue: 'Full Stack (.NET, Node.js, React, TypeScript)',
+      focusValue: 'Full Stack (.NET, React) & AI Engineering (SDD / MCP / Harness)',
       baseTitle: 'Base',
       baseValue: 'Lagoa Santa, Minas Gerais · Brasil',
       languagesTitle: 'Idiomas',
@@ -298,11 +298,15 @@ const dictionaries: Record<string, Dictionary> = {
         },
         {
           year: '2024',
-          description: 'Desenvolvimento e entrega de projetos como SaltWeb e FIT.IA, combinando React, Tailwind CSS e serviços inteligentes.',
+          description: 'Desenvolvimento e entrega de projetos como SaltWeb e FIT.IA, combinando React, Tailwind CSS e serviços inteligentes com IA.',
+        },
+        {
+          year: '2025',
+          description: 'Atuação na Rumo Soluções, desenvolvimento de sistema OS do zero e liderança de workshops internos para todos os funcionários sobre IA, SDD, Spec-Kit e Harness.',
         },
         {
           year: '2026',
-          description: 'Lançamento do DaviDev — arquitetura hexagonal monorepo, engenharia orientada a especificações e documentação pública.',
+          description: 'Lançamento do DaviDev — arquitetura hexagonal monorepo, engenharia orientada a especificações e publicação aberta de práticas de IA.',
         },
       ],
     },
@@ -310,16 +314,47 @@ const dictionaries: Record<string, Dictionary> = {
       badge: 'Habilidades',
       headline: 'O que eu domino e onde aplico.',
       intro:
-        'Sem barras percentuais arbitrárias ou notas subjetivas. Cada tecnologia reflete experiência prática em projetos reais, arquitetura limpa e entrega contínua.',
+        'Sem barras percentuais arbitrárias ou notas subjetivas. No topo, minha especialização em inteligência artificial e engenharia de contexto, seguida pela base sólida em backend, frontend e dados.',
       categories: [
         {
           number: '01',
+          title: 'Inteligência Artificial & Engenharia de Contexto',
+          items: [
+            {
+              name: 'Spec-Driven Development (SDD) & Spec-Kit',
+              description:
+                'Metodologia em que a especificação é a fonte única da verdade. Hierarquia de autoridade rigorosa (PRD → Architecture → Spec → Plan → Tasks → Code), padronização com comandos Spec-Kit e separação clara entre produto e especificação executável.',
+            },
+            {
+              name: 'Model Context Protocol (MCP)',
+              description:
+                'Orquestração da "tomada universal" da IA conectando agentes a ferramentas e dados em tempo real: Context7 (documentação atualizada), Serena (navegação e refatoração semântica LSP) e TestSprite (geração e execução de testes de qualidade).',
+            },
+            {
+              name: 'Harness Engineering & Sandboxing',
+              description:
+                'Construção da infraestrutura ao redor dos LLMs: regras da casa duráveis (CLAUDE.md / constitution.md), delimitação estrita de ferramentas e permissões de segurança, persistência de memória (MEMORY.md) e loops de verificação contínua.',
+            },
+            {
+              name: 'Orquestração de Agentes & Subagentes',
+              description:
+                'Coordenação de equipes de subagentes especializados (code-reviewer com níveis de severidade, dotnet-best-practices, explore, planner) e automação de procedimentos corporativos através de skills dedicadas.',
+            },
+            {
+              name: 'Engenharia de Prompts Estruturados & LLMs',
+              description:
+                'Modelos de linguagem avançados (Claude 3.7/Sonnet, GPT-4o, Gemini 2.5 Pro) integrados com validação estrita de esquemas JSON/Zod, retentativas estruturadas e extração determinística.',
+            },
+          ],
+        },
+        {
+          number: '02',
           title: 'Backend & Arquitetura',
           items: [
             {
               name: 'C# / .NET',
               description:
-                'Desenvolvimento de APIs robustas e serviços com ASP.NET Core, Entity Framework Core e LINQ, aplicando padrões corporativos e MVC.',
+                'Desenvolvimento de APIs robustas e serviços com ASP.NET Core, Entity Framework Core e LINQ, aplicando padrões corporativos, injeção de dependência e MVC.',
             },
             {
               name: 'Node.js · TypeScript',
@@ -334,12 +369,12 @@ const dictionaries: Record<string, Dictionary> = {
             {
               name: 'Arquitetura Hexagonal & DDD',
               description:
-                'Isolamento estrito do domínio e casos de uso, garantindo zero dependência de frameworks ou bancos no núcleo.',
+                'Isolamento estrito do domínio e casos de uso, garantindo zero dependência de frameworks ou bancos no núcleo (Ports & Adapters).',
             },
           ],
         },
         {
-          number: '02',
+          number: '03',
           title: 'Frontend & Interface',
           items: [
             {
@@ -353,15 +388,15 @@ const dictionaries: Record<string, Dictionary> = {
                 'Criação de interfaces acessíveis, responsivas e semânticas com design tokens, suporte a tema claro/escuro e WCAG AA.',
             },
             {
-              name: 'TypeScript & Ecossistema Moderno',
+              name: 'TypeScript Avançado',
               description:
-                'Tipagem avançada em todo o ciclo da aplicação, prevenindo falhas de contrato entre frontend e backend.',
+                'Tipagem avançada em todo o ciclo da aplicação, generics com constraints e discriminated unions prevenindo falhas de contrato.',
             },
           ],
         },
         {
-          number: '03',
-          title: 'Banco de Dados & Ferramentas',
+          number: '04',
+          title: 'Banco de Dados & Infraestrutura',
           items: [
             {
               name: 'PostgreSQL & MySQL',
@@ -386,47 +421,47 @@ const dictionaries: Record<string, Dictionary> = {
       badge: 'Conhecimentos',
       headline: 'Os conceitos que sustentam as escolhas.',
       intro:
-        'Habilidade é a ferramenta; conhecimento é saber quando ela não serve. Aqui estão os fundamentos que uso para decidir — e o custo que cada um cobra.',
+        'Habilidade é a ferramenta; conhecimento é saber quando ela não serve. Aqui estão os fundamentos de IA, especificação e arquitetura que uso para decidir — e o custo que cada um cobra.',
       items: [
+        {
+          title: 'Spec-Driven Development (SDD) & Hierarquia de Autoridade',
+          tag: 'Aplico',
+          description:
+            'O código deixa de ser o ponto de partida e passa a ser a consequência final da especificação. Respeito rigoroso à hierarquia de autoridade dos artefatos: PRD (o quê e por quê) → Architecture (como o sistema se estrutura) → Specification (o quê exatamente) → Plan (design técnico detalhado) → Tasks (tarefas acionáveis) → Code. Nenhuma linha é escrita sem contrato prévio.',
+          costLabel: 'O custo',
+          cost: 'Demanda disciplina e tempo investido antes da implementação. Quem queima essa etapa ganha velocidade aparente no primeiro dia e passa meses pagando retrabalho e desalinhamento entre produto e engenharia.',
+        },
+        {
+          title: 'Harness Engineering no Mundo de IA',
+          tag: 'Aplico',
+          description:
+            'O modelo de linguagem é apenas o cérebro; o harness é toda a infraestrutura ao redor que o guia, controla e torna confiável. Composto pelas 8 peças fundamentais: regras da casa duráveis (CLAUDE.md), ferramentas para agir, permissões de segurança (cinto de segurança), janela de contexto, memória persistente (MEMORY.md), servidores MCP, equipe de subagentes especializados e loops contínuos de verificação.',
+          costLabel: 'O custo',
+          cost: 'Manter a infraestrutura de harness calibrada conforme o sistema evolui exige manutenção constante de contexto e regras. Sem esse arreio, até o modelo mais avançado alucina e quebra invariantes de domínio.',
+        },
+        {
+          title: 'Model Context Protocol (MCP) — A Tomada Universal da IA',
+          tag: 'Aplico',
+          description:
+            'Padronização de comunicação entre agentes e fontes reais. Em vez de depender da memória estática e desatualizada do treino da IA, utilizo MCPs estratégicos: Context7 para injetar documentações oficiais atualizadas na hora, Serena para navegação e refatoração semântica em nível de símbolo (LSP) e TestSprite para geração e execução de testes de qualidade.',
+          costLabel: 'O custo',
+          cost: 'Exige configuração e sustentação de servidores locais/remotos de protocolo e consome tokens adicionais ao injetar schemas de ferramentas no contexto do modelo.',
+        },
         {
           title: 'Arquitetura Hexagonal (Ports & Adapters)',
           tag: 'Aplico',
           description:
-            'Domínio e casos de uso independentes de framework, HTTP e banco. O ganho real não é elegância estética: é conseguir testar regra de negócio sem subir infraestrutura.',
+            'Domínio e casos de uso independentes de framework, HTTP e banco. O ganho real não é elegância estética: é conseguir testar regra de negócio sem subir infraestrutura e proteger a longevidade do software.',
           costLabel: 'O custo',
           cost: 'Mais arquivos e mais indireção por funcionalidade. Em sistemas pequenos é over-engineering — e só se justifica quando a testabilidade e o ciclo de vida longo valem o preço.',
-        },
-        {
-          title: 'Domain-Driven Design (DDD Tático)',
-          tag: 'Aplico',
-          description:
-            'Agregados com fronteira explícita, linguagem ubíqua sem sinônimos ambíguos e regras de negócio numeradas — para que o código e a conversa usem as mesmas palavras.',
-          costLabel: 'O custo',
-          cost: 'Exige disciplina constante de nomenclatura. Sem isso, vira vocabulário decorativo sobre um CRUD anêmico.',
         },
         {
           title: 'Integridade no banco, não no código',
           tag: 'Aplico',
           description:
-            'Quando uma regra de negócio pode ser expressa como constraint relacional, ela deve ser. Unicidade, integridade referencial em cascata e transições de estado garantidas pelo Postgres são impossíveis de violar por esquecimento.',
+            'Quando uma regra de negócio pode ser expressa como constraint relacional, ela deve ser. Unicidade, integridade referencial em cascata e transições de estado garantidas pelo Postgres são impossíveis de violar por esquecimento ou alucinações de código.',
           costLabel: 'O custo',
           cost: 'Menor flexibilidade em migrações dinâmicas e mensagens de erro do driver que exigem tradução de banco para o usuário.',
-        },
-        {
-          title: 'Engenharia assistida por IA orientada a especificação',
-          tag: 'Aplico',
-          description:
-            'Especificação como fonte da verdade, MCP para contexto de ferramentas e validação estrita da implementação contra contratos pré-definidos — nunca geração de código no escuro.',
-          costLabel: 'O custo',
-          cost: 'Escrever a especificação e o PRD demanda tempo e rigor antes da primeira linha de código. Quem pula essa etapa ganha velocidade imediata mas perde direção arquitetural.',
-        },
-        {
-          title: 'Resiliência em integrações externas',
-          tag: 'Aplico',
-          description:
-            'Timeouts definidos, retentativas com backoff exponencial e decisão consciente entre falhar aberto ou fechado. Todo padrão adotado carrega parâmetro configurado, não só o nome.',
-          costLabel: 'O custo',
-          cost: 'Padrão aplicado sem gargalo real é complexidade desnecessária — circuit breaker em sistema de baixo volume só adiciona estado volátil para manter.',
         },
       ],
     },
@@ -434,7 +469,7 @@ const dictionaries: Record<string, Dictionary> = {
       badge: 'Experiências',
       headline: 'O que eu resolvi, e onde atuei.',
       intro:
-        'Trajetória profissional com foco em desenvolvimento corporativo, engenharia de software Full Stack, automações (RPA), APIs e soluções potencializadas por IA.',
+        'Trajetória profissional combinando liderança técnica em inteligência artificial, capacitação corporativa, engenharia Full Stack (.NET, React) e automação de processos.',
       positions: [
         {
           period: '2026 — Atual',
@@ -442,15 +477,28 @@ const dictionaries: Record<string, Dictionary> = {
           role: 'Analista Desenvolvedor Júnior',
           regime: 'CLT · Híbrido · Lagoa Santa, MG',
           summary:
-            'Atuação no desenvolvimento, sustentação e evolução de sistemas corporativos escaláveis, automação de processos (RPA), arquitetura de APIs e integração de soluções potencializadas por IA.',
+            'Atuação no desenvolvimento de sistemas corporativos escaláveis, liderança em capacitação de Inteligência Artificial para equipes, automação de processos (RPA) e arquitetura de software orientada a especificações.',
           highlights: [
-            'Desenvolvimento de sistema de Ordem de Serviço (OS) do zero utilizando .NET, React, Docker e práticas modernas de engenharia de software.',
-            'Desenvolvimento de soluções baseadas em Inteligência Artificial para geração automatizada de documentação técnica, wikis e padronização de processos de desenvolvimento.',
-            'Participação em iniciativas internas de capacitação sobre IA e criação de workflows para acelerar o desenvolvimento de novos projetos.',
+            'Ministração de treinamentos e workshops internos para todos os funcionários da empresa sobre Inteligência Artificial Aplicada, Spec-Driven Development (SDD), Spec-Kit e Harness Engineering, capacitando a equipe na transição de geração desordenada de código para fluxos estruturados e auditáveis.',
+            'Concepção e desenvolvimento do sistema de Ordem de Serviço (OS / Projeto CRC) do zero utilizando .NET, React, Docker e práticas modernas de engenharia, estabelecendo um harness corporativo rigoroso com regras duráveis (snapshot congelado imutável, soft delete universal e fluxo linear de OS).',
+            'Desenvolvimento de soluções potencializadas por IA para geração automatizada de documentação técnica, wikis no Azure DevOps e padronização dos processos de engenharia de software.',
+            'Integração e orquestração de servidores Model Context Protocol (MCP) — incluindo Context7 para documentação em tempo real, Serena para navegação semântica via LSP e TestSprite para controle de qualidade automatizado.',
             'Desenvolvimento e sustentação de funcionalidades críticas para sistemas corporativos, com foco em disponibilidade, estabilidade e regras de negócio.',
             'Construção de rotinas de automação (RPA) e pipelines eficientes para integração de dados entre sistemas e serviços.',
           ],
-          technologies: ['.NET / C#', 'React', 'Docker', 'Inteligência Artificial', 'TypeScript', 'Node.js', 'RPA', 'PostgreSQL'],
+          technologies: [
+            'Inteligência Artificial',
+            'Spec-Driven Dev',
+            'Spec-Kit',
+            'Harness Engineering',
+            'Model Context Protocol (MCP)',
+            '.NET / C#',
+            'React',
+            'Docker',
+            'TypeScript',
+            'PostgreSQL',
+            'RPA',
+          ],
         },
         {
           period: '2025 — 2026',
@@ -458,10 +506,10 @@ const dictionaries: Record<string, Dictionary> = {
           role: 'Estagiário de Desenvolvimento Web',
           regime: 'Estágio · Híbrido · Lagoa Santa, MG',
           summary:
-            'Apoio técnico no ciclo completo de desenvolvimento web, codificação de interfaces de usuário, manutenção de serviços backend e testes de integração.',
+            'Apoio técnico no ciclo completo de desenvolvimento web, codificação de interfaces de usuário, manutenção de serviços backend, testes de integração e primeiras automações com IA.',
           highlights: [
-            'Implementação e estilização de interfaces web modernas e responsivas alinhadas às diretrizes de design da empresa.',
-            'Correção de bugs, refatoração de código legado e apoio na elaboração de documentação técnica e de endpoints.',
+            'Implementação e estilização de interfaces web modernas e responsivas alinhadas às diretrizes de design e padrões visuais da empresa.',
+            'Correção de bugs, refatoração de código legado e apoio na elaboração de documentação técnica de endpoints e arquitetura.',
             'Integração contínua em equipe ágil, participando de code reviews, reuniões diárias e planejamento de sprints.',
           ],
           technologies: ['JavaScript', 'TypeScript', 'HTML5 & CSS3', 'React', 'Node.js', 'Git', 'SQL'],
@@ -472,11 +520,11 @@ const dictionaries: Record<string, Dictionary> = {
           role: 'Desenvolvedor Full Stack',
           regime: 'Projetos · Remoto / Híbrido',
           summary:
-            'Concepção, arquitetura e entrega de plataformas web completas para clientes e iniciativas comunitárias, integrando frontend reativo e backends resilientes.',
+            'Concepção, arquitetura e entrega de plataformas web completas para clientes e iniciativas comunitárias, integrando frontend reativo, backends resilientes e inteligência artificial aplicada.',
           highlights: [
+            'Construí o projeto DaviDev em arquitetura hexagonal estrita, monorepo pnpm, Next.js 15 e API Fastify in-process, com todo o processo de Spec-Driven Development publicado abertamente.',
+            'Desenvolvi a plataforma FIT.IA, integrando inteligência artificial generativa com backend em Express e frontend em React para montagem personalizada de rotinas de treino e nutrição.',
             'Arquitetei e lancei a plataforma SaltWeb para a juventude da PIB Lagoa Santa, proporcionando experiência rápida e engajamento comunitário.',
-            'Desenvolvi a plataforma FIT.IA, integrando inteligência artificial generativa com backend em Express e frontend em React.',
-            'Construí o projeto DaviDev em arquitetura hexagonal estrita, monorepo pnpm e boas práticas com Next.js 15 e Fastify.',
           ],
           technologies: ['React', 'Next.js 15', 'TypeScript', 'Node.js', 'Tailwind CSS', 'PostgreSQL', 'MongoDB', 'IA Generativa'],
         },
@@ -737,36 +785,41 @@ const dictionaries: Record<string, Dictionary> = {
         { label: 'contradições detectadas e corrigidas', count: 4 },
       ],
       flowNumber: '01',
-      flowTitle: 'O fluxo',
+      flowTitle: 'O fluxo Spec-Driven & Harness',
       flowSteps: [
         {
           number: '01',
-          title: 'Ideia',
-          description: 'Documento de referência com escopo e stack',
+          title: 'Ideia & Contexto',
+          description: 'Documento de referência com escopo, intenção e objetivos',
         },
         {
           number: '02',
-          title: 'PRD',
-          description: 'Problema, personas, métricas e o que fica fora',
+          title: 'PRD (Produto)',
+          description: 'Problema, personas, critérios de sucesso e o que fica fora (via skill prd-development)',
         },
         {
           number: '03',
-          title: 'Arquitetura',
-          description: '23 etapas, ADRs, schema e contratos',
+          title: 'Arquitetura (Técnico)',
+          description: 'Fonte de verdade técnica: ADRs, modelagem de dados e contratos (via skill architecture-design)',
         },
         {
           number: '04',
-          title: 'Implementação',
-          description: 'Assistida por IA, validada contra a especificação',
+          title: 'Spec-Kit (.specify)',
+          description: 'Especificação funcional (spec.md), plano técnico (plan.md) e lista de tarefas (tasks.md)',
         },
         {
           number: '05',
-          title: 'Deploy',
-          description: 'Dez gates bloqueantes antes de produção',
+          title: 'Harness & Execução IA',
+          description: 'Implementação guiada com MCPs (Context7, Serena, TestSprite) sob rédeas de regras duráveis',
+        },
+        {
+          number: '06',
+          title: 'Deploy & Verificação',
+          description: 'Dez gates bloqueantes de CI, testes automatizados e homologação em produção',
         },
       ],
       flowNote:
-        'A IA não escreveu este sistema sozinha, e não é isso que está sendo demonstrado. O que está sendo demonstrado é o fluxo: especificação como fonte de verdade, MCP para contexto de ferramentas, e validação da implementação contra o que foi decidido — com um humano respondendo por cada decisão.',
+        'A IA não escreveu este sistema sozinha, e nem gerou código a partir de prompts soltos ("vibe coding"). O que está sendo demonstrado é a engenharia de harness: especificação como fonte única da verdade (SDD), autoridade hierárquica (PRD → Architecture → Spec → Plan → Tasks → Code), servidores MCP para contexto em tempo real e verificação contínua contra contratos definidos — com um humano responsável por cada decisão técnica.',
       adrsNumber: '02',
       adrsTitle: 'Decisões que valeram um ADR',
       adrs: [
@@ -876,16 +929,16 @@ const dictionaries: Record<string, Dictionary> = {
       copyright: '© 2026 Davi Afonso',
     },
     home: {
-      badge: 'Full Stack Developer · Brazil',
-      headline: 'I build resilient systems — from backend architecture to interface design.',
+      badge: 'Full Stack Developer & AI Engineering · Brazil',
+      headline: 'Software engineering with architectural rigor and end-to-end artificial intelligence.',
       subheadline:
-        'Information Systems graduate specializing in C# / .NET, Node.js, React, and clean software architecture. This website is itself an engineered software product: hexagonal architecture, pnpm monorepo, open specifications, and transparent engineering.',
+        'Information Systems graduate specializing in C# / .NET, React, clean architecture, and Spec-Driven Development (SDD). From Spec-Kit design to AI test harnessing, I build resilient, auditable enterprise systems.',
       ctaProjects: 'View projects',
       ctaHowBuilt: 'How this site was built',
       stackTitle: 'Core stack',
-      stackItems: ['C# / .NET', 'Node.js', 'React', 'TypeScript', 'Next.js', 'PostgreSQL', 'MongoDB', 'Docker'],
+      stackItems: ['AI & Spec-Kit', 'C# / .NET', 'Node.js', 'React', 'TypeScript', 'Next.js', 'PostgreSQL', 'Docker'],
       roleTitle: 'Role',
-      roleValue: 'Full Stack (.NET, Node, React)',
+      roleValue: 'Full Stack (.NET, React) & AI Engineering',
       locationTitle: 'Location',
       locationValue: 'Lagoa Santa, Brazil · Remote / Hybrid',
       availabilityTitle: 'Availability',
@@ -897,21 +950,21 @@ const dictionaries: Record<string, Dictionary> = {
       recentWritingTitle: 'Recently written',
       allArticlesLink: 'All articles →',
       differentialNumber: '03 — The difference',
-      differentialTitle: 'The engineering process is open too.',
+      differentialTitle: 'The specification-driven process and AI harness.',
       differentialBody:
-        'Specifications, architectural decisions with ADRs, hexagonal separation, and trade-off records. The engineering page reveals the complete reasoning behind every line of code.',
+        'Specifications as single source of truth (SDD), Model Context Protocol (MCP), agents grounded in durable rules, and documented ADRs. The complete and auditable engineering process behind every line.',
       differentialCta: 'See how it was built',
     },
     about: {
       badge: 'About me',
-      headline: 'Information Systems graduate and Full Stack developer focused on solving real problems with software.',
+      headline: 'Information Systems graduate, Full Stack developer, and specialist in AI-driven software engineering.',
       paragraphs: [
-        'I am a Full Stack Software Developer with a Bachelor’s degree in Information Systems. My work bridges solid backend engineering — using C#, the .NET ecosystem (ASP.NET Core, Entity Framework), and Node.js (TypeScript, Fastify, Express) — with modern, responsive frontend interfaces built with React and Next.js.',
-        'I believe reliable software comes from balancing architectural discipline with practical business value. I apply Hexagonal Architecture, Domain-Driven Design (DDD), and rigorous relational data modeling to build systems that are thoroughly tested, maintainable, and production-ready.',
-        'In addition to foundational software engineering, I incorporate specification-driven development and AI-assisted workflows to accelerate delivery while maintaining high code quality and strict engineering standards.',
+        'I am a Full Stack Software Developer with a Bachelor’s degree in Information Systems. My work bridges enterprise backend engineering — using C#, the .NET ecosystem (ASP.NET Core, Entity Framework), and Node.js (TypeScript, Fastify, Express) — with modern, responsive frontend interfaces built with React and Next.js.',
+        'I specialize in moving artificial intelligence from chaotic "vibe coding" to disciplined, predictable engineering. I implement Spec-Driven Development (SDD), GitHub Spec-Kit, and Harness Engineering — establishing environments where language models operate under strict architectural guardrails, API contracts, and automated verification loops. At Rumo Soluções, I spearheaded internal company-wide training on these methodologies and engineered mission-critical systems with AI.',
+        'I treat code as the direct consequence of an unambiguous specification. Whether designing hexagonal architectures and DDD or integrating agents via the Model Context Protocol (MCP) with tools like Context7 and Serena, my goal is delivering testable, resilient, and enterprise-grade software.',
       ],
       focusTitle: 'Focus',
-      focusValue: 'Full Stack (.NET, Node.js, React, TypeScript)',
+      focusValue: 'Full Stack (.NET, React) & AI Engineering (SDD / MCP / Harness)',
       baseTitle: 'Base',
       baseValue: 'Lagoa Santa, Minas Gerais · Brazil',
       languagesTitle: 'Languages',
@@ -932,8 +985,12 @@ const dictionaries: Record<string, Dictionary> = {
           description: 'Delivered production platforms like SaltWeb and FIT.IA, combining React, Tailwind CSS, and AI services.',
         },
         {
+          year: '2025',
+          description: 'Engineering at Rumo Soluções, OS system built from scratch, and led internal company-wide workshops on AI, SDD, Spec-Kit, and Harness.',
+        },
+        {
           year: '2026',
-          description: 'Launched DaviDev — hexagonal monorepo architecture, specification-driven engineering, and public documentation.',
+          description: 'Launched DaviDev — hexagonal monorepo architecture, specification-driven engineering, and open publication of AI engineering practices.',
         },
       ],
     },
@@ -941,16 +998,47 @@ const dictionaries: Record<string, Dictionary> = {
       badge: 'Skills',
       headline: 'What I build with, and where I apply it.',
       intro:
-        'No arbitrary percentage bars or subjective ratings. Each technology reflects hands-on experience in real-world projects, clean architecture, and continuous delivery.',
+        'No arbitrary percentage bars or subjective ratings. At the very top, my specialization in artificial intelligence and context engineering, backed by solid foundations in backend, frontend, and data.',
       categories: [
         {
           number: '01',
+          title: 'Artificial Intelligence & Context Engineering',
+          items: [
+            {
+              name: 'Spec-Driven Development (SDD) & Spec-Kit',
+              description:
+                'Methodology where the specification serves as the single source of truth. Strict artifact authority hierarchy (PRD → Architecture → Spec → Plan → Tasks → Code), standardized Spec-Kit workflows, and clear separation between product intent and executable spec.',
+            },
+            {
+              name: 'Model Context Protocol (MCP)',
+              description:
+                'Orchestration of AI’s "universal socket" connecting agents to real-time tools and data: Context7 (up-to-date official docs), Serena (symbol-level semantic code navigation via LSP), and TestSprite (automated test generation and quality verification).',
+            },
+            {
+              name: 'Harness Engineering & Sandboxing',
+              description:
+                'Building complete infrastructure around LLMs: durable governance rules (CLAUDE.md / constitution.md), strict permission sandboxes, persistent memory (MEMORY.md), and automated verification feedback loops preventing hallucinations.',
+            },
+            {
+              name: 'Agent & Subagent Orchestration',
+              description:
+                'Coordinating specialized subagent teams (code-reviewer with severity levels, dotnet-best-practices, explore, planner) and automating enterprise development procedures via packaged skills.',
+            },
+            {
+              name: 'Structured Prompt Engineering & LLMs',
+              description:
+                'Advanced foundation models (Claude 3.7/Sonnet, GPT-4o, Gemini 2.5 Pro) integrated with strict JSON/Zod schema validation, structured retries, and deterministic outputs.',
+            },
+          ],
+        },
+        {
+          number: '02',
           title: 'Backend & Architecture',
           items: [
             {
               name: 'C# / .NET',
               description:
-                'Robust API and service development with ASP.NET Core, Entity Framework Core, and LINQ, applying enterprise architecture and MVC patterns.',
+                'Robust API and service development with ASP.NET Core, Entity Framework Core, and LINQ, applying enterprise architecture, dependency injection, and MVC patterns.',
             },
             {
               name: 'Node.js · TypeScript',
@@ -965,12 +1053,12 @@ const dictionaries: Record<string, Dictionary> = {
             {
               name: 'Hexagonal Architecture & DDD',
               description:
-                'Strict isolation of core domain and use cases, ensuring zero framework or database dependencies in the business layer.',
+                'Strict isolation of core domain and use cases, ensuring zero framework or database dependencies in the business layer (Ports & Adapters).',
             },
           ],
         },
         {
-          number: '02',
+          number: '03',
           title: 'Frontend & Interface',
           items: [
             {
@@ -984,15 +1072,15 @@ const dictionaries: Record<string, Dictionary> = {
                 'Accessible, responsive, and semantic user interfaces with design tokens, native light/dark theme, and WCAG AA compliance.',
             },
             {
-              name: 'TypeScript & Modern Ecosystem',
+              name: 'Advanced TypeScript',
               description:
-                'Advanced static typing across the entire frontend lifecycle, eliminating runtime contract mismatches.',
+                'Advanced static typing, constrained generics, and discriminated unions preventing runtime contract mismatches across stack boundaries.',
             },
           ],
         },
         {
-          number: '03',
-          title: 'Databases & Tooling',
+          number: '04',
+          title: 'Databases & Infrastructure',
           items: [
             {
               name: 'PostgreSQL & MySQL',
@@ -1007,7 +1095,7 @@ const dictionaries: Record<string, Dictionary> = {
             {
               name: 'Docker & Git/CI',
               description:
-                'Reproducible containerized development, automated testing workflows, and static dependency boundary enforcement.',
+                'Reproducible containerized development, automated 10-gate testing workflows, and static dependency boundary enforcement.',
             },
           ],
         },
@@ -1017,47 +1105,47 @@ const dictionaries: Record<string, Dictionary> = {
       badge: 'Knowledge',
       headline: 'The concepts that guide my choices.',
       intro:
-        'A skill is the tool; knowledge is knowing when not to use it. Here are the principles I use to make engineering trade-offs — and the price each one demands.',
+        'A skill is the tool; knowledge is knowing when not to use it. Here are the core foundations of AI, specification, and architecture I use to make engineering trade-offs — and the price each one demands.',
       items: [
+        {
+          title: 'Spec-Driven Development (SDD) & Authority Hierarchy',
+          tag: 'Applied',
+          description:
+            'Code is not the starting point; it is the final consequence of specification. Strict respect for the artifact hierarchy: PRD (what and why) → Architecture (how the system is structured) → Specification (what exactly) → Plan (detailed technical design) → Tasks (actionable breakdown) → Code. No line is generated without a verified contract.',
+          costLabel: 'The Trade-off',
+          cost: 'Requires discipline and upfront time before implementation. Skipping this yields short-term speed on day one, followed by months of architectural debt and product misalignment.',
+        },
+        {
+          title: 'Harness Engineering in the AI World',
+          tag: 'Applied',
+          description:
+            'The language model is just the brain; the harness is the complete surrounding infrastructure that guides, controls, and makes it reliable. Built from 8 essential components: durable house rules (CLAUDE.md), tools for action, safety permissions (seatbelt), context windowing, cross-session persistent memory (MEMORY.md), MCP servers, specialized subagents, and automated verification loops.',
+          costLabel: 'The Trade-off',
+          cost: 'Keeping the harness calibrated as the system grows requires ongoing maintenance. Without this harness, even the most expensive model hallucinates and violates domain invariants.',
+        },
+        {
+          title: 'Model Context Protocol (MCP) — The Universal Socket',
+          tag: 'Applied',
+          description:
+            'Standardized protocol connecting AI agents to real-world data and execution. Instead of relying on frozen, outdated training memory, I deploy strategic MCPs: Context7 for live official documentation, Serena for symbol-level semantic code navigation (LSP), and TestSprite for automated test validation.',
+          costLabel: 'The Trade-off',
+          cost: 'Requires setting up and maintaining protocol servers, plus token overhead for passing tool schemas and dynamic payloads into the context.',
+        },
         {
           title: 'Hexagonal Architecture (Ports & Adapters)',
           tag: 'Applied',
           description:
-            'Domain and use cases completely decoupled from frameworks, HTTP servers, and database drivers. The benefit is testability of pure business logic without spinning up external infrastructure.',
+            'Domain and use cases completely decoupled from frameworks, HTTP servers, and database drivers. The benefit is testability of pure business logic in memory without external infrastructure, ensuring long-term software durability.',
           costLabel: 'The Trade-off',
           cost: 'More files and indirection per feature. For small CRUD apps it is over-engineering — justified only when long-term maintainability and testability matter.',
-        },
-        {
-          title: 'Tactical Domain-Driven Design (DDD)',
-          tag: 'Applied',
-          description:
-            'Aggregates with explicit transactional boundaries, ubiquitous language without ambiguous synonyms, and numbered business rules ensuring code matches business terminology.',
-          costLabel: 'The Trade-off',
-          cost: 'Requires continuous naming discipline. Without rigor, it devolves into decorative vocabulary over an anemic model.',
         },
         {
           title: 'Data Integrity at Database Level',
           tag: 'Applied',
           description:
-            'Whenever a business constraint can be represented as a database constraint, it must be. Uniqueness, cascade rules, and state validations enforced by Postgres cannot be bypassed by buggy application code.',
+            'Whenever a business constraint can be represented as a database constraint, it must be. Uniqueness, cascade rules, and state validations enforced by Postgres cannot be bypassed by buggy application code or hallucinated agent patches.',
           costLabel: 'The Trade-off',
-          cost: 'Less flexibility during schema refactoring and raw database error messages requiring translation layers for client feedback.',
-        },
-        {
-          title: 'Specification-Driven AI Engineering',
-          tag: 'Applied',
-          description:
-            'Rigorous specifications as source of truth, Model Context Protocol (MCP) for tool grounding, and systematic verification of implementation against predefined contracts — never generating unverified code.',
-          costLabel: 'The Trade-off',
-          cost: 'Authoring specifications and PRDs requires upfront time and rigor before writing code. Skipping this yields short-term speed at the cost of architectural drift.',
-        },
-        {
-          title: 'Resilience in External Integrations',
-          tag: 'Applied',
-          description:
-            'Strict timeouts, exponential backoff with jitter, and deliberate fail-open or fail-closed decisions. Every adopted pattern carries explicit configuration parameters.',
-          costLabel: 'The Trade-off',
-          cost: 'Complex patterns without actual production bottlenecks become accidental complexity — circuit breakers in low-throughput services only add volatile state.',
+          cost: 'Less flexibility during rapid migrations and raw database error messages requiring translation layers for user feedback.',
         },
       ],
     },
@@ -1065,7 +1153,7 @@ const dictionaries: Record<string, Dictionary> = {
       badge: 'Experience',
       headline: 'What I built, and where I delivered value.',
       intro:
-        'Professional trajectory focused on enterprise software engineering, Full Stack web development, automation (RPA), APIs, and AI-powered solutions.',
+        'Professional trajectory uniting technical leadership in artificial intelligence, corporate enablement, Full Stack engineering (.NET, React), and process automation.',
       positions: [
         {
           period: '2026 — Present',
@@ -1073,15 +1161,28 @@ const dictionaries: Record<string, Dictionary> = {
           role: 'Junior Developer Analyst',
           regime: 'Full-time · Hybrid · Lagoa Santa, Brazil',
           summary:
-            'Engineering, maintaining, and scaling enterprise systems, business process automation (RPA), RESTful API architectures, and AI-powered service integrations.',
+            'Engineering scalable enterprise systems, leading corporate Artificial Intelligence training initiatives, business process automation (RPA), and specification-driven software architecture.',
           highlights: [
-            'Built a complete Work Order (OS) management system from scratch using .NET, React, Docker, and modern software engineering practices.',
-            'Developed AI-powered solutions for automated technical documentation generation, internal wikis, and development process standardization.',
-            'Participated in internal AI enablement initiatives and authored workflow automations to accelerate new project delivery.',
+            'Conducted company-wide internal training sessions and workshops for all employees on Applied AI, Spec-Driven Development (SDD), Spec-Kit, and Harness Engineering, empowering the team to transition from ad-hoc prompt generation to disciplined, auditable workflows.',
+            'Architected and built the Work Order (OS / CRC Project) management system from scratch using .NET, React, and Docker, establishing a strict corporate harness with durable rules (immutable frozen snapshot, universal soft delete, and linear OS lifecycle).',
+            'Engineered AI-powered solutions for automated technical documentation generation, Azure DevOps wikis, and development process standardization.',
+            'Integrated and orchestrated Model Context Protocol (MCP) servers — including Context7 for real-time documentation, Serena for LSP semantic navigation, and TestSprite for automated quality control.',
             'Engineered and scaled critical enterprise features focused on high availability, stability, and business domain requirements.',
-            'Built automated process workflows (RPA) and efficient data pipelines across distributed platforms.',
+            'Built automated process workflows (RPA) and efficient data pipelines across distributed enterprise platforms.',
           ],
-          technologies: ['.NET / C#', 'React', 'Docker', 'Artificial Intelligence', 'TypeScript', 'Node.js', 'RPA', 'PostgreSQL'],
+          technologies: [
+            'Artificial Intelligence',
+            'Spec-Driven Dev',
+            'Spec-Kit',
+            'Harness Engineering',
+            'Model Context Protocol (MCP)',
+            '.NET / C#',
+            'React',
+            'Docker',
+            'TypeScript',
+            'PostgreSQL',
+            'RPA',
+          ],
         },
         {
           period: '2025 — 2026',
@@ -1089,10 +1190,10 @@ const dictionaries: Record<string, Dictionary> = {
           role: 'Web Development Intern',
           regime: 'Internship · Hybrid · Lagoa Santa, Brazil',
           summary:
-            'Technical support across the full web development lifecycle, crafting user interfaces, maintaining backend services, and performing integration tests.',
+            'Technical support across the full web development lifecycle, crafting user interfaces, maintaining backend services, integration testing, and early AI automations.',
           highlights: [
-            'Built responsive, modern web interfaces matching corporate design guidelines and usability standards.',
-            'Investigated and resolved bugs, refactored legacy components, and authored technical documentation for API endpoints.',
+            'Built responsive, modern web interfaces matching corporate design guidelines, usability standards, and design tokens.',
+            'Investigated and resolved bugs, refactored legacy components, and authored technical documentation for API endpoints and system architectures.',
             'Collaborated within an agile team participating in daily standups, sprint planning, and peer code reviews.',
           ],
           technologies: ['JavaScript', 'TypeScript', 'HTML5 & CSS3', 'React', 'Node.js', 'Git', 'SQL'],
@@ -1103,13 +1204,13 @@ const dictionaries: Record<string, Dictionary> = {
           role: 'Full Stack Software Developer',
           regime: 'Projects · Remote / Hybrid',
           summary:
-            'End-to-end design, architecture, and delivery of web applications for clients and community organizations, uniting responsive frontends with resilient backends.',
+            'End-to-end design, architecture, and delivery of web applications for clients and community organizations, uniting responsive frontends, resilient backends, and applied AI.',
           highlights: [
+            'Built the DaviDev platform with strict hexagonal architecture, pnpm monorepo structure, Next.js 15, and in-process Fastify, with the entire Spec-Driven Development process open-sourced.',
+            'Engineered the FIT.IA assistant, integrating generative AI with an Express backend and React frontend for customized fitness and nutrition plans.',
             'Architected and deployed the SaltWeb platform for PIB Lagoa Santa youth, delivering high performance and community engagement.',
-            'Engineered the FIT.IA assistant, integrating generative AI with an Express backend and dynamic React user interface.',
-            'Built the DaviDev platform with strict hexagonal architecture, pnpm monorepo structure, Next.js 15, and in-process Fastify.',
           ],
-          technologies: ['React', 'Next.js 15', 'TypeScript', 'Node.js', 'Tailwind CSS', 'PostgreSQL', 'MongoDB', 'Generative AI'],
+          technologies: ['React', 'Next.js 15', 'TypeScript', 'Node.js', 'Hexagonal Architecture', 'Fastify', 'Generative AI', 'PostgreSQL', 'Docker'],
         },
       ],
     },
@@ -1368,36 +1469,41 @@ const dictionaries: Record<string, Dictionary> = {
         { label: 'contradictions detected and resolved', count: 4 },
       ],
       flowNumber: '01',
-      flowTitle: 'The workflow',
+      flowTitle: 'The Spec-Driven & Harness Flow',
       flowSteps: [
         {
           number: '01',
-          title: 'Idea',
-          description: 'Reference document with scope, constraints, and stack',
+          title: 'Idea & Framing',
+          description: 'Reference document defining scope, intent, and objectives',
         },
         {
           number: '02',
-          title: 'PRD',
-          description: 'Problem, personas, primary metrics, and out-of-scope items',
+          title: 'PRD (Product)',
+          description: 'Problem framing, personas, success metrics, and out-of-scope boundaries (via prd-development skill)',
         },
         {
           number: '03',
-          title: 'Architecture',
-          description: '23 implementation steps, ADRs, schema, and contracts',
+          title: 'Architecture (Technical)',
+          description: 'Technical source of truth: ADRs, data models, and contracts (via architecture-design skill)',
         },
         {
           number: '04',
-          title: 'Implementation',
-          description: 'AI-assisted coding validated against the specifications',
+          title: 'Spec-Kit (.specify)',
+          description: 'Functional specification (spec.md), technical plan (plan.md), and task breakdown (tasks.md)',
         },
         {
           number: '05',
-          title: 'Deployment',
-          description: 'Ten blocking CI quality gates before production',
+          title: 'Harness & AI Execution',
+          description: 'Guided implementation using MCPs (Context7, Serena, TestSprite) under durable governance rules',
+        },
+        {
+          number: '06',
+          title: 'Deploy & Verification',
+          description: 'Ten blocking CI gates, automated test suites, and production verification',
         },
       ],
       flowNote:
-        'AI did not write this system alone, nor is that the claim. What is demonstrated here is the methodology: specification as the source of truth, MCP for tooling context, and rigorous verification of code against architecture decisions — with a senior engineer accountable for each choice.',
+        'AI did not write this system alone, nor was code generated from loose prompts ("vibe coding"). What is showcased is harness engineering: specification as single source of truth (SDD), hierarchical authority (PRD → Architecture → Spec → Plan → Tasks → Code), MCP servers for real-time grounding, and automated test loops — with a human engineer accountable for every architectural decision.',
       adrsNumber: '02',
       adrsTitle: 'Decisions that warranted an ADR',
       adrs: [

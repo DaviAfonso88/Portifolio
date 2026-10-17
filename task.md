@@ -334,3 +334,43 @@
   - **Ferramentas:** TestSprite MCP (`testsprite_generate_frontend_test_plan`, `testsprite_generate_code_and_execute`).
   - **[DoD]:** Validação do TestSprite concluída com links íntegros e página de engenharia totalmente acessível e conforme.
 
+---
+
+## Fase 10: Portfólio Centrado em Inteligência Artificial, Spec-Driven Development e Capacitação Corporativa
+
+- [x] **T10.01 — Estruturação da Fase 10 nos Arquivos de Planejamento (`specs/.../tasks.md` e `task.md`)**
+  - **Contexto:** Planejar detalhadamente a reformulação do portfólio para destacar Inteligência Artificial, Spec-Driven Development (SDD), Spec-Kit, Model Context Protocol (MCP) e Harness Engineering, integrando os materiais das aulas ministradas por Davi na Rumo Soluções.
+  - **Arquivos:** `specs/001-davidev-portfolio/tasks.md`, `task.md`.
+  - **[DoD]:** Fase 10 documentada e dividida em tarefas acionáveis e verificáveis com critérios de aceite claros.
+
+- [x] **T10.02 — Habilidades (`skills`): Elevar IA & Engenharia de Contexto para Categoria 01 no Topo**
+  - **Contexto:** Reestruturar o catálogo de habilidades em `apps/web/lib/dictionary.ts` (pt-BR e en), colocando no topo absoluto (Categoria 01) todas as competências de IA: Spec-Driven Development & Spec-Kit, Model Context Protocol (Context7, Serena, TestSprite), Harness Engineering & Sandboxing, Engenharia de Prompts e Agentes Autônomos. Manter as categorias subsequentes para Backend, Frontend e Banco/DevOps.
+  - **Arquivos:** `apps/web/lib/dictionary.ts`.
+  - **[DoD]:** Categoria 01 renderizada no topo da página `/habilidades` em ambos os idiomas com descrições práticas e sem notas subjetivas.
+
+- [x] **T10.03 — Experiências (`experiences`): Destaque das Aulas Corporativas de IA e do Sistema OS na Rumo Soluções**
+  - **Contexto:** Enriquecer a experiência na Rumo Soluções destacando as aulas e workshops ministrados para toda a empresa sobre SDD, Spec-Kit e Harness de IA, a concepção do sistema de OS do zero em .NET/React/Docker com harness robusto (snapshot congelado, soft delete, regras duráveis) e soluções de IA para wikis e documentação.
+  - **Arquivos:** `apps/web/lib/dictionary.ts`, `apps/web/app/[locale]/experiencias/page.tsx`.
+  - **[DoD]:** Experiências exibem os 3 pilares (treinamento corporativo de IA para todos os funcionários, sistema OS .NET/React e automações) e chave única por item corrigida.
+
+- [x] **T10.04 — Conhecimentos (`knowledge`): Fundamentos de SDD, Spec-Kit, Harness Engineering e MCP**
+  - **Contexto:** Atualizar a página de conhecimentos com os conceitos aprofundados dos 4 materiais de treinamento: Hierarquia de Autoridade dos Artefatos (PRD → Architecture → Spec → Plan → Tasks → Code), O que é Harness (a infraestrutura ao redor do LLM: regras, tools, permissões, contexto/memória, subagentes e loops de verificação) e o MCP como a tomada universal.
+  - **Arquivos:** `apps/web/lib/dictionary.ts`.
+  - **[DoD]:** Cartões de conhecimento detalham o ganho prático e o custo/trade-off de cada abordagem em ambos os idiomas.
+
+- [x] **T10.05 — Home & Sobre Mim (`home` & `about`): Posicionamento como Full Stack & Especialista em IA**
+  - **Contexto:** Atualizar headlines, bio e trajetória para posicionar Davi como Desenvolvedor Full Stack e Especialista em Engenharia de Software com IA, unindo solidez técnica (.NET, C#, React, Next.js, Fastify, Docker, Postgres) com aplicação e liderança de treinamentos em IA generativa e Spec-Driven Development.
+  - **Arquivos:** `apps/web/lib/dictionary.ts`.
+  - **[DoD]:** Textos da Home e Sobre atualizados de forma coerente e bilíngue, ressaltando os treinamentos ministrados na linha do tempo.
+
+- [x] **T10.06 — Como Foi Construído (`howItWasBuilt`): Alinhamento com a Filosofia Spec-Kit e Harness**
+  - **Contexto:** Ajustar as descrições da metodologia para conectar diretamente o case do portfólio aos princípios do Spec-Kit, MCPs e harness de execução auditável.
+  - **Arquivos:** `apps/web/lib/dictionary.ts`.
+  - **[DoD]:** Case study alinhado à taxonomia de SDD e Harness.
+
+- [x] **T10.07 — Validação e Testes da Fase 10 via TestSprite MCP**
+  - **Contexto:** Executar bateria completa de testes automatizados (`pnpm test`, `pnpm arch:check`, `pnpm --filter @davidev/web build`) e acionar o MCP TestSprite para homologar os fluxos e páginas atualizadas.
+  - **Ferramentas:** TestSprite MCP (`testsprite_generate_frontend_test_plan`, `testsprite_generate_backend_test_plan`, `testsprite_generate_code_and_execute`).
+  - **[DoD]:** 100% dos testes e verificações aprovados sem regressões.
+
+

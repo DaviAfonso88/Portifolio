@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 import os
 import sys
 import uuid
@@ -6,154 +5,158 @@ import requests
 from requests.exceptions import RequestException
 
 BASE_URL = "http://localhost:3000"
-TIMEOUT = 30
+TIMEOUT = 30  # seconds
 
-
-def get_tokens(session, email, password):
+def login_get_tokens(email: str, password: str):
     url = f"{BASE_URL}/api/v1/auth/login"
     payload = {"email": email, "password": password}
     try:
-        r = session.post(url, json=payload, timeout=TIMEOUT)
+        r = requests.post(url, json=payload, timeout=TIMEOUT)
     except RequestException as e:
-        raise RuntimeError(f"Login request failed: {e}")
+        raise RuntimeError(f"Login request failed: {e}") from e
+
     if r.status_code != 200:
-        raise RuntimeError(f"Login failed: status={r.status_code}, body={r.text}")
+        raise AssertionError(f"Login failed, expected 200 but got {r.status_code}: {r.text}")
+
     try:
         data = r.json()
     except ValueError:
-        raise RuntimeError(f"Login response not JSON: {r.text}")
+        raise AssertionError(f"Login response is not JSON: {r.text}")
 
-    # Accept common token keys
-    access = data.get("accessToken") or data.get("access_token") or data.get("access") or data.get("token")
+    access = data.get("accessToken") or data.get("access_token") or data.get("access")
     refresh = data.get("refreshToken") or data.get("refresh_token") or data.get("refresh")
     if not access:
-        raise RuntimeError(f"Access token not found in login response: {data}")
+        raise AssertionError(f"Access token missing in login response: {data}")
+
     return access, refresh
 
-
-def create_post(session, token, post_payload):
+def create_post(access_token: str, post_payload: dict):
     url = f"{BASE_URL}/api/v1/admin/posts"
-    headers = {"Authorization": f"Bearer {token}"} if token else {}
+    headers = {"Authorization": f"Bearer {access_token}", "Content-Type": "application/json"}
     try:
-        r = session.post(url, json=post_payload, headers=headers, timeout=TIMEOUT)
+        r = requests.post(url, json=post_payload, headers=headers, timeout=TIMEOUT)
     except RequestException as e:
-        raise RuntimeError(f"Create post request failed: {e}")
+        raise RuntimeError(f"Create post request failed: {e}") from e
     return r
 
-
-def attempt_delete_post(session, token, post_id):
-    headers = {"Authorization": f"Bearer {token}"} if token else {}
-    # Try multiple deletion endpoints/strategies to be resilient
-    endpoints = [
-        (f"{BASE_URL}/api/v1/admin/posts/{post_id}/delete", "post", {"confirmed": True}),
-        (f"{BASE_URL}/api/v1/admin/posts/{post_id}/delete", "post", {}),
-        (f"{BASE_URL}/api/v1/admin/posts/{post_id}/trash", "post", {}),
-        (f"{BASE_URL}/api/v1/admin/posts/{post_id}", "delete", {}),
-    ]
-    for url, method, payload in endpoints:
-        try:
-            if method == "post":
-                r = session.post(url, json=payload, headers=headers, timeout=TIMEOUT)
-            else:
-                r = session.delete(url, headers=headers, timeout=TIMEOUT)
-        except RequestException:
-            continue
-        # If we got a 2xx or 204, consider deletion successful
-        if 200 <= r.status_code < 300 or r.status_code == 204:
-            return True
-    return False
-
-
-def test_create_post_duplicate_slug_tc007():
-    session = requests.Session()
-
-    # Credentials: prefer environment variables; fallback to defaults commonly used in tests
-    admin_email = os.environ.get("ADMIN_EMAIL", "admin@example.com")
-    admin_password = os.environ.get("ADMIN_PASSWORD", "password")
-
-    # Authenticate
+def delete_post(access_token: str, post_id: str):
+    headers = {"Authorization": f"Bearer {access_token}", "Content-Type": "application/json"}
+    # Try the documented delete-confirm flow first, then fallback to DELETE
     try:
-        access_token, refresh_token = get_tokens(session, admin_email, admin_password)
-    except Exception as e:
-        raise AssertionError(f"Authentication step failed: {e}")
+        url_confirm = f"{BASE_URL}/api/v1/admin/posts/{post_id}/delete"
+        r = requests.post(url_confirm, json={"confirmed": True}, headers=headers, timeout=TIMEOUT)
+        if r.status_code in (200, 204):
+            return r
+    except RequestException:
+        pass
 
-    # Prepare a unique slug for the first post
+    try:
+        url_delete = f"{BASE_URL}/api/v1/admin/posts/{post_id}"
+        r2 = requests.delete(url_delete, headers=headers, timeout=TIMEOUT)
+        return r2
+    except RequestException as e:
+        raise RuntimeError(f"Delete post request failed: {e}") from e
+
+def test_post_api_v1_admin_posts_create_duplicate_slug():
+    admin_email = os.getenv("ADMIN_EMAIL")
+    admin_password = os.getenv("ADMIN_PASSWORD")
+
+    if not admin_email or not admin_password:
+        raise RuntimeError("ADMIN_EMAIL and ADMIN_PASSWORD environment variables must be set for admin authentication")
+
+    access_token, refresh_token = login_get_tokens(admin_email, admin_password)
+
     unique_slug = f"test-duplicate-slug-{uuid.uuid4().hex[:8]}"
-    title = "TC007 Duplicate Slug Test"
-    post_payload = {
-        "title": title,
+    base_payload = {
+        "title": "Test Duplicate Slug",
         "slug": unique_slug,
-        "summary": "Automated test post for duplicate slug handling",
-        "body": "This is a test body for TC007.",
+        "summary": "Summary for duplicate slug test",
+        "body": "This is a test body for duplicate slug validation.",
         "status": "draft"
     }
 
-    created_post_id = None
+    first_post_id = None
+    second_post_id = None
+
     try:
-        # Create the initial post - should succeed (201)
-        r1 = create_post(session, access_token, post_payload)
+        # Create the first post - should succeed (201 or 200 depending on implementation)
+        resp1 = create_post(access_token, base_payload)
+        assert resp1.status_code in (200, 201), f"Expected 200 or 201 creating first post, got {resp1.status_code}: {resp1.text}"
         try:
-            body1 = r1.json()
+            data1 = resp1.json()
         except ValueError:
-            body1 = r1.text
+            raise AssertionError(f"First create response not JSON: {resp1.text}")
 
-        assert r1.status_code in (200, 201), f"Expected create-first-post 200/201, got {r1.status_code}, body={body1}"
-        # Extract id if present for cleanup
-        if isinstance(body1, dict):
-            created_post_id = body1.get("id") or body1.get("_id") or body1.get("postId")
-        # If id not in body, try Location header
-        if not created_post_id:
-            loc = r1.headers.get("Location")
-            if loc:
-                # attempt to parse trailing id
-                created_post_id = loc.rstrip("/").split("/")[-1]
-
-        # Attempt to create another post with the same slug -> should fail (409 or 400)
-        duplicate_payload = {
-            "title": f"{title} - duplicate",
-            "slug": unique_slug,
-            "summary": "Duplicate slug attempt",
-            "body": "Duplicate body",
-            "status": "draft"
-        }
-        r2 = create_post(session, access_token, duplicate_payload)
-        # Accept 400 or 409 as valid failure codes indicating duplicate slug or validation error
-        if r2.status_code in (400, 409):
-            # Try to validate message mentions slug or duplication
-            try:
-                body2 = r2.json()
-            except ValueError:
-                body2 = r2.text or ""
-            msg_text = ""
-            if isinstance(body2, dict):
-                # flatten common fields
-                for k in ("message", "error", "errors", "detail"):
-                    if k in body2:
-                        msg_text = str(body2[k])
+        # Extract id if present
+        first_post_id = data1.get("id") or data1.get("_id") or str(data1.get("data", {}).get("id", "")) or None
+        if not first_post_id:
+            # try common nested patterns
+            if isinstance(data1, dict):
+                # try to find an integer/string id anywhere
+                for v in ("id", "_id", "postId"):
+                    if v in data1:
+                        first_post_id = data1[v]
                         break
-                if not msg_text:
-                    msg_text = str(body2)
-            else:
-                msg_text = str(body2)
-            low = msg_text.lower()
-            assert ("slug" in low) or ("already" in low) or ("in use" in low) or ("duplicate" in low) or ("unique" in low), (
-                f"Expected validation/duplicate error mentioning slug but got: {msg_text} (status {r2.status_code})"
-            )
-        elif r2.status_code in (200, 201):
-            # If API unexpectedly allowed duplicate, fail the test
-            raise AssertionError(f"Duplicate slug was allowed: status={r2.status_code}, body={r2.text}")
+
+        assert first_post_id, f"Could not determine created post id from response: {data1}"
+
+        # Attempt to create a second post with the same slug - should fail with 409 or validation error
+        resp2 = create_post(access_token, base_payload)
+        # Acceptable error codes: 409 Conflict, 400 Bad Request, 422 Unprocessable Entity
+        if resp2.status_code in (409, 400, 422):
+            # Validate response body contains indication about slug conflict
+            text = ""
+            try:
+                json_body = resp2.json()
+                text = str(json_body)
+            except ValueError:
+                text = resp2.text or ""
+            lowered = text.lower()
+            assert ("slug" in lowered and ("already" in lowered or "in use" in lowered or "duplicate" in lowered)) or resp2.status_code == 409, \
+                f"Expected slug-related validation or 409 for duplicate slug, got {resp2.status_code} and body: {text}"
+        elif resp2.status_code in (200, 201):
+            # If API unexpectedly allowed creation, capture id and fail test after cleanup
+            try:
+                data2 = resp2.json()
+            except ValueError:
+                raise AssertionError(f"Second create succeeded unexpectedly and returned non-JSON: {resp2.text}")
+            second_post_id = data2.get("id") or data2.get("_id") or str(data2.get("data", {}).get("id", "")) or None
+            # Fail because duplicate slug should not be allowed
+            raise AssertionError(f"API allowed creation of a second post with duplicate slug. Second post id: {second_post_id}")
         else:
-            # Unexpected status code: treat as failure but provide details
-            raise AssertionError(f"Unexpected status code for duplicate creation: {r2.status_code}, body={r2.text}")
+            # Unexpected status code
+            raise AssertionError(f"Unexpected status code for duplicate-slug attempt: {resp2.status_code}, body: {resp2.text}")
 
-        print("TC007 passed: server rejects duplicate slug as expected.")
     finally:
-        # Cleanup: attempt to delete created resource if we have an id
-        if created_post_id:
-            deleted = attempt_delete_post(session, access_token, created_post_id)
-            if not deleted:
-                print(f"Warning: failed to clean up post id {created_post_id}", file=sys.stderr)
+        # Cleanup created posts if any
+        cleanup_errors = []
+        if second_post_id:
+            try:
+                r = delete_post(access_token, second_post_id)
+                if r is None or r.status_code not in (200, 204):
+                    cleanup_errors.append(f"Failed to delete second post {second_post_id}: status {getattr(r, 'status_code', None)}")
+            except Exception as e:
+                cleanup_errors.append(f"Error deleting second post {second_post_id}: {e}")
 
+        if first_post_id:
+            try:
+                r = delete_post(access_token, first_post_id)
+                if r is None or r.status_code not in (200, 204):
+                    cleanup_errors.append(f"Failed to delete first post {first_post_id}: status {getattr(r, 'status_code', None)}")
+            except Exception as e:
+                cleanup_errors.append(f"Error deleting first post {first_post_id}: {e}")
+
+        if cleanup_errors:
+            # If cleanup had issues, surface an error
+            raise RuntimeError("Cleanup errors: " + "; ".join(cleanup_errors))
 
 if __name__ == "__main__":
-    test_create_post_duplicate_slug_tc007()
+    try:
+        test_post_api_v1_admin_posts_create_duplicate_slug()
+        print("TC007 passed")
+    except AssertionError as e:
+        print("TC007 failed:", e)
+        sys.exit(1)
+    except Exception as ex:
+        print("TC007 error:", ex)
+        sys.exit(2)

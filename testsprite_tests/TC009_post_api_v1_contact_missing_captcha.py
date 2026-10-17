@@ -1,107 +1,88 @@
 import requests
 import sys
-import json
 
 BASE_URL = "http://localhost:3000"
+ENDPOINT = "/api/v1/contact"
+URL = BASE_URL + ENDPOINT
+HEADERS = {"Content-Type": "application/json"}
 TIMEOUT = 30
 
+
 def _response_indicates_captcha_failure(resp):
-    """
-    Heuristic check: look for 'captcha' or 'captcha token' or 'recaptcha' in
-    status message, JSON keys, or JSON/string values.
-    """
+    # Try to interpret JSON body
     try:
-        text = resp.text or ""
-        if "captcha" in text.lower() or "recaptcha" in text.lower():
-            return True
-        data = resp.json()
+        body = resp.json()
     except ValueError:
-        # not JSON, rely on text check only
-        return "captcha" in (resp.text or "").lower() or "recaptcha" in (resp.text or "").lower()
+        body = None
 
-    def search_in_obj(obj):
-        if obj is None:
-            return False
-        if isinstance(obj, str):
-            return "captcha" in obj.lower() or "recaptcha" in obj.lower()
-        if isinstance(obj, dict):
-            for k, v in obj.items():
-                if "captcha" in str(k).lower() or "recaptcha" in str(k).lower():
+    # Check JSON for captcha-related keys/values
+    if isinstance(body, dict):
+        # Look through keys and string values for "captcha"
+        for k, v in body.items():
+            if isinstance(k, str) and "captcha" in k.lower():
+                return True
+            if isinstance(v, str) and "captcha" in v.lower():
+                return True
+            # nested structures
+            if isinstance(v, dict) or isinstance(v, list):
+                text = str(v).lower()
+                if "captcha" in text:
                     return True
-                if search_in_obj(v):
-                    return True
-            return False
-        if isinstance(obj, list):
-            for item in obj:
-                if search_in_obj(item):
-                    return True
-            return False
-        # other primitive types
-        return "captcha" in str(obj).lower() or "recaptcha" in str(obj).lower()
 
-    return search_in_obj(data)
+    # Fallback: check raw text
+    text = resp.text or ""
+    if "captcha" in text.lower() or "captcha token" in text.lower() or "captcha validation" in text.lower():
+        return True
+
+    return False
 
 
 def test_post_api_v1_contact_missing_captcha():
-    url = f"{BASE_URL}/api/v1/contact"
-    headers = {"Content-Type": "application/json"}
-
+    # Base payload (valid otherwise)
     base_payload = {
         "name": "Test User",
         "email": "test.user@example.com",
-        "message": "This is a test message to validate captcha handling."
+        "message": "This is a test message for captcha validation."
     }
 
+    # Scenario 1: Missing captcha token (omit the field)
     try:
-        # Scenario 1: Missing captcha token
-        resp_missing = requests.post(url, headers=headers, json=base_payload, timeout=TIMEOUT)
+        resp = requests.post(URL, json=base_payload, headers=HEADERS, timeout=TIMEOUT)
     except requests.RequestException as e:
         raise AssertionError(f"Request failed for missing captcha scenario: {e}")
 
-    if resp_missing.status_code not in (400, 403):
-        raise AssertionError(
-            f"Expected status 400 or 403 for missing captcha, got {resp_missing.status_code}. "
-            f"Response body: {resp_missing.text}"
-        )
+    assert resp.status_code in (400, 403), (
+        f"Expected 400 or 403 for missing captcha, got {resp.status_code}. Response text: {resp.text}"
+    )
+    assert _response_indicates_captcha_failure(resp), (
+        f"Response did not indicate captcha validation failure for missing captcha. Status: {resp.status_code}, Body: {resp.text}"
+    )
 
-    if not _response_indicates_captcha_failure(resp_missing):
-        raise AssertionError(
-            f"Response did not indicate captcha validation failure for missing captcha. "
-            f"Status: {resp_missing.status_code}, Body: {resp_missing.text}"
-        )
-
-    # Scenario 2: Invalid captcha token
+    # Scenario 2: Invalid captcha token provided
     invalid_payload = dict(base_payload)
-    # Common names for captcha tokens; send a likely-ignored name by server but include one key.
-    invalid_payload["captchaToken"] = "invalid-or-expired-token"
-
+    invalid_payload["captchaToken"] = "invalid-or-expired-token-12345"
     try:
-        resp_invalid = requests.post(url, headers=headers, json=invalid_payload, timeout=TIMEOUT)
+        resp2 = requests.post(URL, json=invalid_payload, headers=HEADERS, timeout=TIMEOUT)
     except requests.RequestException as e:
         raise AssertionError(f"Request failed for invalid captcha scenario: {e}")
 
-    if resp_invalid.status_code not in (400, 403):
-        raise AssertionError(
-            f"Expected status 400 or 403 for invalid captcha, got {resp_invalid.status_code}. "
-            f"Response body: {resp_invalid.text}"
-        )
+    assert resp2.status_code in (400, 403), (
+        f"Expected 400 or 403 for invalid captcha, got {resp2.status_code}. Response text: {resp2.text}"
+    )
+    assert _response_indicates_captcha_failure(resp2), (
+        f"Response did not indicate captcha validation failure for invalid captcha. Status: {resp2.status_code}, Body: {resp2.text}"
+    )
 
-    if not _response_indicates_captcha_failure(resp_invalid):
-        raise AssertionError(
-            f"Response did not indicate captcha validation failure for invalid captcha. "
-            f"Status: {resp_invalid.status_code}, Body: {resp_invalid.text}"
-        )
-
-    print("TC009 passed: POST /api/v1/contact returned expected errors for missing and invalid captcha.")
+    print("TC009 passed: Missing and invalid captcha scenarios returned expected errors.")
 
 
 if __name__ == "__main__":
     try:
         test_post_api_v1_contact_missing_captcha()
     except AssertionError as e:
-        print(f"TC009 failed: {e}")
+        print("TC009 failed:", e)
         sys.exit(1)
     except Exception as e:
-        print(f"TC009 encountered an unexpected error: {e}")
+        print("TC009 encountered an unexpected error:", e)
         sys.exit(2)
     sys.exit(0)

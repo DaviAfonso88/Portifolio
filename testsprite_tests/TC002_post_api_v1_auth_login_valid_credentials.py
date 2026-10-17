@@ -3,120 +3,91 @@ import sys
 import requests
 from requests.exceptions import RequestException
 
-BASE_URL = os.environ.get("BASE_ENDPOINT", "http://localhost:3000")
-# Prefer explicit env vars for credentials in CI; fallback to common defaults
-EMAIL = os.environ.get("AUTH_EMAIL") or os.environ.get("ADMIN_EMAIL") or "admin@example.com"
-PASSWORD = os.environ.get("AUTH_PASSWORD") or os.environ.get("ADMIN_PASSWORD") or "password"
-TIMEOUT = 30
+BASE_URL = "http://localhost:3000"
+TIMEOUT = 30  # seconds
 
-
-def _extract_token(data, candidates):
+def _search_keys(obj, keys):
     """
-    Try several common shapes for token fields:
-    - top-level keys
-    - inside "data" object
-    - inside "tokens" object
-    Returns first found string token or None.
+    Recursively search for any of the keys in a nested dict/list structure.
+    Returns the first matching value found or None.
     """
-    if not isinstance(data, dict):
-        return None
-    # check top-level
-    for key in candidates:
-        val = data.get(key)
-        if isinstance(val, str) and val.strip():
-            return val.strip()
-    # check nested common containers
-    for container in ("data", "tokens", "payload"):
-        cont = data.get(container)
-        if isinstance(cont, dict):
-            for key in candidates:
-                val = cont.get(key)
-                if isinstance(val, str) and val.strip():
-                    return val.strip()
-    # look for token values anywhere at depth=1
-    for k, v in data.items():
-        if isinstance(v, dict):
-            for key in candidates:
-                val = v.get(key)
-                if isinstance(val, str) and val.strip():
-                    return val.strip()
+    if isinstance(obj, dict):
+        for k, v in obj.items():
+            if k in keys:
+                return v
+            found = _search_keys(v, keys)
+            if found is not None:
+                return found
+    elif isinstance(obj, list):
+        for item in obj:
+            found = _search_keys(item, keys)
+            if found is not None:
+                return found
     return None
 
-
 def test_post_api_v1_auth_login_valid_credentials():
-    url = f"{BASE_URL.rstrip('/')}/api/v1/auth/login"
-    headers = {"Content-Type": "application/json", "Accept": "application/json"}
-    payload = {"email": EMAIL, "password": PASSWORD}
+    """
+    TC002: Verify that POST /api/v1/auth/login with valid credentials
+    returns 200 with Access Token and Refresh Token.
+    """
+    url = f"{BASE_URL}/api/v1/auth/login"
+    headers = {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+    }
+
+    # Credentials: allow override from environment for real test runs
+    email = os.getenv("TEST_ADMIN_EMAIL", "admin@example.com")
+    password = os.getenv("TEST_ADMIN_PASSWORD", "password123")
+
+    payload = {
+        "email": email,
+        "password": password
+    }
 
     try:
         resp = requests.post(url, json=payload, headers=headers, timeout=TIMEOUT)
     except RequestException as e:
         raise AssertionError(f"Request to {url} failed: {e}")
 
-    # Basic status code check
-    if resp.status_code != 200:
-        # Include response body to aid debugging
-        body = resp.text
-        raise AssertionError(f"Expected status 200 but got {resp.status_code}. Response body: {body}")
+    # Status code assertion
+    assert resp.status_code == 200, f"Expected 200 OK, got {resp.status_code}, body: {resp.text}"
 
     # Content-Type should be JSON
     content_type = resp.headers.get("Content-Type", "")
-    if "application/json" not in content_type and "json" not in content_type.lower():
-        raise AssertionError(f"Expected JSON response but Content-Type was '{content_type}'")
+    assert "application/json" in content_type.lower(), f"Expected JSON response, got Content-Type: {content_type}"
 
     try:
-        data = resp.json()
+        body = resp.json()
     except ValueError:
-        raise AssertionError("Response returned 200 but body is not valid JSON")
+        raise AssertionError(f"Response body is not valid JSON: {resp.text}")
 
-    # Attempt to extract access and refresh tokens from common keys and structures
-    access_candidates = ("accessToken", "access_token", "token", "accessTokenJwt", "access")
-    refresh_candidates = ("refreshToken", "refresh_token", "refresh", "refreshTokenJwt")
+    # Look for access and refresh token in common key names and nested structures
+    access_token_keys = {"accessToken", "access_token", "token", "accessTokenJwt"}
+    refresh_token_keys = {"refreshToken", "refresh_token", "refreshTokenJwt"}
 
-    access_token = _extract_token(data, access_candidates)
-    refresh_token = _extract_token(data, refresh_candidates)
+    access_token = _search_keys(body, access_token_keys)
+    refresh_token = _search_keys(body, refresh_token_keys)
 
-    # Some APIs return tokens with different naming; try nested structures more aggressively
-    if not access_token:
-        # look for keys named "tokens" that might contain both
-        tokens_container = None
-        if isinstance(data, dict):
-            tokens_container = data.get("tokens") or data.get("token")
-        if isinstance(tokens_container, dict):
-            access_token = _extract_token(tokens_container, access_candidates)
-            refresh_token = _extract_token(tokens_container, refresh_candidates)
+    # It's possible tokens are returned inside a "data" or "tokens" object; search handled above.
+    assert access_token is not None, f"Access token not found in response JSON: {body}"
+    assert isinstance(access_token, str) and len(access_token) > 10, "Access token is invalid or too short"
 
-    if not access_token:
-        raise AssertionError(f"Response JSON did not contain an access token. Response JSON keys: {list(data.keys())}")
+    assert refresh_token is not None, f"Refresh token not found in response JSON: {body}"
+    assert isinstance(refresh_token, str) and len(refresh_token) > 10, "Refresh token is invalid or too short"
 
-    if not refresh_token:
-        # Some systems return only access token on login; still require refresh per PRD
-        raise AssertionError(f"Response JSON did not contain a refresh token. Response JSON keys: {list(data.keys())}")
+    # Optionally ensure tokens are not the same
+    assert access_token != refresh_token, "Access token and refresh token should not be identical"
 
-    # Basic validation of access token format (JWTs have two dots)
-    if isinstance(access_token, str) and access_token.count(".") == 2:
-        pass  # good, looks like a JWT
-    else:
-        # Not all systems use JWT for access token; at minimum ensure it's a non-empty string
-        if not isinstance(access_token, str) or not access_token.strip():
-            raise AssertionError("Access token is empty or not a string")
-
-    # Ensure refresh token is non-empty
-    if not isinstance(refresh_token, str) or not refresh_token.strip():
-        raise AssertionError("Refresh token is empty or not a string")
-
-    # If we reached here, the login returned access and refresh tokens as expected
-    print("Login successful: access and refresh tokens received.")
-
+    print("TC002 passed: Received valid access and refresh tokens.")
 
 if __name__ == "__main__":
     try:
         test_post_api_v1_auth_login_valid_credentials()
-        print("TEST PASSED")
-        sys.exit(0)
     except AssertionError as e:
-        print("TEST FAILED:", e)
+        print(f"TC002 failed: {e}")
         sys.exit(1)
     except Exception as e:
-        print("TEST ERROR:", e)
+        print(f"TC002 encountered an unexpected error: {e}")
         sys.exit(2)
+    sys.exit(0)

@@ -32,7 +32,7 @@ export default async function ExperienciasPage({ params }: ExperienciasPageProps
         <div className="flex flex-col">
           {dict.experiences.positions.map((pos, idx) => (
             <article
-              key={pos.company}
+              key={`${pos.company}-${pos.period}`}
               className={`grid grid-cols-1 md:grid-cols-[220px_1fr] gap-6 md:gap-10 py-9 border-t border-rule ${
                 idx === dict.experiences.positions.length - 1 ? 'border-b' : ''
               }`}
