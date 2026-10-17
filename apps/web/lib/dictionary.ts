@@ -444,12 +444,13 @@ const dictionaries: Record<string, Dictionary> = {
           summary:
             'Atuação no desenvolvimento, sustentação e evolução de sistemas corporativos escaláveis, automação de processos (RPA), arquitetura de APIs e integração de soluções potencializadas por IA.',
           highlights: [
-            'Desenvolvimento e evolução de sistemas corporativos críticos com foco em disponibilidade, estabilidade e atendimento aos requisitos de negócio.',
+            'Desenvolvimento de sistema de Ordem de Serviço (OS) do zero utilizando .NET, React, Docker e práticas modernas de engenharia de software.',
+            'Desenvolvimento de soluções baseadas em Inteligência Artificial para geração automatizada de documentação técnica, wikis e padronização de processos de desenvolvimento.',
+            'Participação em iniciativas internas de capacitação sobre IA e criação de workflows para acelerar o desenvolvimento de novos projetos.',
+            'Desenvolvimento e sustentação de funcionalidades críticas para sistemas corporativos, com foco em disponibilidade, estabilidade e regras de negócio.',
             'Construção de rotinas de automação (RPA) e pipelines eficientes para integração de dados entre sistemas e serviços.',
-            'Implementação e consumo de APIs RESTful seguras, modelagem e otimização de bancos de dados relacionais e NoSQL.',
-            'Participação ativa no ciclo de DevOps, conteinerização com Docker e ritos ágeis de entrega contínua.',
           ],
-          technologies: ['C# / .NET', 'Node.js', 'TypeScript', 'React', 'RPA', 'APIs RESTful', 'PostgreSQL', 'Docker'],
+          technologies: ['.NET / C#', 'React', 'Docker', 'Inteligência Artificial', 'TypeScript', 'Node.js', 'RPA', 'PostgreSQL'],
         },
         {
           period: '2025 — 2026',
@@ -1074,12 +1075,13 @@ const dictionaries: Record<string, Dictionary> = {
           summary:
             'Engineering, maintaining, and scaling enterprise systems, business process automation (RPA), RESTful API architectures, and AI-powered service integrations.',
           highlights: [
-            'Engineered and scaled critical enterprise features focused on high availability, stability, and alignment with business requirements.',
-            'Developed automated process workflows (RPA) and efficient data pipelines across distributed platforms.',
-            'Built and integrated secure RESTful APIs with relational and NoSQL database modeling and query optimization.',
-            'Participated actively in agile DevOps workflows, Docker containerization, and continuous delivery pipelines.',
+            'Built a complete Work Order (OS) management system from scratch using .NET, React, Docker, and modern software engineering practices.',
+            'Developed AI-powered solutions for automated technical documentation generation, internal wikis, and development process standardization.',
+            'Participated in internal AI enablement initiatives and authored workflow automations to accelerate new project delivery.',
+            'Engineered and scaled critical enterprise features focused on high availability, stability, and business domain requirements.',
+            'Built automated process workflows (RPA) and efficient data pipelines across distributed platforms.',
           ],
-          technologies: ['C# / .NET', 'Node.js', 'TypeScript', 'React', 'RPA', 'RESTful APIs', 'PostgreSQL', 'Docker'],
+          technologies: ['.NET / C#', 'React', 'Docker', 'Artificial Intelligence', 'TypeScript', 'Node.js', 'RPA', 'PostgreSQL'],
         },
         {
           period: '2025 — 2026',
