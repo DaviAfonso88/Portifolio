@@ -151,52 +151,52 @@
 
 ## Fase 4: Painel Administrativo (CMS)
 
-- [ ] **T04.01 — Autenticação Administrativa JWT e Gestão de Sessão (`US-07`)**
+- [x] **T04.01 — Autenticação Administrativa JWT e Gestão de Sessão (`US-07`)**
   - **Contexto:** Casos de uso de autenticação, geração de JWT (Access Token 15m), gravação de Refresh Token rotacionado no banco com cookie HttpOnly SameSite=Strict e logout com revogação.
   - **Arquivos:** `packages/application/src/use-cases/auth/*`, `packages/http/src/routes/auth.ts`, `packages/infrastructure/src/security/hasher.ts`.
   - **[DoD]:** Rotação de refresh token testada; tokens revogados não renovam sessão.
 
-- [ ] **T04.02 — Geração Automatizada do Cliente da API (`packages/api-client`)**
+- [x] **T04.02 — Geração Automatizada do Cliente da API (`packages/api-client`)**
   - **Contexto:** Configurar Orval para gerar cliente TypeScript a partir do OpenAPI emitido pelo Fastify.
   - **Arquivos:** `orval.config.ts`, `packages/api-client/src/*`.
   - **[DoD]:** `pnpm api:generate` executa e `pnpm api:contract:check` passa sem diff no git.
 
-- [ ] **T04.03 — Telas de Login e Layout Administrativo**
+- [x] **T04.03 — Telas de Login e Layout Administrativo**
   - **Contexto:** Tela de login `/admin/login` e layout do painel com guarda de autenticação client-side e renovação automática de token.
   - **Arquivos:** `apps/web/app/admin/login/page.tsx`, `apps/web/app/admin/layout.tsx`, `apps/web/app/admin/components/sidebar.tsx`.
   - **[DoD]:** Acesso anônimo a `/admin` redireciona para login; sessão expira com segurança.
 
-- [ ] **T04.04 — Gestão de Categorias e Tags no CMS (`BR-009`)**
+- [x] **T04.04 — Gestão de Categorias e Tags no CMS (`BR-009`)**
   - **Contexto:** Telas de listagem, criação e edição de taxonomia com campos em `pt-BR` e `en`. Bloqueio de exclusão de itens em uso.
   - **Arquivos:** `apps/web/app/admin/taxonomia/page.tsx`, `packages/application/src/use-cases/taxonomies/*`, `packages/http/src/routes/admin-taxonomies.ts`.
   - **[DoD]:** Excluir categoria ou tag em uso retorna HTTP 409 `RESOURCE_IN_USE` com mensagem clara.
 
-- [ ] **T04.05 — Casos de Uso de Mutações de Posts (`BR-001`, `BR-002`, `BR-003`, `BR-010`, `BR-011`)**
+- [x] **T04.05 — Casos de Uso de Mutações de Posts (`BR-001`, `BR-002`, `BR-003`, `BR-010`, `BR-011`)**
   - **Contexto:** Implementar casos de uso `CreatePost`, `UpdatePost`, `PublishPost`, `UnpublishPost`, `MovePostToTrash`, `RestorePostFromTrash` e `DeletePostPermanently`.
   - **Arquivos:** `packages/application/src/use-cases/posts/*`.
   - **[DoD]:** Validação de regras de negócio coberta por testes unitários exaustivos.
 
-- [ ] **T04.06 — Rotas Administrativas Fastify `/api/v1/admin/posts/*`**
+- [x] **T04.06 — Rotas Administrativas Fastify `/api/v1/admin/posts/*`**
   - **Contexto:** Implementar endpoints protegidos por Bearer token para operações de posts e transições de estado.
   - **Arquivos:** `packages/http/src/routes/admin-posts.ts`.
   - **[DoD]:** Endpoints de mutação requerem autenticação e emitem eventos de domínio ao comitar.
 
-- [ ] **T04.07 — Listagem de Posts e Visualização da Lixeira (`US-11`)**
+- [x] **T04.07 — Listagem de Posts e Visualização da Lixeira (`US-11`)**
   - **Contexto:** Tabela administrativa com filtros por status (`rascunho`, `publicado`), busca e aba dedicada de Lixeira com opção de restauração (`BR-008`) e exclusão definitiva (`BR-007`).
   - **Arquivos:** `apps/web/app/admin/posts/page.tsx`, `apps/web/app/admin/posts/lixeira/page.tsx`.
   - **[DoD]:** Posts na lixeira podem ser restaurados ou excluídos fisicamente com aviso de confirmação irreversível.
 
-- [ ] **T04.08 — Editor de Posts com Split View (`US-09`, `US-10`)**
+- [x] **T04.08 — Editor de Posts com Split View (`US-09`, `US-10`)**
   - **Contexto:** Interface de edição com modos Editor / Preview / Split View compartilhando `<ArticleRenderer />`, validação de formulário com Zod e diálogo de confirmação para alteração de slug.
   - **Arquivos:** `apps/web/app/admin/posts/editor/page.tsx`, `apps/web/app/admin/posts/editor/components/split-editor.tsx`.
   - **[DoD]:** Renderização do preview idêntica à página pública do artigo.
 
-- [ ] **T04.09 — Painel de Consulta a Mensagens de Contato**
+- [x] **T04.09 — Painel de Consulta a Mensagens de Contato**
   - **Contexto:** Tela administrativa para leitura das mensagens enviadas com filtro de pendência de notificação por e-mail.
   - **Arquivos:** `apps/web/app/admin/mensagens/page.tsx`.
   - **[DoD]:** Administrador consulta mensagens com paginação e status de notificação.
 
-- [ ] **T04.10 — Validação e Testes da Fase 4 via TestSprite MCP**
+- [x] **T04.10 — Validação e Testes da Fase 4 via TestSprite MCP**
   - **Contexto:** Acionar o MCP TestSprite para cobrir fluxos administrativos: autenticação JWT, rotação de refresh token, rotas `/api/v1/admin/*`, CRUD de taxonomia com bloqueio de exclusão (`BR-009`), ciclo de vida de posts (rascunho, publicado, lixeira) e preview no split editor.
   - **Ferramentas:** TestSprite MCP (`testsprite_generate_frontend_test_plan`, `testsprite_generate_backend_test_plan`, `testsprite_generate_code_and_execute`).
   - **[DoD]:** Fluxos do painel administrativo validados e aprovados pelo TestSprite com autorização estrita e integridade de dados.
