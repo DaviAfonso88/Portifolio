@@ -112,37 +112,37 @@
 
 ## Fase 3: Blog Público & Motor Editorial
 
-- [ ] **T03.01 — Entidades de Domínio e Casos de Uso de Leitura do Blog**
+- [x] **T03.01 — Entidades de Domínio e Casos de Uso de Leitura do Blog**
   - **Contexto:** Entidade `Post`, `PostSlug` e casos de uso `ListPublishedPostsUseCase` e `GetPostBySlugUseCase` garantindo `BR-006` (invisibilidade de rascunhos).
   - **Arquivos:** `packages/domain/src/entities/post.ts`, `packages/application/src/use-cases/list-published-posts.ts`, `packages/application/src/use-cases/get-post-by-slug.ts`.
   - **[DoD]:** Testes unitários comprovam que rascunhos nunca são retornados e consultas por slug histórico resolvem para o post correto.
 
-- [ ] **T03.02 — Endpoints Públicos de Leitura no Fastify e Swagger**
+- [x] **T03.02 — Endpoints Públicos de Leitura no Fastify e Swagger**
   - **Contexto:** Implementar rotas `GET /api/v1/posts`, `GET /api/v1/posts/{locale}/{slug}`, `GET /api/v1/categories`, `GET /api/v1/tags`.
   - **Arquivos:** `packages/http/src/routes/posts.ts`, `packages/http/src/routes/taxonomies.ts`.
   - **[DoD]:** Endpoints documentados na Swagger UI em `/api/docs`.
 
-- [ ] **T03.03 — Componente de Renderização e Sanitização Markdown (`<ArticleRenderer />`)**
+- [x] **T03.03 — Componente de Renderização e Sanitização Markdown (`<ArticleRenderer />`)**
   - **Contexto:** Pipeline `remark`/`rehype` com sanitização contra XSS, tabelas GFM e realce de código sintático com suporte a tema claro e escuro.
   - **Arquivos:** `apps/web/components/blog/article-renderer.tsx`.
   - **[DoD]:** Renderiza Markdown seguro com realce de sintaxe sem executar scripts maliciosos.
 
-- [ ] **T03.04 — Listagem do Blog com Filtros Dinâmicos (`US-05`)**
+- [x] **T03.04 — Listagem do Blog com Filtros Dinâmicos (`US-05`)**
   - **Contexto:** Página `/blog` com RSC consumindo caso de uso in-process, filtros por categoria e tag, suporte a paginação e aviso explícito de artigos mono-idioma.
   - **Arquivos:** `apps/web/app/[locale]/blog/page.tsx`, `apps/web/components/blog/post-card.tsx`, `apps/web/components/blog/taxonomy-filter.tsx`.
   - **[DoD]:** Filtros refletem na URL (`?category=x&tag=y`) e preservam histórico de navegação.
 
-- [ ] **T03.05 — Página de Leitura do Artigo com ISR e Redirecionamento 301 (`US-06`, `BR-004`)**
+- [x] **T03.05 — Página de Leitura do Artigo com ISR e Redirecionamento 301 (`US-06`, `BR-004`)**
   - **Contexto:** Rota `/blog/[slug]` com geração estática e revalidação sob demanda (`revalidateTag`). Responde HTTP 301 caso o slug acessado seja histórico.
   - **Arquivos:** `apps/web/app/[locale]/blog/[slug]/page.tsx`.
   - **[DoD]:** Acesso a slug histórico redireciona com 301 para o slug atual; slug inexistente retorna 404 tratado.
 
-- [ ] **T03.06 — Sitemap Dinâmico e Metadados Estruturados de SEO**
+- [x] **T03.06 — Sitemap Dinâmico e Metadados Estruturados de SEO**
   - **Contexto:** Gerador de `sitemap.xml` cobrindo rotas públicas e posts publicados em ambos os locales com tags `hreflang`.
   - **Arquivos:** `apps/web/app/sitemap.ts`, `apps/web/app/robots.ts`.
   - **[DoD]:** `sitemap.xml` gerado automaticamente sem incluir rotas administrativas.
 
-- [ ] **T03.07 — Validação e Testes da Fase 3 via TestSprite MCP**
+- [x] **T03.07 — Validação e Testes da Fase 3 via TestSprite MCP**
   - **Contexto:** Acionar o MCP TestSprite para gerar e executar testes sobre as rotas de leitura do blog (`GET /api/v1/posts`, `/api/v1/posts/{locale}/{slug}`, categorias/tags), renderizador `<ArticleRenderer />`, filtros dinâmicos e redirecionamento 301 de slugs.
   - **Ferramentas:** TestSprite MCP (`testsprite_generate_frontend_test_plan`, `testsprite_generate_backend_test_plan`, `testsprite_generate_code_and_execute`).
   - **[DoD]:** Planos de testes do TestSprite executados com sucesso validando invisibilidade de rascunhos, integridade do markdown e SEO/sitemap.
