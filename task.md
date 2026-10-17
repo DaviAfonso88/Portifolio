@@ -320,16 +320,16 @@
 
 ## Fase 9: Case Study Auditável
 
-- [ ] **T09.01 — Página "Como foi construído" (`US-01`, Story 7)**
+- [x] **T09.01 — Página "Como foi construído" (`US-01`, Story 7)**
   - **Contexto:** Escrever e publicar o case study do desenvolvimento assistido por IA e Spec-Driven Development, linkando artefatos, diagramas e lições aprendidas.
   - **Arquivos:** `apps/web/app/[locale]/como-foi-construido/page.tsx`.
   - **[DoD]:** Estudo de caso publicado e legível nos dois idiomas, sem vazamento de chaves ou segredos.
 
-- [ ] **T09.02 — Linkagem de Evidências e Documentação Interativa da API**
+- [x] **T09.02 — Linkagem de Evidências e Documentação Interativa da API**
   - **Contexto:** Integrar links da documentação `/api/docs` e repositório público na página de engenharia.
   - **[DoD]:** Links funcionais acessíveis a avaliadores técnicos.
 
-- [ ] **T09.03 — Validação e Testes da Fase 9 via TestSprite MCP**
+- [x] **T09.03 — Validação e Testes da Fase 9 via TestSprite MCP**
   - **Contexto:** Acionar o MCP TestSprite para verificar a integridade da página de estudo de caso "Como foi construído", validação de links para a documentação técnica `/api/docs` e ausência de credenciais ou dados sensíveis em evidências públicas.
   - **Ferramentas:** TestSprite MCP (`testsprite_generate_frontend_test_plan`, `testsprite_generate_code_and_execute`).
   - **[DoD]:** Validação do TestSprite concluída com links íntegros e página de engenharia totalmente acessível e conforme.
