@@ -1,4 +1,4 @@
-import { Camera } from 'lucide-react';
+import Image from 'next/image';
 import { getDictionary } from '../../../lib/dictionary';
 
 interface SobrePageProps {
@@ -55,11 +55,15 @@ export default async function SobrePage({ params }: SobrePageProps) {
         {/* Right Column: Photo & Trajectory */}
         <div className="md:col-span-5 flex flex-col gap-5">
           {/* Photo Frame */}
-          <div className="relative aspect-[4/5] w-full rounded-[6px] border border-rule bg-surface-sunken flex flex-col items-center justify-center gap-2.5 text-ink-3/70">
-            <Camera className="size-8 stroke-[1.25]" />
-            <span className="font-mono text-[11px] tracking-[0.1em] uppercase">
-              {dict.about.photoPlaceholder}
-            </span>
+          <div className="relative aspect-[4/5] w-full rounded-[6px] border border-rule bg-surface-sunken overflow-hidden shadow-sm">
+            <Image
+              src="/images/perfil.jpg"
+              alt="Davi Afonso"
+              fill
+              priority
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 420px"
+            />
           </div>
 
           {/* Trajectory Timeline Card */}

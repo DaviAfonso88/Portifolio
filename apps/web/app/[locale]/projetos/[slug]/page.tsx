@@ -13,7 +13,7 @@ interface ProjetoDetalhePageProps {
 
 export async function generateStaticParams() {
   const params: { locale: string; slug: string }[] = [];
-  const slugs = ['plataforma-de-robos-de-coleta', 'davidev-portfolio-produto'];
+  const slugs = getDictionary('pt-BR').projects.items.map((p) => p.slug);
 
   for (const locale of SUPPORTED_LOCALES) {
     for (const slug of slugs) {

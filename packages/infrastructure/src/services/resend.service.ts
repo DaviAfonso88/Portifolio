@@ -9,7 +9,7 @@ export class ResendEmailService implements EmailNotificationService {
 
   public async sendContactAlert(message: ContactMessage): Promise<void> {
     const key = this.apiKey || process.env.RESEND_API_KEY;
-    const to = this.alertRecipient || process.env.CONTACT_ALERT_EMAIL || 'contato@davidev.net.br';
+    const to = this.alertRecipient || process.env.CONTACT_ALERT_EMAIL || 'daviafonso5894@gmail.com';
 
     if (!key) {
       console.warn('[ResendEmailService] RESEND_API_KEY not configured. Skipping email dispatch.');

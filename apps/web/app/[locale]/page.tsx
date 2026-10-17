@@ -13,28 +13,25 @@ export default async function HomePage({ params }: HomePageProps) {
 
   const featuredProjects = [
     {
-      badge: locale === 'pt-BR' ? 'Automação · Produção' : 'Automation · Production',
-      title: dict.projects.items[0]?.title ?? 'Plataforma de robôs de coleta',
-      description: dict.projects.items[0]?.problem ?? '',
-      tags: ['C# / .NET', 'Puppeteer', 'MongoDB'],
-      href: `/${locale}/projetos/${dict.projects.items[0]?.slug ?? 'plataforma-de-robos-de-coleta'}`,
-    },
-    {
       badge: locale === 'pt-BR' ? 'Produto · Este site' : 'Product · This site',
-      title: dict.projects.items[1]?.title ?? 'DaviDev — Portfólio como Produto',
-      description: dict.projects.items[1]?.problem ?? '',
-      tags: ['Next.js', 'Fastify', 'PostgreSQL', 'Hexagonal'],
-      href: `/${locale}/projetos/${dict.projects.items[1]?.slug ?? 'davidev-portfolio-produto'}`,
+      title: dict.projects.items[0]?.title ?? 'DaviDev — Portfólio como Produto',
+      description: dict.projects.items[0]?.problem ?? '',
+      tags: dict.projects.items[0]?.stack ?? ['Next.js 15', 'Fastify', 'PostgreSQL', 'Hexagonal'],
+      href: `/${locale}/projetos/${dict.projects.items[0]?.slug ?? 'davidev-portfolio-produto'}`,
     },
     {
-      badge: locale === 'pt-BR' ? 'Engenharia · Backend' : 'Engineering · Backend',
-      title: locale === 'pt-BR' ? 'Microserviços & Pipeline Distribuído' : 'Microservices & Distributed Pipeline',
-      description:
-        locale === 'pt-BR'
-          ? 'Processamento transacional assíncrono com tolerância a falhas, garantindo consistência eventual e observabilidade em tempo real.'
-          : 'Asynchronous transactional processing with fault tolerance, ensuring eventual consistency and real-time observability.',
-      tags: ['TypeScript', 'Docker', 'PostgreSQL'],
-      href: `/${locale}/projetos`,
+      badge: locale === 'pt-BR' ? 'Web · Juventude' : 'Web · Youth Community',
+      title: dict.projects.items[1]?.title ?? 'SaltWeb — Plataforma Web',
+      description: dict.projects.items[1]?.problem ?? '',
+      tags: dict.projects.items[1]?.stack ?? ['React', 'TypeScript', 'Tailwind CSS'],
+      href: `/${locale}/projetos/${dict.projects.items[1]?.slug ?? 'saltweb'}`,
+    },
+    {
+      badge: locale === 'pt-BR' ? 'IA · Full Stack' : 'AI · Full Stack',
+      title: dict.projects.items[2]?.title ?? 'FIT.IA — Treino & Nutrição',
+      description: dict.projects.items[2]?.problem ?? '',
+      tags: dict.projects.items[2]?.stack ?? ['Node.js', 'Express', 'React', 'Tailwind CSS'],
+      href: `/${locale}/projetos/${dict.projects.items[2]?.slug ?? 'fit-ia'}`,
     },
   ];
 

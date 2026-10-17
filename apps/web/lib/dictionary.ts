@@ -233,32 +233,32 @@ const dictionaries: Record<string, Dictionary> = {
       colophonLine1: 'Next.js 15 · Fastify · PostgreSQL/Neon · Drizzle',
       colophonLine2: 'Arquitetura hexagonal · deploy na Vercel',
       contactTitle: 'Contato',
-      emailLabel: 'contato@davidev.net.br',
-      emailValue: 'contato@davidev.net.br',
+      emailLabel: 'daviafonso5894@gmail.com',
+      emailValue: 'daviafonso5894@gmail.com',
       linkedinLabel: 'LinkedIn',
-      linkedinUrl: 'https://linkedin.com/in/davi-dev',
+      linkedinUrl: 'https://www.linkedin.com/in/davi-afonso',
       githubLabel: 'GitHub',
-      githubUrl: 'https://github.com/davidev',
+      githubUrl: 'https://github.com/DaviAfonso88',
       privacyPolicy: 'Política de privacidade',
       sourceCode: 'Código-fonte deste site',
-      sourceCodeUrl: 'https://github.com/davidev/portfolio',
-      copyright: '© 2026 davidev.net.br',
+      sourceCodeUrl: 'https://github.com/DaviAfonso88/portifolio',
+      copyright: '© 2026 Davi Afonso',
     },
     home: {
-      badge: 'Desenvolvedor full-stack · Brasil',
-      headline: 'Construo sistemas — e mostro como foram construídos.',
+      badge: 'Desenvolvedor Full Stack · Brasil',
+      headline: 'Construo sistemas robustos — do backend ao design de interface.',
       subheadline:
-        'Arquitetura, backend e automação de coleta de dados em produção. Este site é, ele próprio, um estudo de caso: PRD, arquitetura, especificação e implementação assistida por IA — tudo público.',
+        'Bacharel em Sistemas de Informação focado em C# / .NET, Node.js, React e arquitetura de software limpa. Este site é, ele próprio, um produto de software: arquitetura hexagonal, monorepo pnpm, especificações e engenharia de ponta a ponta abertas.',
       ctaProjects: 'Ver projetos',
       ctaHowBuilt: 'Como este site foi construído',
-      stackTitle: 'Stack em uso',
-      stackItems: ['TypeScript', 'Next.js', 'Fastify', 'C# / .NET', 'PostgreSQL', 'Hexagonal'],
+      stackTitle: 'Stack principal',
+      stackItems: ['C# / .NET', 'Node.js', 'React', 'TypeScript', 'Next.js', 'PostgreSQL', 'MongoDB', 'Docker'],
       roleTitle: 'Atuação',
-      roleValue: 'Backend & Arquitetura',
+      roleValue: 'Full Stack (.NET, Node, React)',
       locationTitle: 'Base',
-      locationValue: 'Brasil · Remoto',
+      locationValue: 'Lagoa Santa, MG · Remoto / Híbrido',
       availabilityTitle: 'Disponibilidade',
-      availabilityValue: 'PJ / CLT / Consultoria',
+      availabilityValue: 'PJ / CLT / Projetos',
       featuredSectionNumber: '01',
       featuredTitle: 'Em destaque',
       allProjectsLink: 'Todos os projetos →',
@@ -266,113 +266,117 @@ const dictionaries: Record<string, Dictionary> = {
       recentWritingTitle: 'Escrito recentemente',
       allArticlesLink: 'Todos os artigos →',
       differentialNumber: '03 — O diferencial',
-      differentialTitle: 'O processo também está aberto.',
+      differentialTitle: 'O processo de engenharia também está aberto.',
       differentialBody:
-        'PRD, documento de arquitetura com 5 ADRs, especificações e o registro das decisões que não deram certo. A página de case study mostra o caminho inteiro — não só o resultado.',
-      differentialCta: 'Ler o case study',
+        'Especificações, decisões arquiteturais com ADRs, separação hexagonal e registro de trade-offs. A página de engenharia mostra o raciocínio completo por trás de cada linha de código.',
+      differentialCta: 'Ver como foi construído',
     },
     about: {
       badge: 'Sobre mim',
-      headline: 'Comecei consertando o que quebrava. Continuo por ali.',
+      headline: 'Bacharel em Sistemas de Informação, desenvolvedor Full Stack focado em resolver problemas reais com software.',
       paragraphs: [
-        'Minha trajetória em engenharia de software foi moldada pela resolução de problemas reais de confiabilidade e escala. O fascínio não estava na novidade da tecnologia pela novidade, mas em compreender como sistemas complexos falham sob pressão.',
-        'Hoje atuo principalmente com backend, sistemas distribuídos e automação: plataformas que operam ininterruptamente sem supervisão manual constante. É uma disciplina de engenharia que perdoa pouco e ensina rápido a distância entre software que funciona localmente e sistemas resilientes em produção.',
-        'Meu foco atual é projetar e implementar sistemas limpos, orientados a domínio (DDD) com fronteiras arquiteturais rígidas, banco de dados com integridade declarativa e pipelines de engenharia assistida por inteligência artificial.',
+        'Sou desenvolvedor de software Full Stack e Bacharel em Sistemas de Informação. Minha atuação combina a solidez do desenvolvimento backend — utilizando C#, ecossistema .NET (ASP.NET Core, Entity Framework) e Node.js (TypeScript, Fastify, Express) — com a construção de interfaces web modernas e reativas em React e Next.js.',
+        'Acredito que um bom software nasce do equilíbrio entre rigor arquitetural e impacto prático no negócio. Aplico princípios de Arquitetura Hexagonal, Domain-Driven Design (DDD) e modelagem relacional rigorosa no banco de dados para criar sistemas testáveis, manuteníveis e prontos para produção.',
+        'Além da engenharia tradicional, integro metodologias modernas de desenvolvimento orientado a especificações e inteligência artificial para acelerar entregas sem abrir mão da qualidade de código e conformidade com padrões de engenharia.',
       ],
       focusTitle: 'Foco',
-      focusValue: 'Backend, arquitetura e automação',
+      focusValue: 'Full Stack (.NET, Node.js, React, TypeScript)',
       baseTitle: 'Base',
-      baseValue: 'Brasil · 100% Remoto',
+      baseValue: 'Lagoa Santa, Minas Gerais · Brasil',
       languagesTitle: 'Idiomas',
-      languagesValue: 'Português (Nativo) · Inglês (Avançado)',
-      photoPlaceholder: 'Foto Profissional',
+      languagesValue: 'Português (Nativo) · Inglês (Técnico / Avançado)',
+      photoPlaceholder: 'Davi Afonso',
       trajectoryTitle: 'Trajetória',
       milestones: [
         {
           year: '2021',
-          description: 'Início na engenharia de dados e robôs de raspagem de alto volume.',
+          description: 'Início da graduação em Sistemas de Informação e aprofundamento em C#, POO e fundamentos de bancos relacionais.',
         },
         {
           year: '2023',
-          description: 'Consolidação de arquiteturas orientadas a eventos e workers resilientes em .NET e Node.',
+          description: 'Evolução para o ecossistema Web Full Stack com Node.js, TypeScript e React, desenvolvendo APIs REST e interfaces dinâmicas.',
+        },
+        {
+          year: '2024',
+          description: 'Desenvolvimento e entrega de projetos como SaltWeb e FIT.IA, combinando React, Tailwind CSS e serviços inteligentes.',
         },
         {
           year: '2026',
-          description: 'Publicação do DaviDev com o processo completo de engenharia aberto.',
+          description: 'Lançamento do DaviDev — arquitetura hexagonal monorepo, engenharia orientada a especificações e documentação pública.',
         },
       ],
     },
     skills: {
       badge: 'Habilidades',
-      headline: 'O que eu uso, e onde usei.',
+      headline: 'O que eu domino e onde aplico.',
       intro:
-        'Sem barras de proficiência e sem notas de 1 a 5 — elas não significam nada para quem lê. Cada item diz onde a tecnologia foi aplicada e para quê.',
+        'Sem barras percentuais arbitrárias ou notas subjetivas. Cada tecnologia reflete experiência prática em projetos reais, arquitetura limpa e entrega contínua.',
       categories: [
         {
           number: '01',
-          title: 'Backend e domínio',
+          title: 'Backend & Arquitetura',
           items: [
             {
               name: 'C# / .NET',
               description:
-                'Workers de longa duração em produção — coleta contínua, integração com APIs de terceiros e reprocessamento tolerante a falha.',
+                'Desenvolvimento de APIs robustas e serviços com ASP.NET Core, Entity Framework Core e LINQ, aplicando padrões corporativos e MVC.',
             },
             {
               name: 'Node.js · TypeScript',
               description:
-                'API REST do DaviDev sob arquitetura hexagonal, com contrato OpenAPI gerando o client do frontend.',
+                'Construção de APIs REST escaláveis com tipagem estrita, contratos de schemas validados (Zod) e separação de camadas.',
             },
             {
-              name: 'Fastify',
+              name: 'Fastify & Express',
               description:
-                'Adapter HTTP isolado do domínio, com validação Zod e documentação OpenAPI gerada a partir dos schemas.',
+                'Desenvolvimento de servidores HTTP de alta performance com injeção de dependência e desacoplamento do núcleo de negócio.',
             },
             {
-              name: 'Arquitetura Hexagonal',
+              name: 'Arquitetura Hexagonal & DDD',
               description:
-                'Separação rígida de Domínio, Aplicação e Infraestrutura garantindo zero dependência de framework no core.',
+                'Isolamento estrito do domínio e casos de uso, garantindo zero dependência de frameworks ou bancos no núcleo.',
             },
           ],
         },
         {
           number: '02',
-          title: 'Dados e persistência',
+          title: 'Frontend & Interface',
           items: [
             {
-              name: 'PostgreSQL',
+              name: 'React & Next.js 15',
               description:
-                'Modelagem relacional em que regra de negócio vira constraint — unicidade de slug e histórico de redirecionamento garantidos pelo banco.',
+                'Desenvolvimento de aplicações modernas com App Router, React Server Components (RSC), hooks customizados e otimização de renderização.',
             },
             {
-              name: 'MongoDB',
+              name: 'Tailwind CSS & Design Tokens',
               description:
-                'Acervo de dados em alto volume, com particionamento de catálogo e pipeline produtor/consumidor.',
+                'Criação de interfaces acessíveis, responsivas e semânticas com design tokens, suporte a tema claro/escuro e WCAG AA.',
             },
             {
-              name: 'Drizzle ORM',
+              name: 'TypeScript & Ecossistema Moderno',
               description:
-                'Migrations versionadas em política forward-only, com compatibilidade estrita entre deploys contínuos.',
+                'Tipagem avançada em todo o ciclo da aplicação, prevenindo falhas de contrato entre frontend e backend.',
             },
           ],
         },
         {
           number: '03',
-          title: 'Frontend & Ferramentas',
+          title: 'Banco de Dados & Ferramentas',
           items: [
             {
-              name: 'Next.js 15+ (App Router)',
+              name: 'PostgreSQL & MySQL',
               description:
-                'Renderização incremental (ISR) com Server Components, streaming via Suspense e revalidação sob demanda.',
+                'Modelagem relacional com integridade declarativa, foreign keys, constraints e migrations versionadas com Drizzle e EF Core.',
             },
             {
-              name: 'Tailwind CSS & Tokens',
+              name: 'MongoDB',
               description:
-                'Design system editorial com suporte nativo a tema claro e escuro, contraste WCAG AA verificado.',
+                'Persistência orientada a documentos para catálogos de produtos e dados flexíveis com índices otimizados e Mongoose.',
             },
             {
-              name: 'Docker & CI/CD',
+              name: 'Docker & Git/CI',
               description:
-                'Contêineres de desenvolvimento, pipelines de lint, verificação de dependências com dependency-cruiser e testes automatizados.',
+                'Ambientes conteinerizados reprodutíveis, esteiras de testes automatizados e verificação estática de regras de dependência.',
             },
           ],
         },
@@ -428,37 +432,37 @@ const dictionaries: Record<string, Dictionary> = {
     },
     experiences: {
       badge: 'Experiências',
-      headline: 'O que eu resolvi, não o que estava no contrato.',
+      headline: 'O que construí e os desafios que superei.',
       intro:
-        'Cada posição descrita pelo problema que existia e pelo que mudou depois. Informações confidenciais de clientes e empregadores são preservadas.',
+        'Trajetória profissional focada em desenvolvimento Full Stack, engenharia de software e criação de produtos digitais com código limpo e manutenível.',
       positions: [
         {
           period: '2024 — Atual',
-          company: 'Plataforma de Coleta & Inteligência de Mercado',
-          role: 'Engenheiro de Backend & Automação Sênior',
-          regime: 'PJ · Remoto',
+          company: 'Desenvolvedor Full Stack & Projetos de Software',
+          role: 'Desenvolvedor Full Stack',
+          regime: 'Projetos · Remoto / Híbrido',
           summary:
-            'Plataforma de coleta e consolidação contínua de ofertas e catálogos, alimentando decisões comerciais que antes dependiam de pesquisa manual lenta e incompleta.',
+            'Desenvolvimento e sustentação de aplicações web completas, integrando frontend moderno em React/Next.js e backends resilientes com Node.js e C# / .NET.',
           highlights: [
-            'Projetei e mantive dezenas de workers de coleta contínua sobre fontes que sofrem mudanças estruturais frequentes sem aviso, com monitoramento ativo de integridade.',
-            'Reduzi drasticamente o custo de tráfego com proxy residencial através de bloqueio de assets supérfluos e estratégia de coleta incremental por diferencial.',
-            'Criei o esqueleto padronizado dos robôs de extração, reduzindo o tempo de onboarding de novas fontes de dados em mais de 50%.',
+            'Arquitetei e implementei a plataforma SaltWeb para a juventude da PIB Lagoa Santa, com foco em usabilidade, performance e gerenciamento comunitário.',
+            'Desenvolvi a plataforma FIT.IA, integrando inteligência artificial generativa com backend em Express e frontend dinâmico em React.',
+            'Construí o projeto DaviDev em arquitetura hexagonal estrita, com zero dependências externas no domínio e monorepo pnpm.',
           ],
-          technologies: ['C# / .NET', 'PuppeteerSharp', 'MongoDB', 'Docker', 'Azure DevOps'],
+          technologies: ['TypeScript', 'React', 'Next.js', 'C# / .NET', 'Node.js', 'Tailwind CSS', 'PostgreSQL', 'Docker'],
         },
         {
           period: '2022 — 2024',
-          company: 'Sistemas Distribuídos & Consultoria de Software',
-          role: 'Desenvolvedor Full-Stack Pleno',
-          regime: 'CLT · Híbrido',
+          company: 'Sistemas de Informação & Engenharia de Aplicações',
+          role: 'Desenvolvedor de Software',
+          regime: 'Acadêmico & Projetos',
           summary:
-            'Desenvolvimento de aplicações corporativas críticas, microsserviços e portais internos orientados a alta disponibilidade e processos de negócio complexos.',
+            'Desenvolvimento de sistemas corporativos, APIs RESTful e modelagem de bancos de dados relacionais e orientados a documentos durante a formação em Sistemas de Informação.',
           highlights: [
-            'Implementei serviços RESTful com autenticação JWT e controle de permissões baseado em papéis (RBAC).',
-            'Otimizei consultas SQL complexas e índices em PostgreSQL reduzindo o tempo de resposta em relatórios executivos.',
-            'Estruturei pipelines de testes unitários e de integração aumentando a confiabilidade dos deploys semanais.',
+            'Implementei o sistema SalesWebMvc em C# / ASP.NET Core MVC com Entity Framework Core, migrações automatizadas e relatórios de vendas.',
+            'Desenvolvi APIs RESTful com Node.js e Express conectadas a MongoDB (Mongoose) para catalogação de produtos e processamento de dados.',
+            'Projetei esquemas de dados normalizados e apliquei princípios de POO e Clean Code em múltiplos projetos práticos.',
           ],
-          technologies: ['Node.js', 'TypeScript', 'PostgreSQL', 'Docker', 'React', 'Tailwind CSS'],
+          technologies: ['C# / .NET', 'ASP.NET Core', 'Entity Framework Core', 'Node.js', 'Express', 'MongoDB', 'MySQL'],
         },
       ],
     },
@@ -469,60 +473,147 @@ const dictionaries: Record<string, Dictionary> = {
         'Cada projeto abre pelo problema de negócio e pelo desfecho — legível para quem contrata. O detalhe de arquitetura vem depois, para quem avalia tecnicamente.',
       items: [
         {
-          slug: 'plataforma-de-robos-de-coleta',
-          title: 'Plataforma de robôs de coleta de preços',
-          status: 'Em produção',
-          period: '2024 — atual',
-          stack: ['C# / .NET', 'PuppeteerSharp', 'MongoDB', 'Docker'],
-          problem:
-            'O catálogo de ofertas de dezenas de fontes mudava diariamente, e a consolidação manual não acompanhava — decisões comerciais saíam com dado defasado.',
-          result:
-            'Coleta contínua e automatizada, com consumo de banda e proxy reduzidos em 60% e detecção preventiva de quebra de layout de fontes.',
-          role: 'Arquitetura dos workers, padronização do esqueleto e otimização de custo de banda.',
-          detailLink: 'Ver o detalhe técnico →',
-          summary:
-            'Trinta workers coletando ofertas de fontes dinâmicas, com custo de banda sob controle e detecção de quebra antes de o dado ficar incorreto.',
-          engineeringChallenge:
-            'O volume tornava inviável abrir um navegador completo para cada requisição. Fontes protegidas exigiam cookies e tokens dinâmicos, e proxies residenciais são tarifados por gigabyte.',
-          decisions: [
-            {
-              title: 'Navegador apenas para resolver desafios anti-bot',
-              desc: 'O headless browser resolve o desafio inicial e extrai a sessão válida; a extração massiva subsequente é realizada via HTTP direto.',
-              tradeoff: 'Exige gerenciamento e renovação automática de estado de sessão.',
-            },
-            {
-              title: 'Extração incremental por checksum',
-              desc: 'Somente ofertas e registros cujo hash de conteúdo foi alterado acionam parsing aprofundado.',
-              tradeoff: 'Requer persistência de snapshots para comparação rápida.',
-            },
-          ],
-        },
-        {
           slug: 'davidev-portfolio-produto',
           title: 'DaviDev — Portfólio como Produto de Software',
           status: 'Em produção',
           period: '2026',
           stack: ['Next.js 15', 'Fastify', 'PostgreSQL', 'Drizzle', 'Hexagonal'],
           problem:
-            'Currículos estáticos em PDF não comprovam maturidade de código, qualidade de arquitetura ou rigor metodológico.',
+            'Currículos estáticos em PDF não comprovam maturidade de código, qualidade de arquitetura ou rigor metodológico em engenharia de software.',
           result:
             'Portfólio construído como software de produção: arquitetura hexagonal com separação em monorepo pnpm, blog editorial com ISR, CMS protegido e PRD público.',
           role: 'Engenheiro responsável por toda a especificação, arquitetura e implementação.',
           detailLink: 'Ver o detalhe técnico →',
           summary:
-            'Blog, CMS, API RESTful documentada com Swagger e arquitetura hexagonal, com todo o processo de engenharia publicado.',
+            'Blog editorial, CMS, API RESTful documentada com Swagger e arquitetura hexagonal, com todo o processo de engenharia publicado.',
           engineeringChallenge:
-            'Garantir latência LCP < 2.5s global e zero dependências externas no pacote de domínio (`DEP-1`), com sincronização in-process entre Next.js e Fastify.',
+            'Garantir latência LCP < 2.5s global e zero dependências externas no pacote de domínio (DEP-1), com integração in-process entre Next.js e Fastify.',
           decisions: [
             {
               title: 'Arquitetura Hexagonal estrita em Monorepo',
-              desc: 'O domínio (`packages/domain`) não possui nenhuma dependência externa, garantindo portabilidade absoluta de regras de negócio.',
+              desc: 'O domínio (@davidev/domain) não possui nenhuma dependência externa, garantindo portabilidade absoluta de regras de negócio.',
               tradeoff: 'Maior número de camadas e interfaces abstratas.',
             },
             {
               title: 'Host híbrido Serverless Fastify dentro do Next.js',
               desc: 'A mesma API Fastify com schemas Zod atende requisições HTTP e é consumida in-process por Server Components sem round-trip de rede.',
               tradeoff: 'Configuração personalizada de handlers e adapters de request.',
+            },
+          ],
+        },
+        {
+          slug: 'saltweb',
+          title: 'SaltWeb — Plataforma Web da Juventude',
+          status: 'Concluído',
+          period: '2024',
+          stack: ['React', 'TypeScript', 'Tailwind CSS', 'Vite'],
+          problem:
+            'A comunidade de jovens da PIB Lagoa Santa necessitava de uma plataforma digital centralizada para divulgação de eventos, engajamento e identidade visual contemporânea.',
+          result:
+            'Plataforma web rápida, responsiva e moderna entregue, facilitando o acesso a informações, encontros e integração dos membros.',
+          role: 'Desenvolvedor Frontend e UI Designer da aplicação.',
+          detailLink: 'Ver o detalhe técnico →',
+          summary:
+            'Aplicação web interativa para comunidade jovem desenvolvida com React, TypeScript e Tailwind CSS com design responsivo e focado em engajamento.',
+          engineeringChallenge:
+            'Criar uma experiência fluida com carregamento instantâneo no mobile e layout responsivo com visual editorial alinhado à linguagem dos jovens.',
+          decisions: [
+            {
+              title: 'Tailwind CSS para consistência visual',
+              desc: 'Uso de utilitários Tailwind para garantir harmonia tipográfica e layout adaptável a diferentes dispositivos móveis.',
+              tradeoff: 'Classes utilitárias acumuladas que exigem organização modular de componentes.',
+            },
+            {
+              title: 'Vite como ferramenta de build',
+              desc: 'Adoção de Vite para builds ultrarrápidos e Hot Module Replacement (HMR) eficiente durante o ciclo de desenvolvimento.',
+              tradeoff: 'Configuração manual de roteamento client-side.',
+            },
+          ],
+        },
+        {
+          slug: 'fit-ia',
+          title: 'FIT.IA — Assistente Inteligente de Treino & Nutrição',
+          status: 'Concluído',
+          period: '2024',
+          stack: ['Node.js', 'Express', 'React', 'IA Generativa', 'Tailwind CSS'],
+          problem:
+            'Praticantes de atividade física frequentemente enfrentam dificuldades para montar e adaptar planos de treino e nutrição alinhados aos seus objetivos específicos de forma acessível.',
+          result:
+            'Aplicação completa com geração automatizada de rotinas de treino e orientação nutricional personalizada com base no perfil físico e metas do usuário.',
+          role: 'Desenvolvedor Full Stack (API backend em Node.js/Express e interface React).',
+          detailLink: 'Ver o detalhe técnico →',
+          summary:
+            'Sistema integrado que utiliza inteligência artificial generativa para estruturar dietas e treinos personalizados através de uma interface intuitiva.',
+          engineeringChallenge:
+            'Estruturar prompts consistentes na API e tratar respostas não estruturadas de modelos de linguagem para garantir formatos previsíveis no frontend.',
+          decisions: [
+            {
+              title: 'Sanitização e Validação de Schemas',
+              desc: 'Validação rigorosa do payload de saída do modelo antes de repassar os dados ao frontend, prevenindo inconsistências no formato dos exercícios.',
+              tradeoff: 'Retentativas adicionais de geração caso o formato venha fora do schema.',
+            },
+            {
+              title: 'Separação clara entre API e UI',
+              desc: 'Backend Express encapsula as chaves de API e a lógica de comunicação com o provedor de IA com total isolamento do cliente.',
+              tradeoff: 'Necessidade de gerenciar latência de requisições de rede assíncronas.',
+            },
+          ],
+        },
+        {
+          slug: 'sales-web-mvc',
+          title: 'SalesWebMvc — Gestão de Vendas e Departamentos',
+          status: 'Concluído',
+          period: '2023',
+          stack: ['C# / .NET', 'ASP.NET Core MVC', 'Entity Framework Core', 'MySQL'],
+          problem:
+            'Organizações necessitam de controle centralizado de registros de vendas, associação a vendedores e departamentos com relatórios sumarizados e filtros por período.',
+          result:
+            'Sistema corporativo em arquitetura MVC com operações CRUD completas, tratamento de exceções de integridade relacional e relatórios agrupados.',
+          role: 'Desenvolvedor Backend / C#.',
+          detailLink: 'Ver o detalhe técnico →',
+          summary:
+            'Aplicação web corporativa em ASP.NET Core MVC e Entity Framework Core para gerenciamento transacional de vendas com validações robustas.',
+          engineeringChallenge:
+            'Garantir consistência relacional e integridade referencial nas exclusões em cascata e consultas complexas com LINQ e agrupamentos.',
+          decisions: [
+            {
+              title: 'Entity Framework Core Code-First',
+              desc: 'Modelagem de domínio primeiro em classes C# com mapeamento ORM e migrations automáticas no MySQL.',
+              tradeoff: 'Dependência do ciclo de migrações do framework.',
+            },
+            {
+              title: 'Camada de Serviços para Regras de Negócio',
+              desc: 'Desacoplamento entre Controllers e DbContext através de serviços dedicados com injeção de dependência nativa.',
+              tradeoff: 'Mais classes e injeções no construtor de controllers.',
+            },
+          ],
+        },
+        {
+          slug: 'api-de-produtos',
+          title: 'API REST de Catálogo e Produtos',
+          status: 'Concluído',
+          period: '2023',
+          stack: ['Node.js', 'Express', 'MongoDB', 'Mongoose'],
+          problem:
+            'Necessidade de um serviço de catálogo flexível para gerenciamento de inventário de produtos com esquemas mutáveis e alta velocidade de leitura.',
+          result:
+            'API RESTful eficiente com endpoints completos para criação, listagem, atualização e busca por atributos, documentada e com validação de dados.',
+          role: 'Desenvolvedor Backend.',
+          detailLink: 'Ver o detalhe técnico →',
+          summary:
+            'API backend com Node.js e MongoDB para gerenciamento de catálogos com paginação, filtros e persistência baseada em documentos.',
+          engineeringChallenge:
+            'Estruturar modelos Mongoose com validações de campos obrigatórios e tratamento uniforme de respostas e erros HTTP.',
+          decisions: [
+            {
+              title: 'MongoDB para flexibilidade de catálogo',
+              desc: 'Permite que diferentes categorias de produtos possuam atributos específicos sem necessidade de esquemas rígidos e migrations complexas.',
+              tradeoff: 'Sem integridade referencial relacional garantida a nível de banco.',
+            },
+            {
+              title: 'Middleware de tratamento de erros global',
+              desc: 'Centralização de tratamento de exceções do Express, retornando códigos de status HTTP semânticos (400, 404, 500).',
+              tradeoff: 'Exige propagação cuidadosa de erros com next(err) em blocos assíncronos.',
             },
           ],
         },
@@ -534,11 +625,11 @@ const dictionaries: Record<string, Dictionary> = {
       intro:
         'Vaga, projeto ou dúvida sobre engenharia e arquitetura — respondo todos os contatos. Se preferir, utilize os canais diretos abaixo.',
       emailLabel: 'E-mail direto',
-      emailValue: 'contato@davidev.net.br',
+      emailValue: 'daviafonso5894@gmail.com',
       linkedinLabel: 'LinkedIn',
-      linkedinHandle: '/in/davi-dev',
+      linkedinHandle: '/in/davi-afonso',
       githubLabel: 'GitHub',
-      githubHandle: '/davidev',
+      githubHandle: '/DaviAfonso88',
       privacyNotice:
         'Sua mensagem é armazenada com segurança por 24 meses exclusivamente para responder você. Nenhum IP rastreável é guardado.',
       form: {
@@ -728,9 +819,9 @@ const dictionaries: Record<string, Dictionary> = {
       openDocsLinks: [
         { label: '→ Documentação Interativa da API (/api/docs)', href: '/api/docs', isExternal: false },
         { label: '→ Relatório de Prontidão e Auditoria de Go-Live', href: '/docs/go-live-readiness-report.md', isExternal: false },
-        { label: '→ PRD Completo (docs/prd.md)', href: 'https://github.com/davidev/portfolio/blob/main/docs/prd.md', isExternal: true },
-        { label: '→ Decisões de Arquitetura (docs/architecture.md)', href: 'https://github.com/davidev/portfolio/blob/main/docs/architecture.md', isExternal: true },
-        { label: '→ Repositório no GitHub', href: 'https://github.com/davidev/portfolio', isExternal: true },
+        { label: '→ PRD Completo (docs/prd.md)', href: 'https://github.com/DaviAfonso88/portifolio/blob/main/docs/prd.md', isExternal: true },
+        { label: '→ Decisões de Arquitetura (docs/architecture.md)', href: 'https://github.com/DaviAfonso88/portifolio/blob/main/docs/architecture.md', isExternal: true },
+        { label: '→ Repositório no GitHub', href: 'https://github.com/DaviAfonso88/portifolio', isExternal: true },
       ],
     },
 
@@ -757,32 +848,32 @@ const dictionaries: Record<string, Dictionary> = {
       colophonLine1: 'Next.js 15 · Fastify · PostgreSQL/Neon · Drizzle',
       colophonLine2: 'Hexagonal architecture · deployed on Vercel',
       contactTitle: 'Contact',
-      emailLabel: 'contato@davidev.net.br',
-      emailValue: 'contato@davidev.net.br',
+      emailLabel: 'daviafonso5894@gmail.com',
+      emailValue: 'daviafonso5894@gmail.com',
       linkedinLabel: 'LinkedIn',
-      linkedinUrl: 'https://linkedin.com/in/davi-dev',
+      linkedinUrl: 'https://www.linkedin.com/in/davi-afonso',
       githubLabel: 'GitHub',
-      githubUrl: 'https://github.com/davidev',
+      githubUrl: 'https://github.com/DaviAfonso88',
       privacyPolicy: 'Privacy Policy',
       sourceCode: 'Source code of this site',
-      sourceCodeUrl: 'https://github.com/davidev/portfolio',
-      copyright: '© 2026 davidev.net.br',
+      sourceCodeUrl: 'https://github.com/DaviAfonso88/portifolio',
+      copyright: '© 2026 Davi Afonso',
     },
     home: {
-      badge: 'Full-stack developer · Brazil',
-      headline: 'I build systems — and show how they were made.',
+      badge: 'Full Stack Developer · Brazil',
+      headline: 'I build resilient systems — from backend architecture to interface design.',
       subheadline:
-        'Software architecture, backend, and data collection automation in production. This website itself is a case study: PRD, architecture, specification, and AI-assisted engineering — all fully open.',
+        'Information Systems graduate specializing in C# / .NET, Node.js, React, and clean software architecture. This website is itself an engineered software product: hexagonal architecture, pnpm monorepo, open specifications, and transparent engineering.',
       ctaProjects: 'View projects',
       ctaHowBuilt: 'How this site was built',
-      stackTitle: 'Current stack',
-      stackItems: ['TypeScript', 'Next.js', 'Fastify', 'C# / .NET', 'PostgreSQL', 'Hexagonal'],
-      roleTitle: 'Focus',
-      roleValue: 'Backend & Architecture',
+      stackTitle: 'Core stack',
+      stackItems: ['C# / .NET', 'Node.js', 'React', 'TypeScript', 'Next.js', 'PostgreSQL', 'MongoDB', 'Docker'],
+      roleTitle: 'Role',
+      roleValue: 'Full Stack (.NET, Node, React)',
       locationTitle: 'Location',
-      locationValue: 'Brazil · Remote',
+      locationValue: 'Lagoa Santa, Brazil · Remote / Hybrid',
       availabilityTitle: 'Availability',
-      availabilityValue: 'B2B / Contract / Consulting',
+      availabilityValue: 'Contract / Full-time / Projects',
       featuredSectionNumber: '01',
       featuredTitle: 'Featured work',
       allProjectsLink: 'All projects →',
@@ -792,111 +883,115 @@ const dictionaries: Record<string, Dictionary> = {
       differentialNumber: '03 — The difference',
       differentialTitle: 'The engineering process is open too.',
       differentialBody:
-        'PRD, architecture documents with 5 ADRs, specifications, and honest records of decisions that did not work out. The case study page shows the entire journey — not just the final result.',
-      differentialCta: 'Read the case study',
+        'Specifications, architectural decisions with ADRs, hexagonal separation, and trade-off records. The engineering page reveals the complete reasoning behind every line of code.',
+      differentialCta: 'See how it was built',
     },
     about: {
       badge: 'About me',
-      headline: 'Started by fixing what broke. Still doing that.',
+      headline: 'Information Systems graduate and Full Stack developer focused on solving real problems with software.',
       paragraphs: [
-        'My journey in software engineering was formed around solving real-world reliability and scaling problems. The fascination was never about novelty for novelty’s sake, but about understanding how complex systems fail under load.',
-        'Today I work primarily with backend, distributed systems, and automation: platforms that must run continuously without constant manual intervention. It is an engineering discipline that forgives little and quickly teaches the gap between code that works locally and systems that survive in production.',
-        'My current focus is designing clean, domain-driven systems (DDD) with strict architectural boundaries, relational databases with declarative integrity, and AI-assisted engineering workflows.',
+        'I am a Full Stack Software Developer with a Bachelor’s degree in Information Systems. My work bridges solid backend engineering — using C#, the .NET ecosystem (ASP.NET Core, Entity Framework), and Node.js (TypeScript, Fastify, Express) — with modern, responsive frontend interfaces built with React and Next.js.',
+        'I believe reliable software comes from balancing architectural discipline with practical business value. I apply Hexagonal Architecture, Domain-Driven Design (DDD), and rigorous relational data modeling to build systems that are thoroughly tested, maintainable, and production-ready.',
+        'In addition to foundational software engineering, I incorporate specification-driven development and AI-assisted workflows to accelerate delivery while maintaining high code quality and strict engineering standards.',
       ],
       focusTitle: 'Focus',
-      focusValue: 'Backend, architecture, and automation',
+      focusValue: 'Full Stack (.NET, Node.js, React, TypeScript)',
       baseTitle: 'Base',
-      baseValue: 'Brazil · 100% Remote',
+      baseValue: 'Lagoa Santa, Minas Gerais · Brazil',
       languagesTitle: 'Languages',
-      languagesValue: 'Portuguese (Native) · English (Advanced)',
-      photoPlaceholder: 'Professional Photo',
+      languagesValue: 'Portuguese (Native) · English (Technical / Advanced)',
+      photoPlaceholder: 'Davi Afonso',
       trajectoryTitle: 'Timeline',
       milestones: [
         {
           year: '2021',
-          description: 'Began work in data extraction and high-volume web automation pipelines.',
+          description: 'Started Information Systems degree and focused on C#, OOP, and relational database fundamentals.',
         },
         {
           year: '2023',
-          description: 'Consolidated event-driven systems and resilient long-running workers in .NET and Node.',
+          description: 'Expanded into Web Full Stack with Node.js, TypeScript, and React, building REST APIs and dynamic user interfaces.',
+        },
+        {
+          year: '2024',
+          description: 'Delivered production platforms like SaltWeb and FIT.IA, combining React, Tailwind CSS, and AI services.',
         },
         {
           year: '2026',
-          description: 'Published DaviDev with the full engineering process made transparent.',
+          description: 'Launched DaviDev — hexagonal monorepo architecture, specification-driven engineering, and public documentation.',
         },
       ],
     },
     skills: {
       badge: 'Skills',
-      headline: 'What I use, and where I used it.',
+      headline: 'What I build with, and where I apply it.',
       intro:
-        'No arbitrary percentage bars or 1-to-5 ratings — they mean nothing to the reader. Each skill specifies where the technology was applied and to solve what problem.',
+        'No arbitrary percentage bars or subjective ratings. Each technology reflects hands-on experience in real-world projects, clean architecture, and continuous delivery.',
       categories: [
         {
           number: '01',
-          title: 'Backend & Domain',
+          title: 'Backend & Architecture',
           items: [
             {
               name: 'C# / .NET',
               description:
-                'Long-running background workers in production — continuous extraction, third-party API integration, and fault-tolerant reprocessing.',
+                'Robust API and service development with ASP.NET Core, Entity Framework Core, and LINQ, applying enterprise architecture and MVC patterns.',
             },
             {
               name: 'Node.js · TypeScript',
               description:
-                'DaviDev REST API built on hexagonal architecture, with OpenAPI contracts generating typed client code for the frontend.',
+                'Scalable REST API development with strict TypeScript typing, validated schemas (Zod), and clear layer boundaries.',
             },
             {
-              name: 'Fastify',
+              name: 'Fastify & Express',
               description:
-                'HTTP adapter strictly separated from the domain, utilizing Zod validation schemas and autogenerated OpenAPI documentation.',
+                'High-performance HTTP server development with dependency injection and decoupling from core business logic.',
             },
             {
-              name: 'Hexagonal Architecture',
+              name: 'Hexagonal Architecture & DDD',
               description:
-                'Rigorous decoupling of Domain, Application, and Infrastructure ensuring zero framework dependency inside core business logic.',
+                'Strict isolation of core domain and use cases, ensuring zero framework or database dependencies in the business layer.',
             },
           ],
         },
         {
           number: '02',
-          title: 'Data & Persistence',
+          title: 'Frontend & Interface',
           items: [
             {
-              name: 'PostgreSQL',
+              name: 'React & Next.js 15',
               description:
-                'Relational modeling where business rules become constraints — slug uniqueness and 301 redirection histories enforced by the database.',
+                'Modern web applications utilizing App Router, React Server Components (RSC), custom hooks, and rendering optimizations.',
             },
             {
-              name: 'MongoDB',
+              name: 'Tailwind CSS & Design Tokens',
               description:
-                'High-volume catalog storage with database partitioning and producer/consumer pipeline processing.',
+                'Accessible, responsive, and semantic user interfaces with design tokens, native light/dark theme, and WCAG AA compliance.',
             },
             {
-              name: 'Drizzle ORM',
+              name: 'TypeScript & Modern Ecosystem',
               description:
-                'Forward-only versioned migrations ensuring backward compatibility across rolling zero-downtime deployments.',
+                'Advanced static typing across the entire frontend lifecycle, eliminating runtime contract mismatches.',
             },
           ],
         },
         {
           number: '03',
-          title: 'Frontend & Tooling',
+          title: 'Databases & Tooling',
           items: [
             {
-              name: 'Next.js 15+ (App Router)',
+              name: 'PostgreSQL & MySQL',
               description:
-                'Incremental Static Regeneration (ISR) with React Server Components, Suspense streaming, and on-demand cache revalidation.',
+                'Relational database design with declarative integrity, foreign keys, constraints, and versioned migrations via Drizzle and EF Core.',
             },
             {
-              name: 'Tailwind CSS & Design Tokens',
+              name: 'MongoDB',
               description:
-                'Editorial design system with native light/dark theme support and verified WCAG AA color contrast.',
+                'Document-oriented persistence for product catalogs and flexible data with optimized indexing and Mongoose.',
             },
             {
-              name: 'Docker & CI/CD',
+              name: 'Docker & Git/CI',
               description:
-                'Containerized environments, linting pipelines, dependency boundary checks via dependency-cruiser, and automated testing.',
+                'Reproducible containerized development, automated testing workflows, and static dependency boundary enforcement.',
             },
           ],
         },
@@ -952,37 +1047,37 @@ const dictionaries: Record<string, Dictionary> = {
     },
     experiences: {
       badge: 'Experience',
-      headline: 'What I solved, not just what was contracted.',
+      headline: 'What I built and the challenges I solved.',
       intro:
-        'Each role described by the engineering problem that existed and the outcome achieved. Sensitive company and client data is protected.',
+        'Career trajectory focused on Full Stack development, software engineering, and delivering digital products with clean, maintainable code.',
       positions: [
         {
           period: '2024 — Present',
-          company: 'Market Intelligence & Data Collection Platform',
-          role: 'Senior Backend & Automation Engineer',
-          regime: 'Contract · Remote',
+          company: 'Full Stack Developer & Software Projects',
+          role: 'Full Stack Software Developer',
+          regime: 'Projects · Remote / Hybrid',
           summary:
-            'Continuous extraction and consolidation platform for vehicle market offers, powering pricing decisions that previously relied on slow, incomplete manual research.',
+            'End-to-end development and maintenance of web applications, integrating modern React/Next.js frontends with resilient Node.js and C# / .NET backends.',
           highlights: [
-            'Architected and maintained dozens of long-running extraction workers resilient against frequent unannounced third-party DOM mutations.',
-            'Reduced expensive residential proxy bandwidth costs by 60% through aggressive unnecessary asset blocking and diff-based incremental collection.',
-            'Standardized the extraction worker framework, cutting onboarding time for new data sources by over 50%.',
+            'Architected and implemented the SaltWeb platform for PIB Lagoa Santa youth, focusing on usability, performance, and community management.',
+            'Engineered the FIT.IA platform, integrating generative AI with an Express backend and dynamic React user interface.',
+            'Built DaviDev using strict hexagonal architecture, ensuring zero external dependencies in the domain core within a pnpm monorepo.',
           ],
-          technologies: ['C# / .NET', 'PuppeteerSharp', 'MongoDB', 'Docker', 'Azure DevOps'],
+          technologies: ['TypeScript', 'React', 'Next.js', 'C# / .NET', 'Node.js', 'Tailwind CSS', 'PostgreSQL', 'Docker'],
         },
         {
           period: '2022 — 2024',
-          company: 'Distributed Systems & Software Consultancy',
-          role: 'Full-Stack Software Engineer',
-          regime: 'Full-time · Hybrid',
+          company: 'Information Systems & Application Development',
+          role: 'Software Developer',
+          regime: 'Academic & Projects',
           summary:
-            'Engineered enterprise web applications, microservices, and internal administrative portals focused on high reliability and complex business operations.',
+            'Development of enterprise management systems, RESTful APIs, and relational and document database modeling throughout Information Systems degree.',
           highlights: [
-            'Implemented RESTful APIs with JWT authentication and granular Role-Based Access Control (RBAC).',
-            'Optimized relational schemas and queries in PostgreSQL, cutting executive report response times significantly.',
-            'Built CI/CD testing pipelines ensuring high confidence during weekly deployments.',
+            'Implemented SalesWebMvc in C# / ASP.NET Core MVC with Entity Framework Core, automated migrations, and sales reporting.',
+            'Built RESTful APIs with Node.js and Express connected to MongoDB (Mongoose) for product cataloging and data management.',
+            'Designed normalized database schemas and applied OOP and Clean Code principles across practical projects.',
           ],
-          technologies: ['Node.js', 'TypeScript', 'PostgreSQL', 'Docker', 'React', 'Tailwind CSS'],
+          technologies: ['C# / .NET', 'ASP.NET Core', 'Entity Framework Core', 'Node.js', 'Express', 'MongoDB', 'MySQL'],
         },
       ],
     },
@@ -993,44 +1088,15 @@ const dictionaries: Record<string, Dictionary> = {
         'Every project starts with the business problem and the concrete outcome — clear for hiring managers. Deep technical architecture follows for engineering review.',
       items: [
         {
-          slug: 'plataforma-de-robos-de-coleta',
-          title: 'Price Extraction & Market Intelligence Platform',
-          status: 'In production',
-          period: '2024 — present',
-          stack: ['C# / .NET', 'PuppeteerSharp', 'MongoDB', 'Docker'],
-          problem:
-            'Vehicle catalog data across dozens of sources changed daily, and manual research could not keep up — commercial pricing decisions were made with outdated information.',
-          result:
-            'Continuous automated extraction with bandwidth and proxy consumption reduced by 60%, featuring proactive detection of broken source layouts before data corruption.',
-          role: 'Worker architecture, framework standardization, and bandwidth cost optimization.',
-          detailLink: 'View technical details →',
-          summary:
-            'Thirty background workers scraping dynamic sources with controlled proxy costs and automated breakage alerts.',
-          engineeringChallenge:
-            'Full browser instances for every request were cost-prohibitive. Protected sources required dynamic session tokens, while residential proxies were billed by the gigabyte.',
-          decisions: [
-            {
-              title: 'Headless browser solely for anti-bot challenges',
-              desc: 'The browser solves initial challenges and extracts session cookies; mass data ingestion continues via lightweight HTTP requests.',
-              tradeoff: 'Requires robust automatic session expiration and renewal handling.',
-            },
-            {
-              title: 'Incremental collection via content checksums',
-              desc: 'Only offers whose content hash changed trigger deep payload parsing and database writes.',
-              tradeoff: 'Requires maintaining reliable snapshot states for comparison.',
-            },
-          ],
-        },
-        {
           slug: 'davidev-portfolio-produto',
           title: 'DaviDev — Portfolio as a Software Product',
           status: 'In production',
           period: '2026',
           stack: ['Next.js 15', 'Fastify', 'PostgreSQL', 'Drizzle', 'Hexagonal'],
           problem:
-            'Static resume PDFs do not demonstrate true architectural discipline, code cleanliness, or engineering methodology.',
+            'Static resume PDFs fail to demonstrate code maturity, architectural quality, and true software engineering rigor.',
           result:
-            'Built as a complete production application: hexagonal architecture monorepo, editorial blog with ISR, protected CMS, and fully transparent PRD/ADRs.',
+            'Engineered as a production software product: hexagonal architecture in a pnpm monorepo, editorial blog with ISR, protected CMS, and public PRD.',
           role: 'Sole engineer responsible for specification, architecture, and implementation.',
           detailLink: 'View technical details →',
           summary:
@@ -1050,6 +1116,122 @@ const dictionaries: Record<string, Dictionary> = {
             },
           ],
         },
+        {
+          slug: 'saltweb',
+          title: 'SaltWeb — Youth Community Web Platform',
+          status: 'Completed',
+          period: '2024',
+          stack: ['React', 'TypeScript', 'Tailwind CSS', 'Vite'],
+          problem:
+            'The youth ministry of PIB Lagoa Santa needed a centralized digital platform for event management, youth engagement, and contemporary visual identity.',
+          result:
+            'Fast, responsive, and modern web platform delivered, streamlining event announcements, member integration, and youth communications.',
+          role: 'Frontend Developer and UI Designer.',
+          detailLink: 'View technical details →',
+          summary:
+            'Interactive web application for youth community developed with React, TypeScript, and Tailwind CSS with responsive, engagement-first design.',
+          engineeringChallenge:
+            'Create a seamless experience with instantaneous mobile loading and a responsive design aligned with modern youth culture.',
+          decisions: [
+            {
+              title: 'Tailwind CSS for Visual Consistency',
+              desc: 'Utilized Tailwind utility classes to ensure typographic harmony and adaptable mobile-first layouts.',
+              tradeoff: 'Utility class accumulation requiring modular component breakdown.',
+            },
+            {
+              title: 'Vite as Fast Build Tool',
+              desc: 'Adopted Vite for lightning-fast bundling and efficient Hot Module Replacement (HMR) during development.',
+              tradeoff: 'Manual client-side routing configuration.',
+            },
+          ],
+        },
+        {
+          slug: 'fit-ia',
+          title: 'FIT.IA — AI-Powered Workout & Nutrition Assistant',
+          status: 'Completed',
+          period: '2024',
+          stack: ['Node.js', 'Express', 'React', 'Generative AI', 'Tailwind CSS'],
+          problem:
+            'Fitness enthusiasts often struggle to create and adapt workout and nutritional plans tailored to their specific fitness goals in an accessible manner.',
+          result:
+            'Complete application delivering automated, personalized workout routines and nutritional guidance based on individual profiles and goals.',
+          role: 'Full Stack Developer (Node.js/Express backend API and React frontend interface).',
+          detailLink: 'View technical details →',
+          summary:
+            'Integrated system leveraging generative AI to structure personalized diets and workout plans through an intuitive user interface.',
+          engineeringChallenge:
+            'Engineer consistent prompt structures and sanitize LLM outputs to guarantee predictable, typed data schemas for the frontend.',
+          decisions: [
+            {
+              title: 'Schema Validation & Sanitization',
+              desc: 'Strict validation of model output payloads before returning data to the client, preventing UI layout breaks from malformed responses.',
+              tradeoff: 'Additional retry overhead if response violates expected schema.',
+            },
+            {
+              title: 'Strict Client-Server Decoupling',
+              desc: 'Express backend encapsulates API keys and prompt engineering logic, isolated from client-side visibility.',
+              tradeoff: 'Need to manage asynchronous network latency states in the UI.',
+            },
+          ],
+        },
+        {
+          slug: 'sales-web-mvc',
+          title: 'SalesWebMvc — Sales & Department Management',
+          status: 'Completed',
+          period: '2023',
+          stack: ['C# / .NET', 'ASP.NET Core MVC', 'Entity Framework Core', 'MySQL'],
+          problem:
+            'Organizations require centralized tracking of sales records, seller associations, and departmental groupings with date-filtered analytical reporting.',
+          result:
+            'Corporate MVC application featuring complete CRUD operations, relational integrity exception handling, and grouped analytical reporting.',
+          role: 'Backend / C# Developer.',
+          detailLink: 'View technical details →',
+          summary:
+            'Enterprise web application in ASP.NET Core MVC and Entity Framework Core for transactional sales management with robust domain validation.',
+          engineeringChallenge:
+            'Ensure relational consistency, foreign key constraints during cascade deletions, and optimized LINQ grouping queries.',
+          decisions: [
+            {
+              title: 'Entity Framework Core Code-First',
+              desc: 'Domain modeling in C# POCO classes with ORM mapping and automated migrations in MySQL.',
+              tradeoff: 'Dependency on framework migration cycles.',
+            },
+            {
+              title: 'Service Layer for Business Logic',
+              desc: 'Decoupled Controllers from DbContext using dedicated service classes with native .NET dependency injection.',
+              tradeoff: 'More boilerplate classes and constructor injections.',
+            },
+          ],
+        },
+        {
+          slug: 'api-de-produtos',
+          title: 'Product Catalog RESTful API',
+          status: 'Completed',
+          period: '2023',
+          stack: ['Node.js', 'Express', 'MongoDB', 'Mongoose'],
+          problem:
+            'Need for a flexible catalog service to manage product inventory with dynamic attributes and high read performance.',
+          result:
+            'Efficient RESTful API providing full CRUD endpoints, attribute-based filtering, input validation, and document persistence.',
+          role: 'Backend Developer.',
+          detailLink: 'View technical details →',
+          summary:
+            'Backend API with Node.js and MongoDB for product catalog management with pagination, filtering, and document-based persistence.',
+          engineeringChallenge:
+            'Structure Mongoose schemas with required field validations and uniform HTTP error response handling.',
+          decisions: [
+            {
+              title: 'MongoDB for Catalog Flexibility',
+              desc: 'Allowed diverse product categories to have specific attributes without rigid SQL schema migrations.',
+              tradeoff: 'No database-enforced foreign key relational constraints.',
+            },
+            {
+              title: 'Global Error Handling Middleware',
+              desc: 'Centralized Express error handling returning semantic HTTP status codes and structured error messages.',
+              tradeoff: 'Requires careful next(err) error forwarding across async functions.',
+            },
+          ],
+        },
       ],
     },
     contact: {
@@ -1058,11 +1240,11 @@ const dictionaries: Record<string, Dictionary> = {
       intro:
         'Career opportunities, projects, or questions regarding engineering and architecture — I respond to all messages. Direct channels are also available below.',
       emailLabel: 'Direct email',
-      emailValue: 'contato@davidev.net.br',
+      emailValue: 'daviafonso5894@gmail.com',
       linkedinLabel: 'LinkedIn',
-      linkedinHandle: '/in/davi-dev',
+      linkedinHandle: '/in/davi-afonso',
       githubLabel: 'GitHub',
-      githubHandle: '/davidev',
+      githubHandle: '/DaviAfonso88',
       privacyNotice:
         'Your message is stored securely for 24 months solely to respond to your inquiry. No identifiable IP addresses are recorded.',
       form: {
@@ -1252,9 +1434,9 @@ const dictionaries: Record<string, Dictionary> = {
       openDocsLinks: [
         { label: '→ Interactive API Documentation (/api/docs)', href: '/api/docs', isExternal: false },
         { label: '→ Go-Live Readiness & Audit Report', href: '/docs/go-live-readiness-report.md', isExternal: false },
-        { label: '→ Complete PRD (docs/prd.md)', href: 'https://github.com/davidev/portfolio/blob/main/docs/prd.md', isExternal: true },
-        { label: '→ Architecture Decisions (docs/architecture.md)', href: 'https://github.com/davidev/portfolio/blob/main/docs/architecture.md', isExternal: true },
-        { label: '→ Repository on GitHub', href: 'https://github.com/davidev/portfolio', isExternal: true },
+        { label: '→ Complete PRD (docs/prd.md)', href: 'https://github.com/DaviAfonso88/portifolio/blob/main/docs/prd.md', isExternal: true },
+        { label: '→ Architecture Decisions (docs/architecture.md)', href: 'https://github.com/DaviAfonso88/portifolio/blob/main/docs/architecture.md', isExternal: true },
+        { label: '→ Repository on GitHub', href: 'https://github.com/DaviAfonso88/portifolio', isExternal: true },
       ],
     },
 
