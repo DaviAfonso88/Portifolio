@@ -258,32 +258,32 @@
 
 ## Fase 7: Qualidade, Cobertura e Acessibilidade
 
-- [ ] **T07.01 — Bateria de Testes Unitários de Domínio e Casos de Uso ($\ge 80\%$)**
+- [x] **T07.01 — Bateria de Testes Unitários de Domínio e Casos de Uso ($\ge 80\%$)**
   - **Contexto:** Cobrir todas as regras de negócio `BR-001` a `BR-013` com testes unitários puros usando repositórios em memória.
   - **Arquivos:** `packages/domain/**/*.spec.ts`, `packages/application/**/*.spec.ts`.
   - **[DoD]:** Relatório de cobertura do Vitest atinge $\ge 80\%$ nas duas camadas.
 
-- [ ] **T07.02 — Testes de Integração de Repositórios Drizzle**
+- [x] **T07.02 — Testes de Integração de Repositórios Drizzle**
   - **Contexto:** Validar integridade de constraints de banco, exclusões em cascata e transações com instância PostgreSQL de teste.
   - **Arquivos:** `packages/infrastructure/**/*.spec.ts`.
   - **[DoD]:** Testes de repositório passam sem erros de migração ou chave estrangeira.
 
-- [ ] **T07.03 — Testes End-to-End com Playwright (7 Caminhos Críticos)**
+- [x] **T07.03 — Testes End-to-End com Playwright (7 Caminhos Críticos)**
   - **Contexto:** Automatizar testes E2E cobrindo: Leitura de Home, Navegação no Blog com filtros, Leitura de artigo, Envio de contato, Login no CMS, Criação/Publicação de post e Exclusão via Lixeira.
   - **Arquivos:** `apps/web/e2e/*.spec.ts`.
   - **[DoD]:** Suite Playwright executada com 100% de sucesso.
 
-- [ ] **T07.04 — Auditoria Automatizada de Acessibilidade (`axe-core`)**
+- [x] **T07.04 — Auditoria Automatizada de Acessibilidade (`axe-core`)**
   - **Contexto:** Executar auditoria de acessibilidade automatizada em todas as páginas públicas nos modos Light e Dark.
   - **Arquivos:** `apps/web/e2e/a11y.spec.ts`.
   - **[DoD]:** Zero violações críticas ou sérias de WCAG 2.1 AA em ambos os temas.
 
-- [ ] **T07.05 — Testes de Contrato da API**
+- [x] **T07.05 — Testes de Contrato da API**
   - **Contexto:** Verificar que os endpoints REST Fastify emitem payloads em conformidade estrita com o contrato `openapi.yaml`.
   - **Arquivos:** `packages/http/**/*.contract.spec.ts`.
   - **[DoD]:** Validador de schema OpenAPI confirma compatibilidade de 100% dos payloads.
 
-- [ ] **T07.06 — Validação e Testes da Fase 7 via TestSprite MCP**
+- [x] **T07.06 — Validação e Testes da Fase 7 via TestSprite MCP**
   - **Contexto:** Acionar o MCP TestSprite para consolidar a suíte global de testes, correlacionando os resultados dos testes unitários ($\ge 80\%$), integração Drizzle, Playwright E2E (7 fluxos críticos), acessibilidade `axe-core` e conformidade de contrato OpenAPI.
   - **Ferramentas:** TestSprite MCP (`testsprite_generate_frontend_test_plan`, `testsprite_generate_backend_test_plan`, `testsprite_generate_code_and_execute`).
   - **[DoD]:** Relatório final de testes do TestSprite aprovado com 100% dos testes e critérios de qualidade atendidos.

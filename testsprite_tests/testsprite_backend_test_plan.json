@@ -1,0 +1,100 @@
+[
+  {
+    "id": "TC001",
+    "title": "get api v1 public projects slug not found",
+    "description": "Verify that GET /api/v1/public/projects/:slug with a nonexistent slug returns a 404 status with a handled not-found response."
+  },
+  {
+    "id": "TC002",
+    "title": "post api v1 auth login valid credentials",
+    "description": "Verify that POST /api/v1/auth/login with valid credentials returns 200 with Access Token and Refresh Token."
+  },
+  {
+    "id": "TC003",
+    "title": "post api v1 auth login invalid credentials",
+    "description": "Verify that POST /api/v1/auth/login with invalid credentials returns 401 with a generic authentication error and no user-existence disclosure."
+  },
+  {
+    "id": "TC004",
+    "title": "post api v1 auth refresh valid token",
+    "description": "Verify that POST /api/v1/auth/refresh with a valid Refresh Token returns 200 with a new Access Token."
+  },
+  {
+    "id": "TC005",
+    "title": "post api v1 auth refresh expired or malformed token",
+    "description": "Verify that POST /api/v1/auth/refresh with expired or malformed token returns 401 with an authentication error response."
+  },
+  {
+    "id": "TC006",
+    "title": "post api v1 auth logout valid refresh token",
+    "description": "Verify that POST /api/v1/auth/logout with a valid Refresh Token returns 204 or 200 confirming logout and invalidates the token for further refresh attempts."
+  },
+  {
+    "id": "TC007",
+    "title": "post api v1 admin posts create duplicate slug",
+    "description": "Verify that POST /api/v1/admin/posts with a duplicate slug returns 409 conflict or validation error indicating the slug is already in use."
+  },
+  {
+    "id": "TC008",
+    "title": "post api v1 contact valid submission",
+    "description": "Verify that POST /api/v1/contact with valid name, email, message, and captcha token returns 201 or 200 confirming submission, persists the message, and sends notification email."
+  },
+  {
+    "id": "TC009",
+    "title": "post api v1 contact missing or invalid captcha",
+    "description": "Verify that POST /api/v1/contact with missing or invalid captcha token returns 400 or 403 with captcha validation failure."
+  },
+  {
+    "id": "TC010",
+    "title": "get api v1 health check",
+    "description": "Verify that GET /api/v1/health returns 200 with healthy status and service metadata."
+  },
+  {
+    "id": "TC011",
+    "title": "get api v1 admin posts id versions valid",
+    "description": "Verify that GET /api/v1/admin/posts/:id/versions with valid Bearer token returns 200 with list of version summaries matching PostVersionSummary and pagination metadata."
+  },
+  {
+    "id": "TC012",
+    "title": "get api v1 admin posts id versions unauthorized",
+    "description": "Verify that GET /api/v1/admin/posts/:id/versions without Bearer token returns 401 Unauthorized."
+  },
+  {
+    "id": "TC013",
+    "title": "get security headers and content security policy",
+    "description": "Verify that HTTP responses include X-Frame-Options: DENY, X-Content-Type-Options: nosniff, Strict-Transport-Security, and strict Content-Security-Policy header."
+  },
+  {
+    "id": "TC014",
+    "title": "post api v1 auth refresh revoked token reuse detection",
+    "description": "Verify that reusing a previously rotated or revoked refresh token fails with 401 and revokes the session family (T06.04)."
+  },
+  {
+    "id": "TC015",
+    "title": "get api cron maintenance unauthorized",
+    "description": "Verify that GET /api/cron/maintenance without valid CRON_SECRET authorization header returns 401 Unauthorized."
+  },
+  {
+    "id": "TC016",
+    "title": "get api cron maintenance authorized",
+    "description": "Verify that GET /api/cron/maintenance with valid Bearer CRON_SECRET returns 200 confirming successful purge execution and audit timestamp."
+  },
+  {
+    "id": "TC017",
+    "title": "resend email deliverability dns validation",
+    "description": "Verify that domain email records (SPF, DKIM, DMARC, MX) pass deliverability checks."
+  },
+  {
+    "id": "TC018",
+    "title": "get como foi construído page pt and en",
+    "description": "Verify that GET /pt-BR/como-foi-construido and GET /en/como-foi-construido return 200 OK with authentic editorial content, ADRs, metrics, and zero exposed secrets."
+  },
+  {
+    "id": "TC019",
+    "title": "get api docs interactive documentation",
+    "description": "Verify that GET /api/docs returns 200 OK with Swagger UI and OpenAPI documentation links."
+  }
+]
+
+
+

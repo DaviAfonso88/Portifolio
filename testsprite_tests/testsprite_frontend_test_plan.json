@@ -1,0 +1,1596 @@
+[
+  {
+    "id": "TC001",
+    "title": "Admin logs in and reaches the CMS session",
+    "description": "An admin can log in and access the private content management area.",
+    "category": "Administrative Authentication and Session Management",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the username field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the admin area is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the user is signed in"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC002",
+    "title": "Submit the contact form successfully",
+    "description": "A visitor can send a message through the contact form and see a successful submission outcome.",
+    "category": "Contact Form Submission",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /en"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to view the contact section"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the name field with a valid name"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with a valid email address"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the message field with a short inquiry"
+      },
+      {
+        "type": "action",
+        "description": "Submit the contact form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a success confirmation is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the form submission outcome is shown"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC003",
+    "title": "Read a published blog article by slug",
+    "description": "A reader can open a published blog post from its slug and see the article content and metadata.",
+    "category": "Blog Article Reading",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /en/blog"
+      },
+      {
+        "type": "action",
+        "description": "Click a published article"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the article content is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify publication metadata is visible"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC004",
+    "title": "Open the localized home page and reach the main public sections",
+    "description": "This test verifies that a visitor can land on the Portuguese home page and navigate to the main public sections from it.",
+    "category": "Public Portfolio Pages",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /pt-BR"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to the projects section"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to the blog section"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to the case study section"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to the contact section"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the contact section is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify localized public navigation is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC005",
+    "title": "Visit the public homepage and navigate the main sections",
+    "description": "A visitor can open the public site, move through the key informational sections, and reach the contact area.",
+    "category": "Public Home",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /pt-BR"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to view the about section"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to view the projects section"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to view the blog section"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to view the case study section"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to view the contact section"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the contact section is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the main portfolio sections are accessible from the public site"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC006",
+    "title": "Log in to the admin area",
+    "description": "An admin can authenticate and reach the private CMS area.",
+    "category": "Admin Login and Session Refresh",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the admin area is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify private CMS navigation is available"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC007",
+    "title": "Switch between supported locales from the public site",
+    "description": "A visitor can switch the site locale and see the public content update accordingly.",
+    "category": "Locale Routing",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /pt-BR"
+      },
+      {
+        "type": "action",
+        "description": "Click the locale switch control"
+      },
+      {
+        "type": "action",
+        "description": "Select the English locale"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the public site is displayed in English"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the locale change is reflected across the page content"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC008",
+    "title": "Read a published blog article from its slug",
+    "description": "A visitor can open a published blog article by slug and view its rendered content and metadata.",
+    "category": "Blog Article Reading",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /en/blog"
+      },
+      {
+        "type": "action",
+        "description": "Click a published article link"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the article page is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify publication metadata is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the article content is rendered"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC009",
+    "title": "Submit a contact message successfully",
+    "description": "A visitor can fill out the contact form and send a message successfully.",
+    "category": "Contact Submission and Notification",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /en"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to the contact section"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the name field with a valid name"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with a valid email address"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the message field with a valid message"
+      },
+      {
+        "type": "action",
+        "description": "Submit the contact form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a success confirmation is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the message is no longer in the form"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC010",
+    "title": "Open a published blog article by slug",
+    "description": "This test verifies that a reader can open a published article by slug and see the article content and metadata.",
+    "category": "Technical Blog Reading and Discovery",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /en/blog"
+      },
+      {
+        "type": "action",
+        "description": "Open a published article"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the article content is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify publication and last-updated metadata are displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC011",
+    "title": "View the English about page from the public site",
+    "description": "This test verifies that a visitor can open the English public site and reach the about page with biography content.",
+    "category": "Public Portfolio Pages",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /en"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to the about page"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the biography content is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the profile image or equivalent personal media is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC012",
+    "title": "Admin refreshes the session and keeps access to the CMS",
+    "description": "An authenticated admin can refresh the session and continue using protected pages without being signed out.",
+    "category": "Administrative Authentication and Session Management",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the username field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the session refresh control"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the admin session remains active"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify protected content is still accessible"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC013",
+    "title": "Switch the site locale and keep browsing",
+    "description": "A visitor can change the locale and continue browsing the public portfolio in the other language.",
+    "category": "Public Home and Locale Routing",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /en"
+      },
+      {
+        "type": "action",
+        "description": "Open the locale switcher"
+      },
+      {
+        "type": "action",
+        "description": "Select the Portuguese locale"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to the about section"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the page is displayed in Portuguese"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the public about content is visible"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC014",
+    "title": "Refresh an admin session and keep working",
+    "description": "An authenticated admin can refresh an active session and continue using the CMS without losing access.",
+    "category": "Admin Login and Session Refresh",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to the post management area"
+      },
+      {
+        "type": "action",
+        "description": "Wait for the session to refresh"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the admin area remains accessible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify CMS content is still visible"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC015",
+    "title": "Admin publishes a post and it becomes publicly visible",
+    "description": "An admin can publish a post from the CMS and then find it on the public blog.",
+    "category": "Administrative Content Management for Posts",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the username field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the posts section"
+      },
+      {
+        "type": "action",
+        "description": "Open an existing draft post for editing"
+      },
+      {
+        "type": "action",
+        "description": "Publish the post"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /en/blog"
+      },
+      {
+        "type": "action",
+        "description": "Click the published article link"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the published article page is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the post is visible on the public blog"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC016",
+    "title": "Browse published blog posts by category and tag",
+    "description": "This test verifies that a reader can filter the public blog by category and tag and see the filtered result set.",
+    "category": "Technical Blog Reading and Discovery",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /pt-BR/blog"
+      },
+      {
+        "type": "action",
+        "description": "Apply a category filter"
+      },
+      {
+        "type": "action",
+        "description": "Apply a tag filter"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the filtered blog results are displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the active filters are reflected on the page"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC017",
+    "title": "Admin creates a new blog post draft",
+    "description": "An admin can create a new post in the CMS and see it appear in the post list.",
+    "category": "Administrative Content Management for Posts",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the username field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the posts section"
+      },
+      {
+        "type": "action",
+        "description": "Click the create post control"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the title field with a new post title"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the slug field with a unique slug"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the content field with an initial markdown draft"
+      },
+      {
+        "type": "action",
+        "description": "Save the new post"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the new post appears in the post list"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the post is saved as a draft or published item"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC018",
+    "title": "Create and publish a blog post from the admin editor",
+    "description": "An admin can create a post in the Markdown editor, preview it, publish it, and see it become publicly visible.",
+    "category": "Admin Post CRUD and Markdown Preview",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Open the new post editor"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the title field with a valid post title"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the body field with valid Markdown content"
+      },
+      {
+        "type": "action",
+        "description": "Open the preview for the post"
+      },
+      {
+        "type": "action",
+        "description": "Publish the post"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the post is visible in the public blog list"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the published post content is visible"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC019",
+    "title": "Switch the public site language from blog to translated blog",
+    "description": "This test verifies that a visitor can switch from the Portuguese blog to the English blog and keep browsing the same surface in the new locale.",
+    "category": "Bilingual Routing and Theme Support",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /pt-BR/blog"
+      },
+      {
+        "type": "action",
+        "description": "Switch the language to English"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the blog page is displayed in English"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify published posts are displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC020",
+    "title": "Open a public project detail page",
+    "description": "This test verifies that a visitor can open a public project detail page and see its business and technical context.",
+    "category": "Public Portfolio Pages",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /pt-BR"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to the projects section"
+      },
+      {
+        "type": "action",
+        "description": "Open a project detail page"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the project problem and outcome content is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the technical decisions content is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC021",
+    "title": "Admin edits and previews a post before saving",
+    "description": "An admin can update post content, preview the rendered markdown, and save the changes.",
+    "category": "Markdown Editor and Live Preview",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the username field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the posts section"
+      },
+      {
+        "type": "action",
+        "description": "Open an existing post for editing"
+      },
+      {
+        "type": "action",
+        "description": "Click the preview mode control"
+      },
+      {
+        "type": "action",
+        "description": "Click the editor mode control"
+      },
+      {
+        "type": "action",
+        "description": "Update the markdown content"
+      },
+      {
+        "type": "action",
+        "description": "Save the post changes"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the preview renders the article content"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the updated post is saved"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC022",
+    "title": "Filter blog posts by category or tag",
+    "description": "A reader can narrow the blog list using taxonomy filters and see matching posts.",
+    "category": "Blog Discovery",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /en/blog"
+      },
+      {
+        "type": "action",
+        "description": "Select a category filter"
+      },
+      {
+        "type": "action",
+        "description": "Select a tag filter"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the blog list updates to matching posts"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify only relevant post results are shown"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC023",
+    "title": "Switch between theme modes on the public site",
+    "description": "A visitor can change the visual theme and keep browsing the site without losing content.",
+    "category": "Theme Switching",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /en"
+      },
+      {
+        "type": "action",
+        "description": "Click the theme switch control"
+      },
+      {
+        "type": "action",
+        "description": "Select the dark theme"
+      },
+      {
+        "type": "action",
+        "description": "Click the theme switch control"
+      },
+      {
+        "type": "action",
+        "description": "Select the system theme"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the site remains readable while the theme changes"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the selected theme mode is applied"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC024",
+    "title": "Respect dark theme preference on first load",
+    "description": "This test verifies that the public site respects a dark theme preference when opening the English home page.",
+    "category": "Bilingual Routing and Theme Support",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /en"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the site is displayed in dark theme"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the home page content is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC025",
+    "title": "Switch the theme without disrupting the page",
+    "description": "A visitor can switch between visual themes while staying on the public site.",
+    "category": "Theme Switching",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /en"
+      },
+      {
+        "type": "action",
+        "description": "Open the theme switcher"
+      },
+      {
+        "type": "action",
+        "description": "Select the dark theme"
+      },
+      {
+        "type": "action",
+        "description": "Select the system theme"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the public page content remains visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the theme setting is applied"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC026",
+    "title": "View public project details",
+    "description": "A visitor can open a project detail page and review the project information.",
+    "category": "Public Project Detail Pages",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /en"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to view a project detail page"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the project detail page is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify project information is visible"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC027",
+    "title": "View a public project detail page",
+    "description": "A visitor can open a public project detail page and read the project information.",
+    "category": "Public Project Detail Pages",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /en"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to the projects section"
+      },
+      {
+        "type": "action",
+        "description": "Open a project detail page"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the project details are visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the project summary content is visible"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC028",
+    "title": "Admin moves a post to trash and restores it",
+    "description": "An admin can trash a post, confirm it is listed as trashed, and restore it to its prior state.",
+    "category": "Administrative Content Management for Posts",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the username field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the posts section"
+      },
+      {
+        "type": "action",
+        "description": "Open an existing post"
+      },
+      {
+        "type": "action",
+        "description": "Move the post to trash"
+      },
+      {
+        "type": "action",
+        "description": "Open the trashed posts view"
+      },
+      {
+        "type": "action",
+        "description": "Restore the post"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the post appears in the trashed posts view before restoration"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the post returns to its previous state after restoration"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC029",
+    "title": "Admin manages categories and tags for blog organization",
+    "description": "An admin can create or edit taxonomy items and use them to organize content for public filtering.",
+    "category": "Category and Tag Management",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the username field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the categories and tags management section"
+      },
+      {
+        "type": "action",
+        "description": "Create a new category or tag"
+      },
+      {
+        "type": "action",
+        "description": "Assign the taxonomy item to a post"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the taxonomy item is available for content organization"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the post reflects the assigned taxonomy"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC030",
+    "title": "Edit a post and see updated content and last-updated information",
+    "description": "An admin can change an existing published post and the public article shows the updated content with refreshed update metadata.",
+    "category": "Post Versioning and Update Visibility",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Open an existing published post for editing"
+      },
+      {
+        "type": "action",
+        "description": "Change the post body content"
+      },
+      {
+        "type": "action",
+        "description": "Save the post"
+      },
+      {
+        "type": "action",
+        "description": "Open the public version of the post"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the updated post content is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify last-updated information is visible"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC031",
+    "title": "Open an unsupported locale and reach the default public blog",
+    "description": "This test verifies that a visitor using an unsupported locale is redirected to the default localized blog view.",
+    "category": "Bilingual Routing and Theme Support",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /fr/blog"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the default localized blog page is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify published posts are displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC032",
+    "title": "Public blog filters reflect assigned taxonomy",
+    "description": "A visitor can use the blog filters to find posts after the admin assigns categories and tags.",
+    "category": "Blog Discovery",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /en/blog"
+      },
+      {
+        "type": "action",
+        "description": "Select a category filter"
+      },
+      {
+        "type": "action",
+        "description": "Select a tag filter"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify matching posts are displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the filtered blog results match the selected taxonomy"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC033",
+    "title": "See locale-specific handling for an unavailable article translation",
+    "description": "This test verifies that a reader opening an article missing in English sees the locale-specific fallback or unavailability behavior defined by the content rules.",
+    "category": "Technical Blog Reading and Discovery",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /en/blog"
+      },
+      {
+        "type": "action",
+        "description": "Open an article that is unavailable in English"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify locale-specific fallback or unavailability messaging is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the page remains readable as a public article view"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC034",
+    "title": "Admin views post version history and last updated information",
+    "description": "An admin can see that editing a post updates its revision history and timestamp information.",
+    "category": "Post Versioning and Last Updated Behavior",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the username field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the posts section"
+      },
+      {
+        "type": "action",
+        "description": "Open an existing post for editing"
+      },
+      {
+        "type": "action",
+        "description": "Make a small content change"
+      },
+      {
+        "type": "action",
+        "description": "Save the post changes"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify version history is available"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify last updated information is shown"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC035",
+    "title": "Swagger documentation loads",
+    "description": "A visitor can open the API documentation page and see the interactive Swagger UI with documented routes.",
+    "category": "Architecture, Health, and API Documentation",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /api/docs"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the API documentation interface is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify documented routes are listed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC036",
+    "title": "Manage categories and tags for blog organization",
+    "description": "An admin can create, rename, and delete taxonomy items used to organize content.",
+    "category": "Categories, Tags, and Post Organization",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Open the categories management area"
+      },
+      {
+        "type": "action",
+        "description": "Create a new category with a valid name"
+      },
+      {
+        "type": "action",
+        "description": "Rename the category"
+      },
+      {
+        "type": "action",
+        "description": "Open the tags management area"
+      },
+      {
+        "type": "action",
+        "description": "Create a new tag with a valid name"
+      },
+      {
+        "type": "action",
+        "description": "Delete the tag"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the updated taxonomy lists are visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the created category is still available"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC037",
+    "title": "OpenAPI schema is available",
+    "description": "A visitor can retrieve the OpenAPI schema and see a valid API contract for client generation.",
+    "category": "Architecture, Health, and API Documentation",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /api/openapi.json"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify an OpenAPI schema is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the schema describes API routes"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC038",
+    "title": "Admin deletes a trashed post after confirmation",
+    "description": "An admin can permanently delete a trashed post only after confirming the deletion.",
+    "category": "Administrative Content Management for Posts",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the username field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the posts section"
+      },
+      {
+        "type": "action",
+        "description": "Open an existing trashed post"
+      },
+      {
+        "type": "action",
+        "description": "Delete the post permanently"
+      },
+      {
+        "type": "action",
+        "description": "Confirm the deletion"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the post is removed from the trash list"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the deleted post is no longer available in the CMS"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC039",
+    "title": "Health check returns service status",
+    "description": "A visitor can open the health endpoint and see that the service reports a healthy status with metadata.",
+    "category": "Architecture, Health, and API Documentation",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /api/v1/health"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a healthy status response is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify service metadata is displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC040",
+    "title": "Handle a missing locale article with a fallback view",
+    "description": "A reader can open content in one locale and see a fallback when the article is unavailable in that locale.",
+    "category": "Bilingual Fallback",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /pt-BR/blog"
+      },
+      {
+        "type": "action",
+        "description": "Click a published article link that is unavailable in this locale"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a fallback view is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the article content is still accessible"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC041",
+    "title": "Read sanitized article content without unsafe rendering",
+    "description": "This test verifies that a public article renders Markdown safely and does not execute unsafe content.",
+    "category": "Technical Blog Reading and Discovery",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /en/blog"
+      },
+      {
+        "type": "action",
+        "description": "Open an article containing rich Markdown content"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify rendered Markdown content is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify unsafe script content is not executed"
+      }
+    ],
+    "priority": "Low"
+  },
+  {
+    "id": "TC042",
+    "title": "Open the public article page with sanitized markdown rendering",
+    "description": "A reader can view article markdown safely rendered without unsafe HTML being executed.",
+    "category": "Markdown Editor and Live Preview",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /en/blog"
+      },
+      {
+        "type": "action",
+        "description": "Click a published article link"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the article content is rendered"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify unsafe content is not executed"
+      }
+    ],
+    "priority": "Low"
+  },
+  {
+    "id": "TC043",
+    "title": "Prevent removing a category that is in use",
+    "description": "An admin cannot delete a category that is attached to posts and sees a clear conflict indication.",
+    "category": "Categories, Tags, and Post Organization",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Open the category management area"
+      },
+      {
+        "type": "action",
+        "description": "Create a category with a valid name"
+      },
+      {
+        "type": "action",
+        "description": "Open an existing post for editing"
+      },
+      {
+        "type": "action",
+        "description": "Assign the category to the post"
+      },
+      {
+        "type": "action",
+        "description": "Save the post"
+      },
+      {
+        "type": "action",
+        "description": "Return to the category management area"
+      },
+      {
+        "type": "action",
+        "description": "Attempt to delete the category"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a category conflict error is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the category remains available"
+      }
+    ],
+    "priority": "Low"
+  },
+  {
+    "id": "TC044",
+    "title": "Malformed login payload is rejected with validation errors",
+    "description": "A client can submit an invalid authentication payload and see documented validation errors instead of a successful login.",
+    "category": "Architecture, Health, and API Documentation",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /api/v1/auth/login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the login payload with malformed values"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login request"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify validation errors are displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the request is not authenticated"
+      }
+    ],
+    "priority": "Low"
+  },
+  {
+    "id": "TC045",
+    "title": "Access the public API documentation page",
+    "description": "A visitor can open the API documentation and see the available endpoints.",
+    "category": "Swagger/OpenAPI Docs",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /docs"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the API documentation page is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the endpoint list is visible"
+      }
+    ],
+    "priority": "Low"
+  },
+  {
+    "id": "TC046",
+    "title": "Open the health check page",
+    "description": "A visitor can access the health check endpoint page from the browser.",
+    "category": "Health Check Endpoints",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /health"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the health check page is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a healthy status is visible"
+      }
+    ],
+    "priority": "Low"
+  }
+]
