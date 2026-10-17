@@ -1,0 +1,207 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; background: #FAF8F4; color: #1C1A17; font-family: Archivo, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+    * { box-sizing: border-box; }
+    a { color: #A6482C; text-decoration: none; }
+    a:hover { color: #7E351F; text-decoration: underline; }
+  </style>
+</helmet>
+
+<div style="min-height: 100%; display: flex; flex-direction: column;">
+
+  <header style="display: flex; align-items: center; justify-content: space-between; gap: 40px; padding: 18px 80px; border-bottom: 1px solid #E4DFD7;">
+    <a href="#" style="font-family: 'Instrument Serif', Georgia, serif; font-size: 23px; color: #1C1A17;">davidev</a>
+    <nav style="display: flex; gap: 26px; font-size: 14px;">
+      <a href="#" style="color: #55504A;">Sobre</a>
+      <a href="#" style="color: #55504A;">Habilidades</a>
+      <a href="#" style="color: #55504A;">Conhecimentos</a>
+      <a href="#" style="color: #55504A;">Experiências</a>
+      <a href="#" style="color: #55504A;">Projetos</a>
+      <a href="#" style="color: #55504A;">Blog</a>
+      <a href="#" style="color: #55504A;">Contato</a>
+    </nav>
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <div style="display: flex; align-items: center; border: 1px solid #E4DFD7; border-radius: 4px; overflow: hidden; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px;">
+        <span style="padding: 7px 10px; background: #1C1A17; color: #FAF8F4;">PT</span>
+        <a href="#" style="padding: 7px 10px; color: #857D74;">EN</a>
+      </div>
+      <button style="display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; border: 1px solid #E4DFD7; border-radius: 4px; background: transparent; color: #55504A; cursor: pointer;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+      </button>
+    </div>
+  </header>
+
+  <section style="padding: 96px 80px 72px; border-bottom: 1px solid #E4DFD7; background: #1C1A17;">
+    <div style="max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 48px;">
+      <div style="grid-column: span 8; display: flex; flex-direction: column; gap: 24px;">
+        <div style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #E07B54;">Case study</div>
+        <h1 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 62px; line-height: 1.06; letter-spacing: -0.02em; color: #FAF8F4;">Como este site foi construído</h1>
+        <p style="margin: 0; font-size: 19px; line-height: 1.7; color: #B5ADA3; max-width: 62ch;">Um portfólio tratado como produto de software: PRD antes da arquitetura, arquitetura antes do código, e o registro honesto das decisões — inclusive as que precisaram ser corrigidas no meio do caminho.</p>
+      </div>
+      <div style="grid-column: span 4; display: flex; flex-direction: column; gap: 12px; border-left: 1px solid #3A342E; padding-left: 32px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; color: #8A827A; line-height: 1.9;">
+        <div><span style="color: #E07B54;">27</span> riscos registrados</div>
+        <div><span style="color: #E07B54;">5</span> ADRs com alternativas descartadas</div>
+        <div><span style="color: #E07B54;">13</span> regras de negócio numeradas</div>
+        <div><span style="color: #E07B54;">4</span> contradições detectadas e corrigidas</div>
+      </div>
+    </div>
+  </section>
+
+  <main style="padding: 72px 80px 96px;">
+    <div style="max-width: 1180px; margin: 0 auto; display: flex; flex-direction: column; gap: 64px;">
+
+      <section style="display: flex; flex-direction: column; gap: 32px;">
+        <div style="display: flex; align-items: baseline; gap: 16px;">
+          <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.14em; color: #A6482C;">01</span>
+          <h2 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 34px;">O fluxo</h2>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px;">
+          <div style="display: flex; flex-direction: column; gap: 10px; background: #FFFFFF; border: 1px solid #E4DFD7; border-radius: 6px; padding: 20px;">
+            <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #A6482C;">01</span>
+            <span style="font-size: 15px; font-weight: 600;">Ideia</span>
+            <span style="font-size: 13px; line-height: 1.55; color: #857D74;">Documento de referência com escopo e stack</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 10px; background: #FFFFFF; border: 1px solid #E4DFD7; border-radius: 6px; padding: 20px;">
+            <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #A6482C;">02</span>
+            <span style="font-size: 15px; font-weight: 600;">PRD</span>
+            <span style="font-size: 13px; line-height: 1.55; color: #857D74;">Problema, personas, métricas e o que fica fora</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 10px; background: #FFFFFF; border: 1px solid #E4DFD7; border-radius: 6px; padding: 20px;">
+            <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #A6482C;">03</span>
+            <span style="font-size: 15px; font-weight: 600;">Arquitetura</span>
+            <span style="font-size: 13px; line-height: 1.55; color: #857D74;">23 etapas, ADRs, schema e contratos</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 10px; background: #FFFFFF; border: 1px solid #E4DFD7; border-radius: 6px; padding: 20px;">
+            <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #A6482C;">04</span>
+            <span style="font-size: 15px; font-weight: 600;">Implementação</span>
+            <span style="font-size: 13px; line-height: 1.55; color: #857D74;">Assistida por IA, validada contra a especificação</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 10px; background: #FFFFFF; border: 1px solid #E4DFD7; border-radius: 6px; padding: 20px;">
+            <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #A6482C;">05</span>
+            <span style="font-size: 15px; font-weight: 600;">Deploy</span>
+            <span style="font-size: 13px; line-height: 1.55; color: #857D74;">Dez gates bloqueantes antes de produção</span>
+          </div>
+        </div>
+        <div style="display: flex; gap: 12px; align-items: flex-start; background: #F4F0E9; border: 1px solid #E4DFD7; border-radius: 6px; padding: 20px 24px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#857D74" stroke-width="1.5" stroke-linecap="round" style="flex-shrink: 0; margin-top: 2px;"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5M12 8h.01"></path></svg>
+          <p style="margin: 0; font-size: 15px; line-height: 1.7; color: #55504A;">A IA não escreveu este sistema sozinha, e não é isso que está sendo demonstrado. O que está sendo demonstrado é o fluxo: especificação como fonte de verdade, MCP para contexto de ferramentas, e validação da implementação contra o que foi decidido — com um humano respondendo por cada decisão.</p>
+        </div>
+      </section>
+
+      <section style="display: flex; flex-direction: column; gap: 32px;">
+        <div style="display: flex; align-items: baseline; gap: 16px;">
+          <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.14em; color: #A6482C;">02</span>
+          <h2 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 34px;">Decisões que valeram um ADR</h2>
+        </div>
+        <div style="display: flex; flex-direction: column;">
+          <div style="display: grid; grid-template-columns: 92px 1fr 300px; gap: 28px; padding: 24px 0; border-top: 1px solid #E4DFD7; align-items: baseline;">
+            <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; color: #A6482C;">ADR-001</span>
+            <div style="display: flex; flex-direction: column; gap: 6px;">
+              <span style="font-size: 17px; font-weight: 600;">Monolito modular em deploy serverless</span>
+              <span style="font-size: 14px; line-height: 1.6; color: #55504A;">Microserviços descartados: um desenvolvedor, sem SRE e sem plantão, não sustenta operação distribuída.</span>
+            </div>
+            <span style="font-size: 13px; line-height: 1.6; color: #857D74;"><strong style="color: #55504A; font-weight: 600;">Custo:</strong> sem isolamento de falha entre módulos.</span>
+          </div>
+          <div style="display: grid; grid-template-columns: 92px 1fr 300px; gap: 28px; padding: 24px 0; border-top: 1px solid #E4DFD7; align-items: baseline;">
+            <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; color: #A6482C;">ADR-002</span>
+            <div style="display: flex; flex-direction: column; gap: 6px;">
+              <span style="font-size: 17px; font-weight: 600;">Arquitetura hexagonal, com custo assumido</span>
+              <span style="font-size: 14px; line-height: 1.6; color: #55504A;">Para um CMS de blog é over-engineering pelos critérios normais. A justificativa não é técnica — é que a testabilidade é parte do que está sendo demonstrado.</span>
+            </div>
+            <span style="font-size: 13px; line-height: 1.6; color: #857D74;"><strong style="color: #55504A; font-weight: 600;">Custo:</strong> mais arquivos e indireção por funcionalidade.</span>
+          </div>
+          <div style="display: grid; grid-template-columns: 92px 1fr 300px; gap: 28px; padding: 24px 0; border-top: 1px solid #E4DFD7; align-items: baseline;">
+            <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; color: #A6482C;">ADR-003</span>
+            <div style="display: flex; flex-direction: column; gap: 6px;">
+              <span style="font-size: 17px; font-weight: 600;">Dois adapters primários: HTTP e in-process</span>
+              <span style="font-size: 14px; line-height: 1.6; color: #55504A;">A página pública chama o caso de uso direto, sem passar por HTTP. Isso mantém o site no ar mesmo se a API cair.</span>
+            </div>
+            <span style="font-size: 13px; line-height: 1.6; color: #857D74;"><strong style="color: #55504A; font-weight: 600;">Custo:</strong> dois caminhos até o dado — risco de divergência de regra.</span>
+          </div>
+          <div style="display: grid; grid-template-columns: 92px 1fr 300px; gap: 28px; padding: 24px 0; border-top: 1px solid #E4DFD7; border-bottom: 1px solid #E4DFD7; align-items: baseline;">
+            <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; color: #A6482C;">ADR-005</span>
+            <div style="display: flex; flex-direction: column; gap: 6px;">
+              <span style="font-size: 17px; font-weight: 600;">Eventos de domínio in-process, sem broker</span>
+              <span style="font-size: 14px; line-height: 1.6; color: #55504A;">Publicar dispara a revalidação da página. É o que permite publicar em minutos sem deploy, sem mensageria para operar.</span>
+            </div>
+            <span style="font-size: 13px; line-height: 1.6; color: #857D74;"><strong style="color: #55504A; font-weight: 600;">Custo:</strong> entrega best-effort, sem retentativa automática.</span>
+          </div>
+        </div>
+      </section>
+
+      <section style="display: flex; flex-direction: column; gap: 32px;">
+        <div style="display: flex; align-items: baseline; gap: 16px;">
+          <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.14em; color: #A6482C;">03</span>
+          <h2 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 34px;">O que eu errei no caminho</h2>
+        </div>
+        <p style="margin: 0; font-size: 17px; line-height: 1.75; color: #55504A; max-width: 68ch;">A parte mais útil de documentar decisões é descobrir que duas delas se contradizem. Quatro contradições apareceram só ao cruzar as etapas — e cada uma teria virado defeito em produção.</p>
+        <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px;">
+          <div style="background: #FFFFFF; border: 1px solid #E4DFD7; border-left: 3px solid #A6482C; border-radius: 6px; padding: 24px; display: flex; flex-direction: column; gap: 10px;">
+            <span style="font-size: 16px; font-weight: 600;">Rollback instantâneo × migration sem volta</span>
+            <p style="margin: 0; font-size: 14px; line-height: 1.7; color: #55504A;">Reverter o código não reverte o banco. O botão de rollback existiria, e apertá-lo derrubaria o sistema. Resolvido com a regra de que toda migration precisa ser compatível com a versão anterior.</p>
+          </div>
+          <div style="background: #FFFFFF; border: 1px solid #E4DFD7; border-left: 3px solid #A6482C; border-radius: 6px; padding: 24px; display: flex; flex-direction: column; gap: 10px;">
+            <span style="font-size: 16px; font-weight: 600;">"Audit log" que dura três dias</span>
+            <p style="margin: 0; font-size: 14px; line-height: 1.7; color: #55504A;">A retenção de log da plataforma é curta. Chamar aquilo de trilha de auditoria seria mentira confortável — foi renomeado para o que de fato é: visibilidade operacional recente.</p>
+          </div>
+          <div style="background: #FFFFFF; border: 1px solid #E4DFD7; border-left: 3px solid #A6482C; border-radius: 6px; padding: 24px; display: flex; flex-direction: column; gap: 10px;">
+            <span style="font-size: 16px; font-weight: 600;">Teste de integração em banco compartilhado</span>
+            <p style="margin: 0; font-size: 14px; line-height: 1.7; color: #55504A;">Execuções paralelas de CI se atropelariam, gerando falha intermitente — que é pior que teste nenhum, porque ensina a ignorar vermelho.</p>
+          </div>
+          <div style="background: #FFFFFF; border: 1px solid #E4DFD7; border-left: 3px solid #A6482C; border-radius: 6px; padding: 24px; display: flex; flex-direction: column; gap: 10px;">
+            <span style="font-size: 16px; font-weight: 600;">Acessibilidade exigida, nunca verificada</span>
+            <p style="margin: 0; font-size: 14px; line-height: 1.7; color: #55504A;">WCAG AA aparecia em três lugares do documento e não existia gate nenhum no pipeline. Um requisito sem verificação é uma intenção.</p>
+          </div>
+        </div>
+      </section>
+
+      <section style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 32px; background: #F4F0E9; border: 1px solid #E4DFD7; border-radius: 8px; padding: 40px;">
+        <div style="grid-column: span 7; display: flex; flex-direction: column; gap: 14px;">
+          <h2 style="margin: 0; font-size: 24px; font-weight: 600;">Os documentos estão abertos</h2>
+          <p style="margin: 0; font-size: 15px; line-height: 1.7; color: #55504A;">PRD, documento de arquitetura completo e a lista de pendências — do jeito que foram escritos, sem limpeza para a foto.</p>
+        </div>
+        <div style="grid-column: span 5; display: flex; flex-direction: column; gap: 10px; align-items: flex-start;">
+          <a href="#" style="display: inline-flex; align-items: center; gap: 8px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px;">→ prd.md</a>
+          <a href="#" style="display: inline-flex; align-items: center; gap: 8px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px;">→ architecture.md</a>
+          <a href="#" style="display: inline-flex; align-items: center; gap: 8px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px;">→ to-be-determined.md</a>
+          <a href="#" style="display: inline-flex; align-items: center; gap: 8px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px;">→ repositório no GitHub</a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer style="border-top: 1px solid #E4DFD7; padding: 44px 80px 56px;">
+    <div style="max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 32px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; color: #857D74; line-height: 1.9;">
+      <div style="grid-column: span 5; display: flex; flex-direction: column; gap: 6px;">
+        <div style="color: #55504A;">Colofão</div>
+        <div>Next.js · Fastify · PostgreSQL/Neon · Drizzle</div>
+        <div>Arquitetura hexagonal · deploy na Vercel</div>
+      </div>
+      <div style="grid-column: span 4; display: flex; flex-direction: column; gap: 6px;">
+        <div style="color: #55504A;">Contato</div>
+        <a href="#" style="color: #857D74;">[SEU E-MAIL]</a>
+        <a href="#" style="color: #857D74;">LinkedIn</a>
+        <a href="#" style="color: #857D74;">GitHub</a>
+      </div>
+      <div style="grid-column: span 3; display: flex; flex-direction: column; gap: 6px; align-items: flex-end;">
+        <a href="#" style="color: #857D74;">Política de privacidade</a>
+        <a href="#" style="color: #857D74;">Código-fonte deste site</a>
+        <div style="color: #A29A90;">© 2026 davidev.net.br</div>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+</body>
+</html>

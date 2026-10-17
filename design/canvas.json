@@ -1,0 +1,78 @@
+{
+  "pages": [
+    { "id": "publico", "name": "Site público" },
+    { "id": "admin", "name": "Painel administrativo" },
+    { "id": "sistema", "name": "Tokens, estados e mobile" },
+    { "id": "direcoes", "name": "Direções alternativas" }
+  ],
+  "artboards": [
+    { "file": "Main.dc.html", "page": "publico", "title": "Home", "x": 0, "y": 0, "w": 1440, "h": 2200 },
+    { "file": "Sobre.dc.html", "page": "publico", "title": "Sobre mim", "x": 1560, "y": 0, "w": 1440, "h": 1500 },
+    { "file": "Habilidades.dc.html", "page": "publico", "title": "Habilidades", "x": 3120, "y": 0, "w": 1440, "h": 1900 },
+
+    { "file": "Conhecimentos.dc.html", "page": "publico", "title": "Conhecimentos", "x": 0, "y": 2360, "w": 1440, "h": 1500 },
+    { "file": "Experiencias.dc.html", "page": "publico", "title": "Experiências", "x": 1560, "y": 2360, "w": 1440, "h": 1800 },
+    { "file": "Projetos.dc.html", "page": "publico", "title": "Projetos — listagem", "x": 3120, "y": 2360, "w": 1440, "h": 1650 },
+
+    { "file": "ProjetoDetalhe.dc.html", "page": "publico", "title": "Projeto — detalhe", "x": 0, "y": 4320, "w": 1440, "h": 3300 },
+    { "file": "Blog.dc.html", "page": "publico", "title": "Blog — listagem e filtros", "x": 1560, "y": 4320, "w": 1440, "h": 1900 },
+    { "file": "Artigo.dc.html", "page": "publico", "title": "Artigo — leitura", "x": 3120, "y": 4320, "w": 1440, "h": 2800 },
+
+    { "file": "Contato.dc.html", "page": "publico", "title": "Contato", "x": 0, "y": 7780, "w": 1440, "h": 1300 },
+    { "file": "ComoFoiConstruido.dc.html", "page": "publico", "title": "Como foi construído", "x": 1560, "y": 7780, "w": 1440, "h": 2450 },
+    { "file": "Privacidade.dc.html", "page": "publico", "title": "Política de privacidade", "x": 3120, "y": 7780, "w": 1440, "h": 1950 },
+
+    { "file": "AdminLogin.dc.html", "page": "admin", "title": "Login", "x": 0, "y": 0, "w": 1440, "h": 800 },
+    { "file": "AdminPosts.dc.html", "page": "admin", "title": "Artigos — listagem", "x": 1560, "y": 0, "w": 1440, "h": 900 },
+    { "file": "AdminEditor.dc.html", "page": "admin", "title": "Editor — Split View", "x": 3120, "y": 0, "w": 1440, "h": 1000 },
+
+    { "file": "AdminLixeira.dc.html", "page": "admin", "title": "Lixeira — exclusão definitiva", "x": 0, "y": 1160, "w": 1440, "h": 900 },
+    { "file": "AdminTaxonomia.dc.html", "page": "admin", "title": "Categorias e tags", "x": 1560, "y": 1160, "w": 1440, "h": 900 },
+    { "file": "AdminMensagens.dc.html", "page": "admin", "title": "Mensagens de contato", "x": 3120, "y": 1160, "w": 1440, "h": 900 },
+
+    { "file": "Tokens.dc.html", "page": "sistema", "title": "Design tokens", "x": 0, "y": 0, "w": 1440, "h": 2400 },
+    { "file": "Estados.dc.html", "page": "sistema", "title": "Estados de tela", "x": 1560, "y": 0, "w": 1440, "h": 1600 },
+    { "file": "ArtigoDark.dc.html", "page": "sistema", "title": "Artigo — tema escuro", "x": 3120, "y": 0, "w": 1440, "h": 2400 },
+
+    { "file": "MobileHome.dc.html", "page": "sistema", "title": "Home — mobile 390", "x": 0, "y": 2560, "w": 390, "h": 1900 },
+    { "file": "MobileArtigo.dc.html", "page": "sistema", "title": "Artigo — mobile 390", "x": 560, "y": 2560, "w": 390, "h": 1800 },
+
+    { "file": "DirecaoB.dc.html", "page": "direcoes", "title": "Direção B — Terminal denso", "x": 0, "y": 0, "w": 1200, "h": 760 },
+    { "file": "DirecaoC.dc.html", "page": "direcoes", "title": "Direção C — Vitrine de produto", "x": 1360, "y": 0, "w": 1200, "h": 760 }
+  ],
+  "annotations": [
+    {
+      "id": "nota-direcao",
+      "page": "publico",
+      "x": 0,
+      "y": -230,
+      "w": 900,
+      "text": "Direção: documento técnico editorial.\n\nSerifa de display (Instrument Serif) para hierarquia, grotesca (Archivo) para leitura longa, monoespaçada (JetBrains Mono) para metadado e rótulo. Seções numeradas, fios de 1px no lugar de sombras, um acento (#A6482C), rodapé em formato de colofão.\n\nTudo entre [COLCHETES] é dado real que só você tem — nome de empresa, período, métrica, contato. O resto é estrutura de conteúdo já no formato que o PRD exige."
+    },
+    {
+      "id": "nota-admin",
+      "page": "admin",
+      "x": 0,
+      "y": -190,
+      "w": 900,
+      "text": "Painel: mesmos tokens, densidade maior e controles menores (34–42px) — o site público mantém 44px+.\n\nO editor em Split View é a tela mais importante: o preview usa o MESMO componente de renderização da página pública, que é o critério de aceite da Story 15. O diálogo da lixeira traz a mensagem exata da BR-007."
+    },
+    {
+      "id": "nota-sistema",
+      "page": "sistema",
+      "x": 0,
+      "y": -190,
+      "w": 900,
+      "text": "A folha de tokens é a peça mais diretamente reaproveitável pelo frontend: cor com hex e razão de contraste, escala tipográfica, espaço, raio e os componentes com seus estados.\n\nOs pares de cor foram escolhidos para passar em AA nos dois temas — o que a Etapa 22 da arquitetura transformou em gate de axe-core no CI. Os artboards mobile têm altura da página inteira, não de uma tela."
+    },
+    {
+      "id": "nota-direcoes",
+      "page": "direcoes",
+      "x": 0,
+      "y": -200,
+      "w": 900,
+      "text": "Duas direções que considerei e descartei, com o argumento de cada uma — para a escolha ficar rastreável, e não parecer gosto pessoal.\n\nB (terminal denso) comunica engenharia na hora, mas é o clichê do gênero e afasta recrutador e cliente. C (vitrine de produto) acolhe essas personas, mas é indistinguível de qualquer template — exatamente o que o PRD diz que não comprova nada.\n\nSe você preferir uma delas, é só dizer: o que muda é o Main, não a estrutura."
+    }
+  ],
+  "launch": { "view": "canvas", "page": "publico" }
+}

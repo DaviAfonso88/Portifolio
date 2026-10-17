@@ -1,0 +1,152 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; background: #FAF8F4; color: #1C1A17; font-family: Archivo, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+    * { box-sizing: border-box; }
+    a { color: #A6482C; text-decoration: none; }
+    a:hover { color: #7E351F; text-decoration: underline; }
+  </style>
+</helmet>
+
+<div style="min-height: 100%; display: flex; flex-direction: column;">
+
+  <header style="display: flex; align-items: center; justify-content: space-between; gap: 40px; padding: 18px 80px; border-bottom: 1px solid #E4DFD7;">
+    <a href="#" style="font-family: 'Instrument Serif', Georgia, serif; font-size: 23px; color: #1C1A17;">davidev</a>
+    <nav style="display: flex; gap: 26px; font-size: 14px;">
+      <a href="#" style="color: #55504A;">Sobre</a>
+      <a href="#" style="color: #55504A;">Habilidades</a>
+      <a href="#" style="color: #55504A;">Conhecimentos</a>
+      <a href="#" style="color: #55504A;">Experiências</a>
+      <a href="#" style="color: #55504A;">Projetos</a>
+      <a href="#" style="color: #55504A;">Blog</a>
+      <a href="#" style="color: #55504A;">Contato</a>
+    </nav>
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <div style="display: flex; align-items: center; border: 1px solid #E4DFD7; border-radius: 4px; overflow: hidden; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px;">
+        <span style="padding: 7px 10px; background: #1C1A17; color: #FAF8F4;">PT</span>
+        <a href="#" style="padding: 7px 10px; color: #857D74;">EN</a>
+      </div>
+      <button style="display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; border: 1px solid #E4DFD7; border-radius: 4px; background: transparent; color: #55504A; cursor: pointer;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+      </button>
+    </div>
+  </header>
+
+  <main style="padding: 72px 80px 96px;">
+    <div style="max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 48px;">
+
+      <aside style="grid-column: span 3;">
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #A29A90;">Nesta página</span>
+          <a href="#" style="font-size: 14px; line-height: 1.5; color: #A6482C; border-left: 2px solid #A6482C; padding-left: 12px;">O que é coletado</a>
+          <a href="#" style="font-size: 14px; line-height: 1.5; color: #55504A; border-left: 2px solid #E4DFD7; padding-left: 12px;">Por quanto tempo</a>
+          <a href="#" style="font-size: 14px; line-height: 1.5; color: #55504A; border-left: 2px solid #E4DFD7; padding-left: 12px;">Cookies e medição</a>
+          <a href="#" style="font-size: 14px; line-height: 1.5; color: #55504A; border-left: 2px solid #E4DFD7; padding-left: 12px;">Seus direitos</a>
+          <a href="#" style="font-size: 14px; line-height: 1.5; color: #55504A; border-left: 2px solid #E4DFD7; padding-left: 12px;">Terceiros</a>
+          <a href="#" style="font-size: 14px; line-height: 1.5; color: #55504A; border-left: 2px solid #E4DFD7; padding-left: 12px;">Contato do responsável</a>
+        </div>
+      </aside>
+
+      <div style="grid-column: span 9; display: flex; flex-direction: column; gap: 32px;">
+
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+          <div style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #857D74;">Política de privacidade</div>
+          <h1 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 48px; line-height: 1.1; letter-spacing: -0.02em;">O que este site guarda sobre você</h1>
+          <div style="display: flex; align-items: center; gap: 12px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; color: #A29A90;">
+            <span>Vigente desde [DATA]</span>
+            <span>·</span>
+            <span>LGPD e GDPR</span>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 14px; background: #F4F0E9; border: 1px solid #E4DFD7; border-radius: 6px; padding: 22px 24px;">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#A6482C" stroke-width="1.5" stroke-linecap="round" style="flex-shrink: 0; margin-top: 2px;"><path d="M12 3l8 4v5c0 4.4-3.2 8.3-8 9-4.8-.7-8-4.6-8-9V7l8-4z"></path></svg>
+          <p style="margin: 0; font-size: 16px; line-height: 1.7; color: #38332E;"><strong style="font-weight: 600;">Resumo:</strong> a única coisa que este site guarda sobre você é o que você digitar no formulário de contato. Não há cookies de rastreamento, não há perfil de navegação e seu endereço IP não é armazenado.</p>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 26px; max-width: 68ch; font-size: 16px; line-height: 1.78; color: #2A2621;">
+
+          <h2 style="margin: 12px 0 0; font-size: 24px; font-weight: 600;">O que é coletado</h2>
+          <p style="margin: 0;">Ao enviar o formulário de contato, são armazenados <strong style="font-weight: 600;">nome, e-mail, assunto (se preenchido) e o conteúdo da mensagem</strong>. Nada mais. A base legal é o seu consentimento ao submeter o formulário, com a finalidade única de responder ao contato.</p>
+          <p style="margin: 0;">Para impedir abuso automatizado, o endereço IP é convertido em um código irreversível e mantido por poucos minutos. <strong style="font-weight: 600;">O endereço em si nunca é gravado</strong>, e o código não permite identificar você.</p>
+
+          <h2 style="margin: 12px 0 0; font-size: 24px; font-weight: 600;">Por quanto tempo</h2>
+          <div style="border: 1px solid #E4DFD7; border-radius: 6px; overflow: hidden;">
+            <div style="display: grid; grid-template-columns: 1fr 160px; gap: 16px; padding: 14px 20px; background: #F4F0E9; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #857D74;">
+              <span>Dado</span>
+              <span>Retenção</span>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 160px; gap: 16px; padding: 16px 20px; border-top: 1px solid #EFEBE4; font-size: 15px;">
+              <span>Mensagem de contato</span>
+              <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 14px; color: #A6482C;">24 meses</span>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 160px; gap: 16px; padding: 16px 20px; border-top: 1px solid #EFEBE4; font-size: 15px; background: #FFFFFF;">
+              <span>Código derivado do IP (anti-abuso)</span>
+              <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 14px; color: #A6482C;">minutos</span>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 160px; gap: 16px; padding: 16px 20px; border-top: 1px solid #EFEBE4; font-size: 15px;">
+              <span>Preferência de tema e idioma</span>
+              <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 14px; color: #A6482C;">no seu navegador</span>
+            </div>
+          </div>
+          <p style="margin: 0;">Após 24 meses, as mensagens são apagadas automaticamente e de forma definitiva — não há cópia arquivada.</p>
+
+          <h2 style="margin: 12px 0 0; font-size: 24px; font-weight: 600;">Cookies e medição de audiência</h2>
+          <p style="margin: 0;"><strong style="font-weight: 600;">Este site não usa cookies de rastreamento</strong> e por isso não exibe banner de consentimento. As estatísticas de acesso são medidas com uma ferramenta que trabalha apenas com dados agregados, sem identificar visitantes individualmente e sem gravar cookies.</p>
+          <p style="margin: 0;">O único armazenamento no seu navegador é a preferência de tema (claro ou escuro) e de idioma — informação que nunca sai do seu dispositivo.</p>
+
+          <h2 style="margin: 12px 0 0; font-size: 24px; font-weight: 600;">Seus direitos</h2>
+          <p style="margin: 0;">Você pode solicitar, a qualquer momento: acesso aos dados que enviou, correção, exportação em formato legível, ou exclusão imediata. O pedido é atendido manualmente — o volume é pequeno o suficiente para não justificar automação, e você fala direto com quem opera o site.</p>
+          <p style="margin: 0;">Prazo de resposta: <strong style="font-weight: 600;">[PRAZO] dias úteis</strong>, pelo e-mail indicado abaixo.</p>
+
+          <h2 style="margin: 12px 0 0; font-size: 24px; font-weight: 600;">Terceiros com acesso</h2>
+          <p style="margin: 0;">Os dados ficam em provedores de infraestrutura contratados para hospedagem, banco de dados e envio de e-mail. Eles processam os dados exclusivamente para operar o serviço, e não os utilizam para nenhuma finalidade própria. <strong style="font-weight: 600;">Nenhum dado é vendido, cedido ou usado para publicidade.</strong></p>
+
+          <h2 style="margin: 12px 0 0; font-size: 24px; font-weight: 600;">Contato do responsável</h2>
+          <p style="margin: 0;">O responsável pelo tratamento dos dados é [NOME COMPLETO], que pode ser contatado em <a href="#">[SEU E-MAIL]</a>. Se preferir, use o próprio formulário de contato.</p>
+
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 12px; border-top: 1px solid #E4DFD7; padding-top: 22px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; color: #A29A90;">
+          <span>Última atualização: [DATA]</span>
+          <span>·</span>
+          <a href="#" style="color: #A29A90;">Read this page in English</a>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer style="border-top: 1px solid #E4DFD7; padding: 44px 80px 56px;">
+    <div style="max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 32px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; color: #857D74; line-height: 1.9;">
+      <div style="grid-column: span 5; display: flex; flex-direction: column; gap: 6px;">
+        <div style="color: #55504A;">Colofão</div>
+        <div>Next.js · Fastify · PostgreSQL/Neon · Drizzle</div>
+        <div>Arquitetura hexagonal · deploy na Vercel</div>
+      </div>
+      <div style="grid-column: span 4; display: flex; flex-direction: column; gap: 6px;">
+        <div style="color: #55504A;">Contato</div>
+        <a href="#" style="color: #857D74;">[SEU E-MAIL]</a>
+        <a href="#" style="color: #857D74;">LinkedIn</a>
+        <a href="#" style="color: #857D74;">GitHub</a>
+      </div>
+      <div style="grid-column: span 3; display: flex; flex-direction: column; gap: 6px; align-items: flex-end;">
+        <a href="#" style="color: #857D74;">Política de privacidade</a>
+        <a href="#" style="color: #857D74;">Código-fonte deste site</a>
+        <div style="color: #A29A90;">© 2026 davidev.net.br</div>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+</body>
+</html>

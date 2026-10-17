@@ -1,0 +1,153 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; background: #FAF8F4; color: #1C1A17; font-family: Archivo, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+    * { box-sizing: border-box; }
+    a { color: #A6482C; text-decoration: none; }
+    a:hover { color: #7E351F; text-decoration: underline; }
+    .lbl { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: #857D74; }
+    .mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+  </style>
+</helmet>
+
+<div style="padding: 48px 56px 64px; display: flex; flex-direction: column; gap: 40px;">
+
+  <div style="display: flex; flex-direction: column; gap: 10px;">
+    <div class="lbl">Estados de tela</div>
+    <h1 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 40px; line-height: 1.1; letter-spacing: -0.02em;">Vazio, erro e feedback</h1>
+    <p style="margin: 0; font-size: 15px; line-height: 1.7; color: #55504A; max-width: 72ch;">Todo estado tem texto e uma ação de saída. Estado vazio sem explicação parece defeito — e o blog nasce vazio por definição.</p>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px;">
+
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+      <span class="lbl">404 — slug inexistente</span>
+      <div style="background: #FFFFFF; border: 1px solid #E4DFD7; border-radius: 8px; padding: 48px 40px; display: flex; flex-direction: column; align-items: center; gap: 16px; text-align: center; min-height: 300px; justify-content: center;">
+        <span class="mono" style="font-size: 52px; color: #E4DFD7; line-height: 1;">404</span>
+        <h2 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 30px;">Esta página não existe</h2>
+        <p style="margin: 0; font-size: 15px; line-height: 1.7; color: #55504A; max-width: 40ch;">O endereço pode ter mudado, ou o artigo pode ter sido removido. Se ele apenas mudou de endereço, você teria sido redirecionado automaticamente.</p>
+        <div style="display: flex; gap: 10px; margin-top: 6px;">
+          <a href="#" style="height: 44px; display: inline-flex; align-items: center; padding: 0 20px; background: #1C1A17; color: #FAF8F4; border-radius: 5px; font-size: 14.5px; font-weight: 500;">Ir para o blog</a>
+          <a href="#" style="height: 44px; display: inline-flex; align-items: center; padding: 0 20px; border: 1px solid #DDD6CB; color: #38332E; border-radius: 5px; font-size: 14.5px;">Página inicial</a>
+        </div>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+      <span class="lbl">Blog sem artigos — estado inicial</span>
+      <div style="background: #FFFFFF; border: 1px solid #E4DFD7; border-radius: 8px; padding: 48px 40px; display: flex; flex-direction: column; align-items: center; gap: 16px; text-align: center; min-height: 300px; justify-content: center;">
+        <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#C4BCB1" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h11l3 3v13H5z"></path><path d="M9 11h6M9 15h4"></path></svg>
+        <h2 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 30px;">Ainda não há artigos por aqui</h2>
+        <p style="margin: 0; font-size: 15px; line-height: 1.7; color: #55504A; max-width: 42ch;">O blog está começando. Enquanto os primeiros textos não saem, os projetos já contam bastante sobre como eu trabalho.</p>
+        <a href="#" style="height: 44px; display: inline-flex; align-items: center; padding: 0 20px; background: #1C1A17; color: #FAF8F4; border-radius: 5px; font-size: 14.5px; font-weight: 500; margin-top: 6px;">Ver os projetos</a>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+      <span class="lbl">Filtro sem resultado</span>
+      <div style="background: #FFFFFF; border: 1px solid #E4DFD7; border-radius: 8px; padding: 40px; display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; min-height: 240px; justify-content: center;">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C4BCB1" stroke-width="1.3" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M16.5 16.5L21 21"></path></svg>
+        <h2 style="margin: 0; font-size: 21px; font-weight: 600;">Nenhum artigo com essa combinação</h2>
+        <p style="margin: 0; font-size: 14.5px; line-height: 1.65; color: #55504A; max-width: 40ch;">A tag <span class="mono" style="color: #A6482C;">proxy</span> ainda não tem artigos na categoria <strong style="font-weight: 600;">Arquitetura</strong>.</p>
+        <a href="#" style="height: 40px; display: inline-flex; align-items: center; padding: 0 18px; border: 1px solid #DDD6CB; color: #38332E; border-radius: 5px; font-size: 14px; margin-top: 4px;">Limpar filtros</a>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+      <span class="lbl">Erro inesperado — 500</span>
+      <div style="background: #FFFFFF; border: 1px solid #E4DFD7; border-radius: 8px; padding: 40px; display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; min-height: 240px; justify-content: center;">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#B5442B" stroke-width="1.3" stroke-linecap="round"><path d="M12 4l9 16H3z"></path><path d="M12 10v4M12 17h.01"></path></svg>
+        <h2 style="margin: 0; font-size: 21px; font-weight: 600;">Algo deu errado</h2>
+        <p style="margin: 0; font-size: 14.5px; line-height: 1.65; color: #55504A; max-width: 42ch;">Não foi você. O erro foi registrado e eu recebo o aviso automaticamente.</p>
+        <div style="display: flex; align-items: center; gap: 9px; background: #F4F0E9; border: 1px solid #E4DFD7; border-radius: 5px; padding: 9px 13px;">
+          <span class="mono" style="font-size: 11px; color: #857D74;">Código</span>
+          <span class="mono" style="font-size: 12.5px; color: #1C1A17;">01J8ZK9Q2M4N6P8R</span>
+          <button style="border: none; background: transparent; color: #857D74; cursor: pointer; display: flex;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 9h11v11H9z"></path><path d="M5 15V4h11"></path></svg>
+          </button>
+        </div>
+        <a href="#" style="height: 40px; display: inline-flex; align-items: center; padding: 0 18px; background: #1C1A17; color: #FAF8F4; border-radius: 5px; font-size: 14px; font-weight: 500; margin-top: 2px;">Tentar novamente</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px;">
+
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+      <span class="lbl">Artigo indisponível no idioma ativo</span>
+      <div style="background: #FFFFFF; border: 1px solid #E4DFD7; border-radius: 8px; padding: 32px; display: flex; flex-direction: column; gap: 16px;">
+        <div style="display: flex; align-items: center; gap: 11px; background: #F4F0E9; border: 1px solid #E4DFD7; border-radius: 6px; padding: 14px 16px;">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#857D74" stroke-width="1.5" stroke-linecap="round"><path d="M4 5h16M4 12h16M4 19h10"></path></svg>
+          <span style="font-size: 14.5px; color: #38332E;">Este artigo está disponível apenas em inglês.</span>
+        </div>
+        <h2 style="margin: 0; font-size: 21px; font-weight: 600; line-height: 1.35; color: #55504A;">Specs as the source of truth for AI-assisted delivery</h2>
+        <p style="margin: 0; font-size: 14.5px; line-height: 1.7; color: #857D74;">Você pode ler a versão em inglês ou continuar navegando pelos artigos em português.</p>
+        <div style="display: flex; gap: 10px;">
+          <a href="#" style="height: 42px; display: inline-flex; align-items: center; padding: 0 18px; background: #1C1A17; color: #FAF8F4; border-radius: 5px; font-size: 14px; font-weight: 500;">Read in English</a>
+          <a href="#" style="height: 42px; display: inline-flex; align-items: center; padding: 0 18px; border: 1px solid #DDD6CB; color: #38332E; border-radius: 5px; font-size: 14px;">Voltar ao blog</a>
+        </div>
+        <span style="font-size: 12.5px; color: #A29A90; line-height: 1.6;">Nunca 404 — o artigo existe, só não neste idioma.</span>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+      <span class="lbl">Carregamento — skeleton, não spinner</span>
+      <div style="background: #FFFFFF; border: 1px solid #E4DFD7; border-radius: 8px; padding: 26px; display: flex; flex-direction: column; gap: 22px;">
+        <div style="display: grid; grid-template-columns: 180px 1fr; gap: 22px;">
+          <div style="aspect-ratio: 16 / 10; background: #F0ECE4; border-radius: 4px;"></div>
+          <div style="display: flex; flex-direction: column; gap: 10px; padding-top: 4px;">
+            <div style="height: 11px; width: 130px; background: #EFEBE4; border-radius: 3px;"></div>
+            <div style="height: 19px; width: 100%; background: #F0ECE4; border-radius: 3px;"></div>
+            <div style="height: 19px; width: 72%; background: #F0ECE4; border-radius: 3px;"></div>
+            <div style="height: 12px; width: 100%; background: #F4F0E9; border-radius: 3px; margin-top: 6px;"></div>
+            <div style="height: 12px; width: 88%; background: #F4F0E9; border-radius: 3px;"></div>
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: 180px 1fr; gap: 22px;">
+          <div style="aspect-ratio: 16 / 10; background: #F0ECE4; border-radius: 4px;"></div>
+          <div style="display: flex; flex-direction: column; gap: 10px; padding-top: 4px;">
+            <div style="height: 11px; width: 110px; background: #EFEBE4; border-radius: 3px;"></div>
+            <div style="height: 19px; width: 92%; background: #F0ECE4; border-radius: 3px;"></div>
+            <div style="height: 12px; width: 100%; background: #F4F0E9; border-radius: 3px; margin-top: 6px;"></div>
+            <div style="height: 12px; width: 64%; background: #F4F0E9; border-radius: 3px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 12px;">
+    <span class="lbl">Toasts — 4s; erro permanece até ser dispensado</span>
+    <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+      <div style="display: flex; align-items: center; gap: 11px; background: #1C1A17; border-radius: 6px; padding: 14px 18px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9BB89B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"></path></svg>
+        <span style="font-size: 14px; color: #FAF8F4;">Artigo publicado. O site já foi atualizado.</span>
+        <a href="#" style="margin-left: 12px; font-size: 13px; color: #E07B54;">Ver no site</a>
+      </div>
+      <div style="display: flex; align-items: center; gap: 11px; background: #1C1A17; border-radius: 6px; padding: 14px 18px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E07B54" stroke-width="1.8" stroke-linecap="round"><path d="M12 4l9 16H3z"></path><path d="M12 10v4M12 17h.01"></path></svg>
+        <span style="font-size: 14px; color: #FAF8F4;">Não foi possível salvar. Seu texto não foi perdido.</span>
+        <button style="margin-left: 12px; border: none; background: transparent; color: #E07B54; font-family: Archivo, system-ui, sans-serif; font-size: 13px; cursor: pointer;">Tentar de novo</button>
+      </div>
+      <div style="display: flex; align-items: center; gap: 11px; background: #1C1A17; border-radius: 6px; padding: 14px 18px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B5ADA3" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M9 7V5h6v2M6 7l1 13h10l1-13"></path></svg>
+        <span style="font-size: 14px; color: #FAF8F4;">Artigo enviado para a lixeira.</span>
+        <button style="margin-left: 12px; border: none; background: transparent; color: #E07B54; font-family: Archivo, system-ui, sans-serif; font-size: 13px; cursor: pointer;">Desfazer</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

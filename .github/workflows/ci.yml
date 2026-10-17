@@ -1,0 +1,41 @@
+name: CI Pipeline — 10 Quality Gates
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    name: 10 Gates Enforcement
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9.15.4
+
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Gate 1 — Typecheck (Strict TypeScript)
+        run: pnpm typecheck
+
+      - name: Gate 2 — Architecture Enforcement (dependency-cruiser DEP-1 to DEP-7)
+        run: pnpm arch:check
+
+      - name: Gate 3 — Unit Tests (Domain & Application)
+        run: pnpm test:unit
+
+      - name: Gate 4 — Build (Next.js & Packages)
+        run: pnpm build

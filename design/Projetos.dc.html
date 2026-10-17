@@ -1,0 +1,197 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; background: #FAF8F4; color: #1C1A17; font-family: Archivo, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+    * { box-sizing: border-box; }
+    a { color: #A6482C; text-decoration: none; }
+    a:hover { color: #7E351F; text-decoration: underline; }
+  </style>
+</helmet>
+
+<div style="min-height: 100%; display: flex; flex-direction: column;">
+
+  <header style="display: flex; align-items: center; justify-content: space-between; gap: 40px; padding: 18px 80px; border-bottom: 1px solid #E4DFD7;">
+    <a href="#" style="font-family: 'Instrument Serif', Georgia, serif; font-size: 23px; color: #1C1A17;">davidev</a>
+    <nav style="display: flex; gap: 26px; font-size: 14px;">
+      <a href="#" style="color: #55504A;">Sobre</a>
+      <a href="#" style="color: #55504A;">Habilidades</a>
+      <a href="#" style="color: #55504A;">Conhecimentos</a>
+      <a href="#" style="color: #55504A;">Experiências</a>
+      <a href="#" style="color: #1C1A17; font-weight: 500; border-bottom: 2px solid #A6482C; padding-bottom: 2px;">Projetos</a>
+      <a href="#" style="color: #55504A;">Blog</a>
+      <a href="#" style="color: #55504A;">Contato</a>
+    </nav>
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <div style="display: flex; align-items: center; border: 1px solid #E4DFD7; border-radius: 4px; overflow: hidden; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px;">
+        <span style="padding: 7px 10px; background: #1C1A17; color: #FAF8F4;">PT</span>
+        <a href="#" style="padding: 7px 10px; color: #857D74;">EN</a>
+      </div>
+      <button style="display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; border: 1px solid #E4DFD7; border-radius: 4px; background: transparent; color: #55504A; cursor: pointer;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+      </button>
+    </div>
+  </header>
+
+  <main style="padding: 72px 80px 96px;">
+    <div style="max-width: 1180px; margin: 0 auto; display: flex; flex-direction: column; gap: 48px;">
+
+      <div style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 40px; align-items: end;">
+        <div style="grid-column: span 7; display: flex; flex-direction: column; gap: 18px;">
+          <div style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #857D74;">Projetos</div>
+          <h1 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 52px; line-height: 1.1; letter-spacing: -0.02em;">Problema, decisão, resultado.</h1>
+        </div>
+        <div style="grid-column: span 5; border-left: 1px solid #E4DFD7; padding-left: 28px;">
+          <p style="margin: 0; font-size: 15px; line-height: 1.7; color: #55504A;">Cada projeto abre pelo problema de negócio e pelo desfecho — legível para quem contrata. O detalhe de arquitetura vem depois, para quem avalia tecnicamente.</p>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 20px;">
+
+        <a href="#" style="display: grid; grid-template-columns: 320px 1fr; gap: 36px; background: #FFFFFF; border: 1px solid #E4DFD7; border-radius: 6px; padding: 32px; color: #1C1A17; text-decoration: none;">
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <div style="width: 100%; aspect-ratio: 16 / 10; background: #F0ECE4; border: 1px solid #E9E4DB; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #B3AAA0;">
+              <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.1em;">[IMAGEM DO PROJETO]</span>
+            </div>
+            <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+              <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #55504A; border: 1px solid #E4DFD7; padding: 4px 8px; border-radius: 3px;">.NET</span>
+              <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #55504A; border: 1px solid #E4DFD7; padding: 4px 8px; border-radius: 3px;">Puppeteer</span>
+              <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #55504A; border: 1px solid #E4DFD7; padding: 4px 8px; border-radius: 3px;">MongoDB</span>
+              <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #55504A; border: 1px solid #E4DFD7; padding: 4px 8px; border-radius: 3px;">Docker</span>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #1F5E5B; background: #E8F1F0; border: 1px solid #D3E5E3; padding: 4px 8px; border-radius: 3px;">Em produção</span>
+              <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #A29A90;">2024 — atual</span>
+            </div>
+            <h2 style="margin: 0; font-size: 26px; font-weight: 600; line-height: 1.3;">Plataforma de robôs de coleta de preços</h2>
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+              <div style="display: grid; grid-template-columns: 92px 1fr; gap: 16px; align-items: baseline;">
+                <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #857D74;">Problema</span>
+                <span style="font-size: 15px; line-height: 1.65; color: #38332E;">O catálogo de ofertas de dezenas de fontes mudava diariamente, e a consolidação manual não acompanhava — decisões comerciais saíam com dado velho.</span>
+              </div>
+              <div style="display: grid; grid-template-columns: 92px 1fr; gap: 16px; align-items: baseline;">
+                <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #857D74;">Resultado</span>
+                <span style="font-size: 15px; line-height: 1.65; color: #38332E;">Coleta contínua e automatizada, com consumo de proxy reduzido em [MÉTRICA] e detecção de quebra de fonte antes que os dados ficassem incorretos.</span>
+              </div>
+              <div style="display: grid; grid-template-columns: 92px 1fr; gap: 16px; align-items: baseline;">
+                <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #857D74;">Meu papel</span>
+                <span style="font-size: 15px; line-height: 1.65; color: #38332E;">Arquitetura dos workers, padronização do esqueleto e otimização de custo de banda.</span>
+              </div>
+            </div>
+            <span style="display: inline-flex; align-items: center; gap: 7px; font-size: 14px; color: #A6482C; font-weight: 500; margin-top: 4px;">
+              Ver o detalhe técnico
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+            </span>
+          </div>
+        </a>
+
+        <a href="#" style="display: grid; grid-template-columns: 320px 1fr; gap: 36px; background: #FFFFFF; border: 1px solid #E4DFD7; border-radius: 6px; padding: 32px; color: #1C1A17; text-decoration: none;">
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <div style="width: 100%; aspect-ratio: 16 / 10; background: #F0ECE4; border: 1px solid #E9E4DB; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #B3AAA0;">
+              <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.1em;">[IMAGEM DO PROJETO]</span>
+            </div>
+            <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+              <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #55504A; border: 1px solid #E4DFD7; padding: 4px 8px; border-radius: 3px;">Next.js</span>
+              <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #55504A; border: 1px solid #E4DFD7; padding: 4px 8px; border-radius: 3px;">Fastify</span>
+              <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #55504A; border: 1px solid #E4DFD7; padding: 4px 8px; border-radius: 3px;">PostgreSQL</span>
+              <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #55504A; border: 1px solid #E4DFD7; padding: 4px 8px; border-radius: 3px;">Hexagonal</span>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #A6482C; background: #F9F1ED; border: 1px solid #EBD9D1; padding: 4px 8px; border-radius: 3px;">Código aberto</span>
+              <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #A29A90;">2026</span>
+            </div>
+            <h2 style="margin: 0; font-size: 26px; font-weight: 600; line-height: 1.3;">DaviDev — este site</h2>
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+              <div style="display: grid; grid-template-columns: 92px 1fr; gap: 16px; align-items: baseline;">
+                <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #857D74;">Problema</span>
+                <span style="font-size: 15px; line-height: 1.65; color: #38332E;">Currículo e LinkedIn são declarativos: listam tecnologias, mas não comprovam arquitetura, disciplina de especificação nem segurança.</span>
+              </div>
+              <div style="display: grid; grid-template-columns: 92px 1fr; gap: 16px; align-items: baseline;">
+                <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #857D74;">Resultado</span>
+                <span style="font-size: 15px; line-height: 1.65; color: #38332E;">Um produto completo com blog, CMS, API documentada e arquitetura hexagonal — com PRD, documento de arquitetura e ADRs públicos.</span>
+              </div>
+              <div style="display: grid; grid-template-columns: 92px 1fr; gap: 16px; align-items: baseline;">
+                <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #857D74;">Meu papel</span>
+                <span style="font-size: 15px; line-height: 1.65; color: #38332E;">Tudo — produto, arquitetura, implementação e operação.</span>
+              </div>
+            </div>
+            <span style="display: inline-flex; align-items: center; gap: 7px; font-size: 14px; color: #A6482C; font-weight: 500; margin-top: 4px;">
+              Ver o detalhe técnico
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+            </span>
+          </div>
+        </a>
+
+        <a href="#" style="display: grid; grid-template-columns: 320px 1fr; gap: 36px; background: #FFFFFF; border: 1px solid #E4DFD7; border-radius: 6px; padding: 32px; color: #1C1A17; text-decoration: none;">
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <div style="width: 100%; aspect-ratio: 16 / 10; background: #F0ECE4; border: 1px solid #E9E4DB; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #B3AAA0;">
+              <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.1em;">[IMAGEM DO PROJETO]</span>
+            </div>
+            <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+              <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #55504A; border: 1px solid #E4DFD7; padding: 4px 8px; border-radius: 3px;">[STACK]</span>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #857D74; background: #F2EEE7; border: 1px solid #E4DFD7; padding: 4px 8px; border-radius: 3px;">Sem link público</span>
+              <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #A29A90;">[PERÍODO]</span>
+            </div>
+            <h2 style="margin: 0; font-size: 26px; font-weight: 600; line-height: 1.3;">[NOME DO PROJETO]</h2>
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+              <div style="display: grid; grid-template-columns: 92px 1fr; gap: 16px; align-items: baseline;">
+                <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #857D74;">Problema</span>
+                <span style="font-size: 15px; line-height: 1.65; color: #38332E;">[O que doía antes, em linguagem de negócio.]</span>
+              </div>
+              <div style="display: grid; grid-template-columns: 92px 1fr; gap: 16px; align-items: baseline;">
+                <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #857D74;">Resultado</span>
+                <span style="font-size: 15px; line-height: 1.65; color: #38332E;">[O que mudou. Com número, se existir um verdadeiro.]</span>
+              </div>
+              <div style="display: grid; grid-template-columns: 92px 1fr; gap: 16px; align-items: baseline;">
+                <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #857D74;">Meu papel</span>
+                <span style="font-size: 15px; line-height: 1.65; color: #38332E;">[Escopo real da sua atuação.]</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+      </div>
+
+    </div>
+  </main>
+
+  <footer style="border-top: 1px solid #E4DFD7; padding: 44px 80px 56px; margin-top: auto;">
+    <div style="max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 32px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; color: #857D74; line-height: 1.9;">
+      <div style="grid-column: span 5; display: flex; flex-direction: column; gap: 6px;">
+        <div style="color: #55504A;">Colofão</div>
+        <div>Next.js · Fastify · PostgreSQL/Neon · Drizzle</div>
+        <div>Arquitetura hexagonal · deploy na Vercel</div>
+      </div>
+      <div style="grid-column: span 4; display: flex; flex-direction: column; gap: 6px;">
+        <div style="color: #55504A;">Contato</div>
+        <a href="#" style="color: #857D74;">[SEU E-MAIL]</a>
+        <a href="#" style="color: #857D74;">LinkedIn</a>
+        <a href="#" style="color: #857D74;">GitHub</a>
+      </div>
+      <div style="grid-column: span 3; display: flex; flex-direction: column; gap: 6px; align-items: flex-end;">
+        <a href="#" style="color: #857D74;">Política de privacidade</a>
+        <a href="#" style="color: #857D74;">Código-fonte deste site</a>
+        <div style="color: #A29A90;">© 2026 davidev.net.br</div>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+</body>
+</html>

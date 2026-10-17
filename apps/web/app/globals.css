@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --paper: #FAF8F4;
+    --surface: #FFFFFF;
+    --surface-sunken: #F4F0E9;
+    --rule: #E4DFD7;
+    --ink: #1C1A17;
+    --ink-2: #55504A;
+    --ink-3: #6E665E;
+    --accent: #A6482C;
+    --accent-soft: #F9F1ED;
+    --success: #1F5E5B;
+    --danger: #B5442B;
+    --danger-soft: #FDF6F4;
+  }
+
+  .dark {
+    --paper: #141311;
+    --surface: #1C1A18;
+    --surface-sunken: #181614;
+    --rule: #2E2A26;
+    --ink: #EDE9E3;
+    --ink-2: #B5ADA3;
+    --ink-3: #9E958C;
+    --accent: #E07B54;
+    --accent-soft: #2A1E18;
+    --success: #7FB2A8;
+    --danger: #D4624B;
+    --danger-soft: #2D1914;
+  }
+
+  body {
+    background-color: var(--paper);
+    color: var(--ink);
+    font-family: Archivo, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  * {
+    border-color: var(--rule);
+  }
+}
+
+.font-display {
+  font-family: 'Instrument Serif', Georgia, serif;
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+}

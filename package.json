@@ -1,0 +1,34 @@
+{
+  "name": "davidev-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "DaviDev — Portfolio, Blog & CMS Editorial com Arquitetura Hexagonal",
+  "scripts": {
+    "dev": "pnpm --filter @davidev/web dev",
+    "start": "pnpm --filter @davidev/web start",
+    "build": "pnpm -r --filter=!@davidev/web build && pnpm --filter @davidev/web build",
+    "lint": "pnpm -r lint",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:unit": "vitest run packages/domain packages/application",
+    "test:integration": "vitest run packages/infrastructure",
+    "test:e2e": "pnpm --filter @davidev/web test:e2e",
+    "test:a11y": "pnpm --filter @davidev/web test:a11y",
+    "test:coverage": "vitest run --coverage packages/domain packages/application",
+    "arch:check": "depcruise --config dependency-cruiser.config.js packages apps",
+    "api:generate": "orval",
+    "api:contract:check": "orval",
+    "db:generate": "pnpm --filter @davidev/infrastructure db:generate",
+    "db:migrate": "pnpm --filter @davidev/infrastructure db:migrate",
+    "ci": "pnpm typecheck && pnpm arch:check && pnpm test:unit"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.4",
+    "@vitest/coverage-v8": "3.2.7",
+    "dependency-cruiser": "^16.10.0",
+    "orval": "^8.43.0",
+    "typescript": "^5.7.3",
+    "vitest": "^3.0.5"
+  },
+  "packageManager": "pnpm@9.15.4"
+}

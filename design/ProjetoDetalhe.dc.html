@@ -1,0 +1,209 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; background: #FAF8F4; color: #1C1A17; font-family: Archivo, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+    * { box-sizing: border-box; }
+    a { color: #A6482C; text-decoration: none; }
+    a:hover { color: #7E351F; text-decoration: underline; }
+  </style>
+</helmet>
+
+<div style="min-height: 100%; display: flex; flex-direction: column;">
+
+  <header style="display: flex; align-items: center; justify-content: space-between; gap: 40px; padding: 18px 80px; border-bottom: 1px solid #E4DFD7;">
+    <a href="#" style="font-family: 'Instrument Serif', Georgia, serif; font-size: 23px; color: #1C1A17;">davidev</a>
+    <nav style="display: flex; gap: 26px; font-size: 14px;">
+      <a href="#" style="color: #55504A;">Sobre</a>
+      <a href="#" style="color: #55504A;">Habilidades</a>
+      <a href="#" style="color: #55504A;">Conhecimentos</a>
+      <a href="#" style="color: #55504A;">Experiências</a>
+      <a href="#" style="color: #1C1A17; font-weight: 500; border-bottom: 2px solid #A6482C; padding-bottom: 2px;">Projetos</a>
+      <a href="#" style="color: #55504A;">Blog</a>
+      <a href="#" style="color: #55504A;">Contato</a>
+    </nav>
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <div style="display: flex; align-items: center; border: 1px solid #E4DFD7; border-radius: 4px; overflow: hidden; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px;">
+        <span style="padding: 7px 10px; background: #1C1A17; color: #FAF8F4;">PT</span>
+        <a href="#" style="padding: 7px 10px; color: #857D74;">EN</a>
+      </div>
+      <button style="display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; border: 1px solid #E4DFD7; border-radius: 4px; background: transparent; color: #55504A; cursor: pointer;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+      </button>
+    </div>
+  </header>
+
+  <div style="padding: 20px 80px; border-bottom: 1px solid #EFEBE4;">
+    <div style="max-width: 1180px; margin: 0 auto; display: flex; align-items: center; gap: 8px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; color: #857D74;">
+      <a href="#" style="color: #857D74;">Projetos</a>
+      <span>/</span>
+      <span style="color: #1C1A17;">Plataforma de robôs de coleta</span>
+    </div>
+  </div>
+
+  <main style="padding: 64px 80px 96px;">
+    <div style="max-width: 1180px; margin: 0 auto; display: flex; flex-direction: column; gap: 64px;">
+
+      <section style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 40px;">
+        <div style="grid-column: span 8; display: flex; flex-direction: column; gap: 24px;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #1F5E5B; background: #E8F1F0; border: 1px solid #D3E5E3; padding: 4px 8px; border-radius: 3px;">Em produção</span>
+            <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #A29A90;">2024 — atual · [EMPRESA]</span>
+          </div>
+          <h1 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 54px; line-height: 1.08; letter-spacing: -0.02em;">Plataforma de robôs de coleta de preços</h1>
+          <p style="margin: 0; font-size: 19px; line-height: 1.7; color: #38332E; max-width: 60ch;">Trinta workers coletando ofertas de fontes que mudam sem aviso, com o custo de banda sob controle e quebra de fonte detectada antes de o dado ficar errado.</p>
+        </div>
+        <div style="grid-column: span 4; display: flex; flex-direction: column; gap: 18px; border-left: 1px solid #E4DFD7; padding-left: 32px;">
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #857D74;">Meu papel</span>
+            <span style="font-size: 15px; color: #38332E;">Arquitetura e implementação dos workers</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #857D74;">Time</span>
+            <span style="font-size: 15px; color: #38332E;">[TAMANHO DO TIME]</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #857D74;">Stack</span>
+            <span style="font-size: 15px; color: #38332E;">C#/.NET · PuppeteerSharp · MongoDB · Docker</span>
+          </div>
+          <div style="height: 1px; background: #E4DFD7;"></div>
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #A29A90;">Projeto interno — sem link público nem repositório aberto.</span>
+          </div>
+        </div>
+      </section>
+
+      <div style="width: 100%; aspect-ratio: 21 / 9; background: #F0ECE4; border: 1px solid #E4DFD7; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #B3AAA0;">
+        <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.1em;">[IMAGEM OU DIAGRAMA PRINCIPAL DO PROJETO]</span>
+      </div>
+
+      <section style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 40px;">
+        <div style="grid-column: span 3;">
+          <div style="position: sticky; top: 32px; display: flex; align-items: baseline; gap: 14px;">
+            <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.14em; color: #A6482C;">01</span>
+            <h2 style="margin: 0; font-size: 20px; font-weight: 600;">O problema</h2>
+          </div>
+        </div>
+        <div style="grid-column: span 9; display: flex; flex-direction: column; gap: 18px; font-size: 17px; line-height: 1.75; color: #38332E; max-width: 68ch;">
+          <p style="margin: 0;">O preço de um mesmo veículo aparecia em dezenas de fontes, cada uma com estrutura própria, e mudava ao longo do dia. A consolidação era manual e chegava atrasada — quando a informação era usada para decidir, já não valia.</p>
+          <p style="margin: 0;">Havia três restrições que descartavam a solução óbvia: o volume tornava proibitivo abrir um navegador para cada página, várias fontes exigiam resolução de desafio anti-bot, e o proxy residencial era cobrado por gigabyte.</p>
+        </div>
+      </section>
+
+      <section style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 40px;">
+        <div style="grid-column: span 3;">
+          <div style="display: flex; align-items: baseline; gap: 14px;">
+            <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.14em; color: #A6482C;">02</span>
+            <h2 style="margin: 0; font-size: 20px; font-weight: 600;">Decisões</h2>
+          </div>
+        </div>
+        <div style="grid-column: span 9; display: flex; flex-direction: column; gap: 20px;">
+
+          <div style="background: #FFFFFF; border: 1px solid #E4DFD7; border-radius: 6px; padding: 26px; display: flex; flex-direction: column; gap: 12px;">
+            <h3 style="margin: 0; font-size: 17px; font-weight: 600;">Navegador só onde o desafio exige</h3>
+            <p style="margin: 0; font-size: 15px; line-height: 1.7; color: #55504A;">O browser resolve o anti-bot e entrega os cookies; a coleta em volume segue por HTTP puro. Cortou a maior parte do consumo de banda sem perder acesso às fontes protegidas.</p>
+            <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #857D74;"><strong style="font-weight: 600; color: #55504A;">Trade-off:</strong> dois caminhos de código para manter, e a sessão precisa ser renovada quando o desafio expira.</p>
+          </div>
+
+          <div style="background: #FFFFFF; border: 1px solid #E4DFD7; border-radius: 6px; padding: 26px; display: flex; flex-direction: column; gap: 12px;">
+            <h3 style="margin: 0; font-size: 17px; font-weight: 600;">Coleta incremental em vez de varredura completa</h3>
+            <p style="margin: 0; font-size: 15px; line-height: 1.7; color: #55504A;">Só o que mudou desde o ciclo anterior é buscado em detalhe, preservando a atualização de preço. O acervo continua íntegro com uma fração das requisições.</p>
+            <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #857D74;"><strong style="font-weight: 600; color: #55504A;">Trade-off:</strong> exige um estado confiável do que já foi coletado — se ele corromper, o robô mente dizendo que deu tudo certo.</p>
+          </div>
+
+          <div style="background: #FFFFFF; border: 1px solid #E4DFD7; border-radius: 6px; padding: 26px; display: flex; flex-direction: column; gap: 12px;">
+            <h3 style="margin: 0; font-size: 17px; font-weight: 600;">[DECISÃO]</h3>
+            <p style="margin: 0; font-size: 15px; line-height: 1.7; color: #55504A;">[O que foi decidido e por quê.]</p>
+            <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #857D74;"><strong style="font-weight: 600; color: #55504A;">Trade-off:</strong> [o que ficou mais difícil. Decisão sem custo declarado não é decisão.]</p>
+          </div>
+
+        </div>
+      </section>
+
+      <section style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 40px;">
+        <div style="grid-column: span 3;">
+          <div style="display: flex; align-items: baseline; gap: 14px;">
+            <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.14em; color: #A6482C;">03</span>
+            <h2 style="margin: 0; font-size: 20px; font-weight: 600;">Arquitetura</h2>
+          </div>
+        </div>
+        <div style="grid-column: span 9; display: flex; flex-direction: column; gap: 20px;">
+          <div style="width: 100%; height: 260px; background: #F4F0E9; border: 1px dashed #D9D2C8; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: #A29A90;">
+            <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.1em;">[DIAGRAMA DE ARQUITETURA — Mermaid renderizado]</span>
+          </div>
+          <p style="margin: 0; font-size: 16px; line-height: 1.75; color: #38332E; max-width: 68ch;">[Descreva o fluxo em dois ou três parágrafos: o que dispara a execução, como o trabalho é distribuído, onde o dado é persistido e como a falha de uma etapa é tratada.]</p>
+        </div>
+      </section>
+
+      <section style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 40px;">
+        <div style="grid-column: span 3;">
+          <div style="display: flex; align-items: baseline; gap: 14px;">
+            <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.14em; color: #A6482C;">04</span>
+            <h2 style="margin: 0; font-size: 20px; font-weight: 600;">Resultado</h2>
+          </div>
+        </div>
+        <div style="grid-column: span 9; display: flex; flex-direction: column; gap: 24px;">
+          <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px;">
+            <div style="border: 1px solid #E4DFD7; background: #FFFFFF; border-radius: 6px; padding: 24px; display: flex; flex-direction: column; gap: 6px;">
+              <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 34px; color: #A6482C; line-height: 1;">[MÉTRICA]</span>
+              <span style="font-size: 14px; color: #55504A; line-height: 1.5;">redução no consumo de banda por ciclo</span>
+            </div>
+            <div style="border: 1px solid #E4DFD7; background: #FFFFFF; border-radius: 6px; padding: 24px; display: flex; flex-direction: column; gap: 6px;">
+              <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 34px; color: #A6482C; line-height: 1;">[MÉTRICA]</span>
+              <span style="font-size: 14px; color: #55504A; line-height: 1.5;">fontes coletadas de forma contínua</span>
+            </div>
+            <div style="border: 1px solid #E4DFD7; background: #FFFFFF; border-radius: 6px; padding: 24px; display: flex; flex-direction: column; gap: 6px;">
+              <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 34px; color: #A6482C; line-height: 1;">[MÉTRICA]</span>
+              <span style="font-size: 14px; color: #55504A; line-height: 1.5;">tempo até um robô novo entrar em produção</span>
+            </div>
+          </div>
+          <p style="margin: 0; font-size: 16px; line-height: 1.75; color: #38332E; max-width: 68ch;">[Feche com o aprendizado — inclusive o que você faria diferente. Um case sem nada a melhorar não convence quem já entregou software de verdade.]</p>
+        </div>
+      </section>
+
+      <nav style="display: flex; justify-content: space-between; gap: 24px; border-top: 1px solid #E4DFD7; padding-top: 32px;">
+        <a href="#" style="display: flex; flex-direction: column; gap: 5px;">
+          <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #857D74;">← Anterior</span>
+          <span style="font-size: 16px; font-weight: 500;">DaviDev — este site</span>
+        </a>
+        <a href="#" style="display: flex; flex-direction: column; gap: 5px; text-align: right;">
+          <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #857D74;">Próximo →</span>
+          <span style="font-size: 16px; font-weight: 500;">[NOME DO PROJETO]</span>
+        </a>
+      </nav>
+
+    </div>
+  </main>
+
+  <footer style="border-top: 1px solid #E4DFD7; padding: 44px 80px 56px;">
+    <div style="max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 32px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; color: #857D74; line-height: 1.9;">
+      <div style="grid-column: span 5; display: flex; flex-direction: column; gap: 6px;">
+        <div style="color: #55504A;">Colofão</div>
+        <div>Next.js · Fastify · PostgreSQL/Neon · Drizzle</div>
+        <div>Arquitetura hexagonal · deploy na Vercel</div>
+      </div>
+      <div style="grid-column: span 4; display: flex; flex-direction: column; gap: 6px;">
+        <div style="color: #55504A;">Contato</div>
+        <a href="#" style="color: #857D74;">[SEU E-MAIL]</a>
+        <a href="#" style="color: #857D74;">LinkedIn</a>
+        <a href="#" style="color: #857D74;">GitHub</a>
+      </div>
+      <div style="grid-column: span 3; display: flex; flex-direction: column; gap: 6px; align-items: flex-end;">
+        <a href="#" style="color: #857D74;">Política de privacidade</a>
+        <a href="#" style="color: #857D74;">Código-fonte deste site</a>
+        <div style="color: #A29A90;">© 2026 davidev.net.br</div>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+</body>
+</html>

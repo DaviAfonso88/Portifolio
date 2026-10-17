@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; background: #FAF8F4; color: #1C1A17; font-family: Archivo, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+    * { box-sizing: border-box; }
+    a { color: #A6482C; text-decoration: none; }
+    a:hover { color: #7E351F; }
+  </style>
+</helmet>
+
+<div style="display: flex; flex-direction: column;">
+
+  <header style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 20px; border-bottom: 1px solid #E4DFD7; position: sticky; top: 0; background: #FAF8F4;">
+    <a href="#" style="font-family: 'Instrument Serif', Georgia, serif; font-size: 21px; color: #1C1A17;">davidev</a>
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <button style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border: 1px solid #E4DFD7; border-radius: 5px; background: transparent; color: #55504A; cursor: pointer;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+      </button>
+      <button style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border: 1px solid #E4DFD7; border-radius: 5px; background: transparent; color: #1C1A17; cursor: pointer;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+      </button>
+    </div>
+  </header>
+
+  <div style="height: 3px; background: #EFEBE4;"><div style="height: 3px; width: 22%; background: #A6482C;"></div></div>
+
+  <article style="padding: 26px 20px 40px; display: flex; flex-direction: column; gap: 20px;">
+
+    <a href="#" style="display: inline-flex; align-items: center; gap: 7px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; color: #857D74;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"></path></svg>
+      Blog
+    </a>
+
+    <div style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #A6482C;">Backend</div>
+
+    <h1 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 34px; line-height: 1.12; letter-spacing: -0.02em;">Rate limiting em serverless: o bug que passa em todo teste local</h1>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11.5px; color: #857D74;">
+      <span>Publicado 19 ago 2026</span>
+      <span style="color: #D9D2C8;">·</span>
+      <span style="color: #A6482C;">Atualizado 04 set</span>
+      <span style="color: #D9D2C8;">·</span>
+      <span>7 min</span>
+    </div>
+
+    <p style="margin: 0; font-size: 17.5px; line-height: 1.65; color: #55504A;">Um contador em memória funciona perfeitamente na sua máquina e desaparece em produção — sem erro, sem log, sem nada que denuncie.</p>
+
+    <div style="width: 100%; aspect-ratio: 16 / 9; background: #F0ECE4; border: 1px solid #E4DFD7; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: #B3AAA0;">
+      <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px;">[IMAGEM DE CAPA]</span>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 20px; font-size: 17px; line-height: 1.75; color: #2A2621;">
+      <h2 style="margin: 8px 0 0; font-size: 23px; font-weight: 600; line-height: 1.3;">O contador que some</h2>
+      <p style="margin: 0;">A implementação ingênua de rate limiting guarda um <code style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 14px; background: #F0ECE4; border: 1px solid #E9E4DB; padding: 1px 5px; border-radius: 3px;">Map</code> em memória: chave é o IP, valor é a contagem na janela.</p>
+      <p style="margin: 0;">Em execução serverless, não existe "o processo". Cada requisição pode cair em uma instância diferente, criada agora e destruída em seguida.</p>
+      <blockquote style="margin: 0; padding: 2px 0 2px 18px; border-left: 3px solid #A6482C; font-size: 18px; line-height: 1.7; color: #38332E;">Os testes passam, o deploy sobe — e a proteção contra força bruta simplesmente não existe.</blockquote>
+      <h2 style="margin: 8px 0 0; font-size: 23px; font-weight: 600; line-height: 1.3;">Store compartilhado sem Redis</h2>
+      <p style="margin: 0;">O PostgreSQL que já está no projeto resolve, com uma tabela e um upsert atômico:</p>
+      <pre style="margin: 0; background: #1C1A17; border-radius: 6px; padding: 16px 18px; overflow-x: auto; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12.5px; line-height: 1.7;"><code style="color: #EDE9E3;"><span style="color: #C99B7E;">INSERT INTO</span> rate_limit_counter
+  (key, window_start, hits)
+<span style="color: #C99B7E;">VALUES</span> ($1, $2, <span style="color: #9BB89B;">1</span>)
+<span style="color: #C99B7E;">ON CONFLICT</span> (key, window_start)
+<span style="color: #C99B7E;">DO UPDATE SET</span> hits = ... + <span style="color: #9BB89B;">1</span>;</code></pre>
+      <p style="margin: 0;">O bloco de código rola horizontalmente dentro do próprio contêiner — a página nunca rola de lado.</p>
+    </div>
+
+    <div style="display: flex; gap: 7px; flex-wrap: wrap; border-top: 1px solid #E4DFD7; padding-top: 20px;">
+      <a href="#" style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; color: #55504A; border: 1px solid #E4DFD7; padding: 7px 11px; border-radius: 3px;">serverless</a>
+      <a href="#" style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; color: #55504A; border: 1px solid #E4DFD7; padding: 7px 11px; border-radius: 3px;">postgres</a>
+    </div>
+
+    <a href="#" style="display: flex; flex-direction: column; gap: 6px; border: 1px solid #E4DFD7; background: #FFFFFF; border-radius: 6px; padding: 18px;">
+      <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #857D74;">Próximo →</span>
+      <span style="font-size: 15.5px; font-weight: 500; line-height: 1.45; color: #1C1A17;">Por que a arquitetura hexagonal se pagou num projeto de uma pessoa só</span>
+    </a>
+
+  </article>
+
+</div>
+</x-dc>
+</body>
+</html>

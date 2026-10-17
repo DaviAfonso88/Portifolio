@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; background: #F4F0E9; color: #1C1A17; font-family: Archivo, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+    * { box-sizing: border-box; }
+    a { color: #A6482C; text-decoration: none; }
+    a:hover { color: #7E351F; text-decoration: underline; }
+  </style>
+</helmet>
+
+<div style="position: relative; height: 100%; display: grid; grid-template-columns: 244px 1fr;">
+
+  <aside style="background: #1C1A17; padding: 24px 16px; display: flex; flex-direction: column; gap: 28px;">
+    <div style="display: flex; flex-direction: column; gap: 3px; padding: 0 10px;">
+      <span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 22px; color: #FAF8F4;">davidev</span>
+      <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #7C736A;">Painel</span>
+    </div>
+    <nav style="display: flex; flex-direction: column; gap: 3px;">
+      <a href="#" style="display: flex; align-items: center; gap: 11px; height: 40px; padding: 0 12px; border-radius: 5px; color: #A29A90; font-size: 14px;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h11l3 3v13H5z"></path><path d="M9 10h6M9 14h6"></path></svg>
+        Artigos
+      </a>
+      <a href="#" style="display: flex; align-items: center; gap: 11px; height: 40px; padding: 0 12px; border-radius: 5px; background: #2E2A26; color: #FAF8F4; font-size: 14px; font-weight: 500;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M9 7V5h6v2M6 7l1 13h10l1-13"></path></svg>
+        Lixeira
+        <span style="margin-left: auto; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #A29A90;">2</span>
+      </a>
+      <a href="#" style="display: flex; align-items: center; gap: 11px; height: 40px; padding: 0 12px; border-radius: 5px; color: #A29A90; font-size: 14px;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h10"></path></svg>
+        Categorias e tags
+      </a>
+      <a href="#" style="display: flex; align-items: center; gap: 11px; height: 40px; padding: 0 12px; border-radius: 5px; color: #A29A90; font-size: 14px;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18v12H3z"></path><path d="M3 7l9 6 9-6"></path></svg>
+        Mensagens
+      </a>
+    </nav>
+  </aside>
+
+  <main style="padding: 28px 36px 48px; display: flex; flex-direction: column; gap: 24px;">
+
+    <div style="display: flex; flex-direction: column; gap: 4px;">
+      <h1 style="margin: 0; font-size: 25px; font-weight: 600;">Lixeira</h1>
+      <span style="font-size: 13.5px; color: #857D74;">Artigos retirados do ar. Podem ser restaurados a qualquer momento.</span>
+    </div>
+
+    <div style="display: flex; gap: 12px; background: #FDF6F4; border: 1px solid #EFD8D1; border-radius: 6px; padding: 16px 18px;">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#B5442B" stroke-width="1.6" stroke-linecap="round" style="flex-shrink: 0; margin-top: 2px;"><path d="M12 4l9 16H3z"></path><path d="M12 10v4M12 17h.01"></path></svg>
+      <p style="margin: 0; font-size: 13.5px; line-height: 1.65; color: #8C3721;">A exclusão definitiva remove o artigo <strong style="font-weight: 600;">fisicamente do banco</strong>, com todo o histórico de versões e os redirecionamentos de endereço. Não existe recuperação depois disso.</p>
+    </div>
+
+    <div style="background: #FFFFFF; border: 1px solid #E4DFD7; border-radius: 8px; overflow: hidden;">
+      <div style="display: grid; grid-template-columns: 1fr 150px 160px 240px; gap: 16px; padding: 13px 20px; background: #FAF8F4; border-bottom: 1px solid #E4DFD7; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #857D74;">
+        <span>Título</span>
+        <span>Estava como</span>
+        <span>Enviado à lixeira</span>
+        <span></span>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 150px 160px 240px; gap: 16px; padding: 16px 20px; border-bottom: 1px solid #F0ECE4; align-items: center;">
+        <div style="display: flex; flex-direction: column; gap: 3px;">
+          <span style="font-size: 15px; font-weight: 500;">Comparando ORMs de TypeScript em 2026</span>
+          <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #A29A90;">3 versões · 1 slug histórico</span>
+        </div>
+        <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: #1F5E5B;"><span style="width: 7px; height: 7px; border-radius: 4px; background: #1F5E5B;"></span>Publicado</span>
+        <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12.5px; color: #55504A;">06 set 2026</span>
+        <div style="display: flex; gap: 8px; justify-content: flex-end;">
+          <button style="height: 34px; padding: 0 14px; border: 1px solid #DDD6CB; border-radius: 5px; background: #FFFFFF; color: #38332E; font-family: Archivo, system-ui, sans-serif; font-size: 13.5px; cursor: pointer;">Restaurar</button>
+          <button style="height: 34px; padding: 0 14px; border: 1px solid #E7C9BF; border-radius: 5px; background: #FDF6F4; color: #B5442B; font-family: Archivo, system-ui, sans-serif; font-size: 13.5px; cursor: pointer;">Excluir definitivamente</button>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 150px 160px 240px; gap: 16px; padding: 16px 20px; align-items: center; background: #FBFAF7;">
+        <div style="display: flex; flex-direction: column; gap: 3px;">
+          <span style="font-size: 15px; font-weight: 500;">Rascunho antigo sobre microserviços</span>
+          <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #A29A90;">sem versões · nunca publicado</span>
+        </div>
+        <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: #857D74;"><span style="width: 7px; height: 7px; border-radius: 4px; background: #C4BCB1;"></span>Rascunho</span>
+        <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12.5px; color: #55504A;">28 ago 2026</span>
+        <div style="display: flex; gap: 8px; justify-content: flex-end;">
+          <button style="height: 34px; padding: 0 14px; border: 1px solid #DDD6CB; border-radius: 5px; background: #FFFFFF; color: #38332E; font-family: Archivo, system-ui, sans-serif; font-size: 13.5px; cursor: pointer;">Restaurar</button>
+          <button style="height: 34px; padding: 0 14px; border: 1px solid #E7C9BF; border-radius: 5px; background: #FDF6F4; color: #B5442B; font-family: Archivo, system-ui, sans-serif; font-size: 13.5px; cursor: pointer;">Excluir definitivamente</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <div style="position: absolute; inset: 0; background: rgba(28, 26, 23, 0.42); display: flex; align-items: center; justify-content: center; padding: 40px;">
+    <div style="width: 100%; max-width: 540px; background: #FFFFFF; border-radius: 10px; box-shadow: 0 24px 60px rgba(28, 26, 23, 0.22); overflow: hidden;">
+      <div style="padding: 30px 32px 24px; display: flex; flex-direction: column; gap: 16px;">
+        <div style="display: flex; align-items: center; gap: 13px;">
+          <div style="width: 38px; height: 38px; border-radius: 19px; background: #FDF0EC; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#B5442B" stroke-width="1.75" stroke-linecap="round"><path d="M12 4l9 16H3z"></path><path d="M12 10v4M12 17h.01"></path></svg>
+          </div>
+          <h2 style="margin: 0; font-size: 20px; font-weight: 600;">Excluir definitivamente?</h2>
+        </div>
+        <p style="margin: 0; font-size: 15px; line-height: 1.7; color: #38332E;">Excluir definitivamente remove o artigo, todo o seu histórico de versões e os redirecionamentos do endereço antigo. <strong style="font-weight: 600;">Esta ação não pode ser desfeita.</strong> Se você só quer tirar o artigo do ar, use “Despublicar”.</p>
+        <div style="background: #FAF8F4; border: 1px solid #E4DFD7; border-radius: 5px; padding: 14px 16px; display: flex; flex-direction: column; gap: 5px;">
+          <span style="font-size: 14px; font-weight: 500;">Comparando ORMs de TypeScript em 2026</span>
+          <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11.5px; color: #857D74;">3 versões · 1 slug histórico serão removidos junto</span>
+        </div>
+      </div>
+      <div style="display: flex; justify-content: flex-end; gap: 10px; padding: 18px 32px; background: #FAF8F4; border-top: 1px solid #E4DFD7;">
+        <button style="height: 42px; padding: 0 18px; border: 1px solid #DDD6CB; border-radius: 5px; background: #FFFFFF; color: #38332E; font-family: Archivo, system-ui, sans-serif; font-size: 14px; cursor: pointer;">Cancelar</button>
+        <button style="height: 42px; padding: 0 18px; border: 1px solid #DDD6CB; border-radius: 5px; background: #FFFFFF; color: #38332E; font-family: Archivo, system-ui, sans-serif; font-size: 14px; cursor: pointer;">Restaurar e despublicar</button>
+        <button style="height: 42px; padding: 0 20px; border: none; border-radius: 5px; background: #B5442B; color: #FFFFFF; font-family: Archivo, system-ui, sans-serif; font-size: 14px; font-weight: 500; cursor: pointer;">Excluir definitivamente</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

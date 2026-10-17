@@ -1,0 +1,157 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; background: #FAF8F4; color: #1C1A17; font-family: Archivo, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+    * { box-sizing: border-box; }
+    a { color: #A6482C; text-decoration: none; }
+    a:hover { color: #7E351F; text-decoration: underline; }
+  </style>
+</helmet>
+
+<div style="min-height: 100%; display: flex; flex-direction: column;">
+
+  <header style="display: flex; align-items: center; justify-content: space-between; gap: 40px; padding: 18px 80px; border-bottom: 1px solid #E4DFD7;">
+    <a href="#" style="font-family: 'Instrument Serif', Georgia, serif; font-size: 23px; color: #1C1A17;">davidev</a>
+    <nav style="display: flex; gap: 26px; font-size: 14px;">
+      <a href="#" style="color: #55504A;">Sobre</a>
+      <a href="#" style="color: #55504A;">Habilidades</a>
+      <a href="#" style="color: #55504A;">Conhecimentos</a>
+      <a href="#" style="color: #1C1A17; font-weight: 500; border-bottom: 2px solid #A6482C; padding-bottom: 2px;">Experiências</a>
+      <a href="#" style="color: #55504A;">Projetos</a>
+      <a href="#" style="color: #55504A;">Blog</a>
+      <a href="#" style="color: #55504A;">Contato</a>
+    </nav>
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <div style="display: flex; align-items: center; border: 1px solid #E4DFD7; border-radius: 4px; overflow: hidden; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px;">
+        <span style="padding: 7px 10px; background: #1C1A17; color: #FAF8F4;">PT</span>
+        <a href="#" style="padding: 7px 10px; color: #857D74;">EN</a>
+      </div>
+      <button style="display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; border: 1px solid #E4DFD7; border-radius: 4px; background: transparent; color: #55504A; cursor: pointer;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+      </button>
+    </div>
+  </header>
+
+  <main style="padding: 72px 80px 96px;">
+    <div style="max-width: 1180px; margin: 0 auto; display: flex; flex-direction: column; gap: 48px;">
+
+      <div style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 40px; align-items: end;">
+        <div style="grid-column: span 7; display: flex; flex-direction: column; gap: 18px;">
+          <div style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #857D74;">Experiências</div>
+          <h1 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 52px; line-height: 1.1; letter-spacing: -0.02em;">O que eu resolvi, não o que estava no&nbsp;contrato.</h1>
+        </div>
+        <div style="grid-column: span 5; border-left: 1px solid #E4DFD7; padding-left: 28px;">
+          <p style="margin: 0; font-size: 15px; line-height: 1.7; color: #55504A;">Cada posição descrita pelo problema que existia e pelo que mudou depois. Informações sensíveis de clientes e empregadores não aparecem aqui.</p>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column;">
+
+        <article style="display: grid; grid-template-columns: 220px 1fr; gap: 40px; padding: 36px 0; border-top: 1px solid #E4DFD7;">
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; color: #A6482C;">[MÊS/ANO] — atual</span>
+            <span style="font-size: 15px; font-weight: 600; line-height: 1.4;">[EMPRESA]</span>
+            <span style="font-size: 14px; color: #857D74;">[CARGO]</span>
+            <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #A29A90;">[CLT / PJ] · [remoto / híbrido]</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 18px;">
+            <p style="margin: 0; font-size: 16px; line-height: 1.7; color: #38332E;">Plataforma de coleta e consolidação de ofertas de veículos, alimentando decisões comerciais que antes dependiam de pesquisa manual.</p>
+            <ul style="margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 10px; font-size: 15px; line-height: 1.65; color: #55504A;">
+              <li>Construí e mantive workers de coleta contínua sobre fontes que mudam de estrutura sem aviso, com detecção de quebra antes que os dados ficassem errados.</li>
+              <li>Reduzi o consumo de proxy pago com bloqueio agressivo de assets e coleta incremental — a mesma cobertura, com uma fração da banda.</li>
+              <li>Padronizei o esqueleto dos workers, reduzindo o tempo entre "site novo mapeado" e "robô em produção".</li>
+              <li>[Responsabilidade adicional — descreva pelo problema, não pela atividade.]</li>
+            </ul>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap; padding-top: 4px;">
+              <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #55504A; border: 1px solid #E4DFD7; padding: 5px 9px; border-radius: 3px;">C# / .NET</span>
+              <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #55504A; border: 1px solid #E4DFD7; padding: 5px 9px; border-radius: 3px;">PuppeteerSharp</span>
+              <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #55504A; border: 1px solid #E4DFD7; padding: 5px 9px; border-radius: 3px;">MongoDB</span>
+              <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #55504A; border: 1px solid #E4DFD7; padding: 5px 9px; border-radius: 3px;">Docker</span>
+              <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #55504A; border: 1px solid #E4DFD7; padding: 5px 9px; border-radius: 3px;">Azure DevOps</span>
+            </div>
+          </div>
+        </article>
+
+        <article style="display: grid; grid-template-columns: 220px 1fr; gap: 40px; padding: 36px 0; border-top: 1px solid #E4DFD7;">
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; color: #857D74;">[MÊS/ANO] — [MÊS/ANO]</span>
+            <span style="font-size: 15px; font-weight: 600; line-height: 1.4;">[EMPRESA]</span>
+            <span style="font-size: 14px; color: #857D74;">[CARGO]</span>
+            <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #A29A90;">[CLT / PJ] · [modelo]</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 18px;">
+            <p style="margin: 0; font-size: 16px; line-height: 1.7; color: #38332E;">[Contexto em uma frase: que problema o time existia para resolver, e onde você entrou nele.]</p>
+            <ul style="margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 10px; font-size: 15px; line-height: 1.65; color: #55504A;">
+              <li>[O que estava quebrado ou lento, e o que passou a acontecer depois de você.]</li>
+              <li>[Decisão técnica que você tomou e defendeu.]</li>
+              <li>[Algo que você automatizou, simplificou ou removeu.]</li>
+            </ul>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap; padding-top: 4px;">
+              <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #55504A; border: 1px solid #E4DFD7; padding: 5px 9px; border-radius: 3px;">[STACK]</span>
+              <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #55504A; border: 1px solid #E4DFD7; padding: 5px 9px; border-radius: 3px;">[STACK]</span>
+            </div>
+          </div>
+        </article>
+
+        <article style="display: grid; grid-template-columns: 220px 1fr; gap: 40px; padding: 36px 0; border-top: 1px solid #E4DFD7; border-bottom: 1px solid #E4DFD7;">
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; color: #857D74;">[MÊS/ANO] — [MÊS/ANO]</span>
+            <span style="font-size: 15px; font-weight: 600; line-height: 1.4;">[EMPRESA]</span>
+            <span style="font-size: 14px; color: #857D74;">[CARGO]</span>
+            <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #A29A90;">[CLT / PJ] · [modelo]</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 18px;">
+            <p style="margin: 0; font-size: 16px; line-height: 1.7; color: #38332E;">[Contexto.]</p>
+            <ul style="margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 10px; font-size: 15px; line-height: 1.65; color: #55504A;">
+              <li>[Responsabilidade descrita como problema resolvido.]</li>
+              <li>[Responsabilidade.]</li>
+            </ul>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap; padding-top: 4px;">
+              <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #55504A; border: 1px solid #E4DFD7; padding: 5px 9px; border-radius: 3px;">[STACK]</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 14px; background: #F4F0E9; border: 1px solid #E4DFD7; border-radius: 6px; padding: 18px 22px;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#857D74" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5M12 8h.01"></path></svg>
+        <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #55504A;">Formação, cursos e certificações ficam fora desta página por decisão — quem avalia tecnicamente lê o que foi feito, não o que foi cursado. <a href="#">Peça o currículo completo</a> se precisar.</p>
+      </div>
+
+    </div>
+  </main>
+
+  <footer style="border-top: 1px solid #E4DFD7; padding: 44px 80px 56px; margin-top: auto;">
+    <div style="max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 32px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; color: #857D74; line-height: 1.9;">
+      <div style="grid-column: span 5; display: flex; flex-direction: column; gap: 6px;">
+        <div style="color: #55504A;">Colofão</div>
+        <div>Next.js · Fastify · PostgreSQL/Neon · Drizzle</div>
+        <div>Arquitetura hexagonal · deploy na Vercel</div>
+      </div>
+      <div style="grid-column: span 4; display: flex; flex-direction: column; gap: 6px;">
+        <div style="color: #55504A;">Contato</div>
+        <a href="#" style="color: #857D74;">[SEU E-MAIL]</a>
+        <a href="#" style="color: #857D74;">LinkedIn</a>
+        <a href="#" style="color: #857D74;">GitHub</a>
+      </div>
+      <div style="grid-column: span 3; display: flex; flex-direction: column; gap: 6px; align-items: flex-end;">
+        <a href="#" style="color: #857D74;">Política de privacidade</a>
+        <a href="#" style="color: #857D74;">Código-fonte deste site</a>
+        <div style="color: #A29A90;">© 2026 davidev.net.br</div>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+</body>
+</html>

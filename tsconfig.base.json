@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["DOM", "DOM.Iterable", "ES2022"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "forceConsistentCasingInFileNames": true,
+    "declaration": true,
+    "declarationMap": true,
+    "baseUrl": ".",
+    "paths": {
+      "@davidev/domain": ["packages/domain/src/index.ts"],
+      "@davidev/domain/*": ["packages/domain/src/*"],
+      "@davidev/application": ["packages/application/src/index.ts"],
+      "@davidev/application/*": ["packages/application/src/*"],
+      "@davidev/infrastructure": ["packages/infrastructure/src/index.ts"],
+      "@davidev/infrastructure/*": ["packages/infrastructure/src/*"],
+      "@davidev/http": ["packages/http/src/index.ts"],
+      "@davidev/http/*": ["packages/http/src/*"],
+      "@davidev/api-client": ["packages/api-client/src/index.ts"],
+      "@davidev/api-client/*": ["packages/api-client/src/*"],
+      "@/*": ["apps/web/*"]
+    }
+  },
+  "exclude": ["node_modules", "dist", ".next"]
+}

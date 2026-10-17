@@ -1,0 +1,202 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; background: #F4F0E9; color: #1C1A17; font-family: Archivo, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+    * { box-sizing: border-box; }
+    a { color: #A6482C; text-decoration: none; }
+    a:hover { color: #7E351F; text-decoration: underline; }
+  </style>
+</helmet>
+
+<div style="min-height: 100%; display: grid; grid-template-columns: 244px 1fr;">
+
+  <aside style="background: #1C1A17; padding: 24px 16px; display: flex; flex-direction: column; gap: 28px;">
+    <div style="display: flex; flex-direction: column; gap: 3px; padding: 0 10px;">
+      <span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 22px; color: #FAF8F4;">davidev</span>
+      <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #7C736A;">Painel</span>
+    </div>
+
+    <nav style="display: flex; flex-direction: column; gap: 3px;">
+      <a href="#" style="display: flex; align-items: center; gap: 11px; height: 40px; padding: 0 12px; border-radius: 5px; background: #2E2A26; color: #FAF8F4; font-size: 14px; font-weight: 500;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h11l3 3v13H5z"></path><path d="M9 10h6M9 14h6"></path></svg>
+        Artigos
+        <span style="margin-left: auto; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #A29A90;">24</span>
+      </a>
+      <a href="#" style="display: flex; align-items: center; gap: 11px; height: 40px; padding: 0 12px; border-radius: 5px; color: #A29A90; font-size: 14px;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M9 7V5h6v2M6 7l1 13h10l1-13"></path></svg>
+        Lixeira
+        <span style="margin-left: auto; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #7C736A;">2</span>
+      </a>
+      <a href="#" style="display: flex; align-items: center; gap: 11px; height: 40px; padding: 0 12px; border-radius: 5px; color: #A29A90; font-size: 14px;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h10"></path></svg>
+        Categorias e tags
+      </a>
+      <a href="#" style="display: flex; align-items: center; gap: 11px; height: 40px; padding: 0 12px; border-radius: 5px; color: #A29A90; font-size: 14px;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18v12H3z"></path><path d="M3 7l9 6 9-6"></path></svg>
+        Mensagens
+        <span style="margin-left: auto; display: inline-flex; align-items: center; justify-content: center; min-width: 20px; height: 20px; padding: 0 6px; border-radius: 10px; background: #A6482C; color: #FFFFFF; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px;">3</span>
+      </a>
+    </nav>
+
+    <div style="margin-top: auto; display: flex; flex-direction: column; gap: 10px; padding: 0 10px;">
+      <div style="height: 1px; background: #2E2A26;"></div>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <div style="width: 30px; height: 30px; border-radius: 15px; background: #3A342E; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: #EDE9E3;">D</div>
+        <div style="display: flex; flex-direction: column;">
+          <span style="font-size: 13px; color: #EDE9E3;">Davi</span>
+          <a href="#" style="font-size: 12px; color: #7C736A;">Sair</a>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <main style="padding: 28px 36px 48px; display: flex; flex-direction: column; gap: 24px;">
+
+    <div style="display: flex; align-items: center; justify-content: space-between; gap: 24px;">
+      <div style="display: flex; flex-direction: column; gap: 4px;">
+        <h1 style="margin: 0; font-size: 25px; font-weight: 600;">Artigos</h1>
+        <span style="font-size: 13.5px; color: #857D74;">24 artigos · 19 publicados · 5 rascunhos</span>
+      </div>
+      <a href="#" style="display: inline-flex; align-items: center; gap: 8px; height: 42px; padding: 0 18px; background: #1C1A17; color: #FAF8F4; border-radius: 5px; font-size: 14px; font-weight: 500;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>
+        Novo artigo
+      </a>
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+      <div style="position: relative; display: flex; align-items: center; flex: 1; min-width: 260px; max-width: 380px;">
+        <span style="position: absolute; left: 13px; display: flex; color: #A29A90;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M16.5 16.5L21 21"></path></svg>
+        </span>
+        <input type="text" placeholder="Buscar por título" style="width: 100%; height: 40px; padding: 0 14px 0 38px; border: 1px solid #DDD6CB; border-radius: 5px; background: #FFFFFF; font-family: Archivo, system-ui, sans-serif; font-size: 14px; color: #1C1A17;">
+      </div>
+      <div style="display: flex; gap: 5px; background: #EBE6DE; border-radius: 5px; padding: 3px;">
+        <a href="#" style="height: 34px; display: inline-flex; align-items: center; padding: 0 15px; border-radius: 4px; background: #FFFFFF; color: #1C1A17; font-size: 13.5px; font-weight: 500;">Todos</a>
+        <a href="#" style="height: 34px; display: inline-flex; align-items: center; padding: 0 15px; border-radius: 4px; color: #55504A; font-size: 13.5px;">Publicados</a>
+        <a href="#" style="height: 34px; display: inline-flex; align-items: center; padding: 0 15px; border-radius: 4px; color: #55504A; font-size: 13.5px;">Rascunhos</a>
+      </div>
+      <div style="display: flex; gap: 5px; background: #EBE6DE; border-radius: 5px; padding: 3px;">
+        <a href="#" style="height: 34px; display: inline-flex; align-items: center; padding: 0 13px; border-radius: 4px; background: #FFFFFF; color: #1C1A17; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px;">PT</a>
+        <a href="#" style="height: 34px; display: inline-flex; align-items: center; padding: 0 13px; border-radius: 4px; color: #55504A; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px;">EN</a>
+      </div>
+    </div>
+
+    <div style="background: #FFFFFF; border: 1px solid #E4DFD7; border-radius: 8px; overflow: hidden;">
+      <div style="display: grid; grid-template-columns: 1fr 130px 140px 120px 120px 44px; gap: 16px; padding: 13px 20px; background: #FAF8F4; border-bottom: 1px solid #E4DFD7; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #857D74;">
+        <span>Título</span>
+        <span>Status</span>
+        <span>Categoria</span>
+        <span>Publicado</span>
+        <span>Atualizado</span>
+        <span></span>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 130px 140px 120px 120px 44px; gap: 16px; padding: 16px 20px; border-bottom: 1px solid #F0ECE4; align-items: center;">
+        <div style="display: flex; flex-direction: column; gap: 3px; min-width: 0;">
+          <a href="#" style="font-size: 15px; font-weight: 500; color: #1C1A17;">Rate limiting em serverless: o bug que passa em todo teste local</a>
+          <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #A29A90;">/blog/rate-limiting-serverless</span>
+        </div>
+        <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: #1F5E5B;">
+          <span style="width: 7px; height: 7px; border-radius: 4px; background: #1F5E5B;"></span> Publicado
+        </span>
+        <span style="font-size: 13.5px; color: #55504A;">Backend</span>
+        <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12.5px; color: #55504A;">19 ago</span>
+        <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12.5px; color: #A6482C;">04 set</span>
+        <button style="width: 30px; height: 30px; display: inline-flex; align-items: center; justify-content: center; border: none; background: transparent; color: #857D74; cursor: pointer;">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
+        </button>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 130px 140px 120px 120px 44px; gap: 16px; padding: 16px 20px; border-bottom: 1px solid #F0ECE4; align-items: center; background: #FBFAF7;">
+        <div style="display: flex; flex-direction: column; gap: 3px; min-width: 0;">
+          <a href="#" style="font-size: 15px; font-weight: 500; color: #1C1A17;">Por que a arquitetura hexagonal se pagou num projeto de uma pessoa só</a>
+          <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #A29A90;">/blog/hexagonal-projeto-solo</span>
+        </div>
+        <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: #1F5E5B;">
+          <span style="width: 7px; height: 7px; border-radius: 4px; background: #1F5E5B;"></span> Publicado
+        </span>
+        <span style="font-size: 13.5px; color: #55504A;">Arquitetura</span>
+        <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12.5px; color: #55504A;">02 set</span>
+        <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12.5px; color: #A29A90;">—</span>
+        <button style="width: 30px; height: 30px; display: inline-flex; align-items: center; justify-content: center; border: none; background: transparent; color: #857D74; cursor: pointer;">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
+        </button>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 130px 140px 120px 120px 44px; gap: 16px; padding: 16px 20px; border-bottom: 1px solid #F0ECE4; align-items: center;">
+        <div style="display: flex; flex-direction: column; gap: 3px; min-width: 0;">
+          <a href="#" style="font-size: 15px; font-weight: 500; color: #1C1A17;">Migrations forward-only e a armadilha do rollback instantâneo</a>
+          <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #A29A90;">sem slug definido</span>
+        </div>
+        <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: #857D74;">
+          <span style="width: 7px; height: 7px; border-radius: 4px; background: #C4BCB1;"></span> Rascunho
+        </span>
+        <span style="font-size: 13.5px; color: #55504A;">DevOps</span>
+        <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12.5px; color: #A29A90;">—</span>
+        <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12.5px; color: #55504A;">05 set</span>
+        <button style="width: 30px; height: 30px; display: inline-flex; align-items: center; justify-content: center; border: none; background: transparent; color: #857D74; cursor: pointer;">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
+        </button>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 130px 140px 120px 120px 44px; gap: 16px; padding: 16px 20px; border-bottom: 1px solid #F0ECE4; align-items: center; background: #FBFAF7;">
+        <div style="display: flex; flex-direction: column; gap: 3px; min-width: 0;">
+          <a href="#" style="font-size: 15px; font-weight: 500; color: #1C1A17;">Reduzindo 60% do consumo de proxy em robôs de coleta</a>
+          <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #A29A90;">/blog/reduzindo-consumo-proxy</span>
+        </div>
+        <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: #1F5E5B;">
+          <span style="width: 7px; height: 7px; border-radius: 4px; background: #1F5E5B;"></span> Publicado
+        </span>
+        <span style="font-size: 13.5px; color: #55504A;">Automação</span>
+        <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12.5px; color: #55504A;">30 jul</span>
+        <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12.5px; color: #A29A90;">—</span>
+        <button style="width: 30px; height: 30px; display: inline-flex; align-items: center; justify-content: center; border: none; background: transparent; color: #857D74; cursor: pointer;">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
+        </button>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 130px 140px 120px 120px 44px; gap: 16px; padding: 16px 20px; align-items: center;">
+        <div style="display: flex; flex-direction: column; gap: 3px; min-width: 0;">
+          <a href="#" style="font-size: 15px; font-weight: 500; color: #1C1A17;">Specs as the source of truth for AI-assisted delivery</a>
+          <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #A29A90;">/en/blog/specs-source-of-truth</span>
+        </div>
+        <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: #1F5E5B;">
+          <span style="width: 7px; height: 7px; border-radius: 4px; background: #1F5E5B;"></span> Publicado
+        </span>
+        <span style="font-size: 13.5px; color: #55504A;">Processo</span>
+        <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12.5px; color: #55504A;">14 jun</span>
+        <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12.5px; color: #A29A90;">—</span>
+        <button style="width: 30px; height: 30px; display: inline-flex; align-items: center; justify-content: center; border: none; background: transparent; color: #857D74; cursor: pointer;">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
+        </button>
+      </div>
+    </div>
+
+    <div style="display: flex; align-items: center; justify-content: space-between; gap: 20px;">
+      <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; color: #857D74;">Mostrando 1–10 de 24</span>
+      <div style="display: flex; gap: 6px;">
+        <span style="width: 34px; height: 34px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid #E9E4DB; border-radius: 4px; color: #C4BCB1;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"></path></svg>
+        </span>
+        <a href="#" style="width: 34px; height: 34px; display: inline-flex; align-items: center; justify-content: center; border-radius: 4px; background: #1C1A17; color: #FAF8F4; font-size: 13.5px;">1</a>
+        <a href="#" style="width: 34px; height: 34px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid #DDD6CB; border-radius: 4px; background: #FFFFFF; color: #55504A; font-size: 13.5px;">2</a>
+        <a href="#" style="width: 34px; height: 34px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid #DDD6CB; border-radius: 4px; background: #FFFFFF; color: #55504A; font-size: 13.5px;">3</a>
+        <a href="#" style="width: 34px; height: 34px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid #DDD6CB; border-radius: 4px; background: #FFFFFF; color: #55504A;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg>
+        </a>
+      </div>
+    </div>
+
+  </main>
+</div>
+</x-dc>
+</body>
+</html>

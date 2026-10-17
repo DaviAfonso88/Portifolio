@@ -1,0 +1,193 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; background: #FAF8F4; color: #1C1A17; font-family: Archivo, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+    * { box-sizing: border-box; }
+    a { color: #A6482C; text-decoration: none; }
+    a:hover { color: #7E351F; text-decoration: underline; }
+    .lbl { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: #857D74; }
+    .mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+  </style>
+</helmet>
+
+<div style="padding: 56px 64px 72px; display: flex; flex-direction: column; gap: 52px;">
+
+  <div style="display: flex; flex-direction: column; gap: 12px;">
+    <div class="lbl">Design tokens · base para o frontend</div>
+    <h1 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 46px; line-height: 1.1; letter-spacing: -0.02em;">Sistema visual — DaviDev</h1>
+    <p style="margin: 0; font-size: 16px; line-height: 1.7; color: #55504A; max-width: 74ch;">Direção: <strong style="font-weight: 600;">documento técnico editorial</strong>. Serifa de display para hierarquia, grotesca para leitura, monoespaçada para metadado. Fios de 1px no lugar de sombras; raios pequenos; um acento apenas.</p>
+  </div>
+
+  <section style="display: flex; flex-direction: column; gap: 20px;">
+    <div style="display: flex; align-items: baseline; gap: 14px;"><span class="mono" style="font-size: 11px; letter-spacing: 0.14em; color: #A6482C;">01</span><h2 style="margin: 0; font-size: 21px; font-weight: 600;">Cor — tema claro</h2></div>
+    <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px;">
+      <div style="display: flex; flex-direction: column; gap: 8px;"><div style="height: 76px; background: #FAF8F4; border: 1px solid #E4DFD7; border-radius: 5px;"></div><div style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 13px; font-weight: 500;">paper</span><span class="mono" style="font-size: 11.5px; color: #857D74;">#FAF8F4</span><span style="font-size: 11.5px; color: #A29A90;">fundo da página</span></div></div>
+      <div style="display: flex; flex-direction: column; gap: 8px;"><div style="height: 76px; background: #FFFFFF; border: 1px solid #E4DFD7; border-radius: 5px;"></div><div style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 13px; font-weight: 500;">surface</span><span class="mono" style="font-size: 11.5px; color: #857D74;">#FFFFFF</span><span style="font-size: 11.5px; color: #A29A90;">cartão, campo</span></div></div>
+      <div style="display: flex; flex-direction: column; gap: 8px;"><div style="height: 76px; background: #F4F0E9; border: 1px solid #E4DFD7; border-radius: 5px;"></div><div style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 13px; font-weight: 500;">surface-sunken</span><span class="mono" style="font-size: 11.5px; color: #857D74;">#F4F0E9</span><span style="font-size: 11.5px; color: #A29A90;">painel, aviso neutro</span></div></div>
+      <div style="display: flex; flex-direction: column; gap: 8px;"><div style="height: 76px; background: #E4DFD7; border-radius: 5px;"></div><div style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 13px; font-weight: 500;">rule</span><span class="mono" style="font-size: 11.5px; color: #857D74;">#E4DFD7</span><span style="font-size: 11.5px; color: #A29A90;">fio e borda</span></div></div>
+      <div style="display: flex; flex-direction: column; gap: 8px;"><div style="height: 76px; background: #1C1A17; border-radius: 5px;"></div><div style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 13px; font-weight: 500;">ink</span><span class="mono" style="font-size: 11.5px; color: #857D74;">#1C1A17</span><span style="font-size: 11.5px; color: #A29A90;">texto principal · 15.4:1</span></div></div>
+      <div style="display: flex; flex-direction: column; gap: 8px;"><div style="height: 76px; background: #55504A; border-radius: 5px;"></div><div style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 13px; font-weight: 500;">ink-2</span><span class="mono" style="font-size: 11.5px; color: #857D74;">#55504A</span><span style="font-size: 11.5px; color: #A29A90;">texto secundário · 7.6:1</span></div></div>
+      <div style="display: flex; flex-direction: column; gap: 8px;"><div style="height: 76px; background: #857D74; border-radius: 5px;"></div><div style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 13px; font-weight: 500;">ink-3</span><span class="mono" style="font-size: 11.5px; color: #857D74;">#857D74</span><span style="font-size: 11.5px; color: #A29A90;">rótulo · 4.6:1</span></div></div>
+      <div style="display: flex; flex-direction: column; gap: 8px;"><div style="height: 76px; background: #A6482C; border-radius: 5px;"></div><div style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 13px; font-weight: 500;">accent</span><span class="mono" style="font-size: 11.5px; color: #857D74;">#A6482C</span><span style="font-size: 11.5px; color: #A29A90;">link, número, seção · 6.1:1</span></div></div>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px;">
+      <div style="display: flex; flex-direction: column; gap: 8px;"><div style="height: 52px; background: #1F5E5B; border-radius: 5px;"></div><div style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 13px; font-weight: 500;">success</span><span class="mono" style="font-size: 11.5px; color: #857D74;">#1F5E5B</span><span style="font-size: 11.5px; color: #A29A90;">publicado, verificado</span></div></div>
+      <div style="display: flex; flex-direction: column; gap: 8px;"><div style="height: 52px; background: #B5442B; border-radius: 5px;"></div><div style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 13px; font-weight: 500;">danger</span><span class="mono" style="font-size: 11.5px; color: #857D74;">#B5442B</span><span style="font-size: 11.5px; color: #A29A90;">erro, exclusão</span></div></div>
+      <div style="display: flex; flex-direction: column; gap: 8px;"><div style="height: 52px; background: #F9F1ED; border: 1px solid #EBD9D1; border-radius: 5px;"></div><div style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 13px; font-weight: 500;">accent-soft</span><span class="mono" style="font-size: 11.5px; color: #857D74;">#F9F1ED</span><span style="font-size: 11.5px; color: #A29A90;">chip ativo</span></div></div>
+      <div style="display: flex; flex-direction: column; gap: 8px;"><div style="height: 52px; background: #FDF6F4; border: 1px solid #EFD8D1; border-radius: 5px;"></div><div style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 13px; font-weight: 500;">danger-soft</span><span class="mono" style="font-size: 11.5px; color: #857D74;">#FDF6F4</span><span style="font-size: 11.5px; color: #A29A90;">alerta de erro</span></div></div>
+    </div>
+  </section>
+
+  <section style="display: flex; flex-direction: column; gap: 20px;">
+    <div style="display: flex; align-items: baseline; gap: 14px;"><span class="mono" style="font-size: 11px; letter-spacing: 0.14em; color: #A6482C;">02</span><h2 style="margin: 0; font-size: 21px; font-weight: 600;">Cor — tema escuro</h2></div>
+    <div style="background: #141311; border-radius: 8px; padding: 26px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px;">
+      <div style="display: flex; flex-direction: column; gap: 8px;"><div style="height: 64px; background: #141311; border: 1px solid #2E2A26; border-radius: 5px;"></div><div style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 13px; font-weight: 500; color: #EDE9E3;">paper</span><span class="mono" style="font-size: 11.5px; color: #8A827A;">#141311</span></div></div>
+      <div style="display: flex; flex-direction: column; gap: 8px;"><div style="height: 64px; background: #1C1A18; border: 1px solid #2E2A26; border-radius: 5px;"></div><div style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 13px; font-weight: 500; color: #EDE9E3;">surface</span><span class="mono" style="font-size: 11.5px; color: #8A827A;">#1C1A18</span></div></div>
+      <div style="display: flex; flex-direction: column; gap: 8px;"><div style="height: 64px; background: #2E2A26; border-radius: 5px;"></div><div style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 13px; font-weight: 500; color: #EDE9E3;">rule</span><span class="mono" style="font-size: 11.5px; color: #8A827A;">#2E2A26</span></div></div>
+      <div style="display: flex; flex-direction: column; gap: 8px;"><div style="height: 64px; background: #EDE9E3; border-radius: 5px;"></div><div style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 13px; font-weight: 500; color: #EDE9E3;">ink</span><span class="mono" style="font-size: 11.5px; color: #8A827A;">#EDE9E3 · 15.1:1</span></div></div>
+      <div style="display: flex; flex-direction: column; gap: 8px;"><div style="height: 64px; background: #B5ADA3; border-radius: 5px;"></div><div style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 13px; font-weight: 500; color: #EDE9E3;">ink-2</span><span class="mono" style="font-size: 11.5px; color: #8A827A;">#B5ADA3 · 8.9:1</span></div></div>
+      <div style="display: flex; flex-direction: column; gap: 8px;"><div style="height: 64px; background: #8A827A; border-radius: 5px;"></div><div style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 13px; font-weight: 500; color: #EDE9E3;">ink-3</span><span class="mono" style="font-size: 11.5px; color: #8A827A;">#8A827A · 4.9:1</span></div></div>
+      <div style="display: flex; flex-direction: column; gap: 8px;"><div style="height: 64px; background: #E07B54; border-radius: 5px;"></div><div style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 13px; font-weight: 500; color: #EDE9E3;">accent</span><span class="mono" style="font-size: 11.5px; color: #8A827A;">#E07B54 · 7.4:1</span></div></div>
+      <div style="display: flex; flex-direction: column; gap: 8px;"><div style="height: 64px; background: #7FB2A8; border-radius: 5px;"></div><div style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 13px; font-weight: 500; color: #EDE9E3;">success</span><span class="mono" style="font-size: 11.5px; color: #8A827A;">#7FB2A8</span></div></div>
+    </div>
+    <p style="margin: 0; font-size: 13.5px; line-height: 1.65; color: #857D74;">O acento clareia no escuro (<span class="mono">#A6482C → #E07B54</span>) para manter o contraste. Todos os pares acima estão em AA — verificado por axe-core no CI, nos dois temas.</p>
+  </section>
+
+  <section style="display: flex; flex-direction: column; gap: 20px;">
+    <div style="display: flex; align-items: baseline; gap: 14px;"><span class="mono" style="font-size: 11px; letter-spacing: 0.14em; color: #A6482C;">03</span><h2 style="margin: 0; font-size: 21px; font-weight: 600;">Tipografia</h2></div>
+    <div style="display: grid; grid-template-columns: 200px 1fr; gap: 20px; align-items: center; border-top: 1px solid #E4DFD7; padding: 16px 0;">
+      <div style="display: flex; flex-direction: column; gap: 2px;"><span class="mono" style="font-size: 12px; color: #1C1A17;">display-xl</span><span class="mono" style="font-size: 11px; color: #A29A90;">Instrument Serif 68/1.06</span></div>
+      <span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 44px; line-height: 1.06; letter-spacing: -0.02em;">Construo sistemas</span>
+    </div>
+    <div style="display: grid; grid-template-columns: 200px 1fr; gap: 20px; align-items: center; border-top: 1px solid #E4DFD7; padding: 16px 0;">
+      <div style="display: flex; flex-direction: column; gap: 2px;"><span class="mono" style="font-size: 12px; color: #1C1A17;">display-l</span><span class="mono" style="font-size: 11px; color: #A29A90;">Instrument Serif 52/1.1</span></div>
+      <span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 36px; line-height: 1.1; letter-spacing: -0.02em;">Título de página</span>
+    </div>
+    <div style="display: grid; grid-template-columns: 200px 1fr; gap: 20px; align-items: center; border-top: 1px solid #E4DFD7; padding: 16px 0;">
+      <div style="display: flex; flex-direction: column; gap: 2px;"><span class="mono" style="font-size: 12px; color: #1C1A17;">h2</span><span class="mono" style="font-size: 11px; color: #A29A90;">Archivo 600 · 28/1.3</span></div>
+      <span style="font-size: 26px; font-weight: 600; line-height: 1.3;">Seção dentro de um artigo</span>
+    </div>
+    <div style="display: grid; grid-template-columns: 200px 1fr; gap: 20px; align-items: center; border-top: 1px solid #E4DFD7; padding: 16px 0;">
+      <div style="display: flex; flex-direction: column; gap: 2px;"><span class="mono" style="font-size: 12px; color: #1C1A17;">body-l</span><span class="mono" style="font-size: 11px; color: #A29A90;">Archivo 400 · 18/1.78 · máx 68ch</span></div>
+      <span style="font-size: 17px; line-height: 1.78; color: #2A2621;">Corpo de artigo. A medida é limitada a 68 caracteres para conforto de leitura longa.</span>
+    </div>
+    <div style="display: grid; grid-template-columns: 200px 1fr; gap: 20px; align-items: center; border-top: 1px solid #E4DFD7; padding: 16px 0;">
+      <div style="display: flex; flex-direction: column; gap: 2px;"><span class="mono" style="font-size: 12px; color: #1C1A17;">body</span><span class="mono" style="font-size: 11px; color: #A29A90;">Archivo 400 · 16/1.7</span></div>
+      <span style="font-size: 16px; line-height: 1.7; color: #38332E;">Texto de interface e descrições.</span>
+    </div>
+    <div style="display: grid; grid-template-columns: 200px 1fr; gap: 20px; align-items: center; border-top: 1px solid #E4DFD7; border-bottom: 1px solid #E4DFD7; padding: 16px 0;">
+      <div style="display: flex; flex-direction: column; gap: 2px;"><span class="mono" style="font-size: 12px; color: #1C1A17;">label-mono</span><span class="mono" style="font-size: 11px; color: #A29A90;">JetBrains Mono 500 · 11 · 0.12em · caixa alta</span></div>
+      <span class="lbl">Rótulo de seção · metadado · data</span>
+    </div>
+  </section>
+
+  <section style="display: flex; flex-direction: column; gap: 20px;">
+    <div style="display: flex; align-items: baseline; gap: 14px;"><span class="mono" style="font-size: 11px; letter-spacing: 0.14em; color: #A6482C;">04</span><h2 style="margin: 0; font-size: 21px; font-weight: 600;">Espaço, raio e fio</h2></div>
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px;">
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <span class="lbl">Escala de espaço (px)</span>
+        <div style="display: flex; align-items: flex-end; gap: 10px;">
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;"><div style="width: 4px; height: 4px; background: #A6482C;"></div><span class="mono" style="font-size: 10.5px; color: #857D74;">4</span></div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;"><div style="width: 8px; height: 8px; background: #A6482C;"></div><span class="mono" style="font-size: 10.5px; color: #857D74;">8</span></div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;"><div style="width: 12px; height: 12px; background: #A6482C;"></div><span class="mono" style="font-size: 10.5px; color: #857D74;">12</span></div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;"><div style="width: 16px; height: 16px; background: #A6482C;"></div><span class="mono" style="font-size: 10.5px; color: #857D74;">16</span></div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;"><div style="width: 24px; height: 24px; background: #A6482C;"></div><span class="mono" style="font-size: 10.5px; color: #857D74;">24</span></div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;"><div style="width: 32px; height: 32px; background: #A6482C;"></div><span class="mono" style="font-size: 10.5px; color: #857D74;">32</span></div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;"><div style="width: 48px; height: 48px; background: #A6482C;"></div><span class="mono" style="font-size: 10.5px; color: #857D74;">48</span></div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;"><div style="width: 64px; height: 64px; background: #A6482C;"></div><span class="mono" style="font-size: 10.5px; color: #857D74;">64</span></div>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <span class="lbl">Raio e elevação</span>
+        <div style="display: flex; gap: 14px; align-items: flex-end;">
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;"><div style="width: 62px; height: 44px; background: #FFFFFF; border: 1px solid #E4DFD7; border-radius: 3px;"></div><span class="mono" style="font-size: 10.5px; color: #857D74;">3 · chip</span></div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;"><div style="width: 62px; height: 44px; background: #FFFFFF; border: 1px solid #E4DFD7; border-radius: 5px;"></div><span class="mono" style="font-size: 10.5px; color: #857D74;">5 · controle</span></div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;"><div style="width: 62px; height: 44px; background: #FFFFFF; border: 1px solid #E4DFD7; border-radius: 8px;"></div><span class="mono" style="font-size: 10.5px; color: #857D74;">8 · cartão</span></div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;"><div style="width: 62px; height: 44px; background: #FFFFFF; border-radius: 10px; box-shadow: 0 24px 60px rgba(28,26,23,0.22);"></div><span class="mono" style="font-size: 10.5px; color: #857D74;">modal</span></div>
+        </div>
+        <p style="margin: 0; font-size: 13px; line-height: 1.6; color: #857D74;">Sombra só em modal. Toda separação em superfície plana é <strong style="font-weight: 600; color: #55504A;">fio de 1px</strong>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="display: flex; flex-direction: column; gap: 20px;">
+    <div style="display: flex; align-items: baseline; gap: 14px;"><span class="mono" style="font-size: 11px; letter-spacing: 0.14em; color: #A6482C;">05</span><h2 style="margin: 0; font-size: 21px; font-weight: 600;">Componentes</h2></div>
+
+    <div style="display: flex; flex-direction: column; gap: 14px;">
+      <span class="lbl">Botões — altura 46 (público) · 38–42 (painel)</span>
+      <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+        <button style="height: 46px; padding: 0 22px; background: #1C1A17; color: #FAF8F4; border: none; border-radius: 5px; font-family: Archivo, system-ui, sans-serif; font-size: 15px; font-weight: 500; cursor: pointer;">Primário</button>
+        <button style="height: 46px; padding: 0 22px; background: transparent; color: #1C1A17; border: 1px solid #1C1A17; border-radius: 5px; font-family: Archivo, system-ui, sans-serif; font-size: 15px; font-weight: 500; cursor: pointer;">Secundário</button>
+        <button style="height: 46px; padding: 0 22px; background: #FFFFFF; color: #38332E; border: 1px solid #DDD6CB; border-radius: 5px; font-family: Archivo, system-ui, sans-serif; font-size: 15px; cursor: pointer;">Neutro</button>
+        <button style="height: 46px; padding: 0 22px; background: #B5442B; color: #FFFFFF; border: none; border-radius: 5px; font-family: Archivo, system-ui, sans-serif; font-size: 15px; font-weight: 500; cursor: pointer;">Destrutivo</button>
+        <button style="height: 46px; padding: 0 22px; background: #EFEBE4; color: #B3AAA0; border: none; border-radius: 5px; font-family: Archivo, system-ui, sans-serif; font-size: 15px; cursor: not-allowed;">Desabilitado</button>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 14px;">
+      <span class="lbl">Campos — altura 46 · foco com anel de 2px</span>
+      <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px;">
+        <input type="text" placeholder="Padrão" style="height: 46px; padding: 0 14px; border: 1px solid #D9D2C8; border-radius: 5px; background: #FFFFFF; font-family: Archivo, system-ui, sans-serif; font-size: 15px; color: #1C1A17;">
+        <input type="text" value="Em foco" style="height: 46px; padding: 0 14px; border: 1px solid #1C1A17; border-radius: 5px; background: #FFFFFF; font-family: Archivo, system-ui, sans-serif; font-size: 15px; color: #1C1A17; box-shadow: 0 0 0 3px rgba(166,72,44,0.16);">
+        <input type="text" value="Com erro" style="height: 46px; padding: 0 14px; border: 1.5px solid #B5442B; border-radius: 5px; background: #FDF6F4; font-family: Archivo, system-ui, sans-serif; font-size: 15px; color: #1C1A17;">
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 14px;">
+      <span class="lbl">Chips, tags e estados</span>
+      <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+        <span style="height: 32px; display: inline-flex; align-items: center; padding: 0 13px; border-radius: 16px; background: #1C1A17; color: #FAF8F4; font-size: 13px; font-weight: 500;">Filtro ativo</span>
+        <span style="height: 32px; display: inline-flex; align-items: center; padding: 0 13px; border-radius: 16px; border: 1px solid #E4DFD7; color: #55504A; font-size: 13px;">Filtro</span>
+        <span class="mono" style="height: 30px; display: inline-flex; align-items: center; padding: 0 11px; border-radius: 4px; border: 1px solid #E4DFD7; color: #55504A; font-size: 12px;">tag</span>
+        <span class="mono" style="height: 30px; display: inline-flex; align-items: center; padding: 0 11px; border-radius: 4px; border: 1px solid #EBD9D1; background: #F9F1ED; color: #A6482C; font-size: 12px;">tag ativa</span>
+        <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: #1F5E5B;"><span style="width: 7px; height: 7px; border-radius: 4px; background: #1F5E5B;"></span>Publicado</span>
+        <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: #857D74;"><span style="width: 7px; height: 7px; border-radius: 4px; background: #C4BCB1;"></span>Rascunho</span>
+        <span class="mono" style="display: inline-flex; align-items: center; font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: #B5442B; border: 1px solid #EFD8D1; background: #FDF6F4; padding: 3px 7px; border-radius: 3px;">não notificada</span>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 14px;">
+      <span class="lbl">Avisos</span>
+      <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px;">
+        <div style="display: flex; gap: 11px; background: #F4F0E9; border: 1px solid #E4DFD7; border-radius: 6px; padding: 14px 16px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#857D74" stroke-width="1.6" stroke-linecap="round" style="flex-shrink: 0; margin-top: 2px;"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5M12 8h.01"></path></svg>
+          <span style="font-size: 13.5px; line-height: 1.6; color: #55504A;">Informativo neutro.</span>
+        </div>
+        <div style="display: flex; gap: 11px; background: #FDF6F4; border: 1px solid #EFD8D1; border-radius: 6px; padding: 14px 16px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B5442B" stroke-width="1.6" stroke-linecap="round" style="flex-shrink: 0; margin-top: 2px;"><path d="M12 4l9 16H3z"></path><path d="M12 10v4M12 17h.01"></path></svg>
+          <span style="font-size: 13.5px; line-height: 1.6; color: #8C3721;">Ação irreversível.</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 11px; background: #1C1A17; border-radius: 6px; padding: 14px 16px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9BB89B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"></path></svg>
+          <span style="font-size: 13.5px; color: #FAF8F4;">Toast de confirmação</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="display: flex; flex-direction: column; gap: 16px;">
+    <div style="display: flex; align-items: baseline; gap: 14px;"><span class="mono" style="font-size: 11px; letter-spacing: 0.14em; color: #A6482C;">06</span><h2 style="margin: 0; font-size: 21px; font-weight: 600;">Grid e breakpoints</h2></div>
+    <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px;">
+      <div style="border: 1px solid #E4DFD7; background: #FFFFFF; border-radius: 6px; padding: 18px; display: flex; flex-direction: column; gap: 5px;"><span class="mono" style="font-size: 13px; color: #A6482C;">&lt; 640</span><span style="font-size: 13px; color: #55504A; line-height: 1.55;">Coluna única · menu recolhido · editor alterna Editor/Preview</span></div>
+      <div style="border: 1px solid #E4DFD7; background: #FFFFFF; border-radius: 6px; padding: 18px; display: flex; flex-direction: column; gap: 5px;"><span class="mono" style="font-size: 13px; color: #A6482C;">640–1024</span><span style="font-size: 13px; color: #55504A; line-height: 1.55;">Duas colunas onde couber</span></div>
+      <div style="border: 1px solid #E4DFD7; background: #FFFFFF; border-radius: 6px; padding: 18px; display: flex; flex-direction: column; gap: 5px;"><span class="mono" style="font-size: 13px; color: #A6482C;">&gt; 1024</span><span style="font-size: 13px; color: #55504A; line-height: 1.55;">Grid de 12 colunas · Split View liberado</span></div>
+      <div style="border: 1px solid #E4DFD7; background: #FFFFFF; border-radius: 6px; padding: 18px; display: flex; flex-direction: column; gap: 5px;"><span class="mono" style="font-size: 13px; color: #A6482C;">máx 1180</span><span style="font-size: 13px; color: #55504A; line-height: 1.55;">Largura de conteúdo · padding 80</span></div>
+    </div>
+    <div style="display: flex; gap: 11px; background: #F4F0E9; border: 1px solid #E4DFD7; border-radius: 6px; padding: 15px 17px;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#857D74" stroke-width="1.6" stroke-linecap="round" style="flex-shrink: 0; margin-top: 2px;"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5M12 8h.01"></path></svg>
+      <span style="font-size: 13.5px; line-height: 1.65; color: #55504A;">Alvos de toque com no mínimo <strong style="font-weight: 600;">44px</strong> em mobile. Em desktop, controles do painel podem cair a 34px — nunca os do site público.</span>
+    </div>
+  </section>
+
+</div>
+</x-dc>
+</body>
+</html>

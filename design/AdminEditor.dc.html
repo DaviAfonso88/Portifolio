@@ -1,0 +1,233 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; background: #F4F0E9; color: #1C1A17; font-family: Archivo, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+    * { box-sizing: border-box; }
+    a { color: #A6482C; text-decoration: none; }
+    a:hover { color: #7E351F; text-decoration: underline; }
+  </style>
+</helmet>
+
+<div style="height: 100%; display: grid; grid-template-columns: 244px 1fr;">
+
+  <aside style="background: #1C1A17; padding: 24px 16px; display: flex; flex-direction: column; gap: 28px;">
+    <div style="display: flex; flex-direction: column; gap: 3px; padding: 0 10px;">
+      <span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 22px; color: #FAF8F4;">davidev</span>
+      <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #7C736A;">Painel</span>
+    </div>
+    <nav style="display: flex; flex-direction: column; gap: 3px;">
+      <a href="#" style="display: flex; align-items: center; gap: 11px; height: 40px; padding: 0 12px; border-radius: 5px; background: #2E2A26; color: #FAF8F4; font-size: 14px; font-weight: 500;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h11l3 3v13H5z"></path><path d="M9 10h6M9 14h6"></path></svg>
+        Artigos
+      </a>
+      <a href="#" style="display: flex; align-items: center; gap: 11px; height: 40px; padding: 0 12px; border-radius: 5px; color: #A29A90; font-size: 14px;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M9 7V5h6v2M6 7l1 13h10l1-13"></path></svg>
+        Lixeira
+      </a>
+      <a href="#" style="display: flex; align-items: center; gap: 11px; height: 40px; padding: 0 12px; border-radius: 5px; color: #A29A90; font-size: 14px;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h10"></path></svg>
+        Categorias e tags
+      </a>
+      <a href="#" style="display: flex; align-items: center; gap: 11px; height: 40px; padding: 0 12px; border-radius: 5px; color: #A29A90; font-size: 14px;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18v12H3z"></path><path d="M3 7l9 6 9-6"></path></svg>
+        Mensagens
+      </a>
+    </nav>
+  </aside>
+
+  <div style="display: flex; flex-direction: column; min-width: 0;">
+
+    <div style="display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 14px 24px; background: #FFFFFF; border-bottom: 1px solid #E4DFD7;">
+      <div style="display: flex; align-items: center; gap: 14px; min-width: 0;">
+        <a href="#" style="display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; border: 1px solid #DDD6CB; border-radius: 5px; color: #55504A; flex-shrink: 0;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"></path></svg>
+        </a>
+        <div style="display: flex; flex-direction: column; gap: 2px; min-width: 0;">
+          <span style="font-size: 15px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Rate limiting em serverless: o bug que passa em todo teste local</span>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: #1F5E5B;"><span style="width: 6px; height: 6px; border-radius: 3px; background: #1F5E5B;"></span>Publicado</span>
+            <span style="color: #DDD6CB;">·</span>
+            <span style="display: inline-flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11.5px; color: #A6482C;">
+              <span style="width: 6px; height: 6px; border-radius: 3px; background: #A6482C;"></span>Alterações não salvas
+            </span>
+            <span style="color: #DDD6CB;">·</span>
+            <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11.5px; color: #A29A90;">v3</span>
+          </div>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 9px; flex-shrink: 0;">
+        <div style="display: flex; gap: 3px; background: #EBE6DE; border-radius: 5px; padding: 3px;">
+          <button style="height: 32px; padding: 0 13px; border: none; border-radius: 4px; background: transparent; color: #55504A; font-family: Archivo, system-ui, sans-serif; font-size: 13px; cursor: pointer;">Editor</button>
+          <button style="height: 32px; padding: 0 13px; border: none; border-radius: 4px; background: transparent; color: #55504A; font-family: Archivo, system-ui, sans-serif; font-size: 13px; cursor: pointer;">Preview</button>
+          <button style="height: 32px; padding: 0 13px; border: none; border-radius: 4px; background: #FFFFFF; color: #1C1A17; font-family: Archivo, system-ui, sans-serif; font-size: 13px; font-weight: 500; cursor: pointer;">Split</button>
+        </div>
+        <button style="height: 38px; padding: 0 16px; border: 1px solid #DDD6CB; border-radius: 5px; background: #FFFFFF; color: #38332E; font-family: Archivo, system-ui, sans-serif; font-size: 14px; cursor: pointer;">Salvar</button>
+        <button style="height: 38px; padding: 0 18px; border: none; border-radius: 5px; background: #1C1A17; color: #FAF8F4; font-family: Archivo, system-ui, sans-serif; font-size: 14px; font-weight: 500; cursor: pointer;">Atualizar publicação</button>
+      </div>
+    </div>
+
+    <div style="flex: 1; display: grid; grid-template-columns: 1fr 1fr 304px; min-height: 0;">
+
+      <div style="display: flex; flex-direction: column; border-right: 1px solid #E4DFD7; background: #FFFFFF; min-width: 0;">
+        <div style="display: flex; align-items: center; gap: 10px; padding: 9px 16px; border-bottom: 1px solid #F0ECE4; background: #FAF8F4;">
+          <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #857D74;">Markdown</span>
+          <div style="margin-left: auto; display: flex; gap: 2px;">
+            <button style="width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; border: none; background: transparent; color: #857D74; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; font-weight: 600; cursor: pointer;">B</button>
+            <button style="width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; border: none; background: transparent; color: #857D74; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; font-style: italic; cursor: pointer;">I</button>
+            <button style="width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; border: none; background: transparent; color: #857D74; cursor: pointer;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007 0l3-3a5 5 0 00-7-7l-1 1"></path><path d="M14 11a5 5 0 00-7 0l-3 3a5 5 0 007 7l1-1"></path></svg>
+            </button>
+            <button style="width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; border: none; background: transparent; color: #857D74; cursor: pointer;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 8l-5 4 5 4M15 8l5 4-5 4"></path></svg>
+            </button>
+            <button style="width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; border: none; background: transparent; color: #857D74; cursor: pointer;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h18v14H3z"></path><circle cx="8.5" cy="10" r="1.5"></circle><path d="M21 16l-5.5-5.5L7 19"></path></svg>
+            </button>
+          </div>
+        </div>
+        <div style="flex: 1; padding: 20px 22px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13.5px; line-height: 1.85; color: #38332E; overflow: hidden;">
+          <div><span style="color: #A6482C;">## </span>O contador que some</div>
+          <div>&nbsp;</div>
+          <div style="color: #55504A;">A implementação ingênua de rate limiting</div>
+          <div style="color: #55504A;">guarda um <span style="color: #1F5E5B;">`Map`</span> em memória: chave é o IP,</div>
+          <div style="color: #55504A;">valor é a contagem na janela.</div>
+          <div>&nbsp;</div>
+          <div style="color: #55504A;">Em execução serverless, não existe "o</div>
+          <div style="color: #55504A;">processo". Cada requisição pode cair em</div>
+          <div style="color: #55504A;">uma instância diferente.</div>
+          <div>&nbsp;</div>
+          <div><span style="color: #A6482C;">&gt; </span><span style="color: #55504A;">O código está sintaticamente correto,</span></div>
+          <div><span style="color: #A6482C;">&gt; </span><span style="color: #55504A;">os testes passam, o deploy sobe — e a</span></div>
+          <div><span style="color: #A6482C;">&gt; </span><span style="color: #55504A;">proteção não existe.</span></div>
+          <div>&nbsp;</div>
+          <div><span style="color: #A6482C;">## </span>Store compartilhado sem Redis</div>
+          <div>&nbsp;</div>
+          <div style="color: #55504A;">O PostgreSQL que já está no projeto</div>
+          <div style="color: #55504A;">resolve, com uma tabela e um upsert:</div>
+          <div>&nbsp;</div>
+          <div style="color: #857D74;">```sql</div>
+          <div style="color: #1F5E5B;">INSERT INTO rate_limit_counter</div>
+          <div style="color: #1F5E5B;">  (key, window_start, hits)</div>
+          <div style="color: #1F5E5B;">VALUES ($1, $2, 1)</div>
+          <div style="color: #1F5E5B;">ON CONFLICT (key, window_start)</div>
+          <div style="color: #1F5E5B;">DO UPDATE SET hits = ... + 1;</div>
+          <div style="color: #857D74;">```</div>
+          <div>&nbsp;</div>
+          <div style="color: #55504A;">O incremento é atômico por construção.</div>
+        </div>
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 8px 16px; border-top: 1px solid #F0ECE4; background: #FAF8F4; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #A29A90;">
+          <span>1.482 palavras · 7 min</span>
+          <span>Ln 28, Col 34</span>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; border-right: 1px solid #E4DFD7; background: #FAF8F4; min-width: 0;">
+        <div style="display: flex; align-items: center; gap: 10px; padding: 9px 16px; border-bottom: 1px solid #F0ECE4; background: #FAF8F4;">
+          <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #857D74;">Preview</span>
+          <span style="display: inline-flex; align-items: center; gap: 6px; margin-left: auto; font-size: 11px; color: #1F5E5B;">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"></path></svg>
+            mesmo componente da página pública
+          </span>
+        </div>
+        <div style="flex: 1; padding: 26px 30px; overflow: hidden;">
+          <div style="display: flex; flex-direction: column; gap: 18px; font-size: 15px; line-height: 1.75; color: #2A2621;">
+            <h2 style="margin: 0; font-size: 23px; font-weight: 600; line-height: 1.3;">O contador que some</h2>
+            <p style="margin: 0;">A implementação ingênua de rate limiting guarda um <code style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px; background: #F0ECE4; border: 1px solid #E9E4DB; padding: 1px 5px; border-radius: 3px;">Map</code> em memória: chave é o IP, valor é a contagem na janela.</p>
+            <p style="margin: 0;">Em execução serverless, não existe "o processo". Cada requisição pode cair em uma instância diferente.</p>
+            <blockquote style="margin: 0; padding: 2px 0 2px 18px; border-left: 3px solid #A6482C; font-size: 16px; line-height: 1.7; color: #38332E;">O código está sintaticamente correto, os testes passam, o deploy sobe — e a proteção não existe.</blockquote>
+            <h2 style="margin: 6px 0 0; font-size: 23px; font-weight: 600; line-height: 1.3;">Store compartilhado sem Redis</h2>
+            <p style="margin: 0;">O PostgreSQL que já está no projeto resolve, com uma tabela e um upsert:</p>
+            <pre style="margin: 0; background: #1C1A17; border-radius: 6px; padding: 16px 18px; overflow-x: auto; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12.5px; line-height: 1.7;"><code style="color: #EDE9E3;"><span style="color: #C99B7E;">INSERT INTO</span> rate_limit_counter
+  (key, window_start, hits)
+<span style="color: #C99B7E;">VALUES</span> ($1, $2, <span style="color: #9BB89B;">1</span>)
+<span style="color: #C99B7E;">ON CONFLICT</span> (key, window_start)
+<span style="color: #C99B7E;">DO UPDATE SET</span> hits = ... + <span style="color: #9BB89B;">1</span>;</code></pre>
+            <p style="margin: 0;">O incremento é atômico por construção.</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="background: #FFFFFF; border-left: 1px solid #E4DFD7; padding: 20px; display: flex; flex-direction: column; gap: 20px; overflow: hidden;">
+
+        <div style="display: flex; flex-direction: column; gap: 7px;">
+          <label style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #857D74;">Slug</label>
+          <input type="text" value="rate-limiting-serverless" style="height: 38px; padding: 0 11px; border: 1px solid #DDD6CB; border-radius: 4px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12.5px; color: #1C1A17;">
+          <span style="display: flex; align-items: flex-start; gap: 6px; font-size: 11.5px; line-height: 1.5; color: #A6482C;">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" style="flex-shrink: 0; margin-top: 2px;"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5M12 8h.01"></path></svg>
+            Alterar o endereço de um artigo publicado mantém o antigo redirecionando.
+          </span>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 7px;">
+          <label style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #857D74;">Idioma</label>
+          <div style="display: flex; gap: 5px; background: #F4F0E9; border-radius: 5px; padding: 3px;">
+            <button style="flex: 1; height: 32px; border: none; border-radius: 4px; background: #FFFFFF; color: #1C1A17; font-family: Archivo, system-ui, sans-serif; font-size: 13px; font-weight: 500; cursor: pointer;">pt-BR</button>
+            <button style="flex: 1; height: 32px; border: none; border-radius: 4px; background: transparent; color: #55504A; font-family: Archivo, system-ui, sans-serif; font-size: 13px; cursor: pointer;">en</button>
+          </div>
+          <span style="font-size: 11.5px; line-height: 1.5; color: #857D74;">Sem versão em inglês. <a href="#">Criar tradução</a></span>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 7px;">
+          <label style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #857D74;">Resumo</label>
+          <textarea style="min-height: 72px; padding: 10px 11px; border: 1px solid #DDD6CB; border-radius: 4px; font-family: Archivo, system-ui, sans-serif; font-size: 13px; line-height: 1.6; color: #1C1A17; resize: vertical;">Um contador em memória funciona na sua máquina e desaparece em produção — sem erro e sem log.</textarea>
+          <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #A29A90; text-align: right;">98 / 320</span>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 7px;">
+          <label style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #857D74;">Categoria</label>
+          <div style="height: 38px; padding: 0 11px; border: 1px solid #DDD6CB; border-radius: 4px; display: flex; align-items: center; justify-content: space-between; font-size: 13.5px; color: #1C1A17;">
+            Backend
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#857D74" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 7px;">
+          <label style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #857D74;">Tags <span style="color: #A29A90;">2 / 10</span></label>
+          <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+            <span style="display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 9px; border-radius: 4px; background: #F9F1ED; border: 1px solid #EBD9D1; color: #A6482C; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11.5px;">
+              serverless
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+            </span>
+            <span style="display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 9px; border-radius: 4px; background: #F9F1ED; border: 1px solid #EBD9D1; color: #A6482C; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11.5px;">
+              postgres
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+            </span>
+            <button style="height: 28px; padding: 0 10px; border: 1px dashed #DDD6CB; border-radius: 4px; background: transparent; color: #857D74; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11.5px; cursor: pointer;">+ tag</button>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 7px;">
+          <label style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #857D74;">Imagem de capa</label>
+          <div style="width: 100%; aspect-ratio: 16 / 9; border: 1px dashed #DDD6CB; border-radius: 5px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 7px; color: #A29A90; background: #FBFAF7;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16l4-4 3 3 4-5 5 6"></path><path d="M3 5h18v14H3z"></path></svg>
+            <span style="font-size: 11.5px;">Arraste ou clique para enviar</span>
+          </div>
+        </div>
+
+        <div style="margin-top: auto; display: flex; flex-direction: column; gap: 9px; border-top: 1px solid #F0ECE4; padding-top: 16px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; font-size: 12.5px; color: #857D74;">
+            <span>Versão atual</span>
+            <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; color: #1C1A17;">v3</span>
+          </div>
+          <div style="display: flex; align-items: center; justify-content: space-between; font-size: 12.5px; color: #857D74;">
+            <span>Publicado em</span>
+            <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; color: #1C1A17;">19 ago 2026</span>
+          </div>
+          <a href="#" style="font-size: 12.5px;">Ver histórico de versões →</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; background: #FAF8F4; color: #1C1A17; font-family: Archivo, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+    * { box-sizing: border-box; }
+    a { color: #A6482C; text-decoration: none; }
+    a:hover { color: #7E351F; text-decoration: underline; }
+  </style>
+</helmet>
+
+<div style="min-height: 100%; display: flex; flex-direction: column;">
+
+  <header style="display: flex; align-items: center; justify-content: space-between; gap: 40px; padding: 18px 80px; border-bottom: 1px solid #E4DFD7;">
+    <a href="#" style="font-family: 'Instrument Serif', Georgia, serif; font-size: 23px; color: #1C1A17;">davidev</a>
+    <nav style="display: flex; gap: 26px; font-size: 14px;">
+      <a href="#" style="color: #55504A;">Sobre</a>
+      <a href="#" style="color: #55504A;">Habilidades</a>
+      <a href="#" style="color: #55504A;">Conhecimentos</a>
+      <a href="#" style="color: #55504A;">Experiências</a>
+      <a href="#" style="color: #55504A;">Projetos</a>
+      <a href="#" style="color: #55504A;">Blog</a>
+      <a href="#" style="color: #1C1A17; font-weight: 500; border-bottom: 2px solid #A6482C; padding-bottom: 2px;">Contato</a>
+    </nav>
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <div style="display: flex; align-items: center; border: 1px solid #E4DFD7; border-radius: 4px; overflow: hidden; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px;">
+        <span style="padding: 7px 10px; background: #1C1A17; color: #FAF8F4;">PT</span>
+        <a href="#" style="padding: 7px 10px; color: #857D74;">EN</a>
+      </div>
+      <button style="display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; border: 1px solid #E4DFD7; border-radius: 4px; background: transparent; color: #55504A; cursor: pointer;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+      </button>
+    </div>
+  </header>
+
+  <main style="padding: 72px 80px 96px;">
+    <div style="max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 56px;">
+
+      <div style="grid-column: span 5; display: flex; flex-direction: column; gap: 28px;">
+        <div style="display: flex; flex-direction: column; gap: 18px;">
+          <div style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #857D74;">Contato</div>
+          <h1 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 52px; line-height: 1.1; letter-spacing: -0.02em;">Vamos conversar.</h1>
+          <p style="margin: 0; font-size: 17px; line-height: 1.75; color: #55504A; max-width: 46ch;">Vaga, projeto ou dúvida sobre algo que escrevi — respondo tudo. Se preferir, use os canais diretos: chegam no mesmo lugar.</p>
+        </div>
+
+        <div style="height: 1px; background: #E4DFD7;"></div>
+
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+          <a href="#" style="display: flex; align-items: center; gap: 14px; padding: 16px 0; border-bottom: 1px solid #EFEBE4; color: #1C1A17;">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#A6482C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18v12H3z"></path><path d="M3 7l9 6 9-6"></path></svg>
+            <span style="display: flex; flex-direction: column; gap: 2px;">
+              <span style="font-size: 15px; font-weight: 500;">E-mail</span>
+              <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px; color: #857D74;">[SEU E-MAIL]</span>
+            </span>
+          </a>
+          <a href="#" style="display: flex; align-items: center; gap: 14px; padding: 16px 0; border-bottom: 1px solid #EFEBE4; color: #1C1A17;">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#A6482C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h4v16H4zM10 9h4v11h-4zM16 4h4v16h-4z"></path></svg>
+            <span style="display: flex; flex-direction: column; gap: 2px;">
+              <span style="font-size: 15px; font-weight: 500;">LinkedIn</span>
+              <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px; color: #857D74;">/in/[SEU-PERFIL]</span>
+            </span>
+          </a>
+          <a href="#" style="display: flex; align-items: center; gap: 14px; padding: 16px 0; border-bottom: 1px solid #EFEBE4; color: #1C1A17;">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#A6482C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-4 1.5-4-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 00-1.3-3.2 4.3 4.3 0 00-.1-3.2s-1-.3-3.4 1.3a11.6 11.6 0 00-6 0C6.8 2.8 5.8 3.1 5.8 3.1a4.3 4.3 0 00-.1 3.2A4.6 4.6 0 004.4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"></path></svg>
+            <span style="display: flex; flex-direction: column; gap: 2px;">
+              <span style="font-size: 15px; font-weight: 500;">GitHub</span>
+              <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px; color: #857D74;">/[SEU-USUARIO]</span>
+            </span>
+          </a>
+        </div>
+
+        <div style="display: flex; gap: 12px; background: #F4F0E9; border: 1px solid #E4DFD7; border-radius: 6px; padding: 18px;">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#857D74" stroke-width="1.5" stroke-linecap="round" style="flex-shrink: 0; margin-top: 2px;"><path d="M12 3l8 4v5c0 4.4-3.2 8.3-8 9-4.8-.7-8-4.6-8-9V7l8-4z"></path></svg>
+          <p style="margin: 0; font-size: 13px; line-height: 1.65; color: #55504A;">Sua mensagem é guardada por 24 meses e usada apenas para responder você. Nenhum IP ou rastreador é armazenado. <a href="#">Política de privacidade</a>.</p>
+        </div>
+      </div>
+
+      <div style="grid-column: span 7;">
+        <form style="display: flex; flex-direction: column; gap: 22px; background: #FFFFFF; border: 1px solid #E4DFD7; border-radius: 8px; padding: 36px;">
+
+          <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px;">
+            <div style="display: flex; flex-direction: column; gap: 7px;">
+              <label style="font-size: 14px; font-weight: 500; color: #38332E;">Nome <span style="color: #A6482C;">*</span></label>
+              <input type="text" value="Rafael Lima" style="height: 46px; padding: 0 14px; border: 1px solid #D9D2C8; border-radius: 4px; background: #FFFFFF; font-family: Archivo, system-ui, sans-serif; font-size: 15px; color: #1C1A17;">
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 7px;">
+              <label style="font-size: 14px; font-weight: 500; color: #38332E;">E-mail <span style="color: #A6482C;">*</span></label>
+              <input type="text" value="rafael.lima@" style="height: 46px; padding: 0 14px; border: 1.5px solid #B5442B; border-radius: 4px; background: #FDF6F4; font-family: Archivo, system-ui, sans-serif; font-size: 15px; color: #1C1A17;">
+              <span style="display: flex; align-items: center; gap: 6px; font-size: 13px; color: #B5442B;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v6M12 16h.01"></path></svg>
+                Informe um e-mail válido.
+              </span>
+            </div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 7px;">
+            <label style="font-size: 14px; font-weight: 500; color: #38332E;">Assunto</label>
+            <input type="text" value="" placeholder="Opcional" style="height: 46px; padding: 0 14px; border: 1px solid #D9D2C8; border-radius: 4px; background: #FFFFFF; font-family: Archivo, system-ui, sans-serif; font-size: 15px; color: #A29A90;">
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 7px;">
+            <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px;">
+              <label style="font-size: 14px; font-weight: 500; color: #38332E;">Mensagem <span style="color: #A6482C;">*</span></label>
+              <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; color: #A29A90;">148 / 5000</span>
+            </div>
+            <textarea style="min-height: 172px; padding: 14px; border: 1px solid #D9D2C8; border-radius: 4px; background: #FFFFFF; font-family: Archivo, system-ui, sans-serif; font-size: 15px; line-height: 1.65; color: #1C1A17; resize: vertical;">Vi o artigo sobre rate limiting em serverless e o case dos robôs de coleta. Estamos com uma vaga de backend sênior e queria entender sua disponibilidade.</textarea>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 12px; border: 1px solid #E4DFD7; background: #FBFAF7; border-radius: 4px; padding: 14px 16px;">
+            <div style="width: 20px; height: 20px; border-radius: 3px; background: #1F5E5B; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"></path></svg>
+            </div>
+            <span style="font-size: 14px; color: #38332E;">Verificação concluída</span>
+            <span style="margin-left: auto; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #A29A90;">Cloudflare Turnstile</span>
+          </div>
+
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-top: 4px;">
+            <span style="font-size: 13px; color: #857D74; max-width: 40ch; line-height: 1.55;">Ao enviar, você concorda com o tratamento descrito na política de privacidade.</span>
+            <button style="height: 48px; padding: 0 28px; background: #1C1A17; color: #FAF8F4; border: none; border-radius: 4px; font-family: Archivo, system-ui, sans-serif; font-size: 15px; font-weight: 500; cursor: pointer; display: inline-flex; align-items: center; gap: 9px; flex-shrink: 0;">
+              Enviar mensagem
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+            </button>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </main>
+
+  <footer style="border-top: 1px solid #E4DFD7; padding: 44px 80px 56px; margin-top: auto;">
+    <div style="max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 32px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; color: #857D74; line-height: 1.9;">
+      <div style="grid-column: span 5; display: flex; flex-direction: column; gap: 6px;">
+        <div style="color: #55504A;">Colofão</div>
+        <div>Next.js · Fastify · PostgreSQL/Neon · Drizzle</div>
+        <div>Arquitetura hexagonal · deploy na Vercel</div>
+      </div>
+      <div style="grid-column: span 4; display: flex; flex-direction: column; gap: 6px;">
+        <div style="color: #55504A;">Contato</div>
+        <a href="#" style="color: #857D74;">[SEU E-MAIL]</a>
+        <a href="#" style="color: #857D74;">LinkedIn</a>
+        <a href="#" style="color: #857D74;">GitHub</a>
+      </div>
+      <div style="grid-column: span 3; display: flex; flex-direction: column; gap: 6px; align-items: flex-end;">
+        <a href="#" style="color: #857D74;">Política de privacidade</a>
+        <a href="#" style="color: #857D74;">Código-fonte deste site</a>
+        <div style="color: #A29A90;">© 2026 davidev.net.br</div>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+</body>
+</html>
