@@ -53,16 +53,16 @@ export default async function SobrePage({ params }: SobrePageProps) {
         </div>
 
         {/* Right Column: Photo & Trajectory */}
-        <div className="md:col-span-5 flex flex-col gap-5">
+        <div className="md:col-span-5 flex flex-col gap-6">
           {/* Photo Frame */}
-          <div className="relative aspect-[4/5] w-full rounded-[6px] border border-rule bg-surface-sunken overflow-hidden shadow-sm">
+          <div className="relative mx-auto size-60 sm:size-64 md:size-72 aspect-square rounded-full border border-rule bg-surface-sunken overflow-hidden shadow-sm shrink-0">
             <Image
               src="/images/perfil.png"
               alt="Davi Afonso"
               fill
               priority
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 420px"
+              className="object-cover rounded-full"
+              sizes="(max-width: 768px) 240px, 288px"
             />
           </div>
 

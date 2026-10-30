@@ -27,8 +27,8 @@ export async function generateMetadata({
   const isPt = locale === 'pt-BR';
 
   const title = isPt
-    ? 'Blog Editorial — Notas de quem está construindo'
-    : 'Editorial Blog — Notes from the builder';
+    ? 'Blog Editorial: Notas de quem está construindo'
+    : 'Editorial Blog: Notes from the builder';
   const description = isPt
     ? 'Escrevo sobre o que aparece no caminho: decisões de arquitetura, armadilhas de produção e o que deu errado antes de dar certo.'
     : 'Writing about what comes up along the way: architectural decisions, production pitfalls, and what failed before working.';

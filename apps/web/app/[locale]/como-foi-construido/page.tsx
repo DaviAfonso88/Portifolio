@@ -21,8 +21,8 @@ export async function generateMetadata({
 
   const isPt = locale === 'pt-BR';
   const title = isPt
-    ? 'Como este site foi construído — Arquitetura & Engenharia | DaviDev'
-    : 'How this website was built — Architecture & Engineering | DaviDev';
+    ? 'Como este site foi construído: Arquitetura & Engenharia | DaviDev'
+    : 'How this website was built: Architecture & Engineering | DaviDev';
   const description = isPt
     ? 'Estudo de caso transparente: PRD antes do código, arquitetura hexagonal, contratos OpenAPI e validação contínua com IA.'
     : 'Transparent case study: PRD before code, hexagonal architecture, OpenAPI contracts, and continuous verification with AI.';

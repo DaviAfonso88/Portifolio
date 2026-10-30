@@ -7,7 +7,7 @@ import { ThemeProvider } from '../components/theme-provider';
 import { AnalyticsTracker } from '../components/public/analytics-tracker';
 
 export const metadata: Metadata = {
-  title: 'DaviDev — Portfolio, Blog & Engenharia de Software',
+  title: 'DaviDev: Portfolio, Blog & Engenharia de Software',
   description: 'Portfolio e blog técnico de Davi, focado em arquitetura de software e sistemas web de alto desempenho.',
 };
 

@@ -155,7 +155,7 @@ export default async function ProjetoDetalhePage({
                     </p>
                     <p className="text-sm leading-[1.6] text-ink-3">
                       <strong className="font-semibold text-ink-2">
-                        {locale === 'pt-BR' ? 'Trade-off:' : 'Trade-off:'}{' '}
+                        {locale === 'pt-BR' ? 'Tradeoff:' : 'Tradeoff:'}{' '}
                       </strong>
                       {dec.tradeoff}
                     </p>

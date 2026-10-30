@@ -85,7 +85,7 @@ export function Header({ locale }: HeaderProps) {
                   ? 'bg-ink text-paper font-medium'
                   : 'text-ink-3 hover:text-ink'
               )}
-              aria-label="PT — Versão em Português"
+              aria-label="PT: Versão em Português"
             >
               PT
             </Link>
@@ -97,7 +97,7 @@ export function Header({ locale }: HeaderProps) {
                   ? 'bg-ink text-paper font-medium'
                   : 'text-ink-3 hover:text-ink'
               )}
-              aria-label="EN — English Version"
+              aria-label="EN: English Version"
             >
               EN
             </Link>

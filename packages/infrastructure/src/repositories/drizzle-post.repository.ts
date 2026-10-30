@@ -46,7 +46,7 @@ const SEED_ARTICLES: PublishedPostDetail[] = [
     slug: 'por-que-a-arquitetura-hexagonal-se-pagou',
     title: 'Por que a arquitetura hexagonal se pagou num projeto de uma pessoa só',
     excerpt:
-      'Pelos critérios normais, ports and adapters num blog com um administrador é over-engineering. Foi — e ainda assim valeu, por um motivo que não é técnico.',
+      'Pelos critérios normais, ports and adapters num blog com um administrador é complexidade excessiva. Foi, e ainda assim valeu, por um motivo que não é técnico.',
     content: `## O paradoxo do projeto solo
 
 Pelos critérios normais de engenharia, adotar arquitetura hexagonal em um produto mantido por um único desenvolvedor soa como excesso de zelo. Mais interfaces, mais camadas de indireção, mais arquivos para navegar e manter.
@@ -84,24 +84,24 @@ Quando um teste unitário de caso de uso não depende de banco de dados, Docker 
     slug: 'rate-limiting-em-serverless',
     title: 'Rate limiting em serverless: o bug que passa em todo teste local',
     excerpt:
-      'Um contador em memória funciona perfeitamente na sua máquina e desaparece em produção — sem erro, sem log, sem nada que denuncie. É a falha mais silenciosa que encontrei.',
+      'Um contador em memória funciona perfeitamente na sua máquina e desaparece em produção, sem erro, sem log e sem nada que denuncie. É a falha mais silenciosa que encontrei.',
     content: `## O contador que some
 
-A implementação ingênua de rate limiting guarda um \`Map\` em memória: chave é o IP, valor é a contagem na janela. Em um processo de longa duração isso funciona — o processo é um só, e o mapa vive enquanto ele viver.
+A implementação ingênua de rate limiting guarda um \`Map\` em memória: chave é o IP, valor é a contagem na janela. Em um processo de longa duração isso funciona, pois o processo é um só e o mapa vive enquanto ele viver.
 
 Em execução serverless, não existe "o processo". Cada requisição pode cair em uma instância diferente, criada agora e destruída em seguida. O contador que você incrementou na requisição anterior pode simplesmente não existir na próxima.
 
-> O código está sintaticamente correto, os testes passam, o deploy sobe — e a proteção contra força bruta simplesmente não existe.
+> O código está sintaticamente correto, os testes passam, o deploy sobe, e a proteção contra força bruta simplesmente não existe.
 
 ## Por que o teste local passa
 
 Rodando localmente há um processo só. Seis requisições seguidas ao endpoint de contato batem no mesmo mapa, a sexta é bloqueada, o teste fica verde e a sensação é de dever cumprido.
 
-O teste está medindo a coisa certa no ambiente errado. Ele prova que a lógica de contagem funciona; não prova que o *estado é compartilhado* — que é justamente a propriedade da qual o mecanismo depende.
+O teste está medindo a coisa certa no ambiente errado. Ele prova que a lógica de contagem funciona; não prova que o *estado é compartilhado*, que é justamente a propriedade da qual o mecanismo depende.
 
 ## Store compartilhado sem Redis
 
-A resposta reflexa é adicionar Redis. Para um sistema com volume de dezenas a centenas de visitas por mês, isso significa um provedor a mais para configurar, pagar e manter — resolvendo um problema de escala que não existe.
+A resposta reflexa é adicionar Redis. Para um sistema com volume de dezenas a centenas de visitas por mês, isso significa um provedor a mais para configurar, pagar e manter, resolvendo um problema de escala que não existe.
 
 O PostgreSQL que já está no projeto resolve, com uma tabela e um upsert atômico:
 
@@ -140,7 +140,7 @@ O incremento é atômico por construção: duas instâncias concorrentes não pe
     slug: 'reduzindo-60-porcento-consumo-proxy-robos-coleta',
     title: 'Reduzindo 60% do consumo de proxy em robôs de coleta',
     excerpt:
-      'Bloqueio agressivo de assets, coleta incremental e navegador só onde o anti-bot exige. Três medidas, com o antes e depois medido em bytes reais.',
+      'Bloqueio agressivo de assets, coleta incremental e navegador só onde a proteção anti bot exige. Três medidas, com o antes e depois medido em bytes reais.',
     content: `## O gargalo de custo em web scraping
 
 Em projetos de coleta massiva de preços e catálogos, o gargalo raramente é CPU ou memória: é a fatura de banda de proxies residenciais rotativos, cobrada em dólares por gigabyte.

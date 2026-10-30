@@ -26,6 +26,7 @@ export interface Dictionary {
     colophonTitle: string;
     colophonLine1: string;
     colophonLine2: string;
+    colophonLine3?: string;
     contactTitle: string;
     emailLabel: string;
     emailValue: string;
@@ -229,9 +230,9 @@ const dictionaries: Record<string, Dictionary> = {
       menuToggleAria: 'Alternar menu de navegação',
     },
     footer: {
-      colophonTitle: 'Colofão',
-      colophonLine1: 'Next.js 15 · Fastify · PostgreSQL/Neon · Drizzle',
-      colophonLine2: 'Arquitetura hexagonal · deploy na Vercel',
+      colophonTitle: 'Davi Afonso',
+      colophonLine1: 'Desenvolvedor Full Stack & Engenharia de IA',
+      colophonLine2: 'Lagoa Santa, Minas Gerais · Remoto e Híbrido',
       contactTitle: 'Contato',
       emailLabel: 'daviafonso5894@gmail.com',
       emailValue: 'daviafonso5894@gmail.com',
@@ -273,24 +274,24 @@ const dictionaries: Record<string, Dictionary> = {
     },
     about: {
       badge: 'Sobre mim',
-      headline: 'Bacharel em Sistemas de Informação, desenvolvedor Full Stack e especialista em engenharia de software com inteligência artificial.',
+      headline: 'Bacharel em Sistemas de Informação e pós graduando em Arquitetura de Software com IA no Full Stack Club.',
       paragraphs: [
-        'Sou desenvolvedor de software Full Stack e Bacharel em Sistemas de Informação. Minha atuação une a solidez do desenvolvimento backend corporativo — utilizando C#, ecossistema .NET (ASP.NET Core, Entity Framework) e Node.js (TypeScript, Fastify, Express) — com a construção de interfaces web modernas e reativas em React e Next.js.',
-        'Sou especialista na transição da inteligência artificial de experimentações soltas ("vibe coding") para engenharia estruturada e previsível. Domino e aplico ambientes avançados de codificação agêntica (Claude Code, OpenAI Codex, OpenCode e Kiro), Spec-Driven Development (SDD), GitHub Spec-Kit e Harness Engineering — criando ambientes onde modelos de linguagem operam sob rédeas estritas de arquitetura, contratos de API e testes automatizados. Na Rumo Soluções, liderei iniciativas de capacitação corporativa, ministrando treinamentos e aulas para todos os funcionários sobre esses métodos e arquitetando sistemas de missão crítica com IA.',
-        'Acredito no código como consequência direta de uma especificação bem consolidada. Seja projetando arquiteturas hexagonais e DDD, seja conectando agentes via Model Context Protocol (MCP) a ferramentas como Context7 e Serena, meu objetivo é entregar software testável, resiliente e escalável.',
+        'Sou desenvolvedor Full Stack e Bacharel em Sistemas de Informação, atualmente cursando pós graduação em Arquitetura de Software com IA no Full Stack Club. Minha trajetória une a solidez do desenvolvimento backend corporativo em C#, ecossistema .NET (ASP.NET Core e Entity Framework) e Node.js (TypeScript e Fastify), com a construção de interfaces web modernas e reativas em React e Next.js.',
+        'Como a inteligência artificial está escrevendo código com cada vez mais qualidade, direciono meu foco estratégico para a área de arquitetura de software, estruturando sistemas resilientes, contratos claros e domínios bem delimitados. Ao mesmo tempo, não deixo de estudar profundamente sobre código e utilizo inteligência artificial de forma contínua em todo o fluxo de trabalho, convicto de que ela potencializa minhas decisões e me torna um profissional muito melhor.',
+        'Aplico inteligência artificial com rigor e método, adotando codificação agêntica (Claude Code, OpenAI Codex, OpenCode e Kiro), Spec Driven Development (SDD) e Harness Engineering. Meu objetivo é garantir que os modelos operem sob rédeas firmes de arquitetura, contratos de API e testes automatizados. Acredito no código como consequência direta de uma especificação bem consolidada, seja em arquitetura hexagonal e DDD, seja conectando ferramentas avançadas via Model Context Protocol (MCP).',
       ],
       focusTitle: 'Foco',
-      focusValue: 'Full Stack (.NET, React) & AI Engineering (SDD / MCP / Harness)',
+      focusValue: 'Arquitetura de Software, Full Stack (.NET, Next) e Engenharia com IA',
       baseTitle: 'Base',
       baseValue: 'Lagoa Santa, Minas Gerais · Brasil',
       languagesTitle: 'Idiomas',
-      languagesValue: 'Português (Nativo) · Inglês (Técnico / Avançado)',
+      languagesValue: 'Português (Nativo) · Inglês (Intermediário)',
       photoPlaceholder: 'Davi Afonso',
       trajectoryTitle: 'Trajetória',
       milestones: [
         {
           year: '2021',
-          description: 'Início da graduação em Sistemas de Informação e aprofundamento em C#, POO e fundamentos de bancos relacionais.',
+          description: 'Início da graduação em Sistemas de Informação.',
         },
         {
           year: '2023',
@@ -302,11 +303,11 @@ const dictionaries: Record<string, Dictionary> = {
         },
         {
           year: '2025',
-          description: 'Atuação na Rumo Soluções, desenvolvimento de sistema OS do zero e liderança de workshops internos para todos os funcionários sobre IA, SDD, Spec-Kit e Harness.',
+          description: 'Atuação na Rumo Soluções, desenvolvimento de sistema OS do zero e liderança de workshops internos para todos os funcionários sobre IA, SDD e Harness Engineering.',
         },
         {
           year: '2026',
-          description: 'Lançamento do DaviDev — arquitetura hexagonal monorepo, engenharia orientada a especificações e publicação aberta de práticas de IA.',
+          description: 'Pós graduação em Arquitetura de Software com IA no Full Stack Club e lançamento do DaviDev com arquitetura hexagonal monorepo e engenharia guiada por especificações.',
         },
       ],
     },
@@ -314,16 +315,16 @@ const dictionaries: Record<string, Dictionary> = {
       badge: 'Habilidades',
       headline: 'O que eu domino e onde aplico.',
       intro:
-        'Sem barras percentuais arbitrárias ou notas subjetivas. No topo, minha especialização em inteligência artificial e engenharia de contexto, seguida pela base sólida em backend, frontend e dados.',
+        'Minhas especializações em inteligência artificial e engenharia de contexto, acompanhada por arquitetura de software, backend, frontend e infraestrutura.',
       categories: [
         {
           number: '01',
           title: 'Inteligência Artificial & Engenharia de Contexto',
           items: [
             {
-              name: 'Spec-Driven Development (SDD) & Spec-Kit',
+              name: 'Spec Driven Development (SDD) & Spec Kit',
               description:
-                'Metodologia em que a especificação é a fonte única da verdade. Hierarquia de autoridade rigorosa (PRD → Architecture → Spec → Plan → Tasks → Code), padronização com comandos Spec-Kit e separação clara entre produto e especificação executável.',
+                'Metodologia em que a especificação é a fonte única da verdade. Hierarquia de autoridade rigorosa (PRD, Architecture, Spec, Plan, Tasks, Code), padronização com comandos Spec Kit e separação clara entre produto e especificação executável.',
             },
             {
               name: 'Claude Code, Codex, OpenCode & Kiro',
@@ -333,29 +334,100 @@ const dictionaries: Record<string, Dictionary> = {
             {
               name: 'Model Context Protocol (MCP)',
               description:
-                'Orquestração da "tomada universal" da IA conectando agentes a ferramentas e dados em tempo real: Context7 (documentação atualizada), Serena (navegação e refatoração semântica LSP) e TestSprite (geração e execução de testes de qualidade).',
+                'Orquestração da conexão universal da IA ligando agentes a ferramentas e dados em tempo real: Context7 (documentação atualizada), Serena (navegação e refatoração semântica LSP) e TestSprite (geração e execução de testes de qualidade).',
             },
             {
               name: 'Harness Engineering & Sandboxing',
               description:
-                'Construção da infraestrutura ao redor dos LLMs: regras da casa duráveis (CLAUDE.md / constitution.md), delimitação estrita de ferramentas e permissões de segurança, persistência de memória (MEMORY.md) e loops de verificação contínua.',
+                'Construção da infraestrutura ao redor dos LLMs: regras duráveis de governança (constitution.md), delimitação estrita de ferramentas e permissões de segurança, persistência de memória e loops de verificação contínua.',
             },
             {
               name: 'Orquestração de Agentes & Subagentes',
               description:
-                'Coordenação de equipes de subagentes especializados (code-reviewer com níveis de severidade, dotnet-best-practices, explore, planner) e automação de procedimentos corporativos através de skills dedicadas.',
+                'Coordenação de equipes de subagentes especializados (code reviewer com níveis de severidade, dotnet best practices, explore, planner) e automação de procedimentos corporativos através de skills dedicadas.',
             },
             {
               name: 'Engenharia de Prompts Estruturados & LLMs',
               description:
-                'Modelos de linguagem avançados (Claude 3.7/Sonnet, GPT-4o, Gemini 2.5 Pro) integrados com validação estrita de esquemas JSON/Zod, retentativas estruturadas e extração determinística.',
+                'Modelos de linguagem avançados (Claude, GPT, Gemini) integrados com validação estrita de esquemas JSON e Zod, retentativas estruturadas e extração determinística.',
             },
           ],
         },
         {
           number: '02',
-          title: 'Backend & Arquitetura',
+          title: 'Arquitetura de Software',
           items: [
+            {
+              name: 'Escalabilidade',
+              description:
+                'Estratégias de escalabilidade horizontal e vertical, isolamento de falhas, desacoplamento de serviços e tolerância a picos de tráfego sem degradação do sistema.',
+            },
+            {
+              name: 'Cache Distribuído',
+              description:
+                'Camadas de cache com políticas de invalidação precisas, estratégias de cache aside e write through para redução drástica de latência e alívio do banco principal.',
+            },
+            {
+              name: 'Load Balancer',
+              description:
+                'Distribuição inteligente de tráfego entre instâncias, balanceamento de carga, monitoramento contínuo de integridade e terminação segura para alta disponibilidade.',
+            },
+            {
+              name: 'Índices',
+              description:
+                'Modelagem de índices compostos, B tree e parciais, otimização de planos de execução de consultas com explain analyze e eliminação de varreduras completas de tabelas.',
+            },
+            {
+              name: 'Paginação',
+              description:
+                'Implementação de paginação por cursor e keyset pagination para grandes volumes de dados, eliminando gargalos de performance e leituras redundantes do offset tradicional.',
+            },
+            {
+              name: 'Arquitetura Hexagonal & DDD',
+              description:
+                'Isolamento estrito do domínio e casos de uso, garantindo zero dependência de frameworks ou bancos no núcleo através de portas e adaptadores.',
+            },
+          ],
+        },
+        {
+          number: '03',
+          title: 'Backend & APIs',
+          items: [
+            {
+              name: 'APIs REST',
+              description:
+                'Desenvolvimento de serviços RESTful orientados a recursos, com verbos HTTP padronizados, códigos de status precisos, idempotência e documentação OpenAPI.',
+            },
+            {
+              name: 'JWT & Claims',
+              description:
+                'Emissão e validação de JSON Web Tokens com assinatura criptográfica, estruturação de Claims para autorização granular baseada em papéis e contexto.',
+            },
+            {
+              name: 'Access Token & Refresh Token',
+              description:
+                'Arquitetura de autenticação com Access Token de ciclo de vida curto e Refresh Token com rotação automática para renovação segura de credenciais.',
+            },
+            {
+              name: 'OAuth 2.0',
+              description:
+                'Implementação de fluxos de autorização para integração segura com provedores externos, concessão de escopos limitados e delegação de acesso.',
+            },
+            {
+              name: 'Cookies',
+              description:
+                'Armazenamento seguro de credenciais com flags HttpOnly, Secure e SameSite, mitigando vulnerabilidades como roubo de tokens por XSS e ataques CSRF.',
+            },
+            {
+              name: 'BCrypt',
+              description:
+                'Hashing unidirecional de senhas com salting automático e fator de custo ajustável, garantindo proteção contra ataques de dicionário e tabelas arco íris.',
+            },
+            {
+              name: 'CORS',
+              description:
+                'Gerenciamento de políticas de Cross Origin Resource Sharing, restringindo origens permitidas, métodos autorizados e cabeçalhos expostos.',
+            },
             {
               name: 'C# / .NET',
               description:
@@ -364,22 +436,17 @@ const dictionaries: Record<string, Dictionary> = {
             {
               name: 'Node.js · TypeScript',
               description:
-                'Construção de APIs REST escaláveis com tipagem estrita, contratos de schemas validados (Zod) e separação de camadas.',
+                'Construção de APIs REST escaláveis com tipagem estrita, contratos de schemas validados com Zod e separação clara de camadas.',
             },
             {
               name: 'Fastify & Express',
               description:
                 'Desenvolvimento de servidores HTTP de alta performance com injeção de dependência e desacoplamento do núcleo de negócio.',
             },
-            {
-              name: 'Arquitetura Hexagonal & DDD',
-              description:
-                'Isolamento estrito do domínio e casos de uso, garantindo zero dependência de frameworks ou bancos no núcleo (Ports & Adapters).',
-            },
           ],
         },
         {
-          number: '03',
+          number: '04',
           title: 'Frontend & Interface',
           items: [
             {
@@ -390,7 +457,7 @@ const dictionaries: Record<string, Dictionary> = {
             {
               name: 'Tailwind CSS & Design Tokens',
               description:
-                'Criação de interfaces acessíveis, responsivas e semânticas com design tokens, suporte a tema claro/escuro e WCAG AA.',
+                'Criação de interfaces acessíveis, responsivas e semânticas com design tokens, suporte a tema claro ou escuro e padrões WCAG AA.',
             },
             {
               name: 'TypeScript Avançado',
@@ -400,7 +467,7 @@ const dictionaries: Record<string, Dictionary> = {
           ],
         },
         {
-          number: '04',
+          number: '05',
           title: 'Banco de Dados & Infraestrutura',
           items: [
             {
@@ -409,14 +476,29 @@ const dictionaries: Record<string, Dictionary> = {
                 'Modelagem relacional com integridade declarativa, foreign keys, constraints e migrations versionadas com Drizzle e EF Core.',
             },
             {
-              name: 'MongoDB',
+              name: 'Neon & Supabase',
               description:
-                'Persistência orientada a documentos para catálogos de produtos e dados flexíveis com índices otimizados e Mongoose.',
+                'Bancos de dados PostgreSQL serverless com branching instantâneo de ambientes, pooling de conexões de alta escala e serviços de backend gerenciados.',
             },
             {
-              name: 'Docker & Git/CI',
+              name: 'Upstash Redis',
               description:
-                'Ambientes conteinerizados reprodutíveis, esteiras de testes automatizados e verificação estática de regras de dependência.',
+                'Cache distribuído serverless e controle de taxa de requisições em borda com conexão via HTTP e REST de baixíssima latência.',
+            },
+            {
+              name: 'Pipelines e Releases CI/CD',
+              description:
+                'Automação completa com GitHub Actions, execução de suítes de testes, auditoria estática de regras arquiteturais e deploy contínuo sem intervenção manual.',
+            },
+            {
+              name: 'Docker',
+              description:
+                'Ambientes conteinerizados reprodutíveis para desenvolvimento e produção, garantindo paridade entre máquinas locais e servidores de nuvem.',
+            },
+            {
+              name: 'MongoDB',
+              description:
+                'Persistência orientada a documentos para catálogos flexíveis e coleções não relacionais com índices otimizados e consultas agregadas.',
             },
           ],
         },
@@ -426,47 +508,55 @@ const dictionaries: Record<string, Dictionary> = {
       badge: 'Conhecimentos',
       headline: 'Os conceitos que sustentam as escolhas.',
       intro:
-        'Habilidade é a ferramenta; conhecimento é saber quando ela não serve. Aqui estão os fundamentos de IA, especificação e arquitetura que uso para decidir — e o custo que cada um cobra.',
+        'Habilidade é a ferramenta; conhecimento é saber quando ela não serve. Aqui estão os fundamentos de IA, especificação e arquitetura que uso para tomar decisões técnicas e o custo que cada uma cobra.',
       items: [
         {
-          title: 'Spec-Driven Development (SDD) & Hierarquia de Autoridade',
+          title: 'Spec Driven Development e Hierarquia de Autoridade',
           tag: 'Aplico',
           description:
-            'O código deixa de ser o ponto de partida e passa a ser a consequência final da especificação. Respeito rigoroso à hierarquia de autoridade dos artefatos: PRD (o quê e por quê) → Architecture (como o sistema se estrutura) → Specification (o quê exatamente) → Plan (design técnico detalhado) → Tasks (tarefas acionáveis) → Code. Nenhuma linha é escrita sem contrato prévio.',
+            'O código deixa de ser o ponto de partida e passa a ser a consequência final da especificação. Respeito rigoroso à hierarquia de autoridade dos artefatos: PRD para intenção de produto, Architecture para estrutura, Specification para contratos, Plan para design técnico, Tasks para execução e Code como resultado verificável. Nenhuma linha é escrita sem validação prévia.',
           costLabel: 'O custo',
           cost: 'Demanda disciplina e tempo investido antes da implementação. Quem queima essa etapa ganha velocidade aparente no primeiro dia e passa meses pagando retrabalho e desalinhamento entre produto e engenharia.',
         },
         {
-          title: 'Harness Engineering no Mundo de IA',
+          title: 'Harness Engineering no Desenvolvimento com IA',
           tag: 'Aplico',
           description:
-            'O modelo de linguagem é apenas o cérebro; o harness é toda a infraestrutura ao redor que o guia, controla e torna confiável. Composto pelas 8 peças fundamentais: regras da casa duráveis (CLAUDE.md), ferramentas para agir, permissões de segurança (cinto de segurança), janela de contexto, memória persistente (MEMORY.md), servidores MCP, equipe de subagentes especializados e loops contínuos de verificação.',
+            'O modelo de linguagem é apenas o motor de raciocínio; o harness é toda a infraestrutura ao redor que o guia, controla e torna confiável. Engloba regras duráveis de governança, ferramentas seguras de execução, controle estrito de permissões, contexto direcionado, persistência de memória e loops automatizados de verificação contínua.',
           costLabel: 'O custo',
-          cost: 'Manter a infraestrutura de harness calibrada conforme o sistema evolui exige manutenção constante de contexto e regras. Sem esse arreio, até o modelo mais avançado alucina e quebra invariantes de domínio.',
+          cost: 'Manter a infraestrutura de harness calibrada conforme o sistema evolui exige manutenção constante de contexto e regras. Sem esse suporte, até o modelo mais avançado alucina e quebra invariantes de domínio.',
         },
         {
-          title: 'Model Context Protocol (MCP) — A Tomada Universal da IA',
+          title: 'Arquitetura Hexagonal (Ports e Adapters)',
           tag: 'Aplico',
           description:
-            'Padronização de comunicação entre agentes e fontes reais. Em vez de depender da memória estática e desatualizada do treino da IA, utilizo MCPs estratégicos: Context7 para injetar documentações oficiais atualizadas na hora, Serena para navegação e refatoração semântica em nível de símbolo (LSP) e TestSprite para geração e execução de testes de qualidade.',
+            'Domínio e casos de uso independentes de framework, servidores HTTP e bancos de dados. O ganho real não é elegância estética: é conseguir testar regras de negócio puras em memória sem subir infraestrutura externa e proteger a longevidade do software contra obsolescência.',
           costLabel: 'O custo',
-          cost: 'Exige configuração e sustentação de servidores locais/remotos de protocolo e consome tokens adicionais ao injetar schemas de ferramentas no contexto do modelo.',
+          cost: 'Mais arquivos e mais indireção por funcionalidade. Em sistemas simples pode representar complexidade desnecessária, sendo justificável quando a longevidade e a testabilidade são prioridades.',
         },
         {
-          title: 'Arquitetura Hexagonal (Ports & Adapters)',
+          title: 'Cache Distribuído e Estratégias de Invalidação',
           tag: 'Aplico',
           description:
-            'Domínio e casos de uso independentes de framework, HTTP e banco. O ganho real não é elegância estética: é conseguir testar regra de negócio sem subir infraestrutura e proteger a longevidade do software.',
+            'Implementação de camadas de cache distribuído com Upstash Redis e padrões como cache aside e write through para alívio do banco de dados e latência mínima. Decisões arquiteturais ponderadas entre consistência estrita e consistência eventual com políticas previsíveis de expiração (TTL).',
           costLabel: 'O custo',
-          cost: 'Mais arquivos e mais indireção por funcionalidade. Em sistemas pequenos é over-engineering — e só se justifica quando a testabilidade e o ciclo de vida longo valem o preço.',
+          cost: 'Invalidação de cache é um dos problemas clássicos da computação. Exige controle rigoroso para evitar leitura de dados obsoletos e adiciona dependência de sincronização no ecossistema.',
         },
         {
-          title: 'Integridade no banco, não no código',
+          title: 'Autenticação Stateless e Defesa em Camadas',
           tag: 'Aplico',
           description:
-            'Quando uma regra de negócio pode ser expressa como constraint relacional, ela deve ser. Unicidade, integridade referencial em cascata e transições de estado garantidas pelo Postgres são impossíveis de violar por esquecimento ou alucinações de código.',
+            'Segurança de ponta a ponta com JSON Web Tokens de curta duração, claims tipadas para autorização fina e rotação automática de Refresh Tokens. Proteção contra ataques XSS e CSRF através de cookies HttpOnly e políticas refinadas de CORS e criptografia com BCrypt.',
           costLabel: 'O custo',
-          cost: 'Menor flexibilidade em migrações dinâmicas e mensagens de erro do driver que exigem tradução de banco para o usuário.',
+          cost: 'Tokens stateless não podem ser revogados instantaneamente sem um mecanismo auxiliar de blacklist ou versão de credencial, exigindo equilíbrio fino no tempo de vida dos tokens.',
+        },
+        {
+          title: 'Integridade Relacional no Banco de Dados',
+          tag: 'Aplico',
+          description:
+            'Quando uma regra de negócio pode ser garantida por uma constraint relacional, ela deve ser. Unicidade, integridade referencial em cascata e transições de estado garantidas pelo PostgreSQL ou Neon são impossíveis de violar por falhas de código ou geração automática incorreta.',
+          costLabel: 'O custo',
+          cost: 'Menor flexibilidade em migrações dinâmicas e mensagens de erro do driver que exigem camadas de tradução de banco para o usuário da aplicação.',
         },
       ],
     },
@@ -544,11 +634,11 @@ const dictionaries: Record<string, Dictionary> = {
       badge: 'Projetos',
       headline: 'Problema, decisão, resultado.',
       intro:
-        'Cada projeto abre pelo problema de negócio e pelo desfecho — legível para quem contrata. O detalhe de arquitetura vem depois, para quem avalia tecnicamente.',
+        'Cada projeto abre pelo problema de negócio e pelo desfecho, de forma legível para quem contrata. O detalhe de arquitetura vem depois, para quem avalia tecnicamente.',
       items: [
         {
           slug: 'davidev-portfolio-produto',
-          title: 'DaviDev — Portfólio como Produto de Software',
+          title: 'DaviDev: Portfólio como Produto de Software',
           status: 'Em produção',
           period: '2026',
           stack: ['Next.js 15', 'Fastify', 'PostgreSQL', 'Drizzle', 'Hexagonal'],
@@ -561,7 +651,7 @@ const dictionaries: Record<string, Dictionary> = {
           summary:
             'Blog editorial, CMS, API RESTful documentada com Swagger e arquitetura hexagonal, com todo o processo de engenharia publicado.',
           engineeringChallenge:
-            'Garantir latência LCP < 2.5s global e zero dependências externas no pacote de domínio (DEP-1), com integração in-process entre Next.js e Fastify.',
+            'Garantir latência LCP menor que 2.5s global e zero dependências externas no pacote de domínio, com integração in process entre Next.js e Fastify.',
           decisions: [
             {
               title: 'Arquitetura Hexagonal estrita em Monorepo',
@@ -570,14 +660,14 @@ const dictionaries: Record<string, Dictionary> = {
             },
             {
               title: 'Host híbrido Serverless Fastify dentro do Next.js',
-              desc: 'A mesma API Fastify com schemas Zod atende requisições HTTP e é consumida in-process por Server Components sem round-trip de rede.',
+              desc: 'A mesma API Fastify com schemas Zod atende requisições HTTP e é consumida in process por Server Components sem round trip de rede.',
               tradeoff: 'Configuração personalizada de handlers e adapters de request.',
             },
           ],
         },
         {
           slug: 'saltweb',
-          title: 'SaltWeb — Plataforma Web da Juventude',
+          title: 'SaltWeb: Plataforma Web da Juventude',
           status: 'Concluído',
           period: '2024',
           stack: ['React', 'TypeScript', 'Tailwind CSS', 'Vite'],
@@ -600,13 +690,13 @@ const dictionaries: Record<string, Dictionary> = {
             {
               title: 'Vite como ferramenta de build',
               desc: 'Adoção de Vite para builds ultrarrápidos e Hot Module Replacement (HMR) eficiente durante o ciclo de desenvolvimento.',
-              tradeoff: 'Configuração manual de roteamento client-side.',
+              tradeoff: 'Configuração manual de roteamento client side.',
             },
           ],
         },
         {
           slug: 'fit-ia',
-          title: 'FIT.IA — Assistente Inteligente de Treino & Nutrição',
+          title: 'FIT.IA: Assistente Inteligente de Treino & Nutrição',
           status: 'Concluído',
           period: '2024',
           stack: ['Node.js', 'Express', 'React', 'IA Generativa', 'Tailwind CSS'],
@@ -635,7 +725,7 @@ const dictionaries: Record<string, Dictionary> = {
         },
         {
           slug: 'sales-web-mvc',
-          title: 'SalesWebMvc — Gestão de Vendas e Departamentos',
+          title: 'SalesWebMvc: Gestão de Vendas e Departamentos',
           status: 'Concluído',
           period: '2023',
           stack: ['C# / .NET', 'ASP.NET Core MVC', 'Entity Framework Core', 'MySQL'],
@@ -651,7 +741,7 @@ const dictionaries: Record<string, Dictionary> = {
             'Garantir consistência relacional e integridade referencial nas exclusões em cascata e consultas complexas com LINQ e agrupamentos.',
           decisions: [
             {
-              title: 'Entity Framework Core Code-First',
+              title: 'Entity Framework Core Code First',
               desc: 'Modelagem de domínio primeiro em classes C# com mapeamento ORM e migrations automáticas no MySQL.',
               tradeoff: 'Dependência do ciclo de migrações do framework.',
             },
@@ -697,8 +787,8 @@ const dictionaries: Record<string, Dictionary> = {
       badge: 'Contato',
       headline: 'Vamos conversar.',
       intro:
-        'Vaga, projeto ou dúvida sobre engenharia e arquitetura — respondo todos os contatos. Se preferir, utilize os canais diretos abaixo.',
-      emailLabel: 'E-mail direto',
+        'Vaga, projeto ou dúvida sobre engenharia e arquitetura, respondo todos os contatos. Se preferir, utilize os canais diretos abaixo.',
+      emailLabel: 'Email direto',
       emailValue: 'daviafonso5894@gmail.com',
       linkedinLabel: 'LinkedIn',
       linkedinHandle: '/in/davi-afonso',
@@ -709,25 +799,25 @@ const dictionaries: Record<string, Dictionary> = {
       form: {
         nameLabel: 'Nome',
         namePlaceholder: 'Seu nome completo',
-        emailLabel: 'E-mail',
+        emailLabel: 'Email',
         emailPlaceholder: 'seu.email@empresa.com',
         subjectLabel: 'Assunto',
         subjectPlaceholder: 'Ex.: Proposta de projeto ou oportunidade de backend',
         messageLabel: 'Mensagem',
         messagePlaceholder: 'Descreva sua proposta, desafio técnico ou objetivo de contato...',
         charCount: 'caracteres',
-        turnstileVerified: 'Verificação anti-spam concluída',
-        turnstileVerifying: 'Validando verificação anti-spam...',
-        turnstileRequired: 'Por favor, aguarde a validação anti-spam antes de enviar.',
+        turnstileVerified: 'Verificação anti spam concluída',
+        turnstileVerifying: 'Validando verificação anti spam...',
+        turnstileRequired: 'Por favor, aguarde a validação anti spam antes de enviar.',
         privacyAgreement: 'Ao enviar, você concorda com o tratamento de dados descrito na política de privacidade.',
         submitButton: 'Enviar mensagem',
         submittingButton: 'Enviando mensagem...',
-        successMessage: 'Mensagem recebida com sucesso! Retornarei em breve no seu e-mail.',
-        errorMessage: 'Não foi possível enviar a mensagem no momento. Tente novamente ou use o e-mail direto.',
+        successMessage: 'Mensagem recebida com sucesso! Retornarei em breve no seu email.',
+        errorMessage: 'Não foi possível enviar a mensagem no momento. Tente novamente ou use o email direto.',
         rateLimitError: 'Limite de mensagens atingido para este período (máximo 3 por hora). Tente novamente mais tarde.',
         errors: {
           nameRequired: 'Informe seu nome (até 120 caracteres).',
-          emailInvalid: 'Informe um endereço de e-mail válido.',
+          emailInvalid: 'Informe um endereço de email válido.',
           messageLength: 'A mensagem deve conter entre 10 e 5000 caracteres.',
         },
       },
@@ -787,7 +877,7 @@ const dictionaries: Record<string, Dictionary> = {
       badge: 'Case study',
       headline: 'Como este site foi construído',
       intro:
-        'Um portfólio tratado como produto de software: PRD antes da arquitetura, arquitetura antes do código, e o registro honesto das decisões — inclusive as que precisaram ser corrigidas no meio do caminho.',
+        'Um portfólio tratado como produto de software: PRD antes da arquitetura, arquitetura antes do código, e o registro honesto das decisões, inclusive as que precisaram ser corrigidas no meio do caminho.',
       metrics: [
         { label: 'riscos registrados', count: 27 },
         { label: 'ADRs com alternativas descartadas', count: 5 },
@@ -795,7 +885,7 @@ const dictionaries: Record<string, Dictionary> = {
         { label: 'contradições detectadas e corrigidas', count: 4 },
       ],
       flowNumber: '01',
-      flowTitle: 'O fluxo Spec-Driven & Harness',
+      flowTitle: 'O fluxo Spec Driven & Harness',
       flowSteps: [
         {
           number: '01',
@@ -804,17 +894,17 @@ const dictionaries: Record<string, Dictionary> = {
         },
         {
           number: '02',
-          title: 'PRD (Produto)',
-          description: 'Problema, personas, critérios de sucesso e o que fica fora (via skill prd-development)',
+          title: 'PRD de Produto',
+          description: 'Problema, personas, critérios de sucesso e o que fica fora via skill prd development',
         },
         {
           number: '03',
-          title: 'Arquitetura (Técnico)',
-          description: 'Fonte de verdade técnica: ADRs, modelagem de dados e contratos (via skill architecture-design)',
+          title: 'Arquitetura e Contratos',
+          description: 'Fonte de verdade técnica com ADRs, modelagem de dados e contratos via skill architecture design',
         },
         {
           number: '04',
-          title: 'Spec-Kit (.specify)',
+          title: 'Spec Kit (.specify)',
           description: 'Especificação funcional (spec.md), plano técnico (plan.md) e lista de tarefas (tasks.md)',
         },
         {
@@ -829,7 +919,7 @@ const dictionaries: Record<string, Dictionary> = {
         },
       ],
       flowNote:
-        'A IA não escreveu este sistema sozinha, e nem gerou código a partir de prompts soltos ("vibe coding"). O que está sendo demonstrado é a engenharia de harness: especificação como fonte única da verdade (SDD), autoridade hierárquica (PRD → Architecture → Spec → Plan → Tasks → Code), servidores MCP para contexto em tempo real e verificação contínua contra contratos definidos — com um humano responsável por cada decisão técnica.',
+        'A IA não escreveu este sistema sozinha e nem gerou código a partir de prompts soltos ("vibe coding"). O que está sendo demonstrado é a engenharia de harness: especificação como fonte única da verdade (SDD), autoridade hierárquica (PRD → Architecture → Spec → Plan → Tasks → Code), servidores MCP para contexto em tempo real e verificação contínua contra contratos definidos, com um engenheiro responsável por cada decisão técnica.',
       adrsNumber: '02',
       adrsTitle: 'Decisões que valeram um ADR',
       adrs: [
@@ -843,9 +933,9 @@ const dictionaries: Record<string, Dictionary> = {
         },
         {
           id: 'ADR-002',
-          title: 'Arquitetura hexagonal, com custo assumido',
+          title: 'Arquitetura hexagonal com custo assumido',
           description:
-            'Para um CMS de blog é over-engineering pelos critérios normais. A justificativa não é técnica — é que a testabilidade é parte do que está sendo demonstrado.',
+            'Para um CMS de blog é over engineering pelos critérios normais. A justificativa não é técnica: a testabilidade é parte do que está sendo demonstrado.',
           costLabel: 'Custo:',
           cost: 'mais arquivos e indireção por funcionalidade.',
         },
@@ -855,52 +945,60 @@ const dictionaries: Record<string, Dictionary> = {
           description:
             'A página pública chama o caso de uso direto, sem passar por HTTP. Isso mantém o site no ar mesmo se a API cair.',
           costLabel: 'Custo:',
-          cost: 'dois caminhos até o dado — risco de divergência de regra.',
+          cost: 'dois caminhos até o dado com risco de divergência de regra.',
+        },
+        {
+          id: 'ADR-004',
+          title: 'Monorepo isolado com pnpm workspaces',
+          description:
+            'Separação física em pacotes desacoplados (domain, application, infrastructure, http). O domínio não possui nenhuma dependência externa (DEP-1).',
+          costLabel: 'Custo:',
+          cost: 'configuração e orquestração de scripts no monorepo.',
         },
         {
           id: 'ADR-005',
-          title: 'Eventos de domínio in-process, sem broker',
+          title: 'Eventos de domínio in-process sem broker',
           description:
-            'Publicar dispara a revalidação da página. É o que permite publicar em minutos sem deploy, sem mensageria para operar.',
+            'Publicar dispara a revalidação da página. É o que permite publicar em minutos sem deploy e sem mensageria para operar.',
           costLabel: 'Custo:',
-          cost: 'entrega best-effort, sem retentativa automática.',
+          cost: 'entrega best effort sem retentativa automática.',
         },
       ],
       mistakesNumber: '03',
       mistakesTitle: 'O que eu errei no caminho',
       mistakesIntro:
-        'A parte mais útil de documentar decisões é descobrir que duas delas se contradizem. Quatro contradições apareceram só ao cruzar as etapas — e cada uma teria virado defeito em produção.',
+        'A parte mais útil de documentar decisões é descobrir que duas delas se contradizem. Quatro contradições apareceram só ao cruzar as etapas, e cada uma teria virado defeito em produção.',
       mistakes: [
         {
-          title: 'Rollback instantâneo × migration sem volta',
+          title: 'Rollback instantâneo versus migration sem volta',
           description:
             'Reverter o código não reverte o banco. O botão de rollback existiria, e apertá-lo derrubaria o sistema. Resolvido com a regra de que toda migration precisa ser compatível com a versão anterior.',
         },
         {
-          title: '"Audit log" que dura três dias',
+          title: 'Audit log que dura três dias',
           description:
-            'A retenção de log da plataforma é curta. Chamar aquilo de trilha de auditoria seria mentira confortável — foi renomeado para o que de fato é: visibilidade operacional recente.',
+            'A retenção de log da plataforma é curta. Chamar aquilo de trilha de auditoria seria mentira confortável. Foi renomeado para o que de fato é: visibilidade operacional recente.',
         },
         {
           title: 'Teste de integração em banco compartilhado',
           description:
-            'Execuções paralelas de CI se atropelariam, gerando falha intermitente — que é pior que teste nenhum, porque ensina a ignorar vermelho.',
+            'Execuções paralelas de CI se atropelariam, gerando falha intermitente, que é pior que teste nenhum por ensinar a ignorar alertas vermelhos.',
         },
         {
-          title: 'Acessibilidade exigida, nunca verificada',
+          title: 'Acessibilidade exigida sem validação',
           description:
             'WCAG AA aparecia em três lugares do documento e não existia gate nenhum no pipeline. Um requisito sem verificação é uma intenção.',
         },
       ],
       openDocsTitle: 'Os documentos estão abertos',
       openDocsIntro:
-        'PRD, documento de arquitetura completo, contratos OpenAPI e evidências do processo — sem maquiagem para a foto.',
+        'PRD, documento de arquitetura completo, contratos OpenAPI e evidências do processo, sem maquiagem para a foto.',
       openDocsLinks: [
-        { label: '→ Documentação Interativa da API (/api/docs)', href: '/api/docs', isExternal: false },
-        { label: '→ Relatório de Prontidão e Auditoria de Go-Live', href: '/docs/go-live-readiness-report.md', isExternal: false },
-        { label: '→ PRD Completo (docs/prd.md)', href: 'https://github.com/DaviAfonso88/portifolio/blob/main/docs/prd.md', isExternal: true },
-        { label: '→ Decisões de Arquitetura (docs/architecture.md)', href: 'https://github.com/DaviAfonso88/portifolio/blob/main/docs/architecture.md', isExternal: true },
-        { label: '→ Repositório no GitHub', href: 'https://github.com/DaviAfonso88/portifolio', isExternal: true },
+        { label: 'Documentação Interativa da API (/api/docs)', href: '/api/docs', isExternal: false },
+        { label: 'Relatório de Prontidão e Auditoria de Go Live', href: '/docs/go-live-readiness-report.md', isExternal: false },
+        { label: 'PRD Completo (docs/prd.md)', href: 'https://github.com/DaviAfonso88/portifolio/blob/main/docs/prd.md', isExternal: true },
+        { label: 'Decisões de Arquitetura (docs/architecture.md)', href: 'https://github.com/DaviAfonso88/portifolio/blob/main/docs/architecture.md', isExternal: true },
+        { label: 'Repositório no GitHub', href: 'https://github.com/DaviAfonso88/portifolio', isExternal: true },
       ],
     },
 
@@ -923,9 +1021,9 @@ const dictionaries: Record<string, Dictionary> = {
       menuToggleAria: 'Toggle navigation menu',
     },
     footer: {
-      colophonTitle: 'Colophon',
-      colophonLine1: 'Next.js 15 · Fastify · PostgreSQL/Neon · Drizzle',
-      colophonLine2: 'Hexagonal architecture · deployed on Vercel',
+      colophonTitle: 'Davi Afonso',
+      colophonLine1: 'Full Stack Developer & AI Engineering',
+      colophonLine2: 'Lagoa Santa, Minas Gerais · Remote & Hybrid',
       contactTitle: 'Contact',
       emailLabel: 'daviafonso5894@gmail.com',
       emailValue: 'daviafonso5894@gmail.com',
@@ -967,24 +1065,24 @@ const dictionaries: Record<string, Dictionary> = {
     },
     about: {
       badge: 'About me',
-      headline: 'Information Systems graduate, Full Stack developer, and specialist in AI-driven software engineering.',
+      headline: 'Bachelor in Information Systems and postgraduate student in Software Architecture with AI at Full Stack Club.',
       paragraphs: [
-        'I am a Full Stack Software Developer with a Bachelor’s degree in Information Systems. My work bridges enterprise backend engineering — using C#, the .NET ecosystem (ASP.NET Core, Entity Framework), and Node.js (TypeScript, Fastify, Express) — with modern, responsive frontend interfaces built with React and Next.js.',
-        'I specialize in moving artificial intelligence from chaotic "vibe coding" to disciplined, predictable engineering. I implement cutting-edge agentic coding environments (Claude Code, OpenAI Codex, OpenCode, and Kiro), Spec-Driven Development (SDD), GitHub Spec-Kit, and Harness Engineering — establishing environments where language models operate under strict architectural guardrails, API contracts, and automated verification loops. At Rumo Soluções, I spearheaded internal company-wide training on these methodologies and engineered mission-critical systems with AI.',
-        'I treat code as the direct consequence of an unambiguous specification. Whether designing hexagonal architectures and DDD or integrating agents via the Model Context Protocol (MCP) with tools like Context7 and Serena, my goal is delivering testable, resilient, and enterprise-grade software.',
+        'I am a Full Stack Software Developer with a Bachelor degree in Information Systems, currently pursuing postgraduate studies in Software Architecture with AI at Full Stack Club. My work bridges enterprise backend engineering with C#, the .NET ecosystem (ASP.NET Core and Entity Framework), and Node.js (TypeScript and Fastify), with modern and responsive frontend interfaces built with React and Next.js.',
+        'As artificial intelligence models write increasingly high quality code, I strategically focus on software architecture, structuring resilient systems, clear contracts, and well bounded domains. At the same time, I never stop studying code deeply and consistently use artificial intelligence throughout my workflow, confident that it sharpens my decisions and makes me an even better professional.',
+        'I apply artificial intelligence with engineering discipline and rigor, adopting agentic coding environments (Claude Code, OpenAI Codex, OpenCode, and Kiro), Spec Driven Development (SDD), and Harness Engineering. My goal is ensuring models operate under strict architectural guardrails, API contracts, and automated tests, whether applying hexagonal architecture and DDD or connecting tools via the Model Context Protocol (MCP).',
       ],
       focusTitle: 'Focus',
-      focusValue: 'Full Stack (.NET, React) & AI Engineering (SDD / MCP / Harness)',
+      focusValue: 'Software Architecture, Full Stack (.NET, Next), and AI Engineering',
       baseTitle: 'Base',
       baseValue: 'Lagoa Santa, Minas Gerais · Brazil',
       languagesTitle: 'Languages',
-      languagesValue: 'Portuguese (Native) · English (Technical / Advanced)',
+      languagesValue: 'Portuguese (Native) · English (Intermediate)',
       photoPlaceholder: 'Davi Afonso',
       trajectoryTitle: 'Timeline',
       milestones: [
         {
           year: '2021',
-          description: 'Started Information Systems degree and focused on C#, OOP, and relational database fundamentals.',
+          description: 'Started Information Systems degree.',
         },
         {
           year: '2023',
@@ -996,11 +1094,11 @@ const dictionaries: Record<string, Dictionary> = {
         },
         {
           year: '2025',
-          description: 'Engineering at Rumo Soluções, OS system built from scratch, and led internal company-wide workshops on AI, SDD, Spec-Kit, and Harness.',
+          description: 'Engineering at Rumo Soluções, OS system built from scratch, and led internal company workshops on AI, SDD, and Harness Engineering.',
         },
         {
           year: '2026',
-          description: 'Launched DaviDev — hexagonal monorepo architecture, specification-driven engineering, and open publication of AI engineering practices.',
+          description: 'Postgraduate studies in Software Architecture with AI at Full Stack Club and launch of DaviDev with hexagonal monorepo architecture and specification driven engineering.',
         },
       ],
     },
@@ -1008,48 +1106,119 @@ const dictionaries: Record<string, Dictionary> = {
       badge: 'Skills',
       headline: 'What I build with, and where I apply it.',
       intro:
-        'No arbitrary percentage bars or subjective ratings. At the very top, my specialization in artificial intelligence and context engineering, backed by solid foundations in backend, frontend, and data.',
+        'My specializations in artificial intelligence and context engineering, backed by software architecture, backend, frontend, and infrastructure.',
       categories: [
         {
           number: '01',
           title: 'Artificial Intelligence & Context Engineering',
           items: [
             {
-              name: 'Spec-Driven Development (SDD) & Spec-Kit',
+              name: 'Spec Driven Development (SDD) & Spec Kit',
               description:
-                'Methodology where the specification serves as the single source of truth. Strict artifact authority hierarchy (PRD → Architecture → Spec → Plan → Tasks → Code), standardized Spec-Kit workflows, and clear separation between product intent and executable spec.',
+                'Methodology where the specification serves as the single source of truth. Strict artifact authority hierarchy (PRD, Architecture, Spec, Plan, Tasks, Code), standardized Spec Kit workflows, and clear separation between product intent and executable spec.',
             },
             {
               name: 'Claude Code, Codex, OpenCode & Kiro',
               description:
-                'Hands-on mastery of leading agentic coding environments and autonomous CLI tools (Claude Code, OpenAI Codex, OpenCode, and Kiro). Leveraging terminal agents for semantic refactoring, automated test execution, shell integration, and rigorous specification adherence.',
+                'Hands on mastery of leading agentic coding environments and autonomous CLI tools (Claude Code, OpenAI Codex, OpenCode, and Kiro). Leveraging terminal agents for semantic refactoring, automated test execution, shell integration, and rigorous specification adherence.',
             },
             {
               name: 'Model Context Protocol (MCP)',
               description:
-                'Orchestration of AI’s "universal socket" connecting agents to real-time tools and data: Context7 (up-to-date official docs), Serena (symbol-level semantic code navigation via LSP), and TestSprite (automated test generation and quality verification).',
+                'Orchestration of the universal connection of AI linking agents to real time tools and data: Context7 (up to date official docs), Serena (symbol level semantic code navigation via LSP), and TestSprite (automated test generation and quality verification).',
             },
             {
               name: 'Harness Engineering & Sandboxing',
               description:
-                'Building complete infrastructure around LLMs: durable governance rules (CLAUDE.md / constitution.md), strict permission sandboxes, persistent memory (MEMORY.md), and automated verification feedback loops preventing hallucinations.',
+                'Building complete infrastructure around LLMs: durable governance rules (constitution.md), strict permission sandboxes, persistent memory, and automated verification feedback loops preventing hallucinations.',
             },
             {
               name: 'Agent & Subagent Orchestration',
               description:
-                'Coordinating specialized subagent teams (code-reviewer with severity levels, dotnet-best-practices, explore, planner) and automating enterprise development procedures via packaged skills.',
+                'Coordinating specialized subagent teams (code reviewer with severity levels, dotnet best practices, explore, planner) and automating enterprise development procedures via packaged skills.',
             },
             {
               name: 'Structured Prompt Engineering & LLMs',
               description:
-                'Advanced foundation models (Claude 3.7/Sonnet, GPT-4o, Gemini 2.5 Pro) integrated with strict JSON/Zod schema validation, structured retries, and deterministic outputs.',
+                'Advanced foundation models (Claude, GPT, Gemini) integrated with strict JSON and Zod schema validation, structured retries, and deterministic outputs.',
             },
           ],
         },
         {
           number: '02',
-          title: 'Backend & Architecture',
+          title: 'Software Architecture',
           items: [
+            {
+              name: 'Scalability',
+              description:
+                'Horizontal and vertical scaling strategies, fault isolation, service decoupling, and traffic spike tolerance without system degradation.',
+            },
+            {
+              name: 'Distributed Cache',
+              description:
+                'Caching layers with precise invalidation policies, cache aside and write through patterns to drastically reduce latency and relieve the primary database.',
+            },
+            {
+              name: 'Load Balancers',
+              description:
+                'Intelligent traffic distribution across instances, health check monitoring, and secure connection termination to ensure high availability.',
+            },
+            {
+              name: 'Indexes',
+              description:
+                'Design of composite, B tree, and partial indexes, execution plan optimization with explain analyze, and elimination of expensive table scans.',
+            },
+            {
+              name: 'Pagination',
+              description:
+                'Implementation of cursor based and keyset pagination for high volume datasets, eliminating traditional offset bottlenecks and redundant reads.',
+            },
+            {
+              name: 'Hexagonal Architecture & DDD',
+              description:
+                'Strict isolation of core domain and use cases, ensuring zero framework or database dependencies in the business layer through ports and adapters.',
+            },
+          ],
+        },
+        {
+          number: '03',
+          title: 'Backend & APIs',
+          items: [
+            {
+              name: 'REST APIs',
+              description:
+                'Resource oriented RESTful services utilizing standard HTTP verbs, precise status codes, idempotency, and OpenAPI specification compliance.',
+            },
+            {
+              name: 'JWT & Claims',
+              description:
+                'Issuance and verification of signed JSON Web Tokens, structuring Claims for role and context based fine grained authorization.',
+            },
+            {
+              name: 'Access Token & Refresh Token',
+              description:
+                'Authentication architecture using short lived Access Tokens and rotating Refresh Tokens for resilient and secure credential renewal.',
+            },
+            {
+              name: 'OAuth 2.0',
+              description:
+                'Implementation of modern authorization flows with external providers, scoped permissions, and secure third party access delegation.',
+            },
+            {
+              name: 'Cookies',
+              description:
+                'Secure credential storage utilizing HttpOnly, Secure, and SameSite flags to mitigate token theft through XSS and prevent CSRF exploits.',
+            },
+            {
+              name: 'BCrypt',
+              description:
+                'One way password hashing with automatic salting and adaptable work factors, ensuring protection against dictionary and rainbow table attacks.',
+            },
+            {
+              name: 'CORS',
+              description:
+                'Granular Cross Origin Resource Sharing policies, strictly controlling permitted origins, allowed HTTP methods, and exposed headers.',
+            },
             {
               name: 'C# / .NET',
               description:
@@ -1058,22 +1227,17 @@ const dictionaries: Record<string, Dictionary> = {
             {
               name: 'Node.js · TypeScript',
               description:
-                'Scalable REST API development with strict TypeScript typing, validated schemas (Zod), and clear layer boundaries.',
+                'Scalable REST API development with strict TypeScript typing, validated schemas with Zod, and clear layer boundaries.',
             },
             {
               name: 'Fastify & Express',
               description:
-                'High-performance HTTP server development with dependency injection and decoupling from core business logic.',
-            },
-            {
-              name: 'Hexagonal Architecture & DDD',
-              description:
-                'Strict isolation of core domain and use cases, ensuring zero framework or database dependencies in the business layer (Ports & Adapters).',
+                'High performance HTTP server development with dependency injection and decoupling from core business logic.',
             },
           ],
         },
         {
-          number: '03',
+          number: '04',
           title: 'Frontend & Interface',
           items: [
             {
@@ -1084,7 +1248,7 @@ const dictionaries: Record<string, Dictionary> = {
             {
               name: 'Tailwind CSS & Design Tokens',
               description:
-                'Accessible, responsive, and semantic user interfaces with design tokens, native light/dark theme, and WCAG AA compliance.',
+                'Accessible, responsive, and semantic user interfaces with design tokens, native light or dark theme, and WCAG AA compliance.',
             },
             {
               name: 'Advanced TypeScript',
@@ -1094,7 +1258,7 @@ const dictionaries: Record<string, Dictionary> = {
           ],
         },
         {
-          number: '04',
+          number: '05',
           title: 'Databases & Infrastructure',
           items: [
             {
@@ -1103,14 +1267,29 @@ const dictionaries: Record<string, Dictionary> = {
                 'Relational database design with declarative integrity, foreign keys, constraints, and versioned migrations via Drizzle and EF Core.',
             },
             {
-              name: 'MongoDB',
+              name: 'Neon & Supabase',
               description:
-                'Document-oriented persistence for product catalogs and flexible data with optimized indexing and Mongoose.',
+                'Serverless PostgreSQL databases with instant environment branching, high scale connection pooling, and managed backend services.',
             },
             {
-              name: 'Docker & Git/CI',
+              name: 'Upstash Redis',
               description:
-                'Reproducible containerized development, automated 10-gate testing workflows, and static dependency boundary enforcement.',
+                'Serverless distributed caching and edge rate limiting with ultra low latency HTTP and REST connectivity.',
+            },
+            {
+              name: 'Pipelines and Releases CI/CD',
+              description:
+                'Full automation with GitHub Actions, test suite execution, static architectural boundary audits, and continuous deployments without manual steps.',
+            },
+            {
+              name: 'Docker',
+              description:
+                'Reproducible containerized environments for development and production, ensuring parity between local machines and cloud servers.',
+            },
+            {
+              name: 'MongoDB',
+              description:
+                'Document oriented persistence for flexible catalogs and non relational collections with optimized indexing and aggregation queries.',
             },
           ],
         },
@@ -1120,46 +1299,54 @@ const dictionaries: Record<string, Dictionary> = {
       badge: 'Knowledge',
       headline: 'The concepts that guide my choices.',
       intro:
-        'A skill is the tool; knowledge is knowing when not to use it. Here are the core foundations of AI, specification, and architecture I use to make engineering trade-offs — and the price each one demands.',
+        'A skill is the tool; knowledge is knowing when not to use it. Here are the core foundations of AI, specification, and architecture I use to make engineering decisions and the price each one demands.',
       items: [
         {
-          title: 'Spec-Driven Development (SDD) & Authority Hierarchy',
+          title: 'Spec Driven Development and Authority Hierarchy',
           tag: 'Applied',
           description:
-            'Code is not the starting point; it is the final consequence of specification. Strict respect for the artifact hierarchy: PRD (what and why) → Architecture (how the system is structured) → Specification (what exactly) → Plan (detailed technical design) → Tasks (actionable breakdown) → Code. No line is generated without a verified contract.',
-          costLabel: 'The Trade-off',
-          cost: 'Requires discipline and upfront time before implementation. Skipping this yields short-term speed on day one, followed by months of architectural debt and product misalignment.',
+            'Code is not the starting point; it is the final consequence of specification. Strict respect for artifact authority: PRD for product intent, Architecture for structure, Specification for contracts, Plan for technical design, Tasks for execution, and Code as the verifiable result. No line is produced without verified contracts.',
+          costLabel: 'The Tradeoff',
+          cost: 'Requires discipline and upfront time before implementation. Skipping this yields short term speed on day one, followed by months of architectural debt and product misalignment.',
         },
         {
-          title: 'Harness Engineering in the AI World',
+          title: 'Harness Engineering in the AI Era',
           tag: 'Applied',
           description:
-            'The language model is just the brain; the harness is the complete surrounding infrastructure that guides, controls, and makes it reliable. Built from 8 essential components: durable house rules (CLAUDE.md), tools for action, safety permissions (seatbelt), context windowing, cross-session persistent memory (MEMORY.md), MCP servers, specialized subagents, and automated verification loops.',
-          costLabel: 'The Trade-off',
-          cost: 'Keeping the harness calibrated as the system grows requires ongoing maintenance. Without this harness, even the most expensive model hallucinates and violates domain invariants.',
+            'The language model is only the reasoning engine; the harness is the complete surrounding infrastructure that guides, controls, and makes it reliable. It encompasses durable house rules, safe execution tools, strict permission guardrails, targeted context, persistent memory, and continuous automated verification loops.',
+          costLabel: 'The Tradeoff',
+          cost: 'Keeping the harness calibrated as the system grows requires continuous maintenance of rules and context. Without this infrastructure, even the most capable model hallucinates and violates domain invariants.',
         },
         {
-          title: 'Model Context Protocol (MCP) — The Universal Socket',
+          title: 'Hexagonal Architecture (Ports and Adapters)',
           tag: 'Applied',
           description:
-            'Standardized protocol connecting AI agents to real-world data and execution. Instead of relying on frozen, outdated training memory, I deploy strategic MCPs: Context7 for live official documentation, Serena for symbol-level semantic code navigation (LSP), and TestSprite for automated test validation.',
-          costLabel: 'The Trade-off',
-          cost: 'Requires setting up and maintaining protocol servers, plus token overhead for passing tool schemas and dynamic payloads into the context.',
+            'Domain logic and use cases completely decoupled from frameworks, HTTP servers, and database drivers. The primary benefit is testability of pure business logic in memory without running external infrastructure, protecting software longevity against obsolescence.',
+          costLabel: 'The Tradeoff',
+          cost: 'More files and indirection per feature. For small CRUD applications it introduces unnecessary complexity, becoming justified when testability and long term maintenance are primary goals.',
         },
         {
-          title: 'Hexagonal Architecture (Ports & Adapters)',
+          title: 'Distributed Caching and Invalidation Strategies',
           tag: 'Applied',
           description:
-            'Domain and use cases completely decoupled from frameworks, HTTP servers, and database drivers. The benefit is testability of pure business logic in memory without external infrastructure, ensuring long-term software durability.',
-          costLabel: 'The Trade-off',
-          cost: 'More files and indirection per feature. For small CRUD apps it is over-engineering — justified only when long-term maintainability and testability matter.',
+            'Deploying distributed caching layers with Upstash Redis, applying cache aside and write through patterns for database relief and ultra low latency. Balanced engineering decisions between strong and eventual consistency with predictable time to live (TTL) expiration policies.',
+          costLabel: 'The Tradeoff',
+          cost: 'Cache invalidation is a classic computing challenge. It requires careful governance to prevent reading stale data and introduces distributed state synchronization into the system.',
         },
         {
-          title: 'Data Integrity at Database Level',
+          title: 'Stateless Authentication and Defense in Depth',
           tag: 'Applied',
           description:
-            'Whenever a business constraint can be represented as a database constraint, it must be. Uniqueness, cascade rules, and state validations enforced by Postgres cannot be bypassed by buggy application code or hallucinated agent patches.',
-          costLabel: 'The Trade-off',
+            'End to end security with short lived JSON Web Tokens, typed claims for fine grained authorization, and automatic rotation of Refresh Tokens. Mitigating XSS and CSRF vectors through HttpOnly cookies, CORS policies, and BCrypt password hashing.',
+          costLabel: 'The Tradeoff',
+          cost: 'Stateless tokens cannot be revoked instantly without an auxiliary blocklist or credential versioning mechanism, requiring careful balance in token expiration windows.',
+        },
+        {
+          title: 'Relational Integrity at the Database Level',
+          tag: 'Applied',
+          description:
+            'Whenever a business invariant can be enforced by a database constraint, it must be. Uniqueness, cascade deletion, and state transitions guaranteed by PostgreSQL or Neon cannot be bypassed by buggy code or incorrect automated changes.',
+          costLabel: 'The Tradeoff',
           cost: 'Less flexibility during rapid migrations and raw database error messages requiring translation layers for user feedback.',
         },
       ],
@@ -1238,11 +1425,11 @@ const dictionaries: Record<string, Dictionary> = {
       badge: 'Projects',
       headline: 'Problem, decision, outcome.',
       intro:
-        'Every project starts with the business problem and the concrete outcome — clear for hiring managers. Deep technical architecture follows for engineering review.',
+        'Every project starts with the business problem and the concrete outcome, clear for hiring managers. Deep technical architecture follows for engineering review.',
       items: [
         {
           slug: 'davidev-portfolio-produto',
-          title: 'DaviDev — Portfolio as a Software Product',
+          title: 'DaviDev: Portfolio as a Software Product',
           status: 'In production',
           period: '2026',
           stack: ['Next.js 15', 'Fastify', 'PostgreSQL', 'Drizzle', 'Hexagonal'],
@@ -1253,9 +1440,9 @@ const dictionaries: Record<string, Dictionary> = {
           role: 'Sole engineer responsible for specification, architecture, and implementation.',
           detailLink: 'View technical details →',
           summary:
-            'Editorial blog, CMS, documented REST API, and hexagonal monorepo with the complete engineering process open-sourced.',
+            'Editorial blog, CMS, documented REST API, and hexagonal monorepo with the complete engineering process open source.',
           engineeringChallenge:
-            'Enforce global LCP < 2.5s and zero external dependencies in @davidev/domain (DEP-1), with in-process serverless execution between Next.js and Fastify.',
+            'Enforce global LCP under 2.5s and zero external dependencies in domain package, with in process serverless execution between Next.js and Fastify.',
           decisions: [
             {
               title: 'Strict Hexagonal Architecture in Monorepo',
@@ -1263,15 +1450,15 @@ const dictionaries: Record<string, Dictionary> = {
               tradeoff: 'Higher number of layers and abstraction interfaces.',
             },
             {
-              title: 'In-process Serverless Fastify inside Next.js',
-              desc: 'The same Fastify API with Zod validation handles HTTP endpoints and can be executed in-process by React Server Components without network overhead.',
+              title: 'In Process Serverless Fastify inside Next.js',
+              desc: 'The same Fastify API with Zod validation handles HTTP endpoints and can be executed in process by React Server Components without network overhead.',
               tradeoff: 'Custom request translation adapters required.',
             },
           ],
         },
         {
           slug: 'saltweb',
-          title: 'SaltWeb — Youth Community Web Platform',
+          title: 'SaltWeb: Youth Community Web Platform',
           status: 'Completed',
           period: '2024',
           stack: ['React', 'TypeScript', 'Tailwind CSS', 'Vite'],
@@ -1282,25 +1469,25 @@ const dictionaries: Record<string, Dictionary> = {
           role: 'Frontend Developer and UI Designer.',
           detailLink: 'View technical details →',
           summary:
-            'Interactive web application for youth community developed with React, TypeScript, and Tailwind CSS with responsive, engagement-first design.',
+            'Interactive web application for youth community developed with React, TypeScript, and Tailwind CSS with responsive, engagement first design.',
           engineeringChallenge:
             'Create a seamless experience with instantaneous mobile loading and a responsive design aligned with modern youth culture.',
           decisions: [
             {
               title: 'Tailwind CSS for Visual Consistency',
-              desc: 'Utilized Tailwind utility classes to ensure typographic harmony and adaptable mobile-first layouts.',
+              desc: 'Utilized Tailwind utility classes to ensure typographic harmony and adaptable mobile first layouts.',
               tradeoff: 'Utility class accumulation requiring modular component breakdown.',
             },
             {
               title: 'Vite as Fast Build Tool',
-              desc: 'Adopted Vite for lightning-fast bundling and efficient Hot Module Replacement (HMR) during development.',
-              tradeoff: 'Manual client-side routing configuration.',
+              desc: 'Adopted Vite for ultra fast bundling and efficient Hot Module Replacement (HMR) during development.',
+              tradeoff: 'Manual client side routing configuration.',
             },
           ],
         },
         {
           slug: 'fit-ia',
-          title: 'FIT.IA — AI-Powered Workout & Nutrition Assistant',
+          title: 'FIT.IA: AI Powered Workout & Nutrition Assistant',
           status: 'Completed',
           period: '2024',
           stack: ['Node.js', 'Express', 'React', 'Generative AI', 'Tailwind CSS'],
@@ -1321,20 +1508,20 @@ const dictionaries: Record<string, Dictionary> = {
               tradeoff: 'Additional retry overhead if response violates expected schema.',
             },
             {
-              title: 'Strict Client-Server Decoupling',
-              desc: 'Express backend encapsulates API keys and prompt engineering logic, isolated from client-side visibility.',
+              title: 'Strict Client Server Decoupling',
+              desc: 'Express backend encapsulates API keys and prompt engineering logic, isolated from client side visibility.',
               tradeoff: 'Need to manage asynchronous network latency states in the UI.',
             },
           ],
         },
         {
           slug: 'sales-web-mvc',
-          title: 'SalesWebMvc — Sales & Department Management',
+          title: 'SalesWebMvc: Sales & Department Management',
           status: 'Completed',
           period: '2023',
           stack: ['C# / .NET', 'ASP.NET Core MVC', 'Entity Framework Core', 'MySQL'],
           problem:
-            'Organizations require centralized tracking of sales records, seller associations, and departmental groupings with date-filtered analytical reporting.',
+            'Organizations require centralized tracking of sales records, seller associations, and departmental groupings with date filtered analytical reporting.',
           result:
             'Corporate MVC application featuring complete CRUD operations, relational integrity exception handling, and grouped analytical reporting.',
           role: 'Backend / C# Developer.',
@@ -1345,7 +1532,7 @@ const dictionaries: Record<string, Dictionary> = {
             'Ensure relational consistency, foreign key constraints during cascade deletions, and optimized LINQ grouping queries.',
           decisions: [
             {
-              title: 'Entity Framework Core Code-First',
+              title: 'Entity Framework Core Code First',
               desc: 'Domain modeling in C# POCO classes with ORM mapping and automated migrations in MySQL.',
               tradeoff: 'Dependency on framework migration cycles.',
             },
@@ -1365,18 +1552,18 @@ const dictionaries: Record<string, Dictionary> = {
           problem:
             'Need for a flexible catalog service to manage product inventory with dynamic attributes and high read performance.',
           result:
-            'Efficient RESTful API providing full CRUD endpoints, attribute-based filtering, input validation, and document persistence.',
+            'Efficient RESTful API providing full CRUD endpoints, attribute based filtering, input validation, and document persistence.',
           role: 'Backend Developer.',
           detailLink: 'View technical details →',
           summary:
-            'Backend API with Node.js and MongoDB for product catalog management with pagination, filtering, and document-based persistence.',
+            'Backend API with Node.js and MongoDB for product catalog management with pagination, filtering, and document based persistence.',
           engineeringChallenge:
             'Structure Mongoose schemas with required field validations and uniform HTTP error response handling.',
           decisions: [
             {
               title: 'MongoDB for Catalog Flexibility',
               desc: 'Allowed diverse product categories to have specific attributes without rigid SQL schema migrations.',
-              tradeoff: 'No database-enforced foreign key relational constraints.',
+              tradeoff: 'No database enforced foreign key relational constraints.',
             },
             {
               title: 'Global Error Handling Middleware',
@@ -1391,7 +1578,7 @@ const dictionaries: Record<string, Dictionary> = {
       badge: 'Contact',
       headline: 'Let’s talk.',
       intro:
-        'Career opportunities, projects, or questions regarding engineering and architecture — I respond to all messages. Direct channels are also available below.',
+        'Career opportunities, projects, or questions regarding engineering and architecture, I respond to all messages. Direct channels are also available below.',
       emailLabel: 'Direct email',
       emailValue: 'daviafonso5894@gmail.com',
       linkedinLabel: 'LinkedIn',
@@ -1410,9 +1597,9 @@ const dictionaries: Record<string, Dictionary> = {
         messageLabel: 'Message',
         messagePlaceholder: 'Describe your proposal, technical challenge, or reason for reaching out...',
         charCount: 'characters',
-        turnstileVerified: 'Anti-spam verification complete',
-        turnstileVerifying: 'Verifying anti-spam...',
-        turnstileRequired: 'Please complete the anti-spam verification before sending.',
+        turnstileVerified: 'Anti spam verification complete',
+        turnstileVerifying: 'Verifying anti spam...',
+        turnstileRequired: 'Please complete the anti spam verification before sending.',
         privacyAgreement: 'By submitting, you agree to the data handling terms in our privacy policy.',
         submitButton: 'Send message',
         submittingButton: 'Sending message...',
@@ -1481,7 +1668,7 @@ const dictionaries: Record<string, Dictionary> = {
       badge: 'Case study',
       headline: 'How this website was built',
       intro:
-        'A portfolio treated as high-caliber software: PRD before architecture, architecture before code, and transparent documentation of decisions — including those that were revised along the way.',
+        'A portfolio treated as high caliber software: PRD before architecture, architecture before code, and transparent documentation of decisions, including those that were revised along the way.',
       metrics: [
         { label: 'risks recorded and mitigated', count: 27 },
         { label: 'ADRs with evaluated trade-offs', count: 5 },
@@ -1489,7 +1676,7 @@ const dictionaries: Record<string, Dictionary> = {
         { label: 'contradictions detected and resolved', count: 4 },
       ],
       flowNumber: '01',
-      flowTitle: 'The Spec-Driven & Harness Flow',
+      flowTitle: 'The Spec Driven & Harness Flow',
       flowSteps: [
         {
           number: '01',
@@ -1498,17 +1685,17 @@ const dictionaries: Record<string, Dictionary> = {
         },
         {
           number: '02',
-          title: 'PRD (Product)',
-          description: 'Problem framing, personas, success metrics, and out-of-scope boundaries (via prd-development skill)',
+          title: 'Product PRD',
+          description: 'Problem framing, personas, success metrics, and out of scope boundaries via prd development skill',
         },
         {
           number: '03',
-          title: 'Architecture (Technical)',
-          description: 'Technical source of truth: ADRs, data models, and contracts (via architecture-design skill)',
+          title: 'Architecture & Contracts',
+          description: 'Technical source of truth with ADRs, data models, and contracts via architecture design skill',
         },
         {
           number: '04',
-          title: 'Spec-Kit (.specify)',
+          title: 'Spec Kit (.specify)',
           description: 'Functional specification (spec.md), technical plan (plan.md), and task breakdown (tasks.md)',
         },
         {
@@ -1523,7 +1710,7 @@ const dictionaries: Record<string, Dictionary> = {
         },
       ],
       flowNote:
-        'AI did not write this system alone, nor was code generated from loose prompts ("vibe coding"). What is showcased is harness engineering: specification as single source of truth (SDD), hierarchical authority (PRD → Architecture → Spec → Plan → Tasks → Code), MCP servers for real-time grounding, and automated test loops — with a human engineer accountable for every architectural decision.',
+        'AI did not write this system alone, nor was code generated from loose prompts ("vibe coding"). What is showcased is harness engineering: specification as single source of truth (SDD), hierarchical authority (PRD → Architecture → Spec → Plan → Tasks → Code), MCP servers for real time grounding, and automated test loops, with a human engineer accountable for every architectural decision.',
       adrsNumber: '02',
       adrsTitle: 'Decisions that warranted an ADR',
       adrs: [
@@ -1539,7 +1726,7 @@ const dictionaries: Record<string, Dictionary> = {
           id: 'ADR-002',
           title: 'Hexagonal architecture with deliberate overhead',
           description:
-            'Over-engineering for a typical blog CMS. The justification is educational: extreme testability is part of what is being demonstrated.',
+            'Over engineering for a typical blog CMS. The justification is educational: extreme testability is part of what is being demonstrated.',
           costLabel: 'Trade-off:',
           cost: 'more files and layer indirection per feature.',
         },
@@ -1549,7 +1736,15 @@ const dictionaries: Record<string, Dictionary> = {
           description:
             'Public RSC pages call the use cases directly without HTTP loopback. This keeps the website responsive even during API spikes.',
           costLabel: 'Trade-off:',
-          cost: 'two paths to data — risk of rule divergence.',
+          cost: 'two paths to data with risk of rule divergence.',
+        },
+        {
+          id: 'ADR-004',
+          title: 'Isolated monorepo with pnpm workspaces',
+          description:
+            'Physical boundary separation into decoupled packages (domain, application, infrastructure, http). Domain holds zero external dependencies (DEP-1).',
+          costLabel: 'Trade-off:',
+          cost: 'monorepo workspace tooling and orchestration overhead.',
         },
         {
           id: 'ADR-005',
@@ -1557,44 +1752,44 @@ const dictionaries: Record<string, Dictionary> = {
           description:
             'Publishing triggers page revalidation directly. Allows publishing in seconds without infrastructure messaging overhead.',
           costLabel: 'Trade-off:',
-          cost: 'best-effort delivery without automated retries.',
+          cost: 'best effort delivery without automated retries.',
         },
       ],
       mistakesNumber: '03',
       mistakesTitle: 'What I got wrong along the way',
       mistakesIntro:
-        'The most valuable part of documenting decisions is discovering when two of them contradict each other. Four critical contradictions emerged during phase review — each would have become an outage in production.',
+        'The most valuable part of documenting decisions is discovering when two of them contradict each other. Four critical contradictions emerged during phase review, each would have become an outage in production.',
       mistakes: [
         {
-          title: 'Instant rollback × irreversible migrations',
+          title: 'Instant rollback versus irreversible migrations',
           description:
-            'Reverting code does not revert the database. An instant rollback button would crash the app. Resolved by mandating backward-compatible database migrations.',
+            'Reverting code does not revert the database. An instant rollback button would crash the app. Resolved by mandating backward compatible database migrations.',
         },
         {
-          title: '"Audit log" lasting only 3 days',
+          title: 'Audit log lasting only 3 days',
           description:
-            'Platform log retention is short. Calling it an audit trail was a comfortable lie — renamed to what it actually is: recent operational visibility.',
+            'Platform log retention is short. Calling it an audit trail was a comfortable lie. Renamed to what it actually is: recent operational visibility.',
         },
         {
           title: 'Integration tests on shared database',
           description:
-            'Parallel CI executions would collide, causing flaky tests — which is worse than no tests, because it teaches developers to ignore red builds.',
+            'Parallel CI executions would collide, causing flaky tests, which is worse than no tests because it teaches developers to ignore red builds.',
         },
         {
-          title: 'Accessibility required, never enforced',
+          title: 'Accessibility required without verification',
           description:
             'WCAG AA was mentioned three times in specs, but had zero pipeline gates. A requirement without automated verification is merely good intentions.',
         },
       ],
       openDocsTitle: 'Open documentation & evidence',
       openDocsIntro:
-        'PRD, comprehensive architecture spec, OpenAPI contracts, and process evidence — presented as they were written, without cosmetic cleaning.',
+        'PRD, comprehensive architecture spec, OpenAPI contracts, and process evidence, presented as they were written, without cosmetic cleaning.',
       openDocsLinks: [
-        { label: '→ Interactive API Documentation (/api/docs)', href: '/api/docs', isExternal: false },
-        { label: '→ Go-Live Readiness & Audit Report', href: '/docs/go-live-readiness-report.md', isExternal: false },
-        { label: '→ Complete PRD (docs/prd.md)', href: 'https://github.com/DaviAfonso88/portifolio/blob/main/docs/prd.md', isExternal: true },
-        { label: '→ Architecture Decisions (docs/architecture.md)', href: 'https://github.com/DaviAfonso88/portifolio/blob/main/docs/architecture.md', isExternal: true },
-        { label: '→ Repository on GitHub', href: 'https://github.com/DaviAfonso88/portifolio', isExternal: true },
+        { label: 'Interactive API Documentation (/api/docs)', href: '/api/docs', isExternal: false },
+        { label: 'Go Live Readiness & Audit Report', href: '/docs/go-live-readiness-report.md', isExternal: false },
+        { label: 'Complete PRD (docs/prd.md)', href: 'https://github.com/DaviAfonso88/portifolio/blob/main/docs/prd.md', isExternal: true },
+        { label: 'Architecture Decisions (docs/architecture.md)', href: 'https://github.com/DaviAfonso88/portifolio/blob/main/docs/architecture.md', isExternal: true },
+        { label: 'Repository on GitHub', href: 'https://github.com/DaviAfonso88/portifolio', isExternal: true },
       ],
     },
 

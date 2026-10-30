@@ -11,11 +11,12 @@ export function Footer({ locale }: FooterProps) {
   return (
     <footer className="mt-auto border-t border-rule bg-paper px-5 md:px-20 py-11 pb-14 font-mono text-xs text-ink-2 leading-[1.9]">
       <div className="mx-auto max-w-[1180px] grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-8">
-        {/* Colofão */}
+        {/* Perfil & Atuação */}
         <div className="md:col-span-5 flex flex-col gap-1.5">
           <div className="font-medium text-ink">{dict.footer.colophonTitle}</div>
           <div>{dict.footer.colophonLine1}</div>
           <div>{dict.footer.colophonLine2}</div>
+          {dict.footer.colophonLine3 && <div>{dict.footer.colophonLine3}</div>}
         </div>
 
         {/* Contato & Redes */}

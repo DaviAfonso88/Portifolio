@@ -114,7 +114,7 @@ export function TaxonomyFilter({
             <strong className="text-[#1C1A17] dark:text-[#FAF8F4] font-medium">
               {activeLabel}
             </strong>
-            {` — ${totalFiltered} ${
+            {` · ${totalFiltered} ${
               totalFiltered === 1
                 ? isPt ? 'artigo' : 'article'
                 : isPt ? 'artigos' : 'articles'

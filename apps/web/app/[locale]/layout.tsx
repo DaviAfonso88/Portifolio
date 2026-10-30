@@ -22,11 +22,11 @@ export async function generateMetadata({
 
   const isPt = locale === 'pt-BR';
   const title = isPt
-    ? 'DaviDev — Portfólio, Blog & Engenharia de Software'
-    : 'DaviDev — Portfolio, Blog & Software Engineering';
+    ? 'DaviDev: Portfólio, Blog & Engenharia de Software'
+    : 'DaviDev: Portfolio, Blog & Software Engineering';
   const description = isPt
-    ? 'Construo sistemas — e mostro como foram construídos. Arquitetura, backend e automação em produção com processo 100% público.'
-    : 'I build systems — and show how they were made. Architecture, backend, and automation in production with an entirely public process.';
+    ? 'Construo sistemas e mostro como foram construídos. Arquitetura, backend e automação em produção com processo 100% público.'
+    : 'I build systems and show how they were made. Architecture, backend, and automation in production with an entirely public process.';
 
   const baseUrl = 'https://davidev.net.br';
 
