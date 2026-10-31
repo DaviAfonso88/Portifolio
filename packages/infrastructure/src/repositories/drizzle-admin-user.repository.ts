@@ -72,7 +72,7 @@ export class DrizzleAdminUserRepository implements AdminUserRepository {
         }
 
         // Se o admin existir no seed em memória (criado via ADMIN_EMAIL/ADMIN_PASSWORD),
-        // persiste automaticamente no banco Neon para satisfazer chaves estrangeiras (ex: refresh_token).
+        // persiste ou atualiza no banco Neon para satisfazer chaves estrangeiras (ex: refresh_token).
         const inMem = this.inMemoryUsers.get(normalized);
         if (inMem) {
           try {
@@ -85,7 +85,14 @@ export class DrizzleAdminUserRepository implements AdminUserRepository {
                 createdAt: inMem.createdAt,
                 updatedAt: inMem.updatedAt,
               })
-              .onConflictDoNothing();
+              .onConflictDoUpdate({
+                target: adminUsers.id,
+                set: {
+                  email: inMem.email.toString(),
+                  passwordHash: inMem.passwordHash,
+                  updatedAt: new Date(),
+                },
+              });
           } catch (seedErr) {
             console.warn('[DrizzleAdminUserRepository] Auto-seed DB insert failed:', seedErr);
           }
@@ -132,7 +139,14 @@ export class DrizzleAdminUserRepository implements AdminUserRepository {
                   createdAt: user.createdAt,
                   updatedAt: user.updatedAt,
                 })
-                .onConflictDoNothing();
+                .onConflictDoUpdate({
+                  target: adminUsers.id,
+                  set: {
+                    email: user.email.toString(),
+                    passwordHash: user.passwordHash,
+                    updatedAt: new Date(),
+                  },
+                });
             } catch (seedErr) {
               console.warn('[DrizzleAdminUserRepository] Auto-seed DB insert failed:', seedErr);
             }

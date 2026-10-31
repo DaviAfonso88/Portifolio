@@ -30,8 +30,16 @@ async function runSeed() {
       id: adminId,
       email: adminEmail,
       passwordHash,
+      updatedAt: new Date(),
     })
-    .onConflictDoNothing();
+    .onConflictDoUpdate({
+      target: adminUsers.id,
+      set: {
+        email: adminEmail,
+        passwordHash,
+        updatedAt: new Date(),
+      },
+    });
 
   console.log('Seeding default categories...');
   const defaultCategories = [
