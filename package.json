@@ -20,6 +20,7 @@
     "api:contract:check": "orval",
     "db:generate": "pnpm --filter @davidev/infrastructure db:generate",
     "db:migrate": "pnpm --filter @davidev/infrastructure db:migrate",
+    "db:seed": "pnpm --filter @davidev/infrastructure db:seed",
     "ci": "pnpm typecheck && pnpm arch:check && pnpm test:unit"
   },
   "devDependencies": {

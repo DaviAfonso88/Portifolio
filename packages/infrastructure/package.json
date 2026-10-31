@@ -13,7 +13,8 @@
   "scripts": {
     "typecheck": "tsc --noEmit",
     "db:generate": "drizzle-kit generate",
-    "db:migrate": "drizzle-kit migrate"
+    "db:migrate": "drizzle-kit migrate",
+    "db:seed": "node --experimental-strip-types ./src/db/seed.ts"
   },
   "dependencies": {
     "@davidev/application": "workspace:*",
