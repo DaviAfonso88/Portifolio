@@ -19,7 +19,7 @@ async function runSeed() {
   const db = createDbClient(databaseUrl);
 
   const adminId = '01918a20-0000-7000-8000-000000000001';
-  const adminEmail = (process.env.ADMIN_EMAIL || 'davi@davidev.net.br').trim().toLowerCase();
+  const adminEmail = (process.env.ADMIN_EMAIL || 'daviafonso5894@gmail.com').trim().toLowerCase();
   const rawPassword = process.env.ADMIN_PASSWORD || 'admin123456';
   const passwordHash = bcrypt.hashSync(rawPassword, 10);
 

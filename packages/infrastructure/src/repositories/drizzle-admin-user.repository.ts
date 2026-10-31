@@ -17,7 +17,7 @@ export class DrizzleAdminUserRepository implements AdminUserRepository {
     // Seed default admin in memory for local/fallback execution
     const defaultId = UUID.create('01918a20-0000-7000-8000-000000000001');
     const defaultEmail = EmailValueObject.create(
-      process.env.ADMIN_EMAIL || 'davi@davidev.net.br'
+      process.env.ADMIN_EMAIL || 'daviafonso5894@gmail.com'
     );
     // Default hash for 'admin123456' or bcrypt synchronous hash of process.env.ADMIN_PASSWORD
     const initialPassword = process.env.ADMIN_PASSWORD || 'admin123456';
@@ -30,6 +30,8 @@ export class DrizzleAdminUserRepository implements AdminUserRepository {
     });
 
     this.inMemoryUsers.set(defaultEmail.toString().toLowerCase(), defaultAdmin);
+    this.inMemoryUsers.set('daviafonso5894@gmail.com', defaultAdmin);
+    this.inMemoryUsers.set('davi@davidev.net.br', defaultAdmin);
 
     // Also seed test admin for test suites
     const testAdmin = new AdminUser({
