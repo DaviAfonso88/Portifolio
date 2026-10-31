@@ -1,4 +1,10 @@
-import 'dotenv/config';
+import dotenv from 'dotenv';
+import path from 'path';
+
+// Carrega o arquivo .env tanto da raiz quanto da pasta do pacote
+dotenv.config();
+dotenv.config({ path: path.resolve(process.cwd(), '../../.env') });
+
 import bcrypt from 'bcryptjs';
 import { createDbClient } from './client';
 import { adminUsers, categories, tags } from './schema';
