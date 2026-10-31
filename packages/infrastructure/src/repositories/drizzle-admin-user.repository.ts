@@ -68,6 +68,27 @@ export class DrizzleAdminUserRepository implements AdminUserRepository {
             updatedAt: r.updatedAt,
           });
         }
+
+        // Se o admin existir no seed em memória (criado via ADMIN_EMAIL/ADMIN_PASSWORD),
+        // persiste automaticamente no banco Neon para satisfazer chaves estrangeiras (ex: refresh_token).
+        const inMem = this.inMemoryUsers.get(normalized);
+        if (inMem) {
+          try {
+            await this.db
+              .insert(adminUsers)
+              .values({
+                id: inMem.id.toString(),
+                email: inMem.email.toString(),
+                passwordHash: inMem.passwordHash,
+                createdAt: inMem.createdAt,
+                updatedAt: inMem.updatedAt,
+              })
+              .onConflictDoNothing();
+          } catch (seedErr) {
+            console.warn('[DrizzleAdminUserRepository] Auto-seed DB insert failed:', seedErr);
+          }
+          return inMem;
+        }
       } catch (err) {
         console.warn('[DrizzleAdminUserRepository] DB query failed, using in-memory store:', err);
       }
@@ -96,13 +117,33 @@ export class DrizzleAdminUserRepository implements AdminUserRepository {
             updatedAt: r.updatedAt,
           });
         }
+
+        for (const user of this.inMemoryUsers.values()) {
+          if (user.id === id || user.id.toString() === id.toString()) {
+            try {
+              await this.db
+                .insert(adminUsers)
+                .values({
+                  id: user.id.toString(),
+                  email: user.email.toString(),
+                  passwordHash: user.passwordHash,
+                  createdAt: user.createdAt,
+                  updatedAt: user.updatedAt,
+                })
+                .onConflictDoNothing();
+            } catch (seedErr) {
+              console.warn('[DrizzleAdminUserRepository] Auto-seed DB insert failed:', seedErr);
+            }
+            return user;
+          }
+        }
       } catch (err) {
         console.warn('[DrizzleAdminUserRepository] DB query failed, using in-memory store:', err);
       }
     }
 
     for (const user of this.inMemoryUsers.values()) {
-      if (user.id === id) return user;
+      if (user.id === id || user.id.toString() === id.toString()) return user;
     }
     return null;
   }
