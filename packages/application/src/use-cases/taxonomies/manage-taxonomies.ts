@@ -3,16 +3,27 @@ import {
   Tag,
   SlugValueObject,
   UUID,
+  type Slug,
   type UUIDv7,
 } from '@davidev/domain';
 import type { UseCase } from '../../types/use-case';
 import type { TaxonomyRepository } from '../../ports/taxonomy-repository.port';
 
+/** Na criação, o slug não informado vem do nome, sem acentos. */
+function slugOrFromName(slug: string | undefined, name: string): Slug {
+  return slug ? SlugValueObject.create(slug) : SlugValueObject.fromTitle(name);
+}
+
+/** Na edição, o slug não informado continua o mesmo, para renomear não mudar URLs públicas. */
+function slugOrCurrent(slug: string | undefined, current: Slug): Slug {
+  return slug ? SlugValueObject.create(slug) : current;
+}
+
 export interface CreateCategoryInput {
   namePtBr: string;
   nameEn: string;
-  slugPtBr: string;
-  slugEn: string;
+  slugPtBr?: string;
+  slugEn?: string;
 }
 
 export type CreateCategoryOutput =
@@ -26,8 +37,8 @@ export class CreateCategoryUseCase
 
   public async execute(input: CreateCategoryInput): Promise<CreateCategoryOutput> {
     try {
-      const slugPt = SlugValueObject.create(input.slugPtBr);
-      const slugEn = SlugValueObject.create(input.slugEn);
+      const slugPt = slugOrFromName(input.slugPtBr, input.namePtBr);
+      const slugEn = slugOrFromName(input.slugEn, input.nameEn);
 
       const category = new Category({
         namePtBr: input.namePtBr,
@@ -52,8 +63,8 @@ export interface UpdateCategoryInput {
   id: UUIDv7;
   namePtBr: string;
   nameEn: string;
-  slugPtBr: string;
-  slugEn: string;
+  slugPtBr?: string;
+  slugEn?: string;
 }
 
 export type UpdateCategoryOutput =
@@ -76,8 +87,8 @@ export class UpdateCategoryUseCase
     }
 
     try {
-      const slugPt = SlugValueObject.create(input.slugPtBr);
-      const slugEn = SlugValueObject.create(input.slugEn);
+      const slugPt = slugOrCurrent(input.slugPtBr, existing.slugPtBr);
+      const slugEn = slugOrCurrent(input.slugEn, existing.slugEn);
 
       existing.namePtBr = input.namePtBr.trim();
       existing.nameEn = input.nameEn.trim();
@@ -138,8 +149,8 @@ export class DeleteCategoryUseCase
 export interface CreateTagInput {
   namePtBr: string;
   nameEn: string;
-  slugPtBr: string;
-  slugEn: string;
+  slugPtBr?: string;
+  slugEn?: string;
 }
 
 export type CreateTagOutput =
@@ -151,8 +162,8 @@ export class CreateTagUseCase implements UseCase<CreateTagInput, CreateTagOutput
 
   public async execute(input: CreateTagInput): Promise<CreateTagOutput> {
     try {
-      const slugPt = SlugValueObject.create(input.slugPtBr);
-      const slugEn = SlugValueObject.create(input.slugEn);
+      const slugPt = slugOrFromName(input.slugPtBr, input.namePtBr);
+      const slugEn = slugOrFromName(input.slugEn, input.nameEn);
 
       const tag = new Tag({
         namePtBr: input.namePtBr,
@@ -177,8 +188,8 @@ export interface UpdateTagInput {
   id: UUIDv7;
   namePtBr: string;
   nameEn: string;
-  slugPtBr: string;
-  slugEn: string;
+  slugPtBr?: string;
+  slugEn?: string;
 }
 
 export type UpdateTagOutput =
@@ -199,8 +210,8 @@ export class UpdateTagUseCase implements UseCase<UpdateTagInput, UpdateTagOutput
     }
 
     try {
-      const slugPt = SlugValueObject.create(input.slugPtBr);
-      const slugEn = SlugValueObject.create(input.slugEn);
+      const slugPt = slugOrCurrent(input.slugPtBr, existing.slugPtBr);
+      const slugEn = slugOrCurrent(input.slugEn, existing.slugEn);
 
       existing.namePtBr = input.namePtBr.trim();
       existing.nameEn = input.nameEn.trim();

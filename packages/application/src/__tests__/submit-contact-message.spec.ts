@@ -122,6 +122,28 @@ describe('SubmitContactMessageUseCase', () => {
     expect(repo.markEmailNotified).not.toHaveBeenCalled();
   });
 
+  it('fails with STORAGE_ERROR and sends no email when the message cannot be saved', async () => {
+    const repo = createMockRepo();
+    vi.mocked(repo.save).mockRejectedValueOnce(new Error('database unavailable'));
+    const captcha = createMockCaptcha(true);
+    const email = createMockEmail(false);
+    const useCase = new SubmitContactMessageUseCase(repo, captcha, email);
+
+    const result = await useCase.execute({
+      name: 'Carlos Alberto',
+      email: 'carlos@example.com',
+      message: 'Mensagem válida enquanto o banco de dados está indisponível.',
+      locale: 'pt-BR',
+      captchaToken: 'token',
+    });
+
+    expect(result.success).toBe(false);
+    if (!result.success) {
+      expect(result.error).toBe('STORAGE_ERROR');
+    }
+    expect(email.sendContactAlert).not.toHaveBeenCalled();
+  });
+
   it('rejects submission with invalid email format', async () => {
     const repo = createMockRepo();
     const captcha = createMockCaptcha(true);

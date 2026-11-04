@@ -11,12 +11,36 @@ import type {
   DeleteTagUseCase,
 } from '@davidev/application';
 
-const taxonomyBodySchema = z.object({
-  namePtBr: z.string().trim().min(1, 'Nome em português é obrigatório'),
-  nameEn: z.string().trim().min(1, 'Nome em inglês é obrigatório'),
-  slugPtBr: z.string().trim().min(1, 'Slug em português é obrigatório'),
-  slugEn: z.string().trim().min(1, 'Slug em inglês é obrigatório'),
-});
+// Os limites acompanham as colunas de db/schema.ts: sem eles, o erro do banco chegaria cru à tela.
+const taxonomyBodySchema = (maxLength: number) =>
+  z.object({
+    namePtBr: z
+      .string()
+      .trim()
+      .min(1, 'Nome em português é obrigatório')
+      .max(maxLength, `Nome em português excede ${maxLength} caracteres`),
+    nameEn: z
+      .string()
+      .trim()
+      .min(1, 'Nome em inglês é obrigatório')
+      .max(maxLength, `Nome em inglês excede ${maxLength} caracteres`),
+    // Opcionais: o caso de uso gera o slug na criação e mantém o atual na edição.
+    slugPtBr: z
+      .string()
+      .trim()
+      .min(1, 'Slug em português não pode ser vazio')
+      .max(maxLength, `Slug em português excede ${maxLength} caracteres`)
+      .optional(),
+    slugEn: z
+      .string()
+      .trim()
+      .min(1, 'Slug em inglês não pode ser vazio')
+      .max(maxLength, `Slug em inglês excede ${maxLength} caracteres`)
+      .optional(),
+  });
+
+const categoryBodySchema = taxonomyBodySchema(60);
+const tagBodySchema = taxonomyBodySchema(40);
 
 export interface AdminTaxonomiesRoutesOptions {
   taxonomyRepo?: TaxonomyRepository;
@@ -64,7 +88,7 @@ export function registerAdminTaxonomiesRoutes(
       preHandler: (app as any).authenticateAdmin,
     },
     async (request, reply) => {
-      const parsed = taxonomyBodySchema.safeParse(request.body);
+      const parsed = categoryBodySchema.safeParse(request.body);
       if (!parsed.success) {
         return reply.status(400).send({
           error: 'Dados inválidos',
@@ -97,7 +121,7 @@ export function registerAdminTaxonomiesRoutes(
       preHandler: (app as any).authenticateAdmin,
     },
     async (request, reply) => {
-      const parsed = taxonomyBodySchema.safeParse(request.body);
+      const parsed = categoryBodySchema.safeParse(request.body);
       if (!parsed.success) {
         return reply.status(400).send({
           error: 'Dados inválidos',
@@ -184,7 +208,7 @@ export function registerAdminTaxonomiesRoutes(
       preHandler: (app as any).authenticateAdmin,
     },
     async (request, reply) => {
-      const parsed = taxonomyBodySchema.safeParse(request.body);
+      const parsed = tagBodySchema.safeParse(request.body);
       if (!parsed.success) {
         return reply.status(400).send({
           error: 'Dados inválidos',
@@ -217,7 +241,7 @@ export function registerAdminTaxonomiesRoutes(
       preHandler: (app as any).authenticateAdmin,
     },
     async (request, reply) => {
-      const parsed = taxonomyBodySchema.safeParse(request.body);
+      const parsed = tagBodySchema.safeParse(request.body);
       if (!parsed.success) {
         return reply.status(400).send({
           error: 'Dados inválidos',

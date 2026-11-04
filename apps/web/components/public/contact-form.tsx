@@ -4,12 +4,19 @@ import * as React from 'react';
 import { ArrowRight, Check, AlertCircle, Loader2, ShieldCheck } from 'lucide-react';
 import { getDictionary } from '../../lib/dictionary';
 import { cn } from '../../lib/utils';
+import { TurnstileWidget, type TurnstileWidgetHandle } from './turnstile-widget';
+
+const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
+
+// Sem site key não há desafio para resolver. O servidor só aceita este valor se também não tiver o segredo.
+const NO_CHALLENGE_TOKEN = 'turnstile-nao-configurado';
 
 interface ContactFormProps {
   locale: string;
+  nonce?: string;
 }
 
-export function ContactForm({ locale }: ContactFormProps) {
+export function ContactForm({ locale, nonce }: ContactFormProps) {
   const dict = getDictionary(locale);
   const formDict = dict.contact.form;
 
@@ -17,8 +24,9 @@ export function ContactForm({ locale }: ContactFormProps) {
   const [email, setEmail] = React.useState('');
   const [subject, setSubject] = React.useState('');
   const [message, setMessage] = React.useState('');
-  const [captchaVerified, setCaptchaVerified] = React.useState(false);
-  const [captchaToken, setCaptchaToken] = React.useState('');
+  const [captchaToken, setCaptchaToken] = React.useState(TURNSTILE_SITE_KEY ? '' : NO_CHALLENGE_TOKEN);
+  const [captchaFailed, setCaptchaFailed] = React.useState(false);
+  const turnstileRef = React.useRef<TurnstileWidgetHandle>(null);
 
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const [submitStatus, setSubmitStatus] = React.useState<'idle' | 'success' | 'error' | 'rate_limit'>('idle');
@@ -28,16 +36,6 @@ export function ContactForm({ locale }: ContactFormProps) {
   const [nameError, setNameError] = React.useState('');
   const [emailError, setEmailError] = React.useState('');
   const [messageError, setMessageError] = React.useState('');
-
-  // Automatically initialize Turnstile or interactive test token
-  React.useEffect(() => {
-    // If Turnstile sitekey is set, could inject script, otherwise allow interactive verification
-    const timer = setTimeout(() => {
-      setCaptchaVerified(true);
-      setCaptchaToken('valid-token');
-    }, 600);
-    return () => clearTimeout(timer);
-  }, []);
 
   const validate = () => {
     let valid = true;
@@ -76,9 +74,9 @@ export function ContactForm({ locale }: ContactFormProps) {
       return;
     }
 
-    if (!captchaVerified || !captchaToken) {
+    if (!captchaToken) {
       setSubmitStatus('error');
-      setErrorMessage(formDict.turnstileRequired);
+      setErrorMessage(captchaFailed ? formDict.turnstileError : formDict.turnstileRequired);
       return;
     }
 
@@ -117,8 +115,34 @@ export function ContactForm({ locale }: ContactFormProps) {
       setErrorMessage(formDict.errorMessage);
     } finally {
       setIsSubmitting(false);
+      if (TURNSTILE_SITE_KEY) {
+        setCaptchaToken('');
+        turnstileRef.current?.reset();
+      }
     }
   };
+
+  let captchaLabel = formDict.turnstileVerifying;
+  let captchaIcon = (
+    <div className="size-5 rounded-[3px] border border-rule flex items-center justify-center shrink-0">
+      <Loader2 className="size-3.5 animate-spin text-ink-3" />
+    </div>
+  );
+
+  if (!TURNSTILE_SITE_KEY) {
+    captchaLabel = formDict.turnstileUnavailable;
+    captchaIcon = <AlertCircle className="size-5 shrink-0 text-ink-3" />;
+  } else if (captchaFailed) {
+    captchaLabel = formDict.turnstileError;
+    captchaIcon = <AlertCircle className="size-5 shrink-0 text-danger" />;
+  } else if (captchaToken) {
+    captchaLabel = formDict.turnstileVerified;
+    captchaIcon = (
+      <div className="size-5 rounded-[3px] bg-success flex items-center justify-center text-white shrink-0">
+        <Check className="size-3.5 stroke-[2.5]" />
+      </div>
+    );
+  }
 
   return (
     <form
@@ -270,25 +294,34 @@ export function ContactForm({ locale }: ContactFormProps) {
       </div>
 
       {/* Cloudflare Turnstile Verification Badge */}
-      <div className="flex items-center gap-3 rounded-[4px] border border-rule bg-surface-sunken/60 px-4 py-3.5">
-        {captchaVerified ? (
-          <div className="size-5 rounded-[3px] bg-success flex items-center justify-center text-white shrink-0">
-            <Check className="size-3.5 stroke-[2.5]" />
-          </div>
-        ) : (
-          <div className="size-5 rounded-[3px] border border-rule flex items-center justify-center shrink-0">
-            <Loader2 className="size-3.5 animate-spin text-ink-3" />
-          </div>
+      <div className="rounded-[4px] border border-rule bg-surface-sunken/60 px-4 py-3.5">
+        <div className="flex items-center gap-3">
+          {captchaIcon}
+          <span className="text-sm text-ink" aria-live="polite">
+            {captchaLabel}
+          </span>
+          <span className="ml-auto font-mono text-[11px] text-ink-3 flex items-center gap-1">
+            <ShieldCheck className="size-3.5" />
+            Cloudflare Turnstile
+          </span>
+        </div>
+        {TURNSTILE_SITE_KEY && (
+          <TurnstileWidget
+            ref={turnstileRef}
+            siteKey={TURNSTILE_SITE_KEY}
+            locale={locale}
+            nonce={nonce}
+            onToken={(token) => {
+              setCaptchaFailed(false);
+              setCaptchaToken(token);
+            }}
+            onExpire={() => setCaptchaToken('')}
+            onError={() => {
+              setCaptchaToken('');
+              setCaptchaFailed(true);
+            }}
+          />
         )}
-        <span className="text-sm text-ink">
-          {captchaVerified
-            ? formDict.turnstileVerified
-            : formDict.turnstileVerifying}
-        </span>
-        <span className="ml-auto font-mono text-[11px] text-ink-3 flex items-center gap-1">
-          <ShieldCheck className="size-3.5" />
-          Cloudflare Turnstile
-        </span>
       </div>
 
       {/* Submit Action */}

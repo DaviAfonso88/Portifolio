@@ -49,79 +49,74 @@ const SEED_MESSAGES: ContactMessage[] = [
   }),
 ];
 
+function toContactMessage(row: typeof contactMessages.$inferSelect): ContactMessage {
+  return new ContactMessage({
+    id: UUID.create(row.id),
+    name: row.name,
+    email: EmailValueObject.create(row.email),
+    subject: row.subject,
+    message: row.message,
+    locale: row.locale as PostLocale,
+    emailNotifiedAt: row.emailNotifiedAt,
+    createdAt: row.createdAt,
+  });
+}
+
+/**
+ * Com banco, os erros chegam a quem chamou: uma mensagem não salva não pode virar sucesso para o
+ * visitante, nem o painel pode trocar a lista real por dados de exemplo.
+ * A memória e as mensagens de exemplo só existem sem banco, em desenvolvimento e testes.
+ */
 export class DrizzleContactMessageRepository implements ContactMessageRepository {
   private inMemoryMessages: ContactMessage[] = [...SEED_MESSAGES];
 
   constructor(private readonly db?: DbClient) {}
 
   public async save(message: ContactMessage): Promise<void> {
-    this.inMemoryMessages.unshift(message);
-
-    if (this.db) {
-      try {
-        await this.db.insert(contactMessages).values({
-          id: message.id.toString(),
-          name: message.name,
-          email: message.email,
-          subject: message.subject,
-          message: message.message,
-          locale: message.locale,
-          emailNotifiedAt: message.emailNotifiedAt,
-          createdAt: message.createdAt,
-        });
-      } catch (err) {
-        console.warn('[DrizzleContactMessageRepository] DB save failed, kept in memory:', err);
-      }
+    if (!this.db) {
+      this.inMemoryMessages.unshift(message);
+      return;
     }
+
+    await this.db.insert(contactMessages).values({
+      id: message.id.toString(),
+      name: message.name,
+      email: message.email,
+      subject: message.subject,
+      message: message.message,
+      locale: message.locale,
+      emailNotifiedAt: message.emailNotifiedAt,
+      createdAt: message.createdAt,
+    });
   }
 
   public async findById(id: UUIDv7): Promise<ContactMessage | null> {
-    if (this.db) {
-      try {
-        const records = await this.db
-          .select()
-          .from(contactMessages)
-          .where(eq(contactMessages.id, id.toString()))
-          .limit(1);
-
-        if (records.length > 0) {
-          const r = records[0];
-          return new ContactMessage({
-            id: UUID.create(r.id),
-            name: r.name,
-            email: EmailValueObject.create(r.email),
-            subject: r.subject,
-            message: r.message,
-            locale: r.locale as PostLocale,
-            emailNotifiedAt: r.emailNotifiedAt,
-            createdAt: r.createdAt,
-          });
-        }
-      } catch (err) {
-        console.warn('[DrizzleContactMessageRepository] DB findById failed, checking memory:', err);
-      }
+    if (!this.db) {
+      return this.inMemoryMessages.find((m) => m.id === id) ?? null;
     }
 
-    const found = this.inMemoryMessages.find((m) => m.id === id);
-    return found ?? null;
+    const [row] = await this.db
+      .select()
+      .from(contactMessages)
+      .where(eq(contactMessages.id, id.toString()))
+      .limit(1);
+
+    return row ? toContactMessage(row) : null;
   }
 
   public async markEmailNotified(id: UUIDv7): Promise<void> {
-    const mem = this.inMemoryMessages.find((m) => m.id === id);
-    if (mem) {
-      mem.emailNotifiedAt = new Date();
+    if (!this.db) {
+      const mem = this.inMemoryMessages.find((m) => m.id === id);
+      if (mem) {
+        mem.emailNotifiedAt = new Date();
+      }
+      return;
     }
 
-    if (this.db) {
-      try {
-        await this.db
-          .update(contactMessages)
-          .set({ emailNotifiedAt: new Date() })
-          .where(eq(contactMessages.id, id.toString()));
-      } catch (err) {
-        console.warn('[DrizzleContactMessageRepository] DB update failed:', err);
-      }
-    }
+    await this.db
+      .update(contactMessages)
+      .set({ emailNotifiedAt: new Date() })
+      .where(eq(contactMessages.id, id.toString()));
   }
 
   public async list(
@@ -131,48 +126,29 @@ export class DrizzleContactMessageRepository implements ContactMessageRepository
     const limit = params.limit && params.limit > 0 ? params.limit : 20;
 
     if (this.db) {
-      try {
-        let query = this.db.select().from(contactMessages);
-        if (params.unnotifiedOnly) {
-          query = query.where(isNull(contactMessages.emailNotifiedAt)) as any;
-        }
-
-        const rows = await query.orderBy(desc(contactMessages.createdAt));
-        const allRows = await this.db.select().from(contactMessages);
-        const unnotifiedCount = allRows.filter((r) => r.emailNotifiedAt === null).length;
-
-        const total = rows.length;
-        const totalPages = Math.ceil(total / limit) || 1;
-        const paginatedRows = rows.slice((page - 1) * limit, page * limit);
-
-        const mapped = paginatedRows.map(
-          (r) =>
-            new ContactMessage({
-              id: UUID.create(r.id),
-              name: r.name,
-              email: EmailValueObject.create(r.email),
-              subject: r.subject,
-              message: r.message,
-              locale: r.locale as PostLocale,
-              emailNotifiedAt: r.emailNotifiedAt,
-              createdAt: r.createdAt,
-            })
-        );
-
-        return {
-          messages: mapped,
-          total,
-          unnotifiedCount,
-          page,
-          limit,
-          totalPages,
-        };
-      } catch (err) {
-        console.warn('[DrizzleContactMessageRepository] DB list failed, using memory:', err);
+      let query = this.db.select().from(contactMessages);
+      if (params.unnotifiedOnly) {
+        query = query.where(isNull(contactMessages.emailNotifiedAt)) as any;
       }
+
+      const rows = await query.orderBy(desc(contactMessages.createdAt));
+      const allRows = await this.db.select().from(contactMessages);
+      const unnotifiedCount = allRows.filter((r) => r.emailNotifiedAt === null).length;
+
+      const total = rows.length;
+      const totalPages = Math.ceil(total / limit) || 1;
+      const paginatedRows = rows.slice((page - 1) * limit, page * limit);
+
+      return {
+        messages: paginatedRows.map(toContactMessage),
+        total,
+        unnotifiedCount,
+        page,
+        limit,
+        totalPages,
+      };
     }
 
-    // In-memory fallback
     let filtered = [...this.inMemoryMessages];
     if (params.unnotifiedOnly) {
       filtered = filtered.filter((m) => m.emailNotifiedAt === null);
@@ -195,24 +171,17 @@ export class DrizzleContactMessageRepository implements ContactMessageRepository
   }
 
   public async purgeOlderThan(cutoffDate: Date): Promise<number> {
-    const initialLen = this.inMemoryMessages.length;
-    this.inMemoryMessages = this.inMemoryMessages.filter((m) => m.createdAt >= cutoffDate);
-    const inMemoryPurged = initialLen - this.inMemoryMessages.length;
-
-    if (this.db) {
-      try {
-        const deleted = await this.db
-          .delete(contactMessages)
-          .where(lt(contactMessages.createdAt, cutoffDate))
-          .returning({ id: contactMessages.id });
-        return deleted.length;
-      } catch (err) {
-        console.warn('[DrizzleContactMessageRepository] DB purge failed, returned memory count:', err);
-        return inMemoryPurged;
-      }
+    if (!this.db) {
+      const initialLen = this.inMemoryMessages.length;
+      this.inMemoryMessages = this.inMemoryMessages.filter((m) => m.createdAt >= cutoffDate);
+      return initialLen - this.inMemoryMessages.length;
     }
 
-    return inMemoryPurged;
+    const deleted = await this.db
+      .delete(contactMessages)
+      .where(lt(contactMessages.createdAt, cutoffDate))
+      .returning({ id: contactMessages.id });
+    return deleted.length;
   }
 }
 

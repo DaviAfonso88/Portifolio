@@ -111,6 +111,46 @@ describe('Taxonomy Use Cases (BR-009)', () => {
       }
     });
 
+    it('generates the slugs from the names when they are not provided', async () => {
+      const result = await createCat.execute({
+        namePtBr: 'Automação de Processos',
+        nameEn: 'Process Automation',
+      });
+
+      expect(result.success).toBe(true);
+      if (result.success) {
+        expect(result.category.slugPtBr).toBe('automacao-de-processos');
+        expect(result.category.slugEn).toBe('process-automation');
+      }
+    });
+
+    it('fails when no slug can be generated from the name', async () => {
+      const result = await createCat.execute({ namePtBr: '###', nameEn: 'Valid' });
+
+      expect(result.success).toBe(false);
+      if (!result.success) {
+        expect(result.code).toBe('INVALID_SLUG');
+      }
+    });
+
+    it('keeps the current slugs when renaming a category, so public URLs do not change', async () => {
+      const createRes = await createCat.execute({ namePtBr: 'Antigo', nameEn: 'Old' });
+      if (!createRes.success) throw new Error(createRes.error);
+
+      const updateRes = await updateCat.execute({
+        id: createRes.category.id,
+        namePtBr: 'Novo Nome',
+        nameEn: 'New Name',
+      });
+
+      expect(updateRes.success).toBe(true);
+      if (updateRes.success) {
+        expect(updateRes.category.namePtBr).toBe('Novo Nome');
+        expect(updateRes.category.slugPtBr).toBe('antigo');
+        expect(updateRes.category.slugEn).toBe('old');
+      }
+    });
+
     it('returns error if slug is invalid during creation', async () => {
       const result = await createCat.execute({
         namePtBr: 'Engenharia',
@@ -238,6 +278,26 @@ describe('Taxonomy Use Cases (BR-009)', () => {
       expect(res.success).toBe(true);
       if (res.success) {
         expect(repo.tags.has(res.tag.id.toString())).toBe(true);
+      }
+    });
+
+    it('generates tag slugs from the names and keeps them when renaming', async () => {
+      const createRes = await createTag.execute({ namePtBr: 'Segurança', nameEn: 'Security' });
+      if (!createRes.success) throw new Error(createRes.error);
+      expect(createRes.tag.slugPtBr).toBe('seguranca');
+      expect(createRes.tag.slugEn).toBe('security');
+
+      const updateRes = await updateTag.execute({
+        id: createRes.tag.id,
+        namePtBr: 'Segurança web',
+        nameEn: 'Web security',
+      });
+
+      expect(updateRes.success).toBe(true);
+      if (updateRes.success) {
+        expect(updateRes.tag.namePtBr).toBe('Segurança web');
+        expect(updateRes.tag.slugPtBr).toBe('seguranca');
+        expect(updateRes.tag.slugEn).toBe('security');
       }
     });
 

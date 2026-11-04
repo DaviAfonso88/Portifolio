@@ -1,7 +1,38 @@
 'use client';
 
 import React, { useState, useEffect, useCallback } from 'react';
+import Link from 'next/link';
 import { useAdminAuth } from '@/lib/admin-auth-context';
+
+// Mesmos limites das colunas no banco.
+const CATEGORY_NAME_MAX_LENGTH = 60;
+const TAG_NAME_MAX_LENGTH = 40;
+
+function inUseSummary(postCount: number): string {
+  const articles = postCount === 1 ? '1 artigo' : `${postCount} artigos`;
+  return `está em ${articles}, contando rascunhos e a lixeira`;
+}
+
+function TaxonomyNote({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="flex gap-2.5 bg-[#F9F7F2] border border-[#E9E4DB] rounded p-3">
+      <svg
+        width="15"
+        height="15"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="#857D74"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        className="shrink-0 mt-0.5"
+      >
+        <circle cx="12" cy="12" r="9" />
+        <path d="M12 11v5M12 8h.01" />
+      </svg>
+      <span className="text-[12.5px] leading-relaxed text-[#55504A]">{children}</span>
+    </div>
+  );
+}
 
 interface AdminCategory {
   id: string;
@@ -126,7 +157,12 @@ export default function AdminTaxonomiaPage() {
   };
 
   const handleDeleteCategory = async (cat: AdminCategory) => {
-    if (cat.postCount > 0) return;
+    if (cat.postCount > 0) {
+      alert(
+        `A categoria “${cat.namePtBr}” ${inUseSummary(cat.postCount)}. Para excluir, troque a categoria dos artigos ou exclua os artigos de vez.`
+      );
+      return;
+    }
     if (!confirm(`Deseja excluir a categoria “${cat.namePtBr}”?`)) return;
 
     try {
@@ -196,7 +232,12 @@ export default function AdminTaxonomiaPage() {
   };
 
   const handleDeleteTag = async (tag: AdminTag) => {
-    if (tag.postCount > 0) return;
+    if (tag.postCount > 0) {
+      alert(
+        `A tag “${tag.namePtBr}” ${inUseSummary(tag.postCount)}. Para excluir, retire a tag dos artigos ou exclua os artigos de vez.`
+      );
+      return;
+    }
     if (!confirm(`Deseja excluir a tag “${tag.namePtBr}”?`)) return;
 
     try {
@@ -312,10 +353,10 @@ export default function AdminTaxonomiaPage() {
                       </button>
                       <button
                         onClick={() => handleDeleteCategory(cat)}
-                        disabled={inUse}
+                        aria-disabled={inUse}
                         title={
                           inUse
-                            ? 'Categorias com artigos não podem ser excluídas (BR-009)'
+                            ? `Não pode ser excluída: ${inUseSummary(cat.postCount)} (BR-009)`
                             : 'Excluir categoria'
                         }
                         className={`w-7 h-7 inline-flex items-center justify-center rounded transition-colors ${
@@ -343,25 +384,13 @@ export default function AdminTaxonomiaPage() {
               })}
           </div>
 
-          <div className="flex gap-2.5 bg-[#F9F7F2] border border-[#E9E4DB] rounded p-3">
-            <svg
-              width="15"
-              height="15"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="#857D74"
-              strokeWidth="1.6"
-              strokeLinecap="round"
-              className="shrink-0 mt-0.5"
-            >
-              <circle cx="12" cy="12" r="9" />
-              <path d="M12 11v5M12 8h.01" />
-            </svg>
-            <span className="text-[12.5px] leading-relaxed text-[#55504A]">
-              Categorias com artigos associados não podem ser excluídas — o ícone fica desabilitado
-              (BR-009).
-            </span>
-          </div>
+          <TaxonomyNote>
+            Categorias com artigos associados, contando rascunhos e a{' '}
+            <Link href="/admin/posts/lixeira" className="underline hover:text-[#1C1A17]">
+              lixeira
+            </Link>
+            , não podem ser excluídas. O ícone fica cinza; clique nele para ver o motivo (BR-009).
+          </TaxonomyNote>
         </section>
 
         {/* Right Column: Tags */}
@@ -435,11 +464,21 @@ export default function AdminTaxonomiaPage() {
                     <span className="font-mono text-[10.5px] tracking-[0.1em] uppercase text-[#857D74]">
                       {editingTag ? `Editando: ${editingTag.namePtBr}` : 'Nova Tag'}
                     </span>
-                    {editingTag && editingTag.postCount === 0 && (
+                    {editingTag && (
                       <button
                         type="button"
                         onClick={() => handleDeleteTag(editingTag)}
-                        className="text-[12px] text-[#B5442B] hover:underline"
+                        aria-disabled={editingTag.postCount > 0}
+                        title={
+                          editingTag.postCount > 0
+                            ? `Não pode ser excluída: ${inUseSummary(editingTag.postCount)} (BR-009)`
+                            : undefined
+                        }
+                        className={`text-[12px] ${
+                          editingTag.postCount > 0
+                            ? 'text-[#A29A90] cursor-not-allowed'
+                            : 'text-[#B5442B] hover:underline cursor-pointer'
+                        }`}
                       >
                         Excluir tag
                       </button>
@@ -452,6 +491,7 @@ export default function AdminTaxonomiaPage() {
                       <input
                         type="text"
                         required
+                        maxLength={TAG_NAME_MAX_LENGTH}
                         value={tagNamePtBr}
                         onChange={(e) => setTagNamePtBr(e.target.value)}
                         className="h-9 px-2.5 border border-[#DDD6CB] rounded font-mono text-[12.5px] text-[#1C1A17] outline-none focus:border-[#1C1A17]"
@@ -462,6 +502,7 @@ export default function AdminTaxonomiaPage() {
                       <input
                         type="text"
                         required
+                        maxLength={TAG_NAME_MAX_LENGTH}
                         value={tagNameEn}
                         onChange={(e) => setTagNameEn(e.target.value)}
                         className="h-9 px-2.5 border border-[#DDD6CB] rounded font-mono text-[12.5px] text-[#1C1A17] outline-none focus:border-[#1C1A17]"
@@ -491,6 +532,11 @@ export default function AdminTaxonomiaPage() {
               </>
             )}
           </div>
+
+          <TaxonomyNote>
+            Clique em uma tag para editar ou excluir. Tags com artigos associados, contando
+            rascunhos e a lixeira, não podem ser excluídas (BR-009).
+          </TaxonomyNote>
         </section>
       </div>
 
@@ -510,6 +556,7 @@ export default function AdminTaxonomiaPage() {
               <input
                 type="text"
                 required
+                maxLength={CATEGORY_NAME_MAX_LENGTH}
                 value={catNamePtBr}
                 onChange={(e) => setCatNamePtBr(e.target.value)}
                 placeholder="Ex: Arquitetura"
@@ -522,6 +569,7 @@ export default function AdminTaxonomiaPage() {
               <input
                 type="text"
                 required
+                maxLength={CATEGORY_NAME_MAX_LENGTH}
                 value={catNameEn}
                 onChange={(e) => setCatNameEn(e.target.value)}
                 placeholder="Ex: Architecture"

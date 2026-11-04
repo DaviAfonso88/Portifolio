@@ -11,9 +11,9 @@ export class ResendEmailService implements EmailNotificationService {
     const key = this.apiKey || process.env.RESEND_API_KEY;
     const to = this.alertRecipient || process.env.CONTACT_ALERT_EMAIL || 'daviafonso5894@gmail.com';
 
+    // Precisa falhar: retornar sem erro faria a mensagem ficar marcada como notificada sem envio.
     if (!key) {
-      console.warn('[ResendEmailService] RESEND_API_KEY not configured. Skipping email dispatch.');
-      return;
+      throw new Error('RESEND_API_KEY not configured. Email not sent.');
     }
 
     const payload = {
