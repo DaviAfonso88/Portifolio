@@ -20,7 +20,12 @@ async function runSeed() {
 
   const adminId = '01918a20-0000-7000-8000-000000000001';
   const adminEmail = (process.env.ADMIN_EMAIL || 'daviafonso5894@gmail.com').trim().toLowerCase();
-  const rawPassword = process.env.ADMIN_PASSWORD || 'admin123456';
+  // O seed sobrescreve a senha do admin: sem esta variável, gravaria uma senha conhecida no banco.
+  const rawPassword = process.env.ADMIN_PASSWORD;
+  if (!rawPassword) {
+    console.error('ADMIN_PASSWORD environment variable is required to run database seed.');
+    process.exit(1);
+  }
   const passwordHash = bcrypt.hashSync(rawPassword, 10);
 
   console.log(`Seeding admin user (${adminEmail})...`);

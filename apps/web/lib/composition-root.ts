@@ -25,12 +25,15 @@ import {
   ListPostVersionsUseCase,
   ListContactMessagesUseCase,
   PurgeOldContactMessagesUseCase,
+  type PostRepository,
+  type TaxonomyRepository,
 } from '@davidev/application';
 
 import {
   createDbClient,
   DrizzleContactMessageRepository,
   DrizzlePostRepository,
+  InMemoryPostRepository,
   DrizzleAdminUserRepository,
   DrizzleRefreshTokenRepository,
   BcryptPasswordHasher,
@@ -39,8 +42,10 @@ import {
   PostgresRateLimiter,
 } from '@davidev/infrastructure';
 
+type BlogRepository = PostRepository & TaxonomyRepository;
+
 let cachedApp: FastifyInstance | null = null;
-let postRepoInstance: DrizzlePostRepository | null = null;
+let postRepoInstance: BlogRepository | null = null;
 let contactRepoInstance: DrizzleContactMessageRepository | null = null;
 let blogUseCasesInstance: {
   listPublishedPosts: ListPublishedPostsUseCase;
@@ -67,25 +72,27 @@ let adminUseCasesInstance: {
   listPostVersions: ListPostVersionsUseCase;
   listContactMessages: ListContactMessagesUseCase;
   purgeOldContactMessages: PurgeOldContactMessagesUseCase;
-  repo: DrizzlePostRepository;
+  repo: BlogRepository;
 
   contactRepo: DrizzleContactMessageRepository;
 } | null = null;
 
-function getPostRepository(): DrizzlePostRepository {
+function getPostRepository(): BlogRepository {
   if (postRepoInstance) return postRepoInstance;
 
-  if (process.env.DATABASE_URL) {
-    try {
-      const db = createDbClient(process.env.DATABASE_URL);
-      postRepoInstance = new DrizzlePostRepository(db);
-      return postRepoInstance;
-    } catch (err) {
-      console.warn('[CompositionRoot] Warning: DB connection failed, using fallback post repo:', err);
-    }
+  const databaseUrl = process.env.DATABASE_URL;
+  if (databaseUrl) {
+    postRepoInstance = new DrizzlePostRepository(createDbClient(databaseUrl));
+    return postRepoInstance;
   }
 
-  postRepoInstance = new DrizzlePostRepository();
+  // Em produção a memória perderia cada post no próximo cold start, sem nenhum erro visível.
+  if (process.env.VERCEL_ENV === 'production') {
+    throw new Error('DATABASE_URL é obrigatória em produção: o blog não pode rodar em memória.');
+  }
+
+  console.warn('[CompositionRoot] DATABASE_URL ausente: blog em memória, nada será persistido.');
+  postRepoInstance = new InMemoryPostRepository();
   return postRepoInstance;
 }
 

@@ -1,4 +1,5 @@
-import { eq, and, sql, desc, inArray, ilike, or } from 'drizzle-orm';
+import { and, asc, count, desc, eq, ilike, inArray, ne, or, sql, type SQL } from 'drizzle-orm';
+import type { BatchItem } from 'drizzle-orm/batch';
 import {
   Post,
   PostVersion,
@@ -16,8 +17,8 @@ import type {
   TaxonomyRepository,
   CategoryWithCount,
   TagWithCount,
+  ListTaxonomyOptions,
   PublishedPostListItem,
-  PublishedPostDetail,
   GetPostBySlugResult,
   ListPublishedPostsParams,
   ListPublishedPostsResult,
@@ -25,749 +26,403 @@ import type {
   AdminPostDetail,
   ListAdminPostsParams,
   ListAdminPostsResult,
-  PostVersionSummary,
   ListPostVersionsResult,
 } from '@davidev/application';
 import type { DbClient } from '../db/client';
-import {
-  posts,
-  postSlugs,
-  categories,
-  tags,
-  postTags,
-  postVersions,
-} from '../db/schema';
+import { posts, postSlugs, categories, tags, postTags, postVersions } from '../db/schema';
 
-// High-fidelity fallback articles matching design/Blog.dc.html and design/Artigo.dc.html
-const SEED_ARTICLES: PublishedPostDetail[] = [
-  {
-    id: '01918a20-0001-7000-8000-000000000001',
-    locale: PostLocale.PT_BR,
-    slug: 'por-que-a-arquitetura-hexagonal-se-pagou',
-    title: 'Por que a arquitetura hexagonal se pagou num projeto de uma pessoa só',
-    excerpt:
-      'Pelos critérios normais, ports and adapters num blog com um administrador é complexidade excessiva. Foi, e ainda assim valeu, por um motivo que não é técnico.',
-    content: `## O paradoxo do projeto solo
+const WORDS_PER_MINUTE = 200;
+const POSTGRES_UNIQUE_VIOLATION = '23505';
 
-Pelos critérios normais de engenharia, adotar arquitetura hexagonal em um produto mantido por um único desenvolvedor soa como excesso de zelo. Mais interfaces, mais camadas de indireção, mais arquivos para navegar e manter.
+const currentSlugJoin = and(eq(postSlugs.postId, posts.id), eq(postSlugs.isCurrent, true));
+const categoryJoin = eq(categories.id, posts.categoryId);
 
-No entanto, em sistemas que precisam perdurar sem supervisão constante, a separação estrita entre regras de negócio puras e detalhes de infraestrutura se paga rapidamente:
+// Evita trazer o corpo de cada artigo só para calcular o tempo de leitura da listagem.
+const wordCountSql = sql<number>`coalesce(array_length(regexp_split_to_array(trim(${posts.content}), '\\s+'), 1), 0)`.mapWith(
+  Number
+);
 
-> O código de domínio é imutável perante trocas de banco, migrações de provedor de nuvem ou evolução de APIs.
+const postListColumns = {
+  id: posts.id,
+  locale: posts.locale,
+  translationGroupId: posts.translationGroupId,
+  title: posts.title,
+  excerpt: posts.excerpt,
+  coverImageUrl: posts.coverImageUrl,
+  categoryId: posts.categoryId,
+  status: posts.status,
+  publishedAt: posts.publishedAt,
+  currentVersion: posts.currentVersion,
+  createdAt: posts.createdAt,
+  updatedAt: posts.updatedAt,
+  slug: postSlugs.slug,
+  categoryNamePtBr: categories.namePtBr,
+  categoryNameEn: categories.nameEn,
+  categorySlugPtBr: categories.slugPtBr,
+  categorySlugEn: categories.slugEn,
+};
 
-### A separação que salva o fim de semana
-
-Quando um teste unitário de caso de uso não depende de banco de dados, Docker ou rede, ele executa em menos de 10 milissegundos. Isso transforma o ciclo de feedback e previne regressões sutis que de outra forma só explodiriam em produção.`,
-    coverImageUrl: null,
-    category: { name: 'Arquitetura', slug: 'arquitetura' },
-    tags: [
-      { name: 'hexagonal', slug: 'hexagonal' },
-      { name: 'testes', slug: 'testes' },
-    ],
-    publishedAt: new Date('2026-09-02T10:00:00Z'),
-    updatedAt: new Date('2026-09-02T10:00:00Z'),
-    readingTimeMinutes: 9,
-    currentVersion: 1,
-    translationGroupId: '01918a20-0001-7000-8000-0000000000aa',
-    availableLocales: [PostLocale.PT_BR, PostLocale.EN],
-    translations: [
-      {
-        locale: PostLocale.EN,
-        slug: 'why-hexagonal-architecture-paid-off',
-        title: 'Why hexagonal architecture paid off in a one-person project',
-      },
-    ],
-  },
-  {
-    id: '01918a20-0002-7000-8000-000000000002',
-    locale: PostLocale.PT_BR,
-    slug: 'rate-limiting-em-serverless',
-    title: 'Rate limiting em serverless: o bug que passa em todo teste local',
-    excerpt:
-      'Um contador em memória funciona perfeitamente na sua máquina e desaparece em produção, sem erro, sem log e sem nada que denuncie. É a falha mais silenciosa que encontrei.',
-    content: `## O contador que some
-
-A implementação ingênua de rate limiting guarda um \`Map\` em memória: chave é o IP, valor é a contagem na janela. Em um processo de longa duração isso funciona, pois o processo é um só e o mapa vive enquanto ele viver.
-
-Em execução serverless, não existe "o processo". Cada requisição pode cair em uma instância diferente, criada agora e destruída em seguida. O contador que você incrementou na requisição anterior pode simplesmente não existir na próxima.
-
-> O código está sintaticamente correto, os testes passam, o deploy sobe, e a proteção contra força bruta simplesmente não existe.
-
-## Por que o teste local passa
-
-Rodando localmente há um processo só. Seis requisições seguidas ao endpoint de contato batem no mesmo mapa, a sexta é bloqueada, o teste fica verde e a sensação é de dever cumprido.
-
-O teste está medindo a coisa certa no ambiente errado. Ele prova que a lógica de contagem funciona; não prova que o *estado é compartilhado*, que é justamente a propriedade da qual o mecanismo depende.
-
-## Store compartilhado sem Redis
-
-A resposta reflexa é adicionar Redis. Para um sistema com volume de dezenas a centenas de visitas por mês, isso significa um provedor a mais para configurar, pagar e manter, resolvendo um problema de escala que não existe.
-
-O PostgreSQL que já está no projeto resolve, com uma tabela e um upsert atômico:
-
-\`\`\`sql
-INSERT INTO rate_limit_counter (key, window_start, hits)
-VALUES ($1, $2, 1)
-ON CONFLICT (key, window_start)
-DO UPDATE SET hits = rate_limit_counter.hits + 1
-RETURNING hits;
-\`\`\`
-
-O incremento é atômico por construção: duas instâncias concorrentes não perdem contagem, porque o banco serializa a operação. E a chave guarda o IP hasheado, nunca em claro.`,
-    coverImageUrl: null,
-    category: { name: 'Backend', slug: 'backend' },
-    tags: [
-      { name: 'serverless', slug: 'serverless' },
-      { name: 'postgres', slug: 'postgres' },
-    ],
-    publishedAt: new Date('2026-08-19T14:30:00Z'),
-    updatedAt: new Date('2026-09-04T12:00:00Z'),
-    readingTimeMinutes: 7,
-    currentVersion: 2,
-    translationGroupId: '01918a20-0002-7000-8000-0000000000bb',
-    availableLocales: [PostLocale.PT_BR, PostLocale.EN],
-    translations: [
-      {
-        locale: PostLocale.EN,
-        slug: 'rate-limiting-in-serverless',
-        title: 'Rate limiting in serverless: the bug that slips past local tests',
-      },
-    ],
-  },
-  {
-    id: '01918a20-0003-7000-8000-000000000003',
-    locale: PostLocale.PT_BR,
-    slug: 'reduzindo-60-porcento-consumo-proxy-robos-coleta',
-    title: 'Reduzindo 60% do consumo de proxy em robôs de coleta',
-    excerpt:
-      'Bloqueio agressivo de assets, coleta incremental e navegador só onde a proteção anti bot exige. Três medidas, com o antes e depois medido em bytes reais.',
-    content: `## O gargalo de custo em web scraping
-
-Em projetos de coleta massiva de preços e catálogos, o gargalo raramente é CPU ou memória: é a fatura de banda de proxies residenciais rotativos, cobrada em dólares por gigabyte.
-
-### 1. Bloqueio cirúrgico de assets no Puppeteer
-Imagens de alta resolução, fontes web pesadas, vídeos promocionais e scripts analíticos consom até 75% da banda de uma página de produto.
-
-### 2. Coleta incremental por checksum
-Comparar o hash do bloco de listagem antes de abrir cada item detalhado evita requisições redundantes quando nada mudou.`,
-    coverImageUrl: null,
-    category: { name: 'Automação', slug: 'automacao' },
-    tags: [
-      { name: 'scraping', slug: 'scraping' },
-      { name: 'puppeteer', slug: 'puppeteer' },
-    ],
-    publishedAt: new Date('2026-07-30T09:00:00Z'),
-    updatedAt: new Date('2026-07-30T09:00:00Z'),
-    readingTimeMinutes: 12,
-    currentVersion: 1,
-    translationGroupId: '01918a20-0003-7000-8000-0000000000cc',
-    availableLocales: [PostLocale.PT_BR],
-    translations: [],
-  },
-];
-
-interface InMemoryAdminPostRecord {
+interface PostRow {
   id: string;
   locale: PostLocale;
   translationGroupId: string;
   title: string;
-  slug: string;
   excerpt: string;
-  content: string;
-  contentHash: string;
   coverImageUrl: string | null;
   categoryId: string;
-  categoryName: string;
-  categorySlug: string;
-  tagIds: string[];
   status: PostStatus;
   publishedAt: Date | null;
   currentVersion: number;
   createdAt: Date;
   updatedAt: Date;
-  historicalSlugs: string[];
+  slug: string;
+  categoryNamePtBr: string;
+  categoryNameEn: string;
+  categorySlugPtBr: string;
+  categorySlugEn: string;
 }
 
-interface InMemoryPostVersionRecord {
-  id: string;
+interface TagRow {
   postId: string;
-  versionNumber: number;
+  id: string;
+  namePtBr: string;
+  nameEn: string;
+  slugPtBr: string;
+  slugEn: string;
+}
+
+interface TranslationRow {
+  translationGroupId: string;
+  locale: PostLocale;
+  slug: string;
   title: string;
-  excerpt: string;
-  content: string;
-  contentHash: string;
-  createdAt: Date;
+}
+
+function readingTimeMinutes(wordCount: number): number {
+  return Math.max(1, Math.ceil(wordCount / WORDS_PER_MINUTE));
+}
+
+function countWords(text: string): number {
+  return text.trim().split(/\s+/).filter(Boolean).length;
+}
+
+function escapeLikePattern(term: string): string {
+  return term.replace(/[\\%_]/g, '\\$&');
+}
+
+function isUniqueViolation(err: unknown): boolean {
+  return (err as { code?: string } | null)?.code === POSTGRES_UNIQUE_VIOLATION;
+}
+
+function groupBy<T>(items: T[], keyOf: (item: T) => string): Map<string, T[]> {
+  const groups = new Map<string, T[]>();
+  for (const item of items) {
+    const key = keyOf(item);
+    const group = groups.get(key);
+    if (group) group.push(item);
+    else groups.set(key, [item]);
+  }
+  return groups;
+}
+
+function toPublishedListItem(
+  row: PostRow,
+  wordCount: number,
+  tagRows: TagRow[],
+  translations: TranslationRow[]
+): PublishedPostListItem {
+  const isEnglish = row.locale === PostLocale.EN;
+  return {
+    id: row.id,
+    locale: row.locale,
+    slug: row.slug,
+    title: row.title,
+    excerpt: row.excerpt,
+    coverImageUrl: row.coverImageUrl,
+    category: {
+      name: isEnglish ? row.categoryNameEn : row.categoryNamePtBr,
+      slug: isEnglish ? row.categorySlugEn : row.categorySlugPtBr,
+    },
+    tags: tagRows.map((t) => ({
+      name: isEnglish ? t.nameEn : t.namePtBr,
+      slug: isEnglish ? t.slugEn : t.slugPtBr,
+    })),
+    publishedAt: row.publishedAt ?? row.createdAt,
+    updatedAt: row.updatedAt,
+    readingTimeMinutes: readingTimeMinutes(wordCount),
+    availableLocales: translations.length > 0 ? translations.map((t) => t.locale) : [row.locale],
+  };
+}
+
+function toAdminListItem(row: PostRow, tagRows: TagRow[]): AdminPostListItem {
+  return {
+    id: row.id,
+    locale: row.locale,
+    slug: row.slug,
+    title: row.title,
+    excerpt: row.excerpt,
+    coverImageUrl: row.coverImageUrl,
+    categoryId: row.categoryId,
+    categoryName: row.categoryNamePtBr,
+    categorySlug: row.categorySlugPtBr,
+    tagIds: tagRows.map((t) => t.id),
+    tags: tagRows.map((t) => ({ id: t.id, name: t.namePtBr, slug: t.slugPtBr })),
+    status: row.status,
+    publishedAt: row.publishedAt,
+    currentVersion: row.currentVersion,
+    translationGroupId: row.translationGroupId,
+    createdAt: row.createdAt,
+    updatedAt: row.updatedAt,
+  };
 }
 
 export class DrizzlePostRepository implements PostRepository, TaxonomyRepository {
-  private inMemoryCategories: Map<string, Category> = new Map();
-  private inMemoryTags: Map<string, Tag> = new Map();
-  private inMemoryPosts: Map<string, InMemoryAdminPostRecord> = new Map();
-  private inMemoryPostVersions: Map<string, InMemoryPostVersionRecord[]> = new Map();
+  constructor(private readonly db: DbClient) {}
 
-  constructor(private readonly db?: DbClient) {
-    this.seedInMemoryDefaults();
-  }
+  // --- Leitura pública ---
 
-  private seedInMemoryDefaults(): void {
-    // Categories
-    const catArq = new Category({
-      id: UUID.create('01918a20-0000-7000-8000-000000000011'),
-      namePtBr: 'Arquitetura',
-      nameEn: 'Architecture',
-      slugPtBr: SlugValueObject.create('arquitetura'),
-      slugEn: SlugValueObject.create('architecture'),
-    });
-    const catBack = new Category({
-      id: UUID.create('01918a20-0000-7000-8000-000000000012'),
-      namePtBr: 'Backend',
-      nameEn: 'Backend',
-      slugPtBr: SlugValueObject.create('backend'),
-      slugEn: SlugValueObject.create('backend'),
-    });
-    const catAuto = new Category({
-      id: UUID.create('01918a20-0000-7000-8000-000000000013'),
-      namePtBr: 'Automação',
-      nameEn: 'Automation',
-      slugPtBr: SlugValueObject.create('automacao'),
-      slugEn: SlugValueObject.create('automation'),
-    });
-    const catProc = new Category({
-      id: UUID.create('01918a20-0000-7000-8000-000000000014'),
-      namePtBr: 'Processo',
-      nameEn: 'Process',
-      slugPtBr: SlugValueObject.create('processo'),
-      slugEn: SlugValueObject.create('process'),
-    });
-    this.inMemoryCategories.set(catArq.id, catArq);
-    this.inMemoryCategories.set(catBack.id, catBack);
-    this.inMemoryCategories.set(catAuto.id, catAuto);
-    this.inMemoryCategories.set(catProc.id, catProc);
-
-    // Tags
-    const tagNext = new Tag({
-      id: UUID.create('01918a20-0000-7000-8000-000000000021'),
-      namePtBr: 'nextjs',
-      nameEn: 'nextjs',
-      slugPtBr: SlugValueObject.create('nextjs'),
-      slugEn: SlugValueObject.create('nextjs'),
-    });
-    const tagDrizzle = new Tag({
-      id: UUID.create('01918a20-0000-7000-8000-000000000022'),
-      namePtBr: 'drizzle',
-      nameEn: 'drizzle',
-      slugPtBr: SlugValueObject.create('drizzle'),
-      slugEn: SlugValueObject.create('drizzle'),
-    });
-    const tagPg = new Tag({
-      id: UUID.create('01918a20-0000-7000-8000-000000000023'),
-      namePtBr: 'postgresql',
-      nameEn: 'postgresql',
-      slugPtBr: SlugValueObject.create('postgresql'),
-      slugEn: SlugValueObject.create('postgresql'),
-    });
-    const tagHex = new Tag({
-      id: UUID.create('01918a20-0000-7000-8000-000000000024'),
-      namePtBr: 'hexagonal',
-      nameEn: 'hexagonal',
-      slugPtBr: SlugValueObject.create('hexagonal'),
-      slugEn: SlugValueObject.create('hexagonal'),
-    });
-    const tagServ = new Tag({
-      id: UUID.create('01918a20-0000-7000-8000-000000000025'),
-      namePtBr: 'serverless',
-      nameEn: 'serverless',
-      slugPtBr: SlugValueObject.create('serverless'),
-      slugEn: SlugValueObject.create('serverless'),
-    });
-    this.inMemoryTags.set(tagNext.id, tagNext);
-    this.inMemoryTags.set(tagDrizzle.id, tagDrizzle);
-    this.inMemoryTags.set(tagPg.id, tagPg);
-    this.inMemoryTags.set(tagHex.id, tagHex);
-    this.inMemoryTags.set(tagServ.id, tagServ);
-
-    // Seed articles into in-memory admin posts
-    for (const a of SEED_ARTICLES) {
-      const cat = [...this.inMemoryCategories.values()].find(
-        (c) => c.namePtBr.toLowerCase() === a.category.name.toLowerCase()
-      ) ?? catBack;
-
-      const matchedTagIds: string[] = [];
-      for (const t of a.tags) {
-        const foundTag = [...this.inMemoryTags.values()].find(
-          (tag) => tag.namePtBr.toLowerCase() === t.name.toLowerCase()
-        );
-        if (foundTag) matchedTagIds.push(foundTag.id);
-      }
-
-      const md = MarkdownContent.create(a.content);
-      this.inMemoryPosts.set(a.id, {
-        id: a.id,
-        locale: a.locale,
-        translationGroupId: a.translationGroupId,
-        title: a.title,
-        slug: a.slug,
-        excerpt: a.excerpt,
-        content: a.content,
-        contentHash: md.contentHash,
-        coverImageUrl: a.coverImageUrl,
-        categoryId: cat.id,
-        categoryName: cat.namePtBr,
-        categorySlug: cat.slugPtBr,
-        tagIds: matchedTagIds,
-        status: PostStatus.PUBLISHED,
-        publishedAt: a.publishedAt,
-        currentVersion: a.currentVersion,
-        createdAt: a.publishedAt,
-        updatedAt: a.updatedAt,
-        historicalSlugs: [],
-      });
-
-      // Seed version records
-      if (a.id === '01918a20-0002-7000-8000-000000000002') {
-        this.inMemoryPostVersions.set(a.id, [
-          {
-            id: '01918a20-0002-7000-8000-0000000000v2',
-            postId: a.id,
-            versionNumber: 2,
-            title: a.title,
-            excerpt: a.excerpt,
-            content: a.content,
-            contentHash: md.contentHash,
-            createdAt: new Date('2026-09-04T12:00:00Z'),
-          },
-          {
-            id: '01918a20-0002-7000-8000-0000000000v1',
-            postId: a.id,
-            versionNumber: 1,
-            title: 'Rate limiting em serverless: o bug que passa em todo teste local',
-            excerpt: 'Um contador em memória funciona perfeitamente na sua máquina e desaparece em produção.',
-            content: a.content,
-            contentHash: md.contentHash,
-            createdAt: new Date('2026-08-19T14:30:00Z'),
-          },
-        ]);
-      } else {
-        this.inMemoryPostVersions.set(a.id, [
-          {
-            id: `${a.id}-v1`,
-            postId: a.id,
-            versionNumber: 1,
-            title: a.title,
-            excerpt: a.excerpt,
-            content: a.content,
-            contentHash: md.contentHash,
-            createdAt: a.publishedAt,
-          },
-        ]);
-      }
-    }
-
-    // Seed trash posts matching design/AdminLixeira.dc.html
-    const trash1Id = '01918a20-0004-7000-8000-000000000004';
-    const mdTrash1 = MarkdownContent.create('Comparação detalhada de ORMs TypeScript...');
-    this.inMemoryPosts.set(trash1Id, {
-      id: trash1Id,
-      locale: PostLocale.PT_BR,
-      translationGroupId: '01918a20-0004-7000-8000-0000000000dd',
-      title: 'Comparando ORMs de TypeScript em 2026',
-      slug: 'comparando-orms-de-typescript-em-2026',
-      excerpt: 'Drizzle vs Prisma vs Kysely vs TypeORM no ecossistema serverless moderno.',
-      content: mdTrash1.text,
-      contentHash: mdTrash1.contentHash,
-      coverImageUrl: null,
-      categoryId: catBack.id,
-      categoryName: catBack.namePtBr,
-      categorySlug: catBack.slugPtBr,
-      tagIds: [tagDrizzle.id, tagPg.id],
-      status: PostStatus.TRASH,
-      publishedAt: new Date('2026-09-06T10:00:00Z'),
-      currentVersion: 3,
-      createdAt: new Date('2026-09-06T10:00:00Z'),
-      updatedAt: new Date('2026-09-06T10:00:00Z'),
-      historicalSlugs: ['orms-typescript-2026'],
-    });
-
-    const trash2Id = '01918a20-0005-7000-8000-000000000005';
-    const mdTrash2 = MarkdownContent.create('Anotações sobre arquitetura de microsserviços...');
-    this.inMemoryPosts.set(trash2Id, {
-      id: trash2Id,
-      locale: PostLocale.PT_BR,
-      translationGroupId: '01918a20-0005-7000-8000-0000000000ee',
-      title: 'Rascunho antigo sobre microserviços',
-      slug: 'rascunho-antigo-sobre-microservicos',
-      excerpt: 'sem versões · nunca publicado',
-      content: mdTrash2.text,
-      contentHash: mdTrash2.contentHash,
-      coverImageUrl: null,
-      categoryId: catArq.id,
-      categoryName: catArq.namePtBr,
-      categorySlug: catArq.slugPtBr,
-      tagIds: [tagHex.id],
-      status: PostStatus.TRASH,
-      publishedAt: null,
-      currentVersion: 1,
-      createdAt: new Date('2026-08-28T10:00:00Z'),
-      updatedAt: new Date('2026-08-28T10:00:00Z'),
-      historicalSlugs: [],
-    });
-
-    // Seed draft post to test drafts tab
-    const draftId = '01918a20-0006-7000-8000-000000000006';
-    const mdDraft = MarkdownContent.create('Princípios de Zero-Trust em backend...');
-    this.inMemoryPosts.set(draftId, {
-      id: draftId,
-      locale: PostLocale.PT_BR,
-      translationGroupId: '01918a20-0006-7000-8000-0000000000ff',
-      title: 'Zero-Trust no desenvolvimento web moderno',
-      slug: 'zero-trust-desenvolvimento-web-moderno',
-      excerpt: 'Como estruturar contratos e camadas defensivas desde a primeira linha.',
-      content: mdDraft.text,
-      contentHash: mdDraft.contentHash,
-      coverImageUrl: null,
-      categoryId: catBack.id,
-      categoryName: catBack.namePtBr,
-      categorySlug: catBack.slugPtBr,
-      tagIds: [tagServ.id],
-      status: PostStatus.DRAFT,
-      publishedAt: null,
-      currentVersion: 1,
-      createdAt: new Date('2026-09-08T10:00:00Z'),
-      updatedAt: new Date('2026-09-08T10:00:00Z'),
-      historicalSlugs: [],
-    });
-  }
-
-  // --- Public Reading Methods ---
-
-  public async listPublished(
-    params: ListPublishedPostsParams
-  ): Promise<ListPublishedPostsResult> {
+  public async listPublished(params: ListPublishedPostsParams): Promise<ListPublishedPostsResult> {
     const page = params.page && params.page > 0 ? params.page : 1;
     const limit = params.limit && params.limit > 0 ? params.limit : 10;
 
-    let allPublished = [...this.inMemoryPosts.values()].filter(
-      (p) => p.status === PostStatus.PUBLISHED && p.locale === params.locale
-    );
-
+    const conditions: (SQL | undefined)[] = [
+      eq(posts.status, PostStatus.PUBLISHED),
+      eq(posts.locale, params.locale),
+    ];
     if (params.categorySlug) {
-      allPublished = allPublished.filter((p) => p.categorySlug === params.categorySlug);
+      conditions.push(
+        or(eq(categories.slugPtBr, params.categorySlug), eq(categories.slugEn, params.categorySlug))
+      );
     }
     if (params.tagSlug) {
-      const tag = [...this.inMemoryTags.values()].find((t) => t.slugPtBr === params.tagSlug || t.slugEn === params.tagSlug);
-      if (tag) {
-        allPublished = allPublished.filter((p) => p.tagIds.includes(tag.id));
-      }
+      conditions.push(
+        inArray(
+          posts.id,
+          this.db
+            .select({ postId: postTags.postId })
+            .from(postTags)
+            .innerJoin(tags, eq(tags.id, postTags.tagId))
+            .where(or(eq(tags.slugPtBr, params.tagSlug), eq(tags.slugEn, params.tagSlug)))
+        )
+      );
     }
+    const where = and(...conditions);
 
-    const total = allPublished.length;
-    const totalPages = Math.ceil(total / limit) || 1;
-    const start = (page - 1) * limit;
-    const paginated = allPublished.slice(start, start + limit);
+    const [rows, [{ total }]] = await Promise.all([
+      this.db
+        .select({ ...postListColumns, wordCount: wordCountSql })
+        .from(posts)
+        .innerJoin(postSlugs, currentSlugJoin)
+        .innerJoin(categories, categoryJoin)
+        .where(where)
+        .orderBy(desc(posts.publishedAt), desc(posts.id))
+        .limit(limit)
+        .offset((page - 1) * limit),
+      this.db
+        .select({ total: count() })
+        .from(posts)
+        .innerJoin(categories, categoryJoin)
+        .where(where),
+    ]);
 
-    const postsList: PublishedPostListItem[] = paginated.map((p) => ({
-      id: p.id,
-      locale: p.locale,
-      slug: p.slug,
-      title: p.title,
-      excerpt: p.excerpt,
-      coverImageUrl: p.coverImageUrl,
-      category: { name: p.categoryName, slug: p.categorySlug },
-      tags: p.tagIds.map((tId) => {
-        const tag = this.inMemoryTags.get(tId);
-        return { name: tag?.namePtBr || '', slug: tag?.slugPtBr || '' };
-      }),
-      publishedAt: p.publishedAt || p.createdAt,
-      updatedAt: p.updatedAt,
-      readingTimeMinutes: 7,
-      availableLocales: [p.locale],
-    }));
+    const [tagsByPost, translationsByGroup] = await Promise.all([
+      this.loadTags(rows.map((r) => r.id)),
+      this.loadPublishedTranslations(rows.map((r) => r.translationGroupId)),
+    ]);
 
     return {
-      posts: postsList,
+      posts: rows.map((row) =>
+        toPublishedListItem(
+          row,
+          row.wordCount,
+          tagsByPost.get(row.id) ?? [],
+          translationsByGroup.get(row.translationGroupId) ?? []
+        )
+      ),
       total,
       page,
       limit,
-      totalPages,
+      totalPages: Math.ceil(total / limit) || 1,
     };
   }
 
-  public async findBySlug(
-    locale: PostLocale,
-    slug: string
-  ): Promise<GetPostBySlugResult> {
-    const normalizedSlug = slug.trim().toLowerCase();
+  public async findBySlug(locale: PostLocale, slug: string): Promise<GetPostBySlugResult> {
+    const [match] = await this.db
+      .select({ postId: postSlugs.postId, isCurrent: postSlugs.isCurrent })
+      .from(postSlugs)
+      .innerJoin(posts, eq(posts.id, postSlugs.postId))
+      .where(
+        and(
+          eq(postSlugs.slug, slug.trim().toLowerCase()),
+          eq(postSlugs.locale, locale),
+          eq(posts.status, PostStatus.PUBLISHED)
+        )
+      )
+      .limit(1);
 
-    // Check current slug
-    const current = [...this.inMemoryPosts.values()].find(
-      (p) =>
-        p.status === PostStatus.PUBLISHED &&
-        p.locale === locale &&
-        p.slug.toLowerCase() === normalizedSlug
-    );
+    if (!match) return { status: 'NOT_FOUND' };
 
-    if (current) {
-      return {
-        status: 'FOUND',
-        post: {
-          id: current.id,
-          locale: current.locale,
-          slug: current.slug,
-          title: current.title,
-          excerpt: current.excerpt,
-          content: current.content,
-          coverImageUrl: current.coverImageUrl,
-          category: { name: current.categoryName, slug: current.categorySlug },
-          tags: current.tagIds.map((tId) => {
-            const tag = this.inMemoryTags.get(tId);
-            return { name: tag?.namePtBr || '', slug: tag?.slugPtBr || '' };
-          }),
-          publishedAt: current.publishedAt || current.createdAt,
-          updatedAt: current.updatedAt,
-          readingTimeMinutes: 7,
-          currentVersion: current.currentVersion,
-          translationGroupId: current.translationGroupId,
-          availableLocales: [current.locale],
-          translations: [],
-        },
-      };
+    if (!match.isCurrent) {
+      const [current] = await this.db
+        .select({ slug: postSlugs.slug })
+        .from(postSlugs)
+        .where(and(eq(postSlugs.postId, match.postId), eq(postSlugs.isCurrent, true)))
+        .limit(1);
+      if (!current) return { status: 'NOT_FOUND' };
+      return { status: 'HISTORICAL_SLUG', canonicalSlug: current.slug, canonicalLocale: locale };
     }
 
-    // Check historical slug
-    const historical = [...this.inMemoryPosts.values()].find(
-      (p) =>
-        p.status === PostStatus.PUBLISHED &&
-        p.locale === locale &&
-        p.historicalSlugs.some((hs) => hs.toLowerCase() === normalizedSlug)
-    );
+    const [row] = await this.db
+      .select({ ...postListColumns, content: posts.content })
+      .from(posts)
+      .innerJoin(postSlugs, currentSlugJoin)
+      .innerJoin(categories, categoryJoin)
+      .where(eq(posts.id, match.postId))
+      .limit(1);
+    if (!row) return { status: 'NOT_FOUND' };
 
-    if (historical) {
-      return {
-        status: 'HISTORICAL_SLUG',
-        canonicalSlug: historical.slug,
-        canonicalLocale: historical.locale,
-      };
-    }
+    const [tagsByPost, translationsByGroup] = await Promise.all([
+      this.loadTags([row.id]),
+      this.loadPublishedTranslations([row.translationGroupId]),
+    ]);
+    const translations = translationsByGroup.get(row.translationGroupId) ?? [];
 
-    return { status: 'NOT_FOUND' };
+    return {
+      status: 'FOUND',
+      post: {
+        ...toPublishedListItem(row, countWords(row.content), tagsByPost.get(row.id) ?? [], translations),
+        content: row.content,
+        currentVersion: row.currentVersion,
+        translationGroupId: row.translationGroupId,
+        translations: translations
+          .filter((t) => t.locale !== row.locale)
+          .map((t) => ({ locale: t.locale, slug: t.slug, title: t.title })),
+      },
+    };
   }
 
-  // --- TaxonomyRepository Methods ---
-
-  public async listCategories(): Promise<CategoryWithCount[]> {
-    const result: CategoryWithCount[] = [];
-    for (const cat of this.inMemoryCategories.values()) {
-      const count = [...this.inMemoryPosts.values()].filter(
-        (p) => p.categoryId === cat.id && p.status !== PostStatus.TRASH
-      ).length;
-
-      result.push({
-        id: cat.id,
-        namePtBr: cat.namePtBr,
-        nameEn: cat.nameEn,
-        slugPtBr: cat.slugPtBr,
-        slugEn: cat.slugEn,
-        postCount: count,
-      });
-    }
-    return result;
-  }
-
-  public async listTags(): Promise<TagWithCount[]> {
-    const result: TagWithCount[] = [];
-    for (const tag of this.inMemoryTags.values()) {
-      const count = [...this.inMemoryPosts.values()].filter(
-        (p) => p.tagIds.includes(tag.id) && p.status !== PostStatus.TRASH
-      ).length;
-
-      result.push({
-        id: tag.id,
-        namePtBr: tag.namePtBr,
-        nameEn: tag.nameEn,
-        slugPtBr: tag.slugPtBr,
-        slugEn: tag.slugEn,
-        postCount: count,
-      });
-    }
-    return result;
-  }
-
-  public async findCategoryById(id: UUIDv7): Promise<Category | null> {
-    return this.inMemoryCategories.get(id) ?? null;
-  }
-
-  public async createCategory(category: Category): Promise<void> {
-    this.inMemoryCategories.set(category.id, category);
-  }
-
-  public async updateCategory(category: Category): Promise<void> {
-    this.inMemoryCategories.set(category.id, category);
-  }
-
-  public async deleteCategory(id: UUIDv7): Promise<void> {
-    this.inMemoryCategories.delete(id);
-  }
-
-  public async getCategoryPostCount(id: UUIDv7): Promise<number> {
-    return [...this.inMemoryPosts.values()].filter(
-      (p) => p.categoryId === id && p.status !== PostStatus.TRASH
-    ).length;
-  }
-
-  public async findTagById(id: UUIDv7): Promise<Tag | null> {
-    return this.inMemoryTags.get(id) ?? null;
-  }
-
-  public async createTag(tag: Tag): Promise<void> {
-    this.inMemoryTags.set(tag.id, tag);
-  }
-
-  public async updateTag(tag: Tag): Promise<void> {
-    this.inMemoryTags.set(tag.id, tag);
-  }
-
-  public async deleteTag(id: UUIDv7): Promise<void> {
-    this.inMemoryTags.delete(id);
-  }
-
-  public async getTagPostCount(id: UUIDv7): Promise<number> {
-    return [...this.inMemoryPosts.values()].filter(
-      (p) => p.tagIds.includes(id) && p.status !== PostStatus.TRASH
-    ).length;
-  }
-
-  // --- Admin PostRepository Methods ---
+  // --- Administração de posts ---
 
   public async listAdmin(params: ListAdminPostsParams = {}): Promise<ListAdminPostsResult> {
     const page = params.page && params.page > 0 ? params.page : 1;
     const limit = params.limit && params.limit > 0 ? params.limit : 20;
+    const localeFilter = params.locale ? eq(posts.locale, params.locale) : undefined;
 
-    const all = [...this.inMemoryPosts.values()];
-    const publishedCount = all.filter((p) => p.status === PostStatus.PUBLISHED).length;
-    const draftCount = all.filter((p) => p.status === PostStatus.DRAFT).length;
-    const trashCount = all.filter((p) => p.status === PostStatus.TRASH).length;
-
-    let filtered = all;
-
-    if (params.status) {
-      filtered = filtered.filter((p) => p.status === params.status);
-    }
-    if (params.locale) {
-      filtered = filtered.filter((p) => p.locale === params.locale);
-    }
-    if (params.search) {
-      const q = params.search.toLowerCase().trim();
-      filtered = filtered.filter(
-        (p) =>
-          p.title.toLowerCase().includes(q) ||
-          p.slug.toLowerCase().includes(q) ||
-          p.excerpt.toLowerCase().includes(q)
+    const conditions: (SQL | undefined)[] = [
+      // Sem filtro explícito a lixeira fica de fora: ela tem tela própria.
+      params.status ? eq(posts.status, params.status) : ne(posts.status, PostStatus.TRASH),
+      localeFilter,
+    ];
+    const search = params.search?.trim();
+    if (search) {
+      const pattern = `%${escapeLikePattern(search)}%`;
+      conditions.push(
+        or(
+          ilike(posts.title, pattern),
+          ilike(posts.excerpt, pattern),
+          ilike(postSlugs.slug, pattern)
+        )
       );
     }
+    const where = and(...conditions);
 
-    // Sort by updatedAt desc
-    filtered.sort((a, b) => b.updatedAt.getTime() - a.updatedAt.getTime());
+    const [rows, [{ total }], statusCounts] = await Promise.all([
+      this.db
+        .select(postListColumns)
+        .from(posts)
+        .innerJoin(postSlugs, currentSlugJoin)
+        .innerJoin(categories, categoryJoin)
+        .where(where)
+        .orderBy(desc(posts.updatedAt), desc(posts.id))
+        .limit(limit)
+        .offset((page - 1) * limit),
+      this.db
+        .select({ total: count() })
+        .from(posts)
+        .innerJoin(postSlugs, currentSlugJoin)
+        .where(where),
+      this.db
+        .select({ status: posts.status, total: count() })
+        .from(posts)
+        .where(localeFilter)
+        .groupBy(posts.status),
+    ]);
 
-    const total = filtered.length;
-    const totalPages = Math.ceil(total / limit) || 1;
-    const start = (page - 1) * limit;
-    const paginated = filtered.slice(start, start + limit);
-
-    const postsList: AdminPostListItem[] = paginated.map((p) => {
-      const cat = this.inMemoryCategories.get(p.categoryId);
-      return {
-        id: p.id,
-        locale: p.locale,
-        slug: p.slug,
-        title: p.title,
-        excerpt: p.excerpt,
-        coverImageUrl: p.coverImageUrl,
-        categoryId: p.categoryId,
-        categoryName: cat?.namePtBr || p.categoryName,
-        categorySlug: cat?.slugPtBr || p.categorySlug,
-        tagIds: p.tagIds,
-        tags: p.tagIds.map((tId) => {
-          const t = this.inMemoryTags.get(tId);
-          return { id: tId, name: t?.namePtBr || '', slug: t?.slugPtBr || '' };
-        }),
-        status: p.status,
-        publishedAt: p.publishedAt,
-        currentVersion: p.currentVersion,
-        translationGroupId: p.translationGroupId,
-        createdAt: p.createdAt,
-        updatedAt: p.updatedAt,
-      };
-    });
+    const tagsByPost = await this.loadTags(rows.map((r) => r.id));
+    const countOf = (status: PostStatus) =>
+      statusCounts.find((c) => c.status === status)?.total ?? 0;
 
     return {
-      posts: postsList,
+      posts: rows.map((row) => toAdminListItem(row, tagsByPost.get(row.id) ?? [])),
       total,
-      publishedCount,
-      draftCount,
-      trashCount,
+      publishedCount: countOf(PostStatus.PUBLISHED),
+      draftCount: countOf(PostStatus.DRAFT),
+      trashCount: countOf(PostStatus.TRASH),
       page,
       limit,
-      totalPages,
+      totalPages: Math.ceil(total / limit) || 1,
     };
   }
 
   public async findAdminById(id: UUIDv7): Promise<AdminPostDetail | null> {
-    const p = this.inMemoryPosts.get(id);
-    if (!p) return null;
+    const [row] = await this.db
+      .select({ ...postListColumns, content: posts.content, contentHash: posts.contentHash })
+      .from(posts)
+      .innerJoin(postSlugs, currentSlugJoin)
+      .innerJoin(categories, categoryJoin)
+      .where(eq(posts.id, id))
+      .limit(1);
+    if (!row) return null;
 
-    const cat = this.inMemoryCategories.get(p.categoryId);
+    const [tagsByPost, historical] = await Promise.all([
+      this.loadTags([row.id]),
+      this.db
+        .select({ slug: postSlugs.slug })
+        .from(postSlugs)
+        .where(and(eq(postSlugs.postId, id), eq(postSlugs.isCurrent, false))),
+    ]);
+
     return {
-      id: p.id,
-      locale: p.locale,
-      slug: p.slug,
-      title: p.title,
-      excerpt: p.excerpt,
-      content: p.content,
-      contentHash: p.contentHash,
-      coverImageUrl: p.coverImageUrl,
-      categoryId: p.categoryId,
-      categoryName: cat?.namePtBr || p.categoryName,
-      categorySlug: cat?.slugPtBr || p.categorySlug,
-      tagIds: p.tagIds,
-      tags: p.tagIds.map((tId) => {
-        const t = this.inMemoryTags.get(tId);
-        return { id: tId, name: t?.namePtBr || '', slug: t?.slugPtBr || '' };
-      }),
-      status: p.status,
-      publishedAt: p.publishedAt,
-      currentVersion: p.currentVersion,
-      translationGroupId: p.translationGroupId,
-      createdAt: p.createdAt,
-      updatedAt: p.updatedAt,
-      historicalSlugs: p.historicalSlugs,
+      ...toAdminListItem(row, tagsByPost.get(row.id) ?? []),
+      content: row.content,
+      contentHash: row.contentHash,
+      historicalSlugs: historical.map((h) => h.slug),
     };
   }
 
   public async savePost(post: Post, currentSlug: string, tagIds: UUIDv7[]): Promise<void> {
-    const cat = this.inMemoryCategories.get(post.categoryId);
-    const record: InMemoryAdminPostRecord = {
-      id: post.id,
-      locale: post.locale,
-      translationGroupId: post.translationGroupId,
-      title: post.title,
-      slug: currentSlug,
-      excerpt: post.excerpt,
-      content: post.content.text,
-      contentHash: post.content.contentHash,
-      coverImageUrl: post.coverImageUrl,
-      categoryId: post.categoryId,
-      categoryName: cat?.namePtBr || 'Geral',
-      categorySlug: cat?.slugPtBr || 'geral',
-      tagIds: tagIds.map((t) => t.toString()),
-      status: post.status,
-      publishedAt: post.publishedAt,
-      currentVersion: post.currentVersion,
-      createdAt: post.createdAt,
-      updatedAt: post.updatedAt,
-      historicalSlugs: [],
-    };
+    const statements: BatchItem<'pg'>[] = [
+      this.db.insert(posts).values({
+        id: post.id,
+        locale: post.locale,
+        translationGroupId: post.translationGroupId,
+        title: post.title,
+        excerpt: post.excerpt,
+        content: post.content.text,
+        contentHash: post.content.contentHash,
+        coverImageUrl: post.coverImageUrl,
+        categoryId: post.categoryId,
+        status: post.status,
+        publishedAt: post.publishedAt,
+        currentVersion: post.currentVersion,
+        createdAt: post.createdAt,
+        updatedAt: post.updatedAt,
+      }),
+      this.db.insert(postSlugs).values({
+        id: UUID.generate(),
+        postId: post.id,
+        locale: post.locale,
+        slug: currentSlug,
+        isCurrent: true,
+      }),
+    ];
+    if (tagIds.length > 0) {
+      statements.push(
+        this.db.insert(postTags).values(tagIds.map((tagId) => ({ postId: post.id, tagId })))
+      );
+    }
 
-    this.inMemoryPosts.set(post.id, record);
+    await this.runAtomically(statements);
   }
 
   public async updatePost(
@@ -776,104 +431,140 @@ export class DrizzlePostRepository implements PostRepository, TaxonomyRepository
     tagIds: UUIDv7[],
     previousSlugToArchive?: string | null
   ): Promise<void> {
-    const existing = this.inMemoryPosts.get(post.id);
-    const cat = this.inMemoryCategories.get(post.categoryId);
+    const slugRows = await this.db
+      .select({ id: postSlugs.id, slug: postSlugs.slug, isCurrent: postSlugs.isCurrent })
+      .from(postSlugs)
+      .where(eq(postSlugs.postId, post.id));
 
-    const historicalSlugs = existing ? [...existing.historicalSlugs] : [];
-    if (previousSlugToArchive && !historicalSlugs.includes(previousSlugToArchive)) {
-      historicalSlugs.push(previousSlugToArchive);
+    const statements: BatchItem<'pg'>[] = [
+      this.db
+        .update(posts)
+        .set({
+          title: post.title,
+          excerpt: post.excerpt,
+          content: post.content.text,
+          contentHash: post.content.contentHash,
+          coverImageUrl: post.coverImageUrl,
+          categoryId: post.categoryId,
+          status: post.status,
+          publishedAt: post.publishedAt,
+          currentVersion: post.currentVersion,
+          updatedAt: post.updatedAt,
+        })
+        .where(eq(posts.id, post.id)),
+      this.db.delete(postTags).where(eq(postTags.postId, post.id)),
+    ];
+    if (tagIds.length > 0) {
+      statements.push(
+        this.db.insert(postTags).values(tagIds.map((tagId) => ({ postId: post.id, tagId })))
+      );
     }
 
-    const record: InMemoryAdminPostRecord = {
-      id: post.id,
-      locale: post.locale,
-      translationGroupId: post.translationGroupId,
-      title: post.title,
-      slug: currentSlug,
-      excerpt: post.excerpt,
-      content: post.content.text,
-      contentHash: post.content.contentHash,
-      coverImageUrl: post.coverImageUrl,
-      categoryId: post.categoryId,
-      categoryName: cat?.namePtBr || existing?.categoryName || 'Geral',
-      categorySlug: cat?.slugPtBr || existing?.categorySlug || 'geral',
-      tagIds: tagIds.map((t) => t.toString()),
-      status: post.status,
-      publishedAt: post.publishedAt,
-      currentVersion: post.currentVersion,
-      createdAt: existing ? existing.createdAt : post.createdAt,
-      updatedAt: post.updatedAt,
-      historicalSlugs,
-    };
+    const current = slugRows.find((r) => r.isCurrent);
+    if (current?.slug !== currentSlug) {
+      if (current) {
+        // Só slug de post publicado vira redirecionamento (BR-004); o de rascunho nunca foi público.
+        statements.push(
+          previousSlugToArchive
+            ? this.db
+                .update(postSlugs)
+                .set({ isCurrent: false, replacedAt: new Date() })
+                .where(eq(postSlugs.id, current.id))
+            : this.db.delete(postSlugs).where(eq(postSlugs.id, current.id))
+        );
+      }
 
-    this.inMemoryPosts.set(post.id, record);
+      // Voltar para um slug antigo do próprio post reativa a linha: o índice único não aceita outra.
+      const ownOldSlug = slugRows.find((r) => r.slug === currentSlug);
+      statements.push(
+        ownOldSlug
+          ? this.db
+              .update(postSlugs)
+              .set({ isCurrent: true, replacedAt: null })
+              .where(eq(postSlugs.id, ownOldSlug.id))
+          : this.db.insert(postSlugs).values({
+              id: UUID.generate(),
+              postId: post.id,
+              locale: post.locale,
+              slug: currentSlug,
+              isCurrent: true,
+            })
+      );
+    }
+
+    await this.runAtomically(statements);
   }
 
   public async restorePost(id: UUIDv7): Promise<void> {
-    const existing = this.inMemoryPosts.get(id);
-    if (existing) {
-      // Restore to DRAFT or PUBLISHED based on whether it had publishedAt
-      existing.status = existing.publishedAt ? PostStatus.PUBLISHED : PostStatus.DRAFT;
-      existing.updatedAt = new Date();
-    }
+    await this.db
+      .update(posts)
+      .set({
+        status: sql`(case when ${posts.publishedAt} is null then 'rascunho' else 'publicado' end)::post_status`,
+        updatedAt: new Date(),
+      })
+      .where(eq(posts.id, id));
   }
 
   public async deletePostPermanently(id: UUIDv7): Promise<void> {
-    this.inMemoryPosts.delete(id);
+    // post_slug, post_version e post_tag saem junto pelo ON DELETE CASCADE (BR-007).
+    await this.db.delete(posts).where(eq(posts.id, id));
   }
 
+  /**
+   * Considera todo slug já registrado, inclusive histórico e de post na lixeira, como o índice
+   * uq_post_slug_locale exige (BR-003, BR-013). O slug só é liberado na exclusão definitiva.
+   */
   public async isSlugTaken(
     slug: string,
     locale: PostLocale,
     excludePostId?: UUIDv7
   ): Promise<boolean> {
-    const normalized = slug.trim().toLowerCase();
-
-    for (const post of this.inMemoryPosts.values()) {
-      if (excludePostId && post.id === excludePostId) continue;
-      if (post.locale !== locale) continue;
-      if (post.status === PostStatus.TRASH) continue;
-
-      if (post.slug.toLowerCase() === normalized) return true;
-      if (post.historicalSlugs.some((hs) => hs.toLowerCase() === normalized)) return true;
-    }
-
-    return false;
+    const rows = await this.db
+      .select({ id: postSlugs.id })
+      .from(postSlugs)
+      .where(
+        and(
+          eq(postSlugs.slug, slug.trim().toLowerCase()),
+          eq(postSlugs.locale, locale),
+          excludePostId ? ne(postSlugs.postId, excludePostId) : undefined
+        )
+      )
+      .limit(1);
+    return rows.length > 0;
   }
 
   public async findPostByTranslationGroupAndLocale(
     translationGroupId: UUIDv7,
     locale: PostLocale
   ): Promise<Post | null> {
-    for (const p of this.inMemoryPosts.values()) {
-      if (p.translationGroupId === translationGroupId && p.locale === locale) {
-        return new Post({
-          id: UUID.create(p.id),
-          locale: p.locale,
-          translationGroupId: UUID.create(p.translationGroupId),
-          title: p.title,
-          excerpt: p.excerpt,
-          content: MarkdownContent.create(p.content),
-          coverImageUrl: p.coverImageUrl,
-          categoryId: UUID.create(p.categoryId),
-          status: p.status,
-          publishedAt: p.publishedAt,
-          currentVersion: p.currentVersion,
-          createdAt: p.createdAt,
-          updatedAt: p.updatedAt,
-        });
-      }
-    }
-    return null;
+    const [row] = await this.db
+      .select()
+      .from(posts)
+      .where(and(eq(posts.translationGroupId, translationGroupId), eq(posts.locale, locale)))
+      .limit(1);
+    if (!row) return null;
+
+    return new Post({
+      id: UUID.create(row.id),
+      locale: row.locale,
+      translationGroupId: UUID.create(row.translationGroupId),
+      title: row.title,
+      excerpt: row.excerpt,
+      content: MarkdownContent.create(row.content),
+      coverImageUrl: row.coverImageUrl,
+      categoryId: UUID.create(row.categoryId),
+      status: row.status,
+      publishedAt: row.publishedAt,
+      currentVersion: row.currentVersion,
+      createdAt: row.createdAt,
+      updatedAt: row.updatedAt,
+    });
   }
 
-  // --- Versioning Repository Methods (BR-005) ---
+  // --- Versionamento (BR-005) ---
 
   public async saveVersion(version: PostVersion): Promise<void> {
-    const record: InMemoryPostVersionRecord = {
-      id: version.id,
-      postId: version.postId,
-      versionNumber: version.versionNumber,
+    const content = {
       title: version.title,
       excerpt: version.excerpt,
       content: version.content,
@@ -881,32 +572,19 @@ export class DrizzlePostRepository implements PostRepository, TaxonomyRepository
       createdAt: version.createdAt,
     };
 
-    const list = this.inMemoryPostVersions.get(version.postId) || [];
-    const existingIndex = list.findIndex((v) => v.versionNumber === version.versionNumber);
-    if (existingIndex >= 0) {
-      list[existingIndex] = record;
-    } else {
-      list.push(record);
-    }
-    list.sort((a, b) => b.versionNumber - a.versionNumber);
-    this.inMemoryPostVersions.set(version.postId, list);
-
-    if (this.db) {
-      try {
-        await this.db.insert(postVersions).values({
-          id: version.id,
-          postId: version.postId,
-          versionNumber: version.versionNumber,
-          title: version.title,
-          excerpt: version.excerpt,
-          content: version.content,
-          contentHash: version.contentHash,
-          createdAt: version.createdAt,
-        });
-      } catch {
-        // Ignore DB insert failure in in-memory fallback mode
-      }
-    }
+    // Republicar um post que voltou a rascunho não incrementa a versão: a linha é regravada.
+    await this.db
+      .insert(postVersions)
+      .values({
+        id: version.id,
+        postId: version.postId,
+        versionNumber: version.versionNumber,
+        ...content,
+      })
+      .onConflictDoUpdate({
+        target: [postVersions.postId, postVersions.versionNumber],
+        set: content,
+      });
   }
 
   public async listVersions(
@@ -914,24 +592,249 @@ export class DrizzlePostRepository implements PostRepository, TaxonomyRepository
     page: number = 1,
     pageSize: number = 10
   ): Promise<ListPostVersionsResult> {
-    const list = this.inMemoryPostVersions.get(postId) || [];
-    const sorted = [...list].sort((a, b) => b.versionNumber - a.versionNumber);
-    const total = sorted.length;
-    const totalPages = Math.ceil(total / pageSize) || 1;
-    const start = (page - 1) * pageSize;
-    const paginated = sorted.slice(start, start + pageSize);
+    const where = eq(postVersions.postId, postId);
+
+    const [versions, [{ total }]] = await Promise.all([
+      this.db
+        .select({
+          versionNumber: postVersions.versionNumber,
+          title: postVersions.title,
+          excerpt: postVersions.excerpt,
+          createdAt: postVersions.createdAt,
+        })
+        .from(postVersions)
+        .where(where)
+        .orderBy(desc(postVersions.versionNumber))
+        .limit(pageSize)
+        .offset((page - 1) * pageSize),
+      this.db.select({ total: count() }).from(postVersions).where(where),
+    ]);
 
     return {
-      versions: paginated.map((v) => ({
-        versionNumber: v.versionNumber,
-        title: v.title,
-        excerpt: v.excerpt,
-        createdAt: v.createdAt,
-      })),
+      versions,
       total,
-      totalPages,
+      totalPages: Math.ceil(total / pageSize) || 1,
       page,
       pageSize,
     };
+  }
+
+  // --- Taxonomias ---
+
+  public async listCategories(options: ListTaxonomyOptions = {}): Promise<CategoryWithCount[]> {
+    return this.db
+      .select({
+        id: categories.id,
+        namePtBr: categories.namePtBr,
+        nameEn: categories.nameEn,
+        slugPtBr: categories.slugPtBr,
+        slugEn: categories.slugEn,
+        postCount: count(posts.id),
+      })
+      .from(categories)
+      .leftJoin(
+        posts,
+        and(
+          eq(posts.categoryId, categories.id),
+          options.publishedOnly ? eq(posts.status, PostStatus.PUBLISHED) : undefined
+        )
+      )
+      .groupBy(categories.id)
+      .orderBy(asc(categories.namePtBr));
+  }
+
+  public async listTags(options: ListTaxonomyOptions = {}): Promise<TagWithCount[]> {
+    return this.db
+      .select({
+        id: tags.id,
+        namePtBr: tags.namePtBr,
+        nameEn: tags.nameEn,
+        slugPtBr: tags.slugPtBr,
+        slugEn: tags.slugEn,
+        postCount: count(posts.id),
+      })
+      .from(tags)
+      .leftJoin(postTags, eq(postTags.tagId, tags.id))
+      .leftJoin(
+        posts,
+        and(
+          eq(posts.id, postTags.postId),
+          options.publishedOnly ? eq(posts.status, PostStatus.PUBLISHED) : undefined
+        )
+      )
+      .groupBy(tags.id)
+      .orderBy(asc(tags.namePtBr));
+  }
+
+  public async findCategoryById(id: UUIDv7): Promise<Category | null> {
+    const [row] = await this.db.select().from(categories).where(eq(categories.id, id)).limit(1);
+    if (!row) return null;
+    return new Category({
+      id: UUID.create(row.id),
+      namePtBr: row.namePtBr,
+      nameEn: row.nameEn,
+      slugPtBr: SlugValueObject.create(row.slugPtBr),
+      slugEn: SlugValueObject.create(row.slugEn),
+      createdAt: row.createdAt,
+      updatedAt: row.updatedAt,
+    });
+  }
+
+  public async createCategory(category: Category): Promise<void> {
+    await this.withDuplicateMessage('Já existe uma categoria com esse nome ou endereço.', () =>
+      this.db.insert(categories).values({
+        id: category.id,
+        namePtBr: category.namePtBr,
+        nameEn: category.nameEn,
+        slugPtBr: category.slugPtBr,
+        slugEn: category.slugEn,
+        createdAt: category.createdAt,
+        updatedAt: category.updatedAt,
+      })
+    );
+  }
+
+  public async updateCategory(category: Category): Promise<void> {
+    await this.withDuplicateMessage('Já existe uma categoria com esse nome ou endereço.', () =>
+      this.db
+        .update(categories)
+        .set({
+          namePtBr: category.namePtBr,
+          nameEn: category.nameEn,
+          slugPtBr: category.slugPtBr,
+          slugEn: category.slugEn,
+          updatedAt: category.updatedAt,
+        })
+        .where(eq(categories.id, category.id))
+    );
+  }
+
+  public async deleteCategory(id: UUIDv7): Promise<void> {
+    await this.db.delete(categories).where(eq(categories.id, id));
+  }
+
+  public async getCategoryPostCount(id: UUIDv7): Promise<number> {
+    const [{ total }] = await this.db
+      .select({ total: count() })
+      .from(posts)
+      .where(eq(posts.categoryId, id));
+    return total;
+  }
+
+  public async findTagById(id: UUIDv7): Promise<Tag | null> {
+    const [row] = await this.db.select().from(tags).where(eq(tags.id, id)).limit(1);
+    if (!row) return null;
+    return new Tag({
+      id: UUID.create(row.id),
+      namePtBr: row.namePtBr,
+      nameEn: row.nameEn,
+      slugPtBr: SlugValueObject.create(row.slugPtBr),
+      slugEn: SlugValueObject.create(row.slugEn),
+      createdAt: row.createdAt,
+      updatedAt: row.updatedAt,
+    });
+  }
+
+  public async createTag(tag: Tag): Promise<void> {
+    await this.withDuplicateMessage('Já existe uma tag com esse nome ou endereço.', () =>
+      this.db.insert(tags).values({
+        id: tag.id,
+        namePtBr: tag.namePtBr,
+        nameEn: tag.nameEn,
+        slugPtBr: tag.slugPtBr,
+        slugEn: tag.slugEn,
+        createdAt: tag.createdAt,
+        updatedAt: tag.updatedAt,
+      })
+    );
+  }
+
+  public async updateTag(tag: Tag): Promise<void> {
+    await this.withDuplicateMessage('Já existe uma tag com esse nome ou endereço.', () =>
+      this.db
+        .update(tags)
+        .set({
+          namePtBr: tag.namePtBr,
+          nameEn: tag.nameEn,
+          slugPtBr: tag.slugPtBr,
+          slugEn: tag.slugEn,
+          updatedAt: tag.updatedAt,
+        })
+        .where(eq(tags.id, tag.id))
+    );
+  }
+
+  public async deleteTag(id: UUIDv7): Promise<void> {
+    await this.db.delete(tags).where(eq(tags.id, id));
+  }
+
+  public async getTagPostCount(id: UUIDv7): Promise<number> {
+    const [{ total }] = await this.db
+      .select({ total: count() })
+      .from(postTags)
+      .where(eq(postTags.tagId, id));
+    return total;
+  }
+
+  // --- Apoio ---
+
+  /** O driver neon-http não tem db.transaction; db.batch envia tudo em uma única transação. */
+  private async runAtomically(statements: BatchItem<'pg'>[]): Promise<void> {
+    const [first, ...rest] = statements;
+    await this.db.batch([first, ...rest]);
+  }
+
+  private async withDuplicateMessage(message: string, write: () => PromiseLike<unknown>): Promise<void> {
+    try {
+      await write();
+    } catch (err) {
+      if (isUniqueViolation(err)) throw new Error(message);
+      throw err;
+    }
+  }
+
+  private async loadTags(postIds: string[]): Promise<Map<string, TagRow[]>> {
+    if (postIds.length === 0) return new Map();
+
+    const rows = await this.db
+      .select({
+        postId: postTags.postId,
+        id: tags.id,
+        namePtBr: tags.namePtBr,
+        nameEn: tags.nameEn,
+        slugPtBr: tags.slugPtBr,
+        slugEn: tags.slugEn,
+      })
+      .from(postTags)
+      .innerJoin(tags, eq(tags.id, postTags.tagId))
+      .where(inArray(postTags.postId, postIds))
+      .orderBy(asc(tags.namePtBr));
+
+    return groupBy(rows, (r) => r.postId);
+  }
+
+  /** Só traduções publicadas: rascunhos são invisíveis nas rotas públicas (BR-006). */
+  private async loadPublishedTranslations(
+    translationGroupIds: string[]
+  ): Promise<Map<string, TranslationRow[]>> {
+    if (translationGroupIds.length === 0) return new Map();
+
+    const rows = await this.db
+      .select({
+        translationGroupId: posts.translationGroupId,
+        locale: posts.locale,
+        slug: postSlugs.slug,
+        title: posts.title,
+      })
+      .from(posts)
+      .innerJoin(postSlugs, currentSlugJoin)
+      .where(
+        and(
+          inArray(posts.translationGroupId, translationGroupIds),
+          eq(posts.status, PostStatus.PUBLISHED)
+        )
+      );
+
+    return groupBy(rows, (r) => r.translationGroupId);
   }
 }

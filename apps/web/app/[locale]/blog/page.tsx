@@ -131,7 +131,24 @@ export default async function BlogPage(props: BlogPageProps) {
 
         {/* Articles List */}
         <section className="flex flex-col gap-6" aria-label={isPt ? 'Artigos do blog' : 'Blog articles'}>
-          {postsResult.posts.length === 0 ? (
+          {postsResult.posts.length === 0 && !categorySlug && !tagSlug ? (
+            <div className="p-12 flex flex-col items-center gap-4 text-center border border-[#E4DFD7] dark:border-[#2C2723] rounded-lg bg-white dark:bg-[#181614]">
+              <h2 className="m-0 font-serif text-[30px] font-normal text-[#1C1A17] dark:text-[#F3EFEA]">
+                {isPt ? 'Ainda não há artigos por aqui' : 'No articles here yet'}
+              </h2>
+              <p className="m-0 max-w-[42ch] text-[15px] leading-[1.7] text-[#55504A] dark:text-[#A29A90]">
+                {isPt
+                  ? 'O blog está começando. Enquanto os primeiros textos não saem, os projetos já contam bastante sobre como eu trabalho.'
+                  : 'The blog is just getting started. Until the first posts are out, the projects already say a lot about how I work.'}
+              </p>
+              <Link
+                href={`/${locale}/projetos`}
+                className="mt-1.5 h-11 inline-flex items-center px-5 rounded-[5px] bg-[#1C1A17] text-[#FAF8F4] dark:bg-[#FAF8F4] dark:text-[#1C1A17] text-[14.5px] font-medium"
+              >
+                {isPt ? 'Ver os projetos' : 'See the projects'}
+              </Link>
+            </div>
+          ) : postsResult.posts.length === 0 ? (
             <div className="p-12 text-center border border-dashed border-[#DDD6CB] dark:border-[#3D3730] rounded-md bg-[#FBFAF7] dark:bg-[#181614]">
               <p className="text-[16px] text-[#55504A] dark:text-[#A29A90] mb-4">
                 {isPt

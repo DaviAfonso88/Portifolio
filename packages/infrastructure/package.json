@@ -25,6 +25,7 @@
     "drizzle-orm": "^0.39.3"
   },
   "devDependencies": {
+    "@electric-sql/pglite": "^0.5.15",
     "@types/bcryptjs": "^3.0.0",
     "@types/node": "^22.13.4",
     "drizzle-kit": "^0.30.4",

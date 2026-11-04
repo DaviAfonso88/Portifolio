@@ -1,12 +1,13 @@
 'use client';
 
 import React, { useState, useEffect, useCallback } from 'react';
+import { PostStatus } from '@davidev/domain';
 import { useAdminAuth } from '@/lib/admin-auth-context';
 
 interface TrashPostItem {
   id: string;
   title: string;
-  status: 'TRASH';
+  status: PostStatus;
   publishedAt: string | null;
   updatedAt: string;
   currentVersion: number;
@@ -24,7 +25,7 @@ export default function AdminTrashPage() {
   const fetchTrash = useCallback(async () => {
     setLoading(true);
     try {
-      const res = await authFetch('/api/v1/admin/posts?status=TRASH');
+      const res = await authFetch(`/api/v1/admin/posts?status=${PostStatus.TRASH}`);
       if (res.ok) {
         const data = await res.json();
         setPosts(data.posts || []);
@@ -45,7 +46,7 @@ export default function AdminTrashPage() {
       const res = await authFetch(`/api/v1/admin/posts/${id}/restore`, { method: 'PATCH' });
       if (!res.ok) {
         const err = await res.json().catch(() => ({}));
-        alert(err.message || 'Erro ao restaurar artigo da lixeira.');
+        alert(err.message || err.error || 'Erro ao restaurar artigo da lixeira.');
         return;
       }
 
@@ -70,7 +71,7 @@ export default function AdminTrashPage() {
         fetchTrash();
       } else {
         const err = await res.json().catch(() => ({}));
-        alert(err.message || 'Erro ao excluir definitivamente.');
+        alert(err.message || err.error || 'Erro ao excluir definitivamente.');
       }
     } catch {
       alert('Falha ao excluir o artigo.');

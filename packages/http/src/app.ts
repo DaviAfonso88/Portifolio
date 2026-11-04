@@ -1,4 +1,4 @@
-import Fastify, { type FastifyInstance } from 'fastify';
+import Fastify, { type FastifyError, type FastifyInstance } from 'fastify';
 import swagger from '@fastify/swagger';
 import cors from '@fastify/cors';
 import cookie from '@fastify/cookie';
@@ -53,6 +53,20 @@ export async function buildApp(options?: BuildAppOptions): Promise<FastifyInstan
       err.statusCode = 400;
       done(err, undefined);
     }
+  });
+
+  // Erro inesperado vai só para o log: a mensagem do driver do banco pode conter SQL.
+  app.setErrorHandler((error: FastifyError, request, reply) => {
+    const statusCode = error.statusCode ?? 500;
+    if (statusCode < 500) {
+      return reply.status(statusCode).send(error);
+    }
+    request.log.error(error);
+    return reply.status(statusCode).send({
+      statusCode,
+      error: 'Internal Server Error',
+      message: 'Erro interno do servidor.',
+    });
   });
 
   await app.register(cors, {

@@ -37,5 +37,8 @@ jobs:
       - name: Gate 3 — Unit Tests (Domain & Application)
         run: pnpm test:unit
 
+      - name: Gate 3b — Integration Tests (Repositories on Postgres)
+        run: pnpm test:integration
+
       - name: Gate 4 — Build (Next.js & Packages)
         run: pnpm build
