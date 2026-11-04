@@ -1,6 +1,13 @@
 import type { FastifyInstance } from 'fastify';
 import { z } from 'zod';
-import { PostLocale, PostStatus, UUID, type UUIDv7 } from '@davidev/domain';
+import {
+  PostLocale,
+  PostStatus,
+  UUID,
+  isValidLocale,
+  isValidPostStatus,
+  type UUIDv7,
+} from '@davidev/domain';
 import type {
   ListAdminPostsUseCase,
   GetAdminPostUseCase,
@@ -98,6 +105,13 @@ export function registerAdminPostsRoutes(
       }
 
       const { status, locale, search, page, limit } = request.query;
+      if (status && !isValidPostStatus(status)) {
+        return reply.status(400).send({ error: 'Dados inválidos', message: 'Status inválido.' });
+      }
+      if (locale && !isValidLocale(locale)) {
+        return reply.status(400).send({ error: 'Dados inválidos', message: 'Idioma inválido.' });
+      }
+
       const result = await options.listAdminPostsUseCase.execute({
         status,
         locale,

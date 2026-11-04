@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
+import { PostStatus } from '@davidev/domain';
 import { useAdminAuth } from '@/lib/admin-auth-context';
 
 interface AdminPostItem {
@@ -12,7 +13,7 @@ interface AdminPostItem {
   excerpt: string;
   categoryName: string;
   categorySlug: string;
-  status: 'PUBLISHED' | 'DRAFT' | 'TRASH';
+  status: PostStatus;
   publishedAt: string | null;
   updatedAt: string;
   currentVersion: number;
@@ -37,7 +38,7 @@ export default function AdminPostsPage() {
   const [loading, setLoading] = useState(true);
 
   // Filters
-  const [statusFilter, setStatusFilter] = useState<'ALL' | 'PUBLISHED' | 'DRAFT'>('ALL');
+  const [statusFilter, setStatusFilter] = useState<'ALL' | PostStatus>('ALL');
   const [localeFilter, setLocaleFilter] = useState<'pt-BR' | 'en'>('pt-BR');
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
@@ -88,6 +89,9 @@ export default function AdminPostsPage() {
       const res = await authFetch(`/api/v1/admin/posts/${id}/trash`, { method: 'PATCH' });
       if (res.ok) {
         fetchPosts();
+      } else {
+        const err = await res.json().catch(() => ({}));
+        alert(err.message || err.error || 'Erro ao mover artigo para a lixeira.');
       }
     } catch {
       alert('Erro ao mover artigo para a lixeira.');
@@ -99,6 +103,9 @@ export default function AdminPostsPage() {
       const res = await authFetch(`/api/v1/admin/posts/${id}/unpublish`, { method: 'PATCH' });
       if (res.ok) {
         fetchPosts();
+      } else {
+        const err = await res.json().catch(() => ({}));
+        alert(err.message || err.error || 'Erro ao despublicar artigo.');
       }
     } catch {
       alert('Erro ao despublicar artigo.');
@@ -186,11 +193,11 @@ export default function AdminPostsPage() {
           </button>
           <button
             onClick={() => {
-              setStatusFilter('PUBLISHED');
+              setStatusFilter(PostStatus.PUBLISHED);
               setCurrentPage(1);
             }}
             className={`h-[34px] inline-flex items-center px-4 rounded text-[13.5px] transition-colors ${
-              statusFilter === 'PUBLISHED'
+              statusFilter === PostStatus.PUBLISHED
                 ? 'bg-white text-[#1C1A17] font-medium shadow-sm'
                 : 'text-[#55504A] hover:text-[#1C1A17]'
             }`}
@@ -199,11 +206,11 @@ export default function AdminPostsPage() {
           </button>
           <button
             onClick={() => {
-              setStatusFilter('DRAFT');
+              setStatusFilter(PostStatus.DRAFT);
               setCurrentPage(1);
             }}
             className={`h-[34px] inline-flex items-center px-4 rounded text-[13.5px] transition-colors ${
-              statusFilter === 'DRAFT'
+              statusFilter === PostStatus.DRAFT
                 ? 'bg-white text-[#1C1A17] font-medium shadow-sm'
                 : 'text-[#55504A] hover:text-[#1C1A17]'
             }`}
@@ -271,8 +278,8 @@ export default function AdminPostsPage() {
         {!loading &&
           posts.map((post, index) => {
             const isAlternate = index % 2 === 1;
-            const isPublished = post.status === 'PUBLISHED';
-            const isTrash = post.status === 'TRASH';
+            const isPublished = post.status === PostStatus.PUBLISHED;
+            const isTrash = post.status === PostStatus.TRASH;
 
             return (
               <div

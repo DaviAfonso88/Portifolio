@@ -2,6 +2,10 @@ import type { MetadataRoute } from 'next';
 import { SUPPORTED_LOCALES, PostLocale } from '@davidev/domain';
 import { getBlogUseCases } from '../lib/composition-root';
 
+// A lista de artigos vem do banco. Gerado no build, o sitemap ficaria preso ao momento do deploy
+// e ainda poderia reaproveitar o resultado de um build antigo, guardado no cache de fetch do Next.
+export const dynamic = 'force-dynamic';
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://davidev.net.br';
   const lastModified = new Date();

@@ -18,8 +18,8 @@ export class ListTaxonomiesUseCase
 
   public async execute(): Promise<Result<ListTaxonomiesOutput, string>> {
     const [categories, tags] = await Promise.all([
-      this.taxonomyRepository.listCategories(),
-      this.taxonomyRepository.listTags(),
+      this.taxonomyRepository.listCategories({ publishedOnly: true }),
+      this.taxonomyRepository.listTags({ publishedOnly: true }),
     ]);
 
     return ok({ categories, tags });

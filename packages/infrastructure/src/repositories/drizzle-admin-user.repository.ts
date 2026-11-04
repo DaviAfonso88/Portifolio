@@ -14,24 +14,22 @@ export class DrizzleAdminUserRepository implements AdminUserRepository {
   private inMemoryUsers: Map<string, AdminUser> = new Map();
 
   constructor(private readonly db?: DbClient) {
-    // Seed default admin in memory for local/fallback execution
-    const defaultId = UUID.create('01918a20-0000-7000-8000-000000000001');
-    const defaultEmail = EmailValueObject.create(
-      process.env.ADMIN_EMAIL || 'daviafonso5894@gmail.com'
-    );
-    // Default hash for 'admin123456' or bcrypt synchronous hash of process.env.ADMIN_PASSWORD
-    const initialPassword = process.env.ADMIN_PASSWORD || 'admin123456';
-    const defaultHash = bcrypt.hashSync(initialPassword, 10);
+    // A senha padrão só vale sem banco: com banco, ela e os admins de teste abaixo dariam acesso
+    // ao painel real com credenciais públicas neste repositório.
+    const initialPassword = process.env.ADMIN_PASSWORD || (db ? undefined : 'admin123456');
+    if (initialPassword) {
+      const defaultAdmin = new AdminUser({
+        id: UUID.create('01918a20-0000-7000-8000-000000000001'),
+        email: EmailValueObject.create(process.env.ADMIN_EMAIL || 'daviafonso5894@gmail.com'),
+        passwordHash: bcrypt.hashSync(initialPassword, 10),
+      });
 
-    const defaultAdmin = new AdminUser({
-      id: defaultId,
-      email: defaultEmail,
-      passwordHash: defaultHash,
-    });
+      this.inMemoryUsers.set(defaultAdmin.email.toString().toLowerCase(), defaultAdmin);
+      this.inMemoryUsers.set('daviafonso5894@gmail.com', defaultAdmin);
+      this.inMemoryUsers.set('davi@davidev.net.br', defaultAdmin);
+    }
 
-    this.inMemoryUsers.set(defaultEmail.toString().toLowerCase(), defaultAdmin);
-    this.inMemoryUsers.set('daviafonso5894@gmail.com', defaultAdmin);
-    this.inMemoryUsers.set('davi@davidev.net.br', defaultAdmin);
+    if (db && process.env.TEST_SPRITE_MODE !== 'true') return;
 
     // Also seed test admin for test suites
     const testAdmin = new AdminUser({

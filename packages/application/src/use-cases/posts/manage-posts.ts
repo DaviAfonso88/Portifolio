@@ -115,29 +115,19 @@ export class CreatePostUseCase implements UseCase<CreatePostInput, CreatePostOut
       }
     }
 
+    let post: Post;
     try {
-      const markdown = MarkdownContent.create(input.content || '');
-      const post = new Post({
+      post = new Post({
         locale: input.locale,
         translationGroupId,
         title: input.title,
         excerpt: input.excerpt,
-        content: markdown,
+        content: MarkdownContent.create(input.content || ''),
         coverImageUrl: input.coverImageUrl ?? null,
         categoryId: input.categoryId,
         status: input.publishImmediately ? PostStatus.PUBLISHED : PostStatus.DRAFT,
         publishedAt: input.publishImmediately ? new Date() : null, // BR-002
       });
-
-      await this.postRepo.savePost(post, slug, tagIds);
-
-      // BR-005: Salva versão inicial (v1) na primeira publicação
-      if (input.publishImmediately) {
-        const initialVersion = PostVersion.createFromPost(post);
-        await this.postRepo.saveVersion(initialVersion);
-      }
-
-      return { success: true, post, slug };
     } catch (err) {
       return {
         success: false,
@@ -145,6 +135,16 @@ export class CreatePostUseCase implements UseCase<CreatePostInput, CreatePostOut
         code: 'VALIDATION_ERROR',
       };
     }
+
+    await this.postRepo.savePost(post, slug, tagIds);
+
+    // BR-005: Salva versão inicial (v1) na primeira publicação
+    if (input.publishImmediately) {
+      const initialVersion = PostVersion.createFromPost(post);
+      await this.postRepo.saveVersion(initialVersion);
+    }
+
+    return { success: true, post, slug };
   }
 }
 

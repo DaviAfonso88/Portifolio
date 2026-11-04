@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound, permanentRedirect } from 'next/navigation';
 import Link from 'next/link';
-import { isValidLocale, PostLocale, SUPPORTED_LOCALES } from '@davidev/domain';
+import { isValidLocale, PostLocale } from '@davidev/domain';
 import { getBlogUseCases } from '../../../../lib/composition-root';
 import { ArticleRenderer, extractArticleHeadings } from '../../../../components/blog/article-renderer';
 import { ReadingProgressBar } from '../../../../components/blog/reading-progress-bar';
@@ -9,39 +9,15 @@ import { TableOfContents } from '../../../../components/blog/table-of-contents';
 import { ShareButtons } from '../../../../components/blog/share-buttons';
 import { Globe } from 'lucide-react';
 
-export const revalidate = 3600; // ISR cache revalidation window (1 hour)
+// O layout raiz lê headers() para o nonce do CSP, então esta página nunca é estática. Sem esta
+// declaração, um build sem artigos publicados registra a rota como estática e todo slug dá 500.
+export const dynamic = 'force-dynamic';
 
 interface BlogPostPageProps {
   params: Promise<{
     locale: string;
     slug: string;
   }>;
-}
-
-export async function generateStaticParams() {
-  const blog = getBlogUseCases();
-  const params: { locale: string; slug: string }[] = [];
-
-  for (const locale of SUPPORTED_LOCALES) {
-    try {
-      const res = await blog.listPublishedPosts.execute({
-        locale: locale as PostLocale,
-        limit: 50,
-      });
-      if (res.success) {
-        for (const post of res.data.posts) {
-          params.push({
-            locale,
-            slug: post.slug,
-          });
-        }
-      }
-    } catch {
-      // Continue if fallback
-    }
-  }
-
-  return params;
 }
 
 export async function generateMetadata({

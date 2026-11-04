@@ -1,5 +1,11 @@
 import type { NextConfig } from 'next';
 
+// O build não consulta o banco. Sem esta checagem, um deploy sem a variável ficaria verde e com o
+// blog quebrado; recusado, ele mantém no ar a versão anterior.
+if (process.env.VERCEL_ENV === 'production' && !process.env.DATABASE_URL) {
+  throw new Error('DATABASE_URL é obrigatória em produção: defina a variável na Vercel antes do deploy.');
+}
+
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   transpilePackages: [
