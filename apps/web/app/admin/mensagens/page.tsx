@@ -35,6 +35,8 @@ export default function AdminMensagensPage() {
   // Filters
   const [onlyUnnotified, setOnlyUnnotified] = useState(false);
   const [selectedMessageId, setSelectedMessageId] = useState<string | null>(null);
+  // Abaixo de xl, lista e mensagem aberta aparecem uma de cada vez.
+  const [detailRequested, setDetailRequested] = useState(false);
 
   const loadMessages = useCallback(async () => {
     setLoading(true);
@@ -70,6 +72,16 @@ export default function AdminMensagensPage() {
 
   const selectedMessage =
     messages.find((m) => m.id === selectedMessageId) || (messages.length > 0 ? messages[0] : null);
+  const showDetail = detailRequested && Boolean(selectedMessage);
+
+  const handleOpenMessage = (id: string) => {
+    setSelectedMessageId(id);
+    setDetailRequested(true);
+    // Ao trocar a lista pela mensagem, a leitura começa do topo. No desktop, nada muda de lugar.
+    if (!window.matchMedia('(min-width: 1280px)').matches) {
+      window.scrollTo(0, 0);
+    }
+  };
 
   const formatRelativeDate = (dateStr: string) => {
     const d = new Date(dateStr);
@@ -102,7 +114,7 @@ export default function AdminMensagensPage() {
   };
 
   return (
-    <main className="p-7 md:p-[28px_36px_40px] flex flex-col gap-5 font-sans min-h-screen">
+    <main className="p-4 sm:p-7 lg:p-[28px_36px_40px] flex flex-col gap-5 font-sans min-h-[calc(100dvh-3.5rem)] lg:min-h-dvh">
       {/* Top Header */}
       <div className="flex items-center justify-between gap-6 flex-wrap">
         <div className="flex flex-col gap-1">
@@ -116,7 +128,7 @@ export default function AdminMensagensPage() {
         <div className="flex gap-[5px] bg-[#EBE6DE] rounded p-[3px]">
           <button
             onClick={() => setOnlyUnnotified(false)}
-            className={`h-[34px] inline-flex items-center px-4 rounded text-[13.5px] transition-colors ${
+            className={`h-[34px] coarse:h-11 inline-flex items-center px-4 rounded text-[13.5px] transition-colors ${
               !onlyUnnotified
                 ? 'bg-white text-[#1C1A17] font-medium shadow-sm'
                 : 'text-[#55504A] hover:text-[#1C1A17]'
@@ -126,7 +138,7 @@ export default function AdminMensagensPage() {
           </button>
           <button
             onClick={() => setOnlyUnnotified(true)}
-            className={`h-[34px] inline-flex items-center gap-1.5 px-4 rounded text-[13.5px] transition-colors ${
+            className={`h-[34px] coarse:h-11 inline-flex items-center gap-1.5 px-4 rounded text-[13.5px] transition-colors ${
               onlyUnnotified
                 ? 'bg-white text-[#1C1A17] font-medium shadow-sm'
                 : 'text-[#55504A] hover:text-[#1C1A17]'
@@ -169,9 +181,13 @@ export default function AdminMensagensPage() {
       )}
 
       {/* 2-Columns Split Layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-[380px_1fr] gap-5 flex-1 min-h-[500px]">
+      <div className="grid grid-cols-1 xl:grid-cols-[380px_minmax(0,1fr)] gap-5 flex-1 xl:min-h-[500px]">
         {/* Left Column: Messages List */}
-        <div className="bg-white border border-[#E4DFD7] rounded-lg overflow-hidden flex flex-col shadow-sm">
+        <div
+          className={`bg-white border border-[#E4DFD7] rounded-lg overflow-hidden flex-col shadow-sm min-w-0 self-start w-full xl:self-stretch ${
+            showDetail ? 'hidden xl:flex' : 'flex'
+          }`}
+        >
           <div className="p-[13px_18px] bg-[#FAF8F4] border-b border-[#E4DFD7] font-mono text-[10.5px] tracking-[0.1em] uppercase text-[#857D74]">
             Recebidas
           </div>
@@ -202,7 +218,7 @@ export default function AdminMensagensPage() {
                 return (
                   <button
                     key={item.id}
-                    onClick={() => setSelectedMessageId(item.id)}
+                    onClick={() => handleOpenMessage(item.id)}
                     className={`w-full text-left p-[15px_18px] flex flex-col gap-1.5 transition-colors cursor-pointer ${
                       isSelected
                         ? 'border-l-[3px] border-l-[#A6482C] bg-[#FBFAF7]'
@@ -210,12 +226,12 @@ export default function AdminMensagensPage() {
                     }`}
                   >
                     <div className="flex items-center justify-between gap-3">
-                      <div className="flex items-center gap-2">
-                        <span className={`text-[14.5px] ${isSelected ? 'font-semibold' : 'font-medium'} text-[#1C1A17]`}>
+                      <div className="flex flex-wrap items-center gap-x-2 gap-y-1 min-w-0">
+                        <span className={`text-[14.5px] ${isSelected ? 'font-semibold' : 'font-medium'} text-[#1C1A17] truncate max-w-full`}>
                           {item.name}
                         </span>
                         {!item.emailNotifiedAt && (
-                          <span className="inline-flex items-center gap-1 font-mono text-[10px] tracking-wider uppercase text-[#B5442B] border border-[#EFD8D1] bg-[#FDF6F4] px-1.5 py-0.5 rounded">
+                          <span className="inline-flex items-center gap-1 whitespace-nowrap font-mono text-[10px] tracking-wider uppercase text-[#B5442B] border border-[#EFD8D1] bg-[#FDF6F4] px-1.5 py-0.5 rounded">
                             não notificada
                           </span>
                         )}
@@ -245,31 +261,55 @@ export default function AdminMensagensPage() {
 
         {/* Right Column: Selected Message Detail */}
         {selectedMessage ? (
-          <div className="bg-white border border-[#E4DFD7] rounded-lg p-6 sm:p-[28px_32px] flex flex-col gap-[22px] shadow-sm">
+          <div
+            className={`bg-white border border-[#E4DFD7] rounded-lg p-5 sm:p-[28px_32px] flex-col gap-[22px] shadow-sm min-w-0 ${
+              showDetail ? 'flex' : 'hidden xl:flex'
+            }`}
+          >
+            <button
+              type="button"
+              onClick={() => setDetailRequested(false)}
+              className="xl:hidden inline-flex items-center gap-1.5 self-start h-9 coarse:h-11 -my-1 text-[13.5px] text-[#55504A] hover:text-[#1C1A17] transition-colors cursor-pointer"
+            >
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.75"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M15 6l-6 6 6 6" />
+              </svg>
+              Voltar para a lista
+            </button>
+
             {/* Top row */}
             <div className="flex items-start justify-between gap-6 flex-wrap">
-              <div className="flex flex-col gap-1.5">
-                <h2 className="text-[21px] font-semibold text-[#1C1A17] m-0">
+              <div className="flex flex-col gap-1.5 min-w-0">
+                <h2 className="text-[21px] font-semibold text-[#1C1A17] m-0 break-words">
                   {selectedMessage.subject || 'Sem assunto'}
                 </h2>
-                <div className="flex items-center gap-2.5 text-[13.5px] text-[#55504A]">
+                <div className="flex flex-wrap items-center gap-x-2.5 gap-y-0.5 text-[13.5px] text-[#55504A]">
                   <span className="font-medium">{selectedMessage.name}</span>
-                  <span className="text-[#DDD6CB]">·</span>
+                  <span className="hidden sm:inline text-[#DDD6CB]">·</span>
                   <a
                     href={`mailto:${selectedMessage.email}`}
-                    className="font-mono text-[12.5px] text-[#A6482C] hover:underline"
+                    className="font-mono text-[12.5px] text-[#A6482C] hover:underline break-all"
                   >
                     {selectedMessage.email}
                   </a>
                 </div>
               </div>
 
-              <div className="flex items-center gap-2 shrink-0">
+              <div className="flex items-center gap-2 w-full sm:w-auto sm:shrink-0">
                 <a
                   href={`mailto:${selectedMessage.email}?subject=Re: ${encodeURIComponent(
                     selectedMessage.subject || ''
                   )}`}
-                  className="inline-flex items-center gap-2 h-[38px] px-4 bg-[#1C1A17] hover:bg-[#2E2A26] text-[#FAF8F4] rounded text-[14px] font-medium transition-colors"
+                  className="inline-flex items-center justify-center gap-2 w-full sm:w-auto h-[38px] coarse:h-11 px-4 bg-[#1C1A17] hover:bg-[#2E2A26] text-[#FAF8F4] rounded text-[14px] font-medium transition-colors"
                 >
                   <svg
                     width="15"
@@ -322,7 +362,7 @@ export default function AdminMensagensPage() {
             </div>
 
             {/* Message Body */}
-            <div className="text-[16px] leading-[1.8] text-[#2A2621] max-w-[66ch] whitespace-pre-wrap">
+            <div className="text-[16px] leading-[1.8] text-[#2A2621] max-w-[66ch] whitespace-pre-wrap break-words">
               {selectedMessage.message}
             </div>
 
@@ -344,7 +384,7 @@ export default function AdminMensagensPage() {
             </div>
           </div>
         ) : (
-          <div className="bg-white border border-[#E4DFD7] rounded-lg p-12 flex items-center justify-center text-[14px] text-[#857D74]">
+          <div className="bg-white border border-[#E4DFD7] rounded-lg p-12 hidden xl:flex items-center justify-center text-[14px] text-[#857D74]">
             Selecione uma mensagem para visualizar.
           </div>
         )}

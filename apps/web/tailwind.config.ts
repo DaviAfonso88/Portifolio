@@ -9,6 +9,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      screens: {
+        // Toque, em qualquer largura: alvos maiores sem mudar a densidade para quem usa mouse.
+        coarse: { raw: '(pointer: coarse)' },
+      },
       colors: {
         background: 'var(--paper)',
         foreground: 'var(--ink)',

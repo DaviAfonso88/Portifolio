@@ -3,12 +3,15 @@
 import React from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { AdminAuthProvider, useAdminAuth } from '@/lib/admin-auth-context';
+import { useMediaQuery } from '@/lib/use-media-query';
 import { AdminSidebar } from './components/sidebar';
 
 function AdminProtectedLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const { user, isLoading } = useAdminAuth();
   const router = useRouter();
+  const [navOpen, setNavOpen] = React.useState(false);
+  const isDesktop = useMediaQuery('(min-width: 1024px)');
 
   const isLoginPage = pathname === '/admin/login';
 
@@ -18,13 +21,20 @@ function AdminProtectedLayout({ children }: { children: React.ReactNode }) {
     }
   }, [isLoading, user, isLoginPage, router]);
 
+  // A partir desta largura a barra lateral é fixa: a gaveta aberta deixaria o conteúdo inerte.
+  React.useEffect(() => {
+    if (isDesktop) {
+      setNavOpen(false);
+    }
+  }, [isDesktop]);
+
   if (isLoginPage) {
     return <>{children}</>;
   }
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-[#F4F0E9] flex items-center justify-center font-mono text-[13px] text-[#857D74]">
+      <div className="min-h-dvh bg-[#F4F0E9] flex items-center justify-center font-mono text-[13px] text-[#857D74]">
         Carregando painel...
       </div>
     );
@@ -35,9 +45,9 @@ function AdminProtectedLayout({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <div className="min-h-screen flex bg-[#F4F0E9] text-[#1C1A17] font-sans antialiased">
-      <AdminSidebar />
-      <div className="flex-1 min-w-0 overflow-y-auto">
+    <div className="min-h-dvh lg:flex bg-[#F4F0E9] text-[#1C1A17] font-sans antialiased">
+      <AdminSidebar open={navOpen} onOpenChange={setNavOpen} />
+      <div className="lg:flex-1 min-w-0" inert={navOpen}>
         {children}
       </div>
     </div>

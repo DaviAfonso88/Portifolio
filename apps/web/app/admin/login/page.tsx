@@ -63,7 +63,7 @@ export default function AdminLoginPage() {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="h-[46px] px-3.5 border border-[#D9D2C8] rounded bg-white text-[15px] text-[#1C1A17] outline-none focus:border-[#1C1A17] transition-colors"
+              className="h-[46px] px-3.5 border border-[#D9D2C8] rounded bg-white text-[15px] coarse:text-[16px] text-[#1C1A17] outline-none focus:border-[#1C1A17] transition-colors"
             />
           </div>
 
@@ -79,7 +79,7 @@ export default function AdminLoginPage() {
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full h-[46px] pl-3.5 pr-11 border border-[#D9D2C8] rounded bg-white text-[15px] text-[#1C1A17] outline-none focus:border-[#1C1A17] transition-colors"
+                className="w-full h-[46px] pl-3.5 pr-11 border border-[#D9D2C8] rounded bg-white text-[15px] coarse:text-[16px] text-[#1C1A17] outline-none focus:border-[#1C1A17] transition-colors"
               />
               <button
                 type="button"
