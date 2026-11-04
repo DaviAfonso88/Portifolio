@@ -13,10 +13,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const publicRoutes = [
     '',
     '/sobre',
-    '/habilidades',
-    '/conhecimentos',
     '/experiencias',
     '/projetos',
+    '/como-trabalho',
     '/como-foi-construido',
     '/contato',
     '/privacidade',

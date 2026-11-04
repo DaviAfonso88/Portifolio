@@ -49,6 +49,12 @@ export function Footer({ locale }: FooterProps) {
         {/* Políticas & Copyright */}
         <div className="md:col-span-3 flex flex-col gap-1.5 md:items-end">
           <Link
+            href={`/${locale}/como-foi-construido`}
+            className="text-ink-2 hover:text-accent transition-colors"
+          >
+            {dict.nav.howItWasBuilt}
+          </Link>
+          <Link
             href={`/${locale}/privacidade`}
             className="text-ink-2 hover:text-accent transition-colors"
           >

@@ -1,7 +1,10 @@
+import type { Metadata } from 'next';
+import type { ReactNode } from 'react';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeft, Cpu } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ArrowUpRight } from 'lucide-react';
 import { getDictionary } from '../../../../lib/dictionary';
+import { formatStack, ProjectStatus } from '../../../../components/public/project-row';
 import { SUPPORTED_LOCALES } from '@davidev/domain';
 
 interface ProjetoDetalhePageProps {
@@ -24,11 +27,29 @@ export async function generateStaticParams() {
   return params;
 }
 
-export default async function ProjetoDetalhePage({
-  params,
-}: ProjetoDetalhePageProps) {
+export async function generateMetadata({ params }: ProjetoDetalhePageProps): Promise<Metadata> {
+  const { locale, slug } = await params;
+  const project = getDictionary(locale).projects.items.find((p) => p.slug === slug);
+
+  if (!project) return {};
+  return { title: project.title, description: project.summary };
+}
+
+function DetailSection({ title, children }: { title: string; children: ReactNode }) {
+  return (
+    <section className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-10">
+      <h2 className="md:col-span-3 text-xl font-semibold text-ink">{title}</h2>
+      <div className="md:col-span-9 max-w-[68ch] text-base md:text-[17px] leading-[1.7] text-ink-2">
+        {children}
+      </div>
+    </section>
+  );
+}
+
+export default async function ProjetoDetalhePage({ params }: ProjetoDetalhePageProps) {
   const { locale, slug } = await params;
   const dict = getDictionary(locale);
+  const { labels } = dict.projects;
 
   const project = dict.projects.items.find((p) => p.slug === slug);
 
@@ -37,152 +58,115 @@ export default async function ProjetoDetalhePage({
   }
 
   return (
-    <div className="flex flex-col">
-      {/* Breadcrumb Bar */}
-      <div className="border-b border-rule/50 bg-paper px-5 md:px-20 py-4">
-        <div className="mx-auto max-w-[1180px] flex items-center gap-2 font-mono text-xs text-ink-3">
-          <Link
-            href={`/${locale}/projetos`}
-            className="hover:text-accent transition-colors flex items-center gap-1.5"
-          >
-            <ArrowLeft className="size-3.5" />
-            {dict.nav.projects}
-          </Link>
-          <span>/</span>
-          <span className="text-ink font-medium">{project.title}</span>
-        </div>
-      </div>
+    <div className="px-5 md:px-20 py-8 md:py-14">
+      <div className="mx-auto max-w-[1180px] flex flex-col gap-12 md:gap-14">
+        <Link
+          href={`/${locale}/projetos`}
+          className="inline-flex items-center gap-1.5 self-start text-sm text-ink-3 hover:text-accent transition-colors"
+        >
+          <ArrowLeft className="size-3.5" />
+          {dict.nav.projects}
+        </Link>
 
-      <main className="px-5 md:px-20 py-12 md:py-20">
-        <div className="mx-auto max-w-[1180px] flex flex-col gap-14">
-          {/* Section 1: Overview Header */}
-          <section className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10">
-            <div className="md:col-span-8 flex flex-col gap-5">
-              <div className="flex items-center gap-2.5">
-                <span className="rounded-[3px] border border-success/30 bg-success/10 px-2 py-1 font-mono text-[10px] uppercase tracking-[0.12em] text-success">
-                  {project.status}
-                </span>
-                <span className="font-mono text-[11px] text-ink-3">
-                  {project.period}
-                </span>
-              </div>
-              <h1 className="font-serif text-4xl md:text-[54px] leading-[1.08] tracking-[-0.02em] text-ink font-normal">
-                {project.title}
-              </h1>
-              <p className="max-w-[60ch] text-lg md:text-[19px] leading-[1.7] text-ink-2">
-                {project.summary}
-              </p>
+        <header className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10">
+          <div className="md:col-span-8 flex flex-col gap-5">
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+              <ProjectStatus status={project.status} isLive={project.isLive} />
+              <span className="text-sm text-ink-3">{project.kind}</span>
+              <span className="font-mono text-xs text-ink-3">{project.period}</span>
             </div>
-
-            <div className="md:col-span-4 flex flex-col gap-4 md:border-l md:border-rule md:pl-8">
-              <div className="flex flex-col gap-1">
-                <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-ink-3">
-                  {locale === 'pt-BR' ? 'Meu papel' : 'My Role'}
-                </span>
-                <span className="text-[15px] text-ink">{project.role}</span>
-              </div>
-              <div className="flex flex-col gap-1">
-                <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-ink-3">
-                  Stack
-                </span>
-                <span className="text-[15px] text-ink font-mono text-sm">
-                  {project.stack.join(' · ')}
-                </span>
-              </div>
-              <div className="my-1 h-[1px] bg-rule" />
-              <div className="font-mono text-[11px] text-ink-3/70 leading-relaxed">
-                {locale === 'pt-BR'
-                  ? 'Engenharia com foco em arquitetura limpa, resiliência e medição de desempenho.'
-                  : 'Engineering focused on clean architecture, resilience, and measurable performance.'}
-              </div>
-            </div>
-          </section>
-
-          {/* Media/Diagram Hero Block */}
-          <div className="aspect-[21/9] w-full rounded-[8px] border border-rule bg-surface-sunken flex flex-col items-center justify-center gap-3 text-ink-3/60">
-            <Cpu className="size-10 stroke-[1.25]" />
-            <span className="font-mono text-xs uppercase tracking-[0.1em]">
-              {locale === 'pt-BR'
-                ? 'Arquitetura e Fluxo do Sistema'
-                : 'Architecture & System Flow'}
-            </span>
+            <h1 className="font-serif text-4xl md:text-[56px] leading-[1.08] tracking-[-0.02em] text-ink text-balance font-normal">
+              {project.title}
+            </h1>
+            <p className="max-w-[60ch] text-lg md:text-[19px] leading-[1.65] text-ink-2">{project.summary}</p>
           </div>
 
-          {/* Section 2: O Problema & Desafio de Engenharia */}
-          <section className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10">
-            <div className="md:col-span-3">
-              <div className="sticky top-24 flex items-baseline gap-3.5">
-                <span className="font-mono text-[11px] tracking-[0.14em] text-accent font-semibold">
-                  01
-                </span>
-                <h2 className="text-xl font-semibold text-ink">
-                  {locale === 'pt-BR' ? 'O problema' : 'The problem'}
-                </h2>
-              </div>
+          <dl className="md:col-span-4 flex flex-col gap-5 md:border-l md:border-rule md:pl-8">
+            <div className="flex flex-col gap-1">
+              <dt className="text-[13px] text-ink-3">{labels.role}</dt>
+              <dd className="text-[15px] leading-[1.5] text-ink">{project.role}</dd>
             </div>
-            <div className="md:col-span-9 flex flex-col gap-4 text-base md:text-[17px] leading-[1.75] text-ink-2 max-w-[68ch]">
-              <p>{project.problem}</p>
-              {project.engineeringChallenge && (
-                <p>{project.engineeringChallenge}</p>
-              )}
+            <div className="flex flex-col gap-1">
+              <dt className="text-[13px] text-ink-3">{labels.stack}</dt>
+              <dd className="font-mono text-[13px] leading-[1.7] text-ink">{formatStack(project.stack)}</dd>
             </div>
-          </section>
+          </dl>
+        </header>
 
-          {/* Section 3: Decisões de Engenharia & Trade-offs */}
-          {project.decisions && project.decisions.length > 0 && (
-            <section className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10">
-              <div className="md:col-span-3">
-                <div className="sticky top-24 flex items-baseline gap-3.5">
-                  <span className="font-mono text-[11px] tracking-[0.14em] text-accent font-semibold">
-                    02
-                  </span>
-                  <h2 className="text-xl font-semibold text-ink">
-                    {locale === 'pt-BR' ? 'Decisões' : 'Decisions'}
-                  </h2>
+        {project.flow.length > 0 && (
+          <section aria-label={labels.flow} className="border-y border-rule py-6">
+            <ol className="flex flex-col md:flex-row md:flex-wrap md:items-center gap-x-3 gap-y-2.5">
+              {project.flow.map((step, index) => (
+                <li key={step} className="flex items-center gap-3 text-[15px] leading-[1.4] text-ink">
+                  {step}
+                  {index < project.flow.length - 1 && (
+                    <ArrowRight aria-hidden="true" className="hidden md:block size-3.5 shrink-0 text-ink-3" />
+                  )}
+                </li>
+              ))}
+            </ol>
+          </section>
+        )}
+
+        <DetailSection title={labels.problem}>
+          <p>{project.problem}</p>
+        </DetailSection>
+
+        <DetailSection title={labels.delivered}>
+          <ul className="flex flex-col gap-2.5 pl-5 list-disc marker:text-ink-3">
+            {project.delivered.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </DetailSection>
+
+        {project.decisions.length > 0 && (
+          <DetailSection title={labels.decisions}>
+            <div className="flex flex-col gap-6">
+              {project.decisions.map((decision) => (
+                <div key={decision.title} className="flex flex-col gap-1.5">
+                  <h3 className="text-[17px] font-semibold text-ink">{decision.title}</h3>
+                  <p>{decision.desc}</p>
+                  <p className="text-[15px] text-ink-3">
+                    <strong className="font-semibold text-ink-2">{labels.tradeoff}</strong> {decision.tradeoff}
+                  </p>
                 </div>
-              </div>
-              <div className="md:col-span-9 flex flex-col gap-5">
-                {project.decisions.map((dec) => (
-                  <div
-                    key={dec.title}
-                    className="flex flex-col gap-3 rounded-[6px] border border-rule bg-surface p-6 md:p-[26px]"
-                  >
-                    <h3 className="text-[17px] font-semibold text-ink">
-                      {dec.title}
-                    </h3>
-                    <p className="text-[15px] leading-[1.7] text-ink-2">
-                      {dec.desc}
-                    </p>
-                    <p className="text-sm leading-[1.6] text-ink-3">
-                      <strong className="font-semibold text-ink-2">
-                        {locale === 'pt-BR' ? 'Tradeoff:' : 'Tradeoff:'}{' '}
-                      </strong>
-                      {dec.tradeoff}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </section>
-          )}
+              ))}
+            </div>
+          </DetailSection>
+        )}
 
-          {/* Section 4: Resultado */}
-          <section className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10">
-            <div className="md:col-span-3">
-              <div className="sticky top-24 flex items-baseline gap-3.5">
-                <span className="font-mono text-[11px] tracking-[0.14em] text-accent font-semibold">
-                  03
-                </span>
-                <h2 className="text-xl font-semibold text-ink">
-                  {locale === 'pt-BR' ? 'Resultado' : 'Outcome'}
-                </h2>
-              </div>
-            </div>
-            <div className="md:col-span-9 flex flex-col gap-4 text-base md:text-[17px] leading-[1.75] text-ink-2 max-w-[68ch]">
-              <p>{project.result}</p>
-            </div>
-          </section>
-        </div>
-      </main>
+        <DetailSection title={labels.result}>
+          <p className="text-ink">{project.result}</p>
+          {project.isPrivate && <p className="mt-3 text-[15px] text-ink-3">{labels.privateNote}</p>}
+        </DetailSection>
+
+        {project.links.length > 0 && (
+          <DetailSection title={labels.links}>
+            <ul className="flex flex-wrap gap-x-6 gap-y-2.5">
+              {project.links.map((link) => (
+                <li key={link.href}>
+                  {link.href.startsWith('/') ? (
+                    <Link href={link.href} className="text-accent underline-offset-4 hover:underline">
+                      {link.label}
+                    </Link>
+                  ) : (
+                    <a
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-accent underline-offset-4 hover:underline"
+                    >
+                      {link.label}
+                      <ArrowUpRight aria-hidden="true" className="size-3.5" />
+                    </a>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </DetailSection>
+        )}
+      </div>
     </div>
   );
 }

@@ -200,6 +200,9 @@ importers:
       drizzle-kit:
         specifier: ^0.30.4
         version: 0.30.6
+      jiti:
+        specifier: ^2.7.0
+        version: 2.7.0
       typescript:
         specifier: ^5.7.3
         version: 5.9.3

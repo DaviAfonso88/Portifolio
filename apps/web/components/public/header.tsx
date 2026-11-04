@@ -24,11 +24,10 @@ export function Header({ locale }: HeaderProps) {
     : `/${targetLocale}`;
 
   const navLinks = [
-    { href: `/${locale}/sobre`, label: dict.nav.about },
-    { href: `/${locale}/habilidades`, label: dict.nav.skills },
-    { href: `/${locale}/conhecimentos`, label: dict.nav.knowledge },
-    { href: `/${locale}/experiencias`, label: dict.nav.experiences },
     { href: `/${locale}/projetos`, label: dict.nav.projects },
+    { href: `/${locale}/como-trabalho`, label: dict.nav.howIWork },
+    { href: `/${locale}/experiencias`, label: dict.nav.experiences },
+    { href: `/${locale}/sobre`, label: dict.nav.about },
     { href: `/${locale}/blog`, label: dict.nav.blog },
     { href: `/${locale}/contato`, label: dict.nav.contact },
   ];
@@ -40,7 +39,7 @@ export function Header({ locale }: HeaderProps) {
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-rule bg-paper">
-      <div className="mx-auto flex h-[70px] max-w-[1340px] items-center justify-between px-5 md:px-20">
+      <div className="mx-auto flex h-[70px] max-w-[1340px] items-center justify-between px-5 md:px-8 lg:px-20">
         {/* Brand Logo */}
         <Link
           href={`/${locale}`}
@@ -52,7 +51,7 @@ export function Header({ locale }: HeaderProps) {
         {/* Desktop Navigation */}
         <nav
           aria-label="Navegação Principal"
-          className="hidden md:flex items-center gap-[26px] text-sm"
+          className="hidden md:flex items-center gap-5 lg:gap-[26px] text-sm"
         >
           {navLinks.map((link) => {
             const isActive = pathname === link.href || pathname.startsWith(`${link.href}/`);

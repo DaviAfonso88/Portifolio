@@ -40,7 +40,7 @@ Não há cliente, Product Owner, aprovador externo nem par revisor (PRD, Questã
 ## Escopo
 
 **Dentro do escopo desta iniciativa:**
-- Área pública: Home, Sobre mim, Habilidades, Conhecimentos, Experiências, Projetos (listagem e detalhe), Contato, Como foi construído
+- Área pública: Home, Sobre mim (inclui tecnologias), Experiências, Projetos (listagem e detalhe), Como trabalho, Contato, Como foi construído
 - Blog público: listagem com filtros por categoria e tag, leitura de artigo por slug, SEO e compartilhamento
 - Painel administrativo: autenticação, CRUD de posts, editor Markdown com preview fiel, gestão de categorias e tags, lixeira
 - Versionamento de artigos e sinalização pública de atualização

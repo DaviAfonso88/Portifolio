@@ -17,9 +17,6 @@ export default async function ContatoPage({ params }: ContatoPageProps) {
         {/* Left Column: Direct Info & Channels */}
         <div className="md:col-span-5 flex flex-col gap-7">
           <div className="flex flex-col gap-4">
-            <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-3">
-              {dict.contact.badge}
-            </div>
             <h1 className="font-serif text-4xl md:text-[52px] leading-[1.1] tracking-[-0.02em] text-ink font-normal">
               {dict.contact.headline}
             </h1>
