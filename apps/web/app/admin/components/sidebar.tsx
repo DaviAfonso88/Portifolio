@@ -9,15 +9,12 @@ export function AdminSidebar() {
   const pathname = usePathname();
   const { user, logout, authFetch } = useAdminAuth();
 
+  // Sem valor inicial nos contadores: até a API responder, nenhum número aparece.
   const [stats, setStats] = useState<{
-    postsCount: number;
-    trashCount: number;
+    postsCount?: number;
+    trashCount?: number;
     unnotifiedMessages: number;
-  }>({
-    postsCount: 24,
-    trashCount: 2,
-    unnotifiedMessages: 1,
-  });
+  }>({ unnotifiedMessages: 0 });
 
   useEffect(() => {
     // Optionally fetch dynamic badge counts
@@ -26,7 +23,7 @@ export function AdminSidebar() {
       try {
         const [postsRes, messagesRes] = await Promise.all([
           authFetch('/api/v1/admin/posts?limit=1'),
-          authFetch('/api/v1/admin/contact-messages?limit=1'),
+          authFetch('/api/v1/admin/messages?limit=1'),
         ]);
 
         if (active && postsRes.ok) {

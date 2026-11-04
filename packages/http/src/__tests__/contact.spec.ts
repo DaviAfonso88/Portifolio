@@ -57,6 +57,27 @@ describe('POST /api/v1/contact', () => {
     expect(useCase.execute).not.toHaveBeenCalled();
   });
 
+  it('returns 500 when the message could not be saved', async () => {
+    const useCase = {
+      execute: vi.fn(async () => fail('STORAGE_ERROR')),
+    } as unknown as SubmitContactMessageUseCase;
+    const app = await buildApp({ submitContactUseCase: useCase });
+
+    const res = await app.inject({
+      method: 'POST',
+      url: '/api/v1/contact',
+      payload: {
+        name: 'Rafael',
+        email: 'rafael@example.com',
+        message: 'Mensagem com tamanho suficiente para chegar ao caso de uso.',
+        captchaToken: 'token',
+      },
+    });
+
+    expect(res.statusCode).toBe(500);
+    expect(res.json().error).toBe('STORAGE_ERROR');
+  });
+
   it('enforces rate limit of 3 requests per hour per IP (returns 429)', async () => {
     const useCase = createMockUseCase(true);
     const app = await buildApp({ submitContactUseCase: useCase });

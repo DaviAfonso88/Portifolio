@@ -86,7 +86,7 @@ export class SubmitContactMessageUseCase
     } catch (emailError) {
       // Intentionally log and suppress email failure per BR-012
       console.warn(
-        `[SubmitContactMessageUseCase] Failed to send email alert for contact ${contactMessage.id}:`,
+        `[SubmitContactMessageUseCase] Email alert not completed for contact ${contactMessage.id}:`,
         emailError
       );
     }

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { headers } from 'next/headers';
 import { Mail, Linkedin, Github, Shield } from 'lucide-react';
 import { getDictionary } from '../../../lib/dictionary';
 import { ContactForm } from '../../../components/public/contact-form';
@@ -10,6 +11,7 @@ interface ContatoPageProps {
 export default async function ContatoPage({ params }: ContatoPageProps) {
   const { locale } = await params;
   const dict = getDictionary(locale);
+  const nonce = (await headers()).get('x-nonce') ?? undefined;
 
   return (
     <div className="px-5 md:px-20 py-12 md:py-20">
@@ -97,7 +99,7 @@ export default async function ContatoPage({ params }: ContatoPageProps) {
 
         {/* Right Column: Form */}
         <div className="md:col-span-7">
-          <ContactForm locale={locale} />
+          <ContactForm locale={locale} nonce={nonce} />
         </div>
       </div>
     </div>

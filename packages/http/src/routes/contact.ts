@@ -65,6 +65,13 @@ export function registerContactRoutes(
               message: { type: 'string' },
             },
           },
+          500: {
+            type: 'object',
+            properties: {
+              error: { type: 'string' },
+              message: { type: 'string' },
+            },
+          },
         },
       },
     },
@@ -103,7 +110,8 @@ export function registerContactRoutes(
         });
 
         if (!result.success) {
-          return reply.status(400).send({
+          // Falha de banco não é erro de quem enviou: o visitante pode tentar de novo.
+          return reply.status(result.error === 'STORAGE_ERROR' ? 500 : 400).send({
             error: result.error,
             message: 'Falha ao processar mensagem de contato.',
           });

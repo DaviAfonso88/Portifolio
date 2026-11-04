@@ -10,7 +10,7 @@ interface ContactMessageItem {
   subject?: string | null;
   message: string;
   locale: string;
-  emailNotified: boolean;
+  emailNotifiedAt: string | null;
   createdAt: string;
 }
 
@@ -30,6 +30,7 @@ export default function AdminMensagensPage() {
   const [totalCount, setTotalCount] = useState(0);
   const [unnotifiedCount, setUnnotifiedCount] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [loadFailed, setLoadFailed] = useState(false);
 
   // Filters
   const [onlyUnnotified, setOnlyUnnotified] = useState(false);
@@ -37,6 +38,7 @@ export default function AdminMensagensPage() {
 
   const loadMessages = useCallback(async () => {
     setLoading(true);
+    setLoadFailed(false);
     try {
       const params = new URLSearchParams();
       if (onlyUnnotified) {
@@ -44,23 +46,23 @@ export default function AdminMensagensPage() {
       }
       params.set('limit', '50');
 
-      const res = await authFetch(`/api/v1/admin/contact-messages?${params.toString()}`);
-      if (res.ok) {
-        const data: MessagesApiResponse = await res.json();
-        setMessages(data.messages || []);
-        setTotalCount(data.total || 0);
-        setUnnotifiedCount(data.unnotifiedCount || 0);
-
-        if (data.messages?.length > 0 && !selectedMessageId) {
-          setSelectedMessageId(data.messages[0].id);
-        }
+      const res = await authFetch(`/api/v1/admin/messages?${params.toString()}`);
+      if (!res.ok) {
+        setLoadFailed(true);
+        return;
       }
+
+      const data: MessagesApiResponse = await res.json();
+      setMessages(data.messages || []);
+      setTotalCount(data.total || 0);
+      setUnnotifiedCount(data.unnotifiedCount || 0);
+      setSelectedMessageId((current) => current ?? data.messages?.[0]?.id ?? null);
     } catch {
-      // Ignore
+      setLoadFailed(true);
     } finally {
       setLoading(false);
     }
-  }, [authFetch, onlyUnnotified, selectedMessageId]);
+  }, [authFetch, onlyUnnotified]);
 
   useEffect(() => {
     loadMessages();
@@ -181,13 +183,20 @@ export default function AdminMensagensPage() {
               </div>
             )}
 
-            {!loading && messages.length === 0 && (
+            {!loading && loadFailed && (
+              <div role="alert" className="p-8 text-center text-[13.5px] text-[#B5442B]">
+                Não foi possível carregar as mensagens. Recarregue a página para tentar de novo.
+              </div>
+            )}
+
+            {!loading && !loadFailed && messages.length === 0 && (
               <div className="p-8 text-center text-[13.5px] text-[#857D74]">
                 Nenhuma mensagem encontrada.
               </div>
             )}
 
             {!loading &&
+              !loadFailed &&
               messages.map((item) => {
                 const isSelected = selectedMessage?.id === item.id;
                 return (
@@ -205,7 +214,7 @@ export default function AdminMensagensPage() {
                         <span className={`text-[14.5px] ${isSelected ? 'font-semibold' : 'font-medium'} text-[#1C1A17]`}>
                           {item.name}
                         </span>
-                        {!item.emailNotified && (
+                        {!item.emailNotifiedAt && (
                           <span className="inline-flex items-center gap-1 font-mono text-[10px] tracking-wider uppercase text-[#B5442B] border border-[#EFD8D1] bg-[#FDF6F4] px-1.5 py-0.5 rounded">
                             não notificada
                           </span>
@@ -296,7 +305,7 @@ export default function AdminMensagensPage() {
                 <span className="text-[10px] tracking-wider uppercase text-[#A29A90]">
                   Notificação
                 </span>
-                {selectedMessage.emailNotified ? (
+                {selectedMessage.emailNotifiedAt ? (
                   <span className="text-[#1F5E5B]">enviada</span>
                 ) : (
                   <span className="text-[#B5442B]">não enviada (erro)</span>

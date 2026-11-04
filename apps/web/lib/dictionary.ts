@@ -141,6 +141,8 @@ export interface Dictionary {
       turnstileVerified: string;
       turnstileVerifying: string;
       turnstileRequired: string;
+      turnstileError: string;
+      turnstileUnavailable: string;
       privacyAgreement: string;
       submitButton: string;
       submittingButton: string;
@@ -692,6 +694,8 @@ const dictionaries: Record<string, Dictionary> = {
         turnstileVerified: 'Verificação anti spam concluída',
         turnstileVerifying: 'Validando verificação anti spam...',
         turnstileRequired: 'Por favor, aguarde a validação anti spam antes de enviar.',
+        turnstileError: 'Não foi possível concluir a verificação anti spam. Recarregue a página e tente de novo.',
+        turnstileUnavailable: 'Verificação anti spam indisponível neste ambiente',
         privacyAgreement: 'Ao enviar, você concorda com o tratamento de dados descrito na política de privacidade.',
         submitButton: 'Enviar mensagem',
         submittingButton: 'Enviando mensagem...',
@@ -1456,6 +1460,8 @@ const dictionaries: Record<string, Dictionary> = {
         turnstileVerified: 'Anti spam verification complete',
         turnstileVerifying: 'Verifying anti spam...',
         turnstileRequired: 'Please complete the anti spam verification before sending.',
+        turnstileError: 'The anti spam verification could not be completed. Reload the page and try again.',
+        turnstileUnavailable: 'Anti spam verification unavailable in this environment',
         privacyAgreement: 'By submitting, you agree to the data handling terms in our privacy policy.',
         submitButton: 'Send message',
         submittingButton: 'Sending message...',
