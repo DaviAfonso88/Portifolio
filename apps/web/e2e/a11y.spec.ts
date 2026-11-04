@@ -7,9 +7,9 @@ const PUBLIC_ROUTES = [
   '/pt-BR/blog/por-que-a-arquitetura-hexagonal-se-pagou',
   '/pt-BR/contato',
   '/pt-BR/sobre',
-  '/pt-BR/habilidades',
   '/pt-BR/experiencias',
   '/pt-BR/projetos',
+  '/pt-BR/como-trabalho',
   '/pt-BR/privacidade',
 ];
 

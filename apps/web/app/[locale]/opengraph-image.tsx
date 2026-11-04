@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og';
 
 export const runtime = 'edge';
-export const alt = 'DaviDev: Portfolio, Blog & Engenharia de Software';
+export const alt = 'Davi Afonso, desenvolvedor full stack';
 export const size = {
   width: 1200,
   height: 630,
@@ -17,11 +17,11 @@ export default async function Image({ params }: OpenGraphImageProps) {
 
   const isPt = locale === 'pt-BR';
   const headline = isPt
-    ? 'Construo sistemas e mostro como foram construídos.'
-    : 'I build systems and show how they were made.';
+    ? 'Davi Afonso, desenvolvedor full stack.'
+    : 'Davi Afonso, full stack developer.';
   const subline = isPt
-    ? 'Arquitetura Hexagonal · Backend · TypeScript & .NET · PostgreSQL'
-    : 'Hexagonal Architecture · Backend · TypeScript & .NET · PostgreSQL';
+    ? '.NET · React · Arquitetura de software · IA com método'
+    : '.NET · React · Software architecture · AI with a method';
 
   return new ImageResponse(
     (
@@ -52,7 +52,7 @@ export default async function Image({ params }: OpenGraphImageProps) {
               color: '#A6482C',
             }}
           >
-            {isPt ? 'Engenharia de Software' : 'Software Engineering'}
+            {isPt ? 'Portfólio' : 'Portfolio'}
           </span>
         </div>
 
