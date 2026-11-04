@@ -103,7 +103,7 @@ export default function AdminTaxonomiaPage() {
           loadData();
         } else {
           const err = await res.json().catch(() => ({}));
-          alert(err.message || 'Erro ao atualizar categoria.');
+          alert(err.message || err.error || 'Erro ao atualizar categoria.');
         }
       } else {
         const res = await authFetch('/api/v1/admin/categories', {
@@ -117,7 +117,7 @@ export default function AdminTaxonomiaPage() {
           loadData();
         } else {
           const err = await res.json().catch(() => ({}));
-          alert(err.message || 'Erro ao criar categoria.');
+          alert(err.message || err.error || 'Erro ao criar categoria.');
         }
       }
     } catch {
@@ -136,7 +136,7 @@ export default function AdminTaxonomiaPage() {
         loadData();
       } else {
         const err = await res.json().catch(() => ({}));
-        alert(err.message || 'Erro ao excluir categoria (BR-009).');
+        alert(err.message || err.error || 'Erro ao excluir categoria (BR-009).');
       }
     } catch {
       alert('Falha na comunicação.');
@@ -173,7 +173,7 @@ export default function AdminTaxonomiaPage() {
           loadData();
         } else {
           const err = await res.json().catch(() => ({}));
-          alert(err.message || 'Erro ao atualizar tag.');
+          alert(err.message || err.error || 'Erro ao atualizar tag.');
         }
       } else if (isCreatingTag) {
         const res = await authFetch('/api/v1/admin/tags', {
@@ -187,7 +187,7 @@ export default function AdminTaxonomiaPage() {
           loadData();
         } else {
           const err = await res.json().catch(() => ({}));
-          alert(err.message || 'Erro ao criar tag.');
+          alert(err.message || err.error || 'Erro ao criar tag.');
         }
       }
     } catch {
@@ -207,7 +207,7 @@ export default function AdminTaxonomiaPage() {
         loadData();
       } else {
         const err = await res.json().catch(() => ({}));
-        alert(err.message || 'Erro ao excluir tag (BR-009).');
+        alert(err.message || err.error || 'Erro ao excluir tag (BR-009).');
       }
     } catch {
       alert('Falha na comunicação.');

@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef, useCallback, Suspense } from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { PostStatus } from '@davidev/domain';
 import { useAdminAuth } from '@/lib/admin-auth-context';
 import { ArticleRenderer } from '@/components/blog/article-renderer';
 import { VersionHistoryDrawer } from './components/version-history-drawer';
@@ -42,7 +43,7 @@ function EditorContent() {
   const [coverImageUrl, setCoverImageUrl] = useState<string>('');
   const [categoryId, setCategoryId] = useState('');
   const [selectedTagIds, setSelectedTagIds] = useState<string[]>([]);
-  const [status, setStatus] = useState<'PUBLISHED' | 'DRAFT' | 'TRASH'>('DRAFT');
+  const [status, setStatus] = useState<PostStatus>(PostStatus.DRAFT);
   const [version, setVersion] = useState(1);
   const [publishedAt, setPublishedAt] = useState<string | null>(null);
 
@@ -94,7 +95,7 @@ function EditorContent() {
       try {
         const res = await authFetch(`/api/v1/admin/posts/${postId}`);
         if (res.ok) {
-          const post = await res.json();
+          const { post } = await res.json();
           setTitle(post.title || '');
           setSlug(post.slug || '');
           setOriginalSlug(post.slug || '');
@@ -104,7 +105,7 @@ function EditorContent() {
           setCoverImageUrl(post.coverImageUrl || '');
           setCategoryId(post.categoryId || '');
           setSelectedTagIds(post.tagIds || []);
-          setStatus(post.status || 'DRAFT');
+          setStatus(post.status || PostStatus.DRAFT);
           setVersion(post.currentVersion || 1);
           setPublishedAt(post.publishedAt || null);
           setHasUnsavedChanges(false);
@@ -149,8 +150,13 @@ function EditorContent() {
 
   const handleSave = async (publish: boolean = false) => {
     // Check if slug changed on published post and needs confirmation
-    if (status === 'PUBLISHED' && slug !== originalSlug && !showSlugRedirectModal) {
+    if (status === PostStatus.PUBLISHED && slug !== originalSlug && !showSlugRedirectModal) {
       setShowSlugRedirectModal(true);
+      return;
+    }
+
+    if (!categoryId) {
+      alert('Selecione uma categoria. Se a lista estiver vazia, cadastre uma em Taxonomia.');
       return;
     }
 
@@ -170,13 +176,13 @@ function EditorContent() {
             coverImageUrl: coverImageUrl || null,
             categoryId,
             tagIds: selectedTagIds,
-            publish,
+            publishImmediately: publish,
           }),
         });
 
         if (!res.ok) {
           const err = await res.json().catch(() => ({}));
-          alert(err.message || 'Erro ao criar artigo.');
+          alert(err.message || err.error || 'Erro ao criar artigo.');
           setSaving(false);
           return;
         }
@@ -198,23 +204,37 @@ function EditorContent() {
             coverImageUrl: coverImageUrl || null,
             categoryId,
             tagIds: selectedTagIds,
-            publish,
           }),
         });
 
         if (!res.ok) {
           const err = await res.json().catch(() => ({}));
-          alert(err.message || 'Erro ao salvar artigo.');
+          alert(err.message || err.error || 'Erro ao salvar artigo.');
           setSaving(false);
           return;
         }
 
         const data = await res.json();
-        setVersion(data.post.currentVersion);
-        setStatus(data.post.status);
-        setOriginalSlug(data.post.slug);
+        let savedPost = data.post;
+        setOriginalSlug(data.slug);
         setHasUnsavedChanges(false);
         setShowSlugRedirectModal(false);
+
+        if (publish && savedPost.status !== PostStatus.PUBLISHED) {
+          const publishRes = await authFetch(`/api/v1/admin/posts/${postId}/publish`, {
+            method: 'PATCH',
+          });
+          if (publishRes.ok) {
+            savedPost = (await publishRes.json()).post;
+          } else {
+            const err = await publishRes.json().catch(() => ({}));
+            alert(err.message || err.error || 'Artigo salvo, mas não foi possível publicar.');
+          }
+        }
+
+        setVersion(savedPost.currentVersion);
+        setStatus(savedPost.status);
+        setPublishedAt(savedPost.publishedAt);
       }
     } catch {
       alert('Falha ao comunicar com o servidor.');
@@ -280,7 +300,7 @@ function EditorContent() {
               className="text-[15px] font-semibold text-[#1C1A17] bg-transparent outline-none border-b border-transparent focus:border-[#DDD6CB] truncate pr-2"
             />
             <div className="flex items-center gap-2.5 text-[12px]">
-              {status === 'PUBLISHED' ? (
+              {status === PostStatus.PUBLISHED ? (
                 <span className="inline-flex items-center gap-1.5 text-[#1F5E5B]">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#1F5E5B]" />
                   Publicado
@@ -355,7 +375,7 @@ function EditorContent() {
             disabled={saving}
             className="h-[38px] px-4 rounded bg-[#1C1A17] hover:bg-[#2E2A26] text-[#FAF8F4] text-[14px] font-medium transition-colors cursor-pointer disabled:opacity-50"
           >
-            {status === 'PUBLISHED' ? 'Atualizar publicação' : 'Publicar'}
+            {status === PostStatus.PUBLISHED ? 'Atualizar publicação' : 'Publicar'}
           </button>
         </div>
       </div>
@@ -527,7 +547,7 @@ function EditorContent() {
               }}
               className="h-[38px] px-2.5 border border-[#DDD6CB] rounded font-mono text-[12.5px] text-[#1C1A17] outline-none focus:border-[#1C1A17]"
             />
-            {status === 'PUBLISHED' && (
+            {status === PostStatus.PUBLISHED && (
               <span className="flex items-start gap-1.5 text-[11.5px] leading-relaxed text-[#A6482C]">
                 <svg
                   width="13"
@@ -806,7 +826,7 @@ function EditorContent() {
               </button>
               <button
                 type="button"
-                onClick={() => handleSave(status === 'PUBLISHED')}
+                onClick={() => handleSave(status === PostStatus.PUBLISHED)}
                 className="h-9 px-4 rounded bg-[#1C1A17] text-[#FAF8F4] text-[13.5px] font-medium"
               >
                 Confirmar e atualizar

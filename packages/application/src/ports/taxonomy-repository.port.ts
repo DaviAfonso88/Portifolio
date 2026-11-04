@@ -18,9 +18,14 @@ export interface TagWithCount {
   postCount: number;
 }
 
+export interface ListTaxonomyOptions {
+  /** Conta só posts publicados, para exposição pública (BR-006). O padrão conta todos, como o BR-009. */
+  publishedOnly?: boolean;
+}
+
 export interface TaxonomyRepository {
-  listCategories(): Promise<CategoryWithCount[]>;
-  listTags(): Promise<TagWithCount[]>;
+  listCategories(options?: ListTaxonomyOptions): Promise<CategoryWithCount[]>;
+  listTags(options?: ListTaxonomyOptions): Promise<TagWithCount[]>;
   findCategoryById(id: UUIDv7): Promise<Category | null>;
   createCategory(category: Category): Promise<void>;
   updateCategory(category: Category): Promise<void>;

@@ -51,7 +51,8 @@ export class UUID {
   }
 
   public static create(value: string): UUIDv7 {
-    if (!this.isValid(value)) {
+    // UUID.isValid, não this.isValid: create é passado solto em callbacks como .map(UUID.create).
+    if (!UUID.isValid(value)) {
       throw new Error(`Invalid UUIDv7: "${value}"`);
     }
     return value.toLowerCase() as UUIDv7;

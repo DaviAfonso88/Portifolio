@@ -42,6 +42,11 @@ describe('Domain Package — Zero External Dependencies (DEP-1)', () => {
       expect(UUID.isValid('12345678-1234-4234-8234-123456789012')).toBe(false); // v4 not v7
       expect(() => UUID.create('invalid-uuid-v7')).toThrow();
     });
+
+    it('should work when passed as a bare callback, as in .map(UUID.create)', () => {
+      const valid = '01918a20-0000-7000-8000-000000000001';
+      expect([valid].map(UUID.create)).toEqual([valid]);
+    });
   });
 
   describe('Slug Value Object', () => {

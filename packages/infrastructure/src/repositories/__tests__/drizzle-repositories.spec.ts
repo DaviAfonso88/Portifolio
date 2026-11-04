@@ -17,7 +17,7 @@ import {
 import { DrizzleAdminUserRepository } from '../drizzle-admin-user.repository';
 import { DrizzleRefreshTokenRepository } from '../drizzle-refresh-token.repository';
 import { DrizzleContactMessageRepository } from '../drizzle-contact-message.repository';
-import { DrizzlePostRepository } from '../drizzle-post.repository';
+import { InMemoryPostRepository } from '../in-memory-post.repository';
 
 describe('Drizzle Repositories Integration & Integrity Tests (T07.02)', () => {
   describe('DrizzleAdminUserRepository', () => {
@@ -233,11 +233,11 @@ describe('Drizzle Repositories Integration & Integrity Tests (T07.02)', () => {
   });
 
 
-  describe('DrizzlePostRepository & Taxonomies', () => {
-    let repo: DrizzlePostRepository;
+  describe('InMemoryPostRepository & Taxonomies', () => {
+    let repo: InMemoryPostRepository;
 
     beforeEach(() => {
-      repo = new DrizzlePostRepository();
+      repo = new InMemoryPostRepository();
     });
 
     it('creates category and tag taxonomies and tracks post associations (BR-009)', async () => {
