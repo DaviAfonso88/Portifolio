@@ -1,13 +1,40 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useAdminAuth } from '@/lib/admin-auth-context';
 
-export function AdminSidebar() {
+interface AdminSidebarProps {
+  open: boolean;
+  onOpenChange(open: boolean): void;
+}
+
+/** Fixa a partir de lg. Abaixo disso, a mesma navegação abre como gaveta pela barra superior. */
+export function AdminSidebar({ open, onOpenChange }: AdminSidebarProps) {
   const pathname = usePathname();
   const { user, logout, authFetch } = useAdminAuth();
+  const openButtonRef = useRef<HTMLButtonElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const wasOpenRef = useRef(false);
+
+  useEffect(() => {
+    if (open) {
+      closeButtonRef.current?.focus();
+    } else if (wasOpenRef.current) {
+      openButtonRef.current?.focus();
+    }
+    wasOpenRef.current = open;
+
+    if (!open) return;
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        onOpenChange(false);
+      }
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [open, onOpenChange]);
 
   // Sem valor inicial nos contadores: até a API responder, nenhum número aparece.
   const [stats, setStats] = useState<{
@@ -140,15 +167,89 @@ export function AdminSidebar() {
   ];
 
   return (
-    <aside className="w-[244px] shrink-0 bg-[#1C1A17] p-[24px_16px] flex flex-col gap-7 select-none min-h-screen">
+    <>
+      {/* Top bar: below lg */}
+      <header
+        inert={open}
+        className="lg:hidden sticky top-0 z-40 h-14 flex items-center justify-between gap-3 pl-4 pr-1.5 sm:pl-7 sm:pr-4 bg-[#1C1A17] select-none"
+      >
+        <div className="flex items-baseline gap-2.5">
+          <Link href="/admin/posts" className="font-display text-[22px] text-[#FAF8F4] tracking-normal">
+            davidev
+          </Link>
+          <span className="font-mono text-[10px] tracking-[0.12em] uppercase text-[#7C736A]">
+            Painel
+          </span>
+        </div>
+        <button
+          ref={openButtonRef}
+          type="button"
+          onClick={() => onOpenChange(true)}
+          aria-label="Abrir menu"
+          aria-expanded={open}
+          aria-controls="admin-nav"
+          className="w-11 h-11 inline-flex items-center justify-center rounded text-[#EDE9E3] hover:bg-[#2E2A26] transition-colors cursor-pointer"
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+          >
+            <path d="M4 7h16M4 12h16M4 17h16" />
+          </svg>
+        </button>
+      </header>
+
+      {/* Drawer backdrop */}
+      <div
+        aria-hidden="true"
+        onClick={() => onOpenChange(false)}
+        className={`lg:hidden fixed inset-0 z-40 bg-[#1C1A17]/40 touch-none transition-opacity duration-200 motion-reduce:transition-none ${
+          open ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        }`}
+      />
+
+      {/* Ao abrir, a visibilidade muda na hora, para o foco entrar; ao fechar, espera o deslize. */}
+      <aside
+        id="admin-nav"
+        aria-label="Menu do painel"
+        className={`fixed inset-y-0 left-0 z-50 w-[280px] max-w-[85vw] lg:sticky lg:top-0 lg:bottom-auto lg:z-auto lg:h-dvh lg:w-[244px] lg:max-w-none lg:translate-x-0 lg:visible shrink-0 overflow-y-auto overscroll-contain bg-[#1C1A17] p-[24px_16px] flex flex-col gap-7 select-none duration-200 ease-out motion-reduce:transition-none lg:transition-none ${
+          open ? 'translate-x-0 visible transition-transform' : '-translate-x-full invisible transition-[transform,visibility]'
+        }`}
+      >
       {/* Brand */}
-      <div className="flex flex-col gap-[3px] px-2.5">
-        <Link href="/admin/posts" className="font-display text-[22px] text-[#FAF8F4] tracking-normal hover:opacity-90">
-          davidev
-        </Link>
-        <span className="font-mono text-[10px] tracking-[0.12em] uppercase text-[#7C736A]">
-          Painel
-        </span>
+      <div className="flex items-start justify-between gap-3">
+        <div className="flex flex-col gap-[3px] px-2.5">
+          <Link href="/admin/posts" className="font-display text-[22px] text-[#FAF8F4] tracking-normal hover:opacity-90">
+            davidev
+          </Link>
+          <span className="font-mono text-[10px] tracking-[0.12em] uppercase text-[#7C736A]">
+            Painel
+          </span>
+        </div>
+        <button
+          ref={closeButtonRef}
+          type="button"
+          onClick={() => onOpenChange(false)}
+          aria-label="Fechar menu"
+          className="lg:hidden w-11 h-11 -mt-2 inline-flex items-center justify-center rounded text-[#EDE9E3] hover:bg-[#2E2A26] transition-colors cursor-pointer"
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+          >
+            <path d="M6 6l12 12M18 6L6 18" />
+          </svg>
+        </button>
       </div>
 
       {/* Navigation */}
@@ -158,7 +259,8 @@ export function AdminSidebar() {
             <Link
               key={item.name}
               href={item.href}
-              className={`flex items-center gap-[11px] h-10 px-3 rounded text-[14px] transition-colors ${
+              onClick={() => onOpenChange(false)}
+              className={`flex items-center gap-[11px] h-10 coarse:h-11 px-3 rounded text-[14px] transition-colors ${
                 item.active
                   ? 'bg-[#2E2A26] text-[#FAF8F4] font-medium'
                   : 'text-[#A29A90] hover:text-[#FAF8F4] hover:bg-[#25221F]'
@@ -198,13 +300,14 @@ export function AdminSidebar() {
             </span>
             <button
               onClick={() => logout()}
-              className="text-[12px] text-[#7C736A] hover:text-[#EDE9E3] text-left transition-colors cursor-pointer"
+              className="text-[12px] text-[#7C736A] hover:text-[#EDE9E3] text-left transition-colors cursor-pointer coarse:h-11 coarse:-mb-3 coarse:text-[13px]"
             >
               Sair
             </button>
           </div>
         </div>
       </div>
-    </aside>
+      </aside>
+    </>
   );
 }

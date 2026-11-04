@@ -5,8 +5,12 @@ import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { PostStatus } from '@davidev/domain';
 import { useAdminAuth } from '@/lib/admin-auth-context';
+import { useMediaQuery } from '@/lib/use-media-query';
 import { ArticleRenderer } from '@/components/blog/article-renderer';
+import { AdminDialog } from '../../components/admin-dialog';
 import { VersionHistoryDrawer } from './components/version-history-drawer';
+
+type ViewMode = 'editor' | 'preview' | 'split' | 'details';
 
 interface CategoryItem {
   id: string;
@@ -31,7 +35,12 @@ function EditorContent() {
   const postId = searchParams.get('id');
 
   // View mode
-  const [viewMode, setViewMode] = useState<'editor' | 'preview' | 'split'>('split');
+  const [viewMode, setViewMode] = useState<ViewMode>('split');
+  const isTablet = useMediaQuery('(min-width: 768px)');
+  const isWide = useMediaQuery('(min-width: 1280px)');
+  // O Split só cabe a partir do xl. Os detalhes viram aba só abaixo do md, onde a coluna deles não aparece.
+  const mode: ViewMode =
+    (viewMode === 'split' && !isWide) || (viewMode === 'details' && isTablet) ? 'editor' : viewMode;
 
   // Form State
   const [title, setTitle] = useState('');
@@ -259,20 +268,28 @@ function EditorContent() {
 
   if (loading) {
     return (
-      <div className="h-screen flex items-center justify-center font-mono text-[13px] text-[#857D74]">
+      <div className="h-[calc(100dvh-3.5rem)] lg:h-dvh flex items-center justify-center font-mono text-[13px] text-[#857D74]">
         Carregando editor...
       </div>
     );
   }
 
+  const viewTabs: { id: ViewMode; label: string }[] = [
+    { id: 'editor', label: 'Editor' },
+    { id: 'preview', label: 'Preview' },
+    ...(isWide ? [{ id: 'split' as const, label: 'Split' }] : []),
+    ...(isTablet ? [] : [{ id: 'details' as const, label: 'Detalhes' }]),
+  ];
+
   return (
-    <div className="h-screen flex flex-col min-w-0 bg-white font-sans overflow-hidden">
+    <div className="min-h-[calc(100dvh-3.5rem)] md:min-h-0 md:h-[calc(100dvh-3.5rem)] lg:h-dvh flex flex-col min-w-0 bg-white font-sans md:overflow-hidden">
       {/* Top Header Bar */}
-      <div className="flex items-center justify-between gap-5 p-[14px_24px] bg-white border-b border-[#E4DFD7] shrink-0">
-        <div className="flex items-center gap-3.5 min-w-0">
+      <div className="flex flex-wrap md:flex-nowrap items-center justify-between gap-x-5 gap-y-3 p-[12px_16px] md:p-[14px_24px] bg-white border-b border-[#E4DFD7] shrink-0">
+        <div className="flex items-center gap-3.5 min-w-0 w-full md:w-auto md:flex-1">
           <Link
             href="/admin/posts"
-            className="flex items-center justify-center w-[34px] h-[34px] border border-[#DDD6CB] rounded text-[#55504A] hover:bg-[#FAF8F4] shrink-0 transition-colors"
+            aria-label="Voltar para artigos"
+            className="flex items-center justify-center w-[34px] h-[34px] coarse:w-11 coarse:h-11 border border-[#DDD6CB] rounded text-[#55504A] hover:bg-[#FAF8F4] shrink-0 transition-colors"
           >
             <svg
               width="16"
@@ -288,7 +305,7 @@ function EditorContent() {
             </svg>
           </Link>
 
-          <div className="flex flex-col gap-0.5 min-w-0">
+          <div className="flex flex-col gap-0.5 min-w-0 flex-1">
             <input
               type="text"
               value={title}
@@ -297,9 +314,9 @@ function EditorContent() {
                 setTitle(e.target.value);
                 setHasUnsavedChanges(true);
               }}
-              className="text-[15px] font-semibold text-[#1C1A17] bg-transparent outline-none border-b border-transparent focus:border-[#DDD6CB] truncate pr-2"
+              className="w-full text-[15px] coarse:text-[16px] font-semibold text-[#1C1A17] bg-transparent outline-none border-b border-transparent focus:border-[#DDD6CB] truncate pr-2"
             />
-            <div className="flex items-center gap-2.5 text-[12px]">
+            <div className="flex flex-wrap items-center gap-x-2.5 gap-y-0.5 text-[12px]">
               {status === PostStatus.PUBLISHED ? (
                 <span className="inline-flex items-center gap-1.5 text-[#1F5E5B]">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#1F5E5B]" />
@@ -327,45 +344,30 @@ function EditorContent() {
         </div>
 
         {/* Action Controls */}
-        <div className="flex items-center gap-2.5 shrink-0">
+        <div className="flex flex-wrap md:flex-nowrap items-center gap-2.5 w-full md:w-auto md:shrink-0">
           {/* View mode switcher */}
-          <div className="flex gap-[3px] bg-[#EBE6DE] rounded p-[3px]">
-            <button
-              onClick={() => setViewMode('editor')}
-              className={`h-8 px-3 rounded text-[13px] transition-colors ${
-                viewMode === 'editor'
-                  ? 'bg-white text-[#1C1A17] font-medium shadow-sm'
-                  : 'text-[#55504A] hover:text-[#1C1A17]'
-              }`}
-            >
-              Editor
-            </button>
-            <button
-              onClick={() => setViewMode('preview')}
-              className={`h-8 px-3 rounded text-[13px] transition-colors ${
-                viewMode === 'preview'
-                  ? 'bg-white text-[#1C1A17] font-medium shadow-sm'
-                  : 'text-[#55504A] hover:text-[#1C1A17]'
-              }`}
-            >
-              Preview
-            </button>
-            <button
-              onClick={() => setViewMode('split')}
-              className={`h-8 px-3 rounded text-[13px] transition-colors ${
-                viewMode === 'split'
-                  ? 'bg-white text-[#1C1A17] font-medium shadow-sm'
-                  : 'text-[#55504A] hover:text-[#1C1A17]'
-              }`}
-            >
-              Split
-            </button>
+          <div className="flex gap-[3px] bg-[#EBE6DE] rounded p-[3px] w-full sm:w-auto">
+            {viewTabs.map((tab) => (
+              <button
+                key={tab.id}
+                type="button"
+                onClick={() => setViewMode(tab.id)}
+                aria-pressed={mode === tab.id}
+                className={`grow sm:grow-0 h-8 coarse:h-10 px-3 rounded text-[13px] transition-colors ${
+                  mode === tab.id
+                    ? 'bg-white text-[#1C1A17] font-medium shadow-sm'
+                    : 'text-[#55504A] hover:text-[#1C1A17]'
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
           </div>
 
           <button
             onClick={() => handleSave(false)}
             disabled={saving}
-            className="h-[38px] px-4 border border-[#DDD6CB] rounded bg-white text-[#38332E] hover:bg-[#FAF8F4] text-[14px] transition-colors cursor-pointer disabled:opacity-50"
+            className="grow sm:grow-0 h-[38px] coarse:h-11 px-4 border border-[#DDD6CB] rounded bg-white text-[#38332E] hover:bg-[#FAF8F4] text-[14px] transition-colors cursor-pointer disabled:opacity-50"
           >
             {saving ? 'Salvando...' : 'Salvar'}
           </button>
@@ -373,7 +375,7 @@ function EditorContent() {
           <button
             onClick={() => handleSave(true)}
             disabled={saving}
-            className="h-[38px] px-4 rounded bg-[#1C1A17] hover:bg-[#2E2A26] text-[#FAF8F4] text-[14px] font-medium transition-colors cursor-pointer disabled:opacity-50"
+            className="grow sm:grow-0 h-[38px] coarse:h-11 px-4 rounded bg-[#1C1A17] hover:bg-[#2E2A26] text-[#FAF8F4] text-[14px] font-medium whitespace-nowrap transition-colors cursor-pointer disabled:opacity-50"
           >
             {status === PostStatus.PUBLISHED ? 'Atualizar publicação' : 'Publicar'}
           </button>
@@ -381,16 +383,16 @@ function EditorContent() {
       </div>
 
       {/* Main 3-Column Body */}
-      <div className="flex-1 grid grid-cols-1 md:grid-cols-[1fr_1fr_304px] min-h-0 overflow-hidden">
+      <div
+        className={`flex-1 grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_304px] md:grid-rows-[minmax(0,1fr)] min-h-0 md:overflow-hidden ${
+          mode === 'split' ? 'xl:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_304px]' : ''
+        }`}
+      >
         {/* Column 1: Markdown Editor */}
-        {(viewMode === 'editor' || viewMode === 'split') && (
-          <div
-            className={`flex flex-col border-r border-[#E4DFD7] bg-white min-w-0 ${
-              viewMode === 'editor' ? 'col-span-2' : ''
-            }`}
-          >
+        {(mode === 'editor' || mode === 'split') && (
+          <div className="flex flex-col md:border-r border-[#E4DFD7] bg-white min-w-0 min-h-0">
             {/* Toolbar */}
-            <div className="flex items-center gap-2.5 p-[9px_16px] border-b border-[#F0ECE4] bg-[#FAF8F4]">
+            <div className="flex flex-wrap items-center gap-2.5 p-[9px_16px] border-b border-[#F0ECE4] bg-[#FAF8F4]">
               <span className="font-mono text-[10.5px] tracking-[0.1em] uppercase text-[#857D74]">
                 Markdown
               </span>
@@ -399,7 +401,7 @@ function EditorContent() {
                   type="button"
                   onClick={() => insertFormatting('**', '**')}
                   title="Negrito (Bold)"
-                  className="w-7 h-7 inline-flex items-center justify-center rounded text-[#857D74] hover:text-[#1C1A17] hover:bg-[#EBE6DE] font-mono text-[12px] font-semibold"
+                  className="w-7 h-7 coarse:w-10 coarse:h-10 inline-flex items-center justify-center rounded text-[#857D74] hover:text-[#1C1A17] hover:bg-[#EBE6DE] font-mono text-[12px] font-semibold"
                 >
                   B
                 </button>
@@ -407,7 +409,7 @@ function EditorContent() {
                   type="button"
                   onClick={() => insertFormatting('*', '*')}
                   title="Itálico"
-                  className="w-7 h-7 inline-flex items-center justify-center rounded text-[#857D74] hover:text-[#1C1A17] hover:bg-[#EBE6DE] font-mono text-[12px] italic"
+                  className="w-7 h-7 coarse:w-10 coarse:h-10 inline-flex items-center justify-center rounded text-[#857D74] hover:text-[#1C1A17] hover:bg-[#EBE6DE] font-mono text-[12px] italic"
                 >
                   I
                 </button>
@@ -415,7 +417,7 @@ function EditorContent() {
                   type="button"
                   onClick={() => insertFormatting('[', '](https://)')}
                   title="Link"
-                  className="w-7 h-7 inline-flex items-center justify-center rounded text-[#857D74] hover:text-[#1C1A17] hover:bg-[#EBE6DE]"
+                  className="w-7 h-7 coarse:w-10 coarse:h-10 inline-flex items-center justify-center rounded text-[#857D74] hover:text-[#1C1A17] hover:bg-[#EBE6DE]"
                 >
                   <svg
                     width="15"
@@ -435,7 +437,7 @@ function EditorContent() {
                   type="button"
                   onClick={() => insertFormatting('```\n', '\n```')}
                   title="Código"
-                  className="w-7 h-7 inline-flex items-center justify-center rounded text-[#857D74] hover:text-[#1C1A17] hover:bg-[#EBE6DE]"
+                  className="w-7 h-7 coarse:w-10 coarse:h-10 inline-flex items-center justify-center rounded text-[#857D74] hover:text-[#1C1A17] hover:bg-[#EBE6DE]"
                 >
                   <svg
                     width="15"
@@ -454,7 +456,7 @@ function EditorContent() {
                   type="button"
                   onClick={() => insertFormatting('![imagem](', ')')}
                   title="Imagem"
-                  className="w-7 h-7 inline-flex items-center justify-center rounded text-[#857D74] hover:text-[#1C1A17] hover:bg-[#EBE6DE]"
+                  className="w-7 h-7 coarse:w-10 coarse:h-10 inline-flex items-center justify-center rounded text-[#857D74] hover:text-[#1C1A17] hover:bg-[#EBE6DE]"
                 >
                   <svg
                     width="15"
@@ -483,7 +485,7 @@ function EditorContent() {
                 setMarkdown(e.target.value);
                 setHasUnsavedChanges(true);
               }}
-              className="flex-1 p-5 md:p-[20px_22px] font-mono text-[13.5px] leading-[1.85] text-[#38332E] outline-none resize-none overflow-y-auto"
+              className="flex-1 min-h-[60dvh] md:min-h-0 p-4 md:p-[20px_22px] font-mono text-[13.5px] coarse:text-[16px] leading-[1.85] text-[#38332E] outline-none resize-none overflow-y-auto"
             />
 
             {/* Status Footer */}
@@ -497,13 +499,9 @@ function EditorContent() {
         )}
 
         {/* Column 2: Live Article Preview */}
-        {(viewMode === 'preview' || viewMode === 'split') && (
-          <div
-            className={`flex flex-col border-r border-[#E4DFD7] bg-[#FAF8F4] min-w-0 ${
-              viewMode === 'preview' ? 'col-span-2' : ''
-            }`}
-          >
-            <div className="flex items-center gap-2.5 p-[9px_16px] border-b border-[#F0ECE4] bg-[#FAF8F4]">
+        {(mode === 'preview' || mode === 'split') && (
+          <div className="flex flex-col md:border-r border-[#E4DFD7] bg-[#FAF8F4] min-w-0 min-h-0">
+            <div className="flex flex-wrap items-center gap-2.5 p-[9px_16px] border-b border-[#F0ECE4] bg-[#FAF8F4]">
               <span className="font-mono text-[10.5px] tracking-[0.1em] uppercase text-[#857D74]">
                 Preview
               </span>
@@ -524,14 +522,15 @@ function EditorContent() {
               </span>
             </div>
 
-            <div className="flex-1 p-6 md:p-[26px_30px] overflow-y-auto">
+            <div className="flex-1 min-h-0 p-4 sm:p-6 md:p-[26px_30px] overflow-y-auto">
               <ArticleRenderer content={markdown || '*O preview aparecerá aqui...*'} />
             </div>
           </div>
         )}
 
         {/* Column 3: Sidebar Settings Drawer */}
-        <div className="bg-white border-l border-[#E4DFD7] p-5 flex flex-col gap-5 overflow-y-auto">
+        {(isTablet || mode === 'details') && (
+        <div className="bg-white md:border-l border-[#E4DFD7] p-4 md:p-5 flex flex-col gap-5 min-w-0 min-h-0 md:overflow-y-auto">
           {/* Slug */}
           <div className="flex flex-col gap-1.5">
             <label className="font-mono text-[10.5px] tracking-[0.1em] uppercase text-[#857D74]">
@@ -545,7 +544,7 @@ function EditorContent() {
                 setSlug(e.target.value);
                 setHasUnsavedChanges(true);
               }}
-              className="h-[38px] px-2.5 border border-[#DDD6CB] rounded font-mono text-[12.5px] text-[#1C1A17] outline-none focus:border-[#1C1A17]"
+              className="h-[38px] coarse:h-11 px-2.5 border border-[#DDD6CB] rounded font-mono text-[12.5px] text-[#1C1A17] outline-none focus:border-[#1C1A17] coarse:text-[16px]"
             />
             {status === PostStatus.PUBLISHED && (
               <span className="flex items-start gap-1.5 text-[11.5px] leading-relaxed text-[#A6482C]">
@@ -579,7 +578,7 @@ function EditorContent() {
                   setLocale('pt-BR');
                   setHasUnsavedChanges(true);
                 }}
-                className={`flex-1 h-8 rounded text-[13px] transition-colors ${
+                className={`flex-1 h-8 coarse:h-11 rounded text-[13px] transition-colors ${
                   locale === 'pt-BR'
                     ? 'bg-white text-[#1C1A17] font-medium shadow-sm'
                     : 'text-[#55504A]'
@@ -593,7 +592,7 @@ function EditorContent() {
                   setLocale('en');
                   setHasUnsavedChanges(true);
                 }}
-                className={`flex-1 h-8 rounded text-[13px] transition-colors ${
+                className={`flex-1 h-8 coarse:h-11 rounded text-[13px] transition-colors ${
                   locale === 'en'
                     ? 'bg-white text-[#1C1A17] font-medium shadow-sm'
                     : 'text-[#55504A]'
@@ -617,7 +616,7 @@ function EditorContent() {
                 setExcerpt(e.target.value);
                 setHasUnsavedChanges(true);
               }}
-              className="min-h-[72px] p-2.5 border border-[#DDD6CB] rounded text-[13px] leading-relaxed text-[#1C1A17] outline-none focus:border-[#1C1A17] resize-y"
+              className="min-h-[72px] p-2.5 border border-[#DDD6CB] rounded text-[13px] leading-relaxed text-[#1C1A17] outline-none focus:border-[#1C1A17] coarse:text-[16px] resize-y"
             />
             <span className="font-mono text-[11px] text-[#A29A90] text-right">
               {excerpt.length} / 320
@@ -635,7 +634,7 @@ function EditorContent() {
                 setCategoryId(e.target.value);
                 setHasUnsavedChanges(true);
               }}
-              className="h-[38px] px-2.5 border border-[#DDD6CB] rounded bg-white text-[13.5px] text-[#1C1A17] outline-none focus:border-[#1C1A17]"
+              className="h-[38px] coarse:h-11 px-2.5 border border-[#DDD6CB] rounded bg-white text-[13.5px] text-[#1C1A17] outline-none focus:border-[#1C1A17] coarse:text-[16px]"
             >
               {categories.map((c) => (
                 <option key={c.id} value={c.id}>
@@ -660,14 +659,14 @@ function EditorContent() {
                 return (
                   <span
                     key={tagId}
-                    className="inline-flex items-center gap-1.5 h-7 px-2.5 rounded bg-[#F9F1ED] border border-[#EBD9D1] text-[#A6482C] font-mono text-[11.5px]"
+                    className="inline-flex items-center gap-1.5 min-h-7 coarse:min-h-9 py-1 px-2.5 max-w-full break-all rounded bg-[#F9F1ED] border border-[#EBD9D1] text-[#A6482C] font-mono text-[11.5px]"
                   >
                     {tagName}
                     <button
                       type="button"
                       onClick={() => toggleTag(tagId)}
                       aria-label={`Remover tag ${tagName}`}
-                      className="cursor-pointer hover:opacity-75"
+                      className="cursor-pointer hover:opacity-75 shrink-0 coarse:w-8 coarse:h-8 coarse:inline-flex coarse:items-center coarse:justify-center"
                     >
                       <svg
                         width="11"
@@ -688,7 +687,7 @@ function EditorContent() {
               <button
                 type="button"
                 onClick={() => setAvailableTagDropdownOpen(!availableTagDropdownOpen)}
-                className="h-7 px-2.5 border border-dashed border-[#DDD6CB] rounded bg-transparent text-[#857D74] hover:text-[#1C1A17] font-mono text-[11.5px] cursor-pointer"
+                className="h-7 coarse:h-9 px-2.5 border border-dashed border-[#DDD6CB] rounded bg-transparent text-[#857D74] hover:text-[#1C1A17] font-mono text-[11.5px] cursor-pointer"
               >
                 + tag
               </button>
@@ -705,7 +704,7 @@ function EditorContent() {
                       key={t.id}
                       type="button"
                       onClick={() => toggleTag(t.id)}
-                      className={`h-6 px-2 rounded font-mono text-[11px] transition-colors ${
+                      className={`h-6 coarse:h-10 px-2 rounded font-mono text-[11px] transition-colors ${
                         isSelected
                           ? 'bg-[#1C1A17] text-white'
                           : 'bg-white border border-[#DDD6CB] text-[#55504A] hover:border-[#1C1A17]'
@@ -732,7 +731,7 @@ function EditorContent() {
                 setCoverImageUrl(e.target.value);
                 setHasUnsavedChanges(true);
               }}
-              className="h-[38px] px-2.5 border border-[#DDD6CB] rounded text-[12.5px] text-[#1C1A17] outline-none focus:border-[#1C1A17]"
+              className="h-[38px] coarse:h-11 px-2.5 border border-[#DDD6CB] rounded text-[12.5px] text-[#1C1A17] outline-none focus:border-[#1C1A17] coarse:text-[16px]"
             />
             <div className="w-full aspect-video border border-dashed border-[#DDD6CB] rounded flex flex-col items-center justify-center gap-1.5 text-[#A29A90] bg-[#FBFAF7] overflow-hidden">
               {coverImageUrl ? (
@@ -784,56 +783,64 @@ function EditorContent() {
               <button
                 type="button"
                 onClick={() => setVersionDrawerOpen(true)}
-                className="text-left text-[12.5px] text-[#A6482C] hover:text-[#8C3A21] underline decoration-[#A6482C]/30 hover:decoration-[#8C3A21] font-medium pt-1 cursor-pointer transition-colors"
+                className="text-left text-[12.5px] text-[#A6482C] hover:text-[#8C3A21] underline decoration-[#A6482C]/30 hover:decoration-[#8C3A21] font-medium pt-1 coarse:py-3 cursor-pointer transition-colors"
               >
                 Ver histórico de versões →
               </button>
             )}
           </div>
         </div>
+        )}
       </div>
 
       {/* Confirmation Modal for Slug Redirection (BR-004, AC-10.1) */}
       {showSlugRedirectModal && (
-        <div className="fixed inset-0 z-50 bg-[#1C1A17]/40 flex items-center justify-center p-5">
-          <div className="w-full max-w-[500px] bg-white rounded-lg shadow-2xl p-6 flex flex-col gap-4">
-            <h3 className="text-[18px] font-semibold text-[#1C1A17] m-0">
+        <AdminDialog
+          labelledBy="slug-dialog-title"
+          onClose={() => {
+            setSlug(originalSlug);
+            setShowSlugRedirectModal(false);
+          }}
+          className="max-w-[500px]"
+        >
+          <div className="p-5 sm:p-6 flex flex-col gap-4">
+            <h3 id="slug-dialog-title" className="text-[18px] font-semibold text-[#1C1A17] m-0">
               Confirmar alteração de endereço (Slug)
             </h3>
             <p className="text-[14px] leading-relaxed text-[#38332E] m-0">
               Você está alterando o slug de um artigo publicado de:
               <br />
-              <strong className="font-mono text-[12.5px] text-[#A6482C]">/{originalSlug}</strong>
+              <strong className="font-mono text-[12.5px] text-[#A6482C] break-all">/{originalSlug}</strong>
               <br />
               para:
               <br />
-              <strong className="font-mono text-[12.5px] text-[#1F5E5B]">/{slug}</strong>
+              <strong className="font-mono text-[12.5px] text-[#1F5E5B] break-all">/{slug}</strong>
             </p>
             <p className="text-[13px] leading-relaxed text-[#857D74] m-0">
               O slug anterior será arquivado e continuará redirecionando (HTTP 301) para a nova
               URL, preservando SEO e links externos (BR-004).
             </p>
-            <div className="flex justify-end gap-2.5 mt-2">
+            <div className="flex flex-col-reverse sm:flex-row sm:justify-end gap-2.5 mt-2">
               <button
                 type="button"
                 onClick={() => {
                   setSlug(originalSlug);
                   setShowSlugRedirectModal(false);
                 }}
-                className="h-9 px-4 border border-[#DDD6CB] rounded bg-white text-[#38332E] text-[13.5px]"
+                className="h-9 coarse:h-11 px-4 border border-[#DDD6CB] rounded bg-white text-[#38332E] text-[13.5px]"
               >
                 Cancelar
               </button>
               <button
                 type="button"
                 onClick={() => handleSave(status === PostStatus.PUBLISHED)}
-                className="h-9 px-4 rounded bg-[#1C1A17] text-[#FAF8F4] text-[13.5px] font-medium"
+                className="h-9 coarse:h-11 px-4 rounded bg-[#1C1A17] text-[#FAF8F4] text-[13.5px] font-medium"
               >
                 Confirmar e atualizar
               </button>
             </div>
           </div>
-        </div>
+        </AdminDialog>
       )}
 
       {/* Version History Drawer (US-12, T05.02) */}
@@ -853,7 +860,7 @@ export default function AdminEditorPage() {
   return (
     <Suspense
       fallback={
-        <div className="h-screen flex items-center justify-center font-mono text-[13px] text-[#857D74]">
+        <div className="h-[calc(100dvh-3.5rem)] lg:h-dvh flex items-center justify-center font-mono text-[13px] text-[#857D74]">
           Carregando editor...
         </div>
       }

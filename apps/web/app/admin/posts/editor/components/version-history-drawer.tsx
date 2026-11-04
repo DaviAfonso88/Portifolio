@@ -101,7 +101,7 @@ export function VersionHistoryDrawer({
               type="button"
               onClick={onClose}
               aria-label="Fechar histórico"
-              className="w-8 h-8 rounded-md flex items-center justify-center text-[#857D74] hover:text-[#1C1A17] hover:bg-[#F2EFE9] transition-colors cursor-pointer"
+              className="w-8 h-8 coarse:w-11 coarse:h-11 rounded-md flex items-center justify-center text-[#857D74] hover:text-[#1C1A17] hover:bg-[#F2EFE9] transition-colors cursor-pointer shrink-0"
             >
               <svg
                 width="16"

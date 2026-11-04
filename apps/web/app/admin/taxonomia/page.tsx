@@ -3,10 +3,15 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { useAdminAuth } from '@/lib/admin-auth-context';
+import { AdminDialog } from '../components/admin-dialog';
 
 // Mesmos limites das colunas no banco.
 const CATEGORY_NAME_MAX_LENGTH = 60;
 const TAG_NAME_MAX_LENGTH = 40;
+
+// Abaixo de sm os dois nomes dividem a primeira coluna; com toque, as ações precisam de mais largura.
+const CATEGORY_GRID =
+  'grid-cols-[minmax(0,1fr)_36px_72px] sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_62px_72px] coarse:grid-cols-[minmax(0,1fr)_36px_92px] sm:coarse:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_62px_92px]';
 
 function inUseSummary(postCount: number): string {
   const articles = postCount === 1 ? '1 artigo' : `${postCount} artigos`;
@@ -256,7 +261,7 @@ export default function AdminTaxonomiaPage() {
   };
 
   return (
-    <main className="p-7 md:p-[28px_36px_48px] flex flex-col gap-6 font-sans">
+    <main className="p-4 sm:p-7 lg:p-[28px_36px_48px] flex flex-col gap-6 font-sans">
       {/* Title */}
       <div className="flex flex-col gap-1">
         <h1 className="text-[25px] font-semibold text-[#1C1A17] m-0">Categorias e tags</h1>
@@ -267,7 +272,7 @@ export default function AdminTaxonomiaPage() {
       </div>
 
       {/* 2-Columns Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 items-start">
         {/* Left Column: Categorias */}
         <section className="flex flex-col gap-3.5 min-w-0">
           <div className="flex items-center justify-between gap-4">
@@ -279,7 +284,7 @@ export default function AdminTaxonomiaPage() {
             </h2>
             <button
               onClick={() => handleOpenCategoryModal()}
-              className="inline-flex items-center gap-1.5 h-[34px] px-3.5 border border-[#DDD6CB] rounded bg-white text-[#38332E] hover:bg-[#FAF8F4] text-[13.5px] transition-colors cursor-pointer"
+              className="inline-flex items-center gap-1.5 h-[34px] coarse:h-11 px-3.5 border border-[#DDD6CB] rounded bg-white text-[#38332E] hover:bg-[#FAF8F4] text-[13.5px] transition-colors cursor-pointer"
             >
               <svg
                 width="14"
@@ -298,9 +303,10 @@ export default function AdminTaxonomiaPage() {
 
           <div className="bg-white border border-[#E4DFD7] rounded-lg overflow-hidden shadow-sm">
             {/* Table Header */}
-            <div className="grid grid-cols-[1fr_1fr_62px_72px] gap-3 p-[11px_18px] bg-[#FAF8F4] border-b border-[#E4DFD7] font-mono text-[10px] tracking-[0.1em] uppercase text-[#857D74]">
-              <span>pt-BR</span>
-              <span>en</span>
+            <div className={`grid ${CATEGORY_GRID} gap-2 sm:gap-3 p-[11px_12px] sm:p-[11px_18px] bg-[#FAF8F4] border-b border-[#E4DFD7] font-mono text-[10px] tracking-[0.1em] uppercase text-[#857D74]`}>
+              <span className="sm:hidden">pt-BR / en</span>
+              <span className="hidden sm:block">pt-BR</span>
+              <span className="hidden sm:block">en</span>
               <span className="text-right">Posts</span>
               <span></span>
             </div>
@@ -319,12 +325,14 @@ export default function AdminTaxonomiaPage() {
                 return (
                   <div
                     key={cat.id}
-                    className={`grid grid-cols-[1fr_1fr_62px_72px] gap-3 p-[13px_18px] border-b border-[#F0ECE4] items-center text-[14px] ${
+                    className={`grid ${CATEGORY_GRID} gap-2 sm:gap-3 p-[12px] sm:p-[13px_18px] border-b border-[#F0ECE4] last:border-b-0 items-center text-[14px] ${
                       isAlternate ? 'bg-[#FBFAF7]' : 'bg-white'
                     }`}
                   >
-                    <span className="font-medium text-[#1C1A17] truncate">{cat.namePtBr}</span>
-                    <span className="text-[#55504A] truncate">{cat.nameEn}</span>
+                    <div className="flex flex-col gap-0.5 min-w-0 sm:contents">
+                      <span className="font-medium text-[#1C1A17] break-words sm:truncate">{cat.namePtBr}</span>
+                      <span className="text-[#55504A] break-words sm:truncate">{cat.nameEn}</span>
+                    </div>
                     <span
                       className={`font-mono text-[12.5px] text-right ${
                         cat.postCount > 0 ? 'text-[#55504A]' : 'text-[#A29A90]'
@@ -336,7 +344,7 @@ export default function AdminTaxonomiaPage() {
                       <button
                         onClick={() => handleOpenCategoryModal(cat)}
                         title="Editar categoria"
-                        className="w-7 h-7 inline-flex items-center justify-center text-[#857D74] hover:text-[#1C1A17] rounded hover:bg-[#F0ECE4] transition-colors cursor-pointer"
+                        className="w-7 h-7 coarse:w-11 coarse:h-11 inline-flex items-center justify-center text-[#857D74] hover:text-[#1C1A17] rounded hover:bg-[#F0ECE4] transition-colors cursor-pointer"
                       >
                         <svg
                           width="15"
@@ -359,7 +367,7 @@ export default function AdminTaxonomiaPage() {
                             ? `Não pode ser excluída: ${inUseSummary(cat.postCount)} (BR-009)`
                             : 'Excluir categoria'
                         }
-                        className={`w-7 h-7 inline-flex items-center justify-center rounded transition-colors ${
+                        className={`w-7 h-7 coarse:w-11 coarse:h-11 inline-flex items-center justify-center rounded transition-colors ${
                           inUse
                             ? 'text-[#CFC7BC] cursor-not-allowed'
                             : 'text-[#B5442B] hover:bg-[#FDF6F4] cursor-pointer'
@@ -404,7 +412,7 @@ export default function AdminTaxonomiaPage() {
             </h2>
             <button
               onClick={handleStartCreateTag}
-              className="inline-flex items-center gap-1.5 h-[34px] px-3.5 border border-[#DDD6CB] rounded bg-white text-[#38332E] hover:bg-[#FAF8F4] text-[13.5px] transition-colors cursor-pointer"
+              className="inline-flex items-center gap-1.5 h-[34px] coarse:h-11 px-3.5 border border-[#DDD6CB] rounded bg-white text-[#38332E] hover:bg-[#FAF8F4] text-[13.5px] transition-colors cursor-pointer"
             >
               <svg
                 width="14"
@@ -430,7 +438,7 @@ export default function AdminTaxonomiaPage() {
                   <button
                     key={tag.id}
                     onClick={() => handleSelectTagForEdit(tag)}
-                    className={`inline-flex items-center gap-2 h-8 px-2.5 rounded font-mono text-[12.5px] transition-colors cursor-pointer ${
+                    className={`inline-flex items-center gap-2 h-8 coarse:h-11 px-2.5 max-w-full rounded font-mono text-[12.5px] transition-colors cursor-pointer ${
                       isSelected
                         ? 'border border-[#1C1A17] bg-[#1C1A17] text-[#FAF8F4]'
                         : tag.postCount > 0
@@ -438,7 +446,7 @@ export default function AdminTaxonomiaPage() {
                         : 'border border-dashed border-[#DDD6CB] text-[#A29A90] hover:border-[#1C1A17]'
                     }`}
                   >
-                    <span>{tag.namePtBr}</span>
+                    <span className="truncate min-w-0">{tag.namePtBr}</span>
                     <span
                       className={
                         isSelected
@@ -460,8 +468,8 @@ export default function AdminTaxonomiaPage() {
               <>
                 <div className="h-px bg-[#F0ECE4]" />
                 <form onSubmit={handleSaveTag} className="flex flex-col gap-3">
-                  <div className="flex items-center justify-between">
-                    <span className="font-mono text-[10.5px] tracking-[0.1em] uppercase text-[#857D74]">
+                  <div className="flex items-center justify-between gap-3">
+                    <span className="font-mono text-[10.5px] tracking-[0.1em] uppercase text-[#857D74] min-w-0 break-words">
                       {editingTag ? `Editando: ${editingTag.namePtBr}` : 'Nova Tag'}
                     </span>
                     {editingTag && (
@@ -474,7 +482,7 @@ export default function AdminTaxonomiaPage() {
                             ? `Não pode ser excluída: ${inUseSummary(editingTag.postCount)} (BR-009)`
                             : undefined
                         }
-                        className={`text-[12px] ${
+                        className={`text-[12px] shrink-0 coarse:h-11 coarse:px-2 coarse:-mr-2 ${
                           editingTag.postCount > 0
                             ? 'text-[#A29A90] cursor-not-allowed'
                             : 'text-[#B5442B] hover:underline cursor-pointer'
@@ -494,7 +502,7 @@ export default function AdminTaxonomiaPage() {
                         maxLength={TAG_NAME_MAX_LENGTH}
                         value={tagNamePtBr}
                         onChange={(e) => setTagNamePtBr(e.target.value)}
-                        className="h-9 px-2.5 border border-[#DDD6CB] rounded font-mono text-[12.5px] text-[#1C1A17] outline-none focus:border-[#1C1A17]"
+                        className="w-full h-9 coarse:h-11 px-2.5 border border-[#DDD6CB] rounded font-mono text-[12.5px] coarse:text-[16px] text-[#1C1A17] outline-none focus:border-[#1C1A17]"
                       />
                     </div>
                     <div className="flex flex-col gap-1.5">
@@ -505,7 +513,7 @@ export default function AdminTaxonomiaPage() {
                         maxLength={TAG_NAME_MAX_LENGTH}
                         value={tagNameEn}
                         onChange={(e) => setTagNameEn(e.target.value)}
-                        className="h-9 px-2.5 border border-[#DDD6CB] rounded font-mono text-[12.5px] text-[#1C1A17] outline-none focus:border-[#1C1A17]"
+                        className="w-full h-9 coarse:h-11 px-2.5 border border-[#DDD6CB] rounded font-mono text-[12.5px] coarse:text-[16px] text-[#1C1A17] outline-none focus:border-[#1C1A17]"
                       />
                     </div>
                   </div>
@@ -517,13 +525,13 @@ export default function AdminTaxonomiaPage() {
                         setEditingTag(null);
                         setIsCreatingTag(false);
                       }}
-                      className="h-[34px] px-3.5 border border-[#DDD6CB] rounded bg-white text-[#38332E] hover:bg-[#FAF8F4] text-[13.5px] cursor-pointer"
+                      className="h-[34px] coarse:h-11 px-3.5 border border-[#DDD6CB] rounded bg-white text-[#38332E] hover:bg-[#FAF8F4] text-[13.5px] cursor-pointer"
                     >
                       Cancelar
                     </button>
                     <button
                       type="submit"
-                      className="h-[34px] px-4 rounded bg-[#1C1A17] hover:bg-[#2E2A26] text-[#FAF8F4] text-[13.5px] font-medium cursor-pointer"
+                      className="h-[34px] coarse:h-11 px-4 rounded bg-[#1C1A17] hover:bg-[#2E2A26] text-[#FAF8F4] text-[13.5px] font-medium cursor-pointer"
                     >
                       Salvar
                     </button>
@@ -542,12 +550,13 @@ export default function AdminTaxonomiaPage() {
 
       {/* Category Modal */}
       {categoryModalOpen && (
-        <div className="fixed inset-0 z-50 bg-[#1C1A17]/40 flex items-center justify-center p-5">
-          <form
-            onSubmit={handleSaveCategory}
-            className="w-full max-w-[440px] bg-white rounded-lg shadow-xl p-6 flex flex-col gap-4 animate-in fade-in zoom-in-95 duration-150"
-          >
-            <h3 className="text-[18px] font-semibold text-[#1C1A17] m-0">
+        <AdminDialog
+          labelledBy="category-dialog-title"
+          onClose={() => setCategoryModalOpen(false)}
+          className="max-w-[440px]"
+        >
+          <form onSubmit={handleSaveCategory} className="p-5 sm:p-6 flex flex-col gap-4">
+            <h3 id="category-dialog-title" className="text-[18px] font-semibold text-[#1C1A17] m-0">
               {editingCategory ? 'Editar Categoria' : 'Nova Categoria'}
             </h3>
 
@@ -560,7 +569,7 @@ export default function AdminTaxonomiaPage() {
                 value={catNamePtBr}
                 onChange={(e) => setCatNamePtBr(e.target.value)}
                 placeholder="Ex: Arquitetura"
-                className="h-10 px-3 border border-[#DDD6CB] rounded text-[14px] text-[#1C1A17] outline-none focus:border-[#1C1A17]"
+                className="h-10 coarse:h-11 px-3 border border-[#DDD6CB] rounded text-[14px] coarse:text-[16px] text-[#1C1A17] outline-none focus:border-[#1C1A17]"
               />
             </div>
 
@@ -573,7 +582,7 @@ export default function AdminTaxonomiaPage() {
                 value={catNameEn}
                 onChange={(e) => setCatNameEn(e.target.value)}
                 placeholder="Ex: Architecture"
-                className="h-10 px-3 border border-[#DDD6CB] rounded text-[14px] text-[#1C1A17] outline-none focus:border-[#1C1A17]"
+                className="h-10 coarse:h-11 px-3 border border-[#DDD6CB] rounded text-[14px] coarse:text-[16px] text-[#1C1A17] outline-none focus:border-[#1C1A17]"
               />
             </div>
 
@@ -581,24 +590,24 @@ export default function AdminTaxonomiaPage() {
               <button
                 type="button"
                 onClick={() => setCategoryModalOpen(false)}
-                className="h-9 px-4 border border-[#DDD6CB] rounded bg-white text-[#38332E] text-[13.5px]"
+                className="h-9 coarse:h-11 px-4 border border-[#DDD6CB] rounded bg-white text-[#38332E] text-[13.5px]"
               >
                 Cancelar
               </button>
               <button
                 type="submit"
-                className="h-9 px-4 rounded bg-[#1C1A17] text-[#FAF8F4] text-[13.5px] font-medium"
+                className="h-9 coarse:h-11 px-4 rounded bg-[#1C1A17] text-[#FAF8F4] text-[13.5px] font-medium"
               >
                 Salvar
               </button>
             </div>
           </form>
-        </div>
+        </AdminDialog>
       )}
 
       {/* Toast Notification */}
       {toastMessage && (
-        <div className="fixed bottom-6 left-72 z-50 flex items-center gap-3 bg-[#1C1A17] rounded-md p-[14px_18px] shadow-lg animate-in slide-in-from-bottom-2">
+        <div className="fixed bottom-4 left-4 right-4 lg:bottom-6 lg:left-72 lg:right-auto z-50 flex items-center gap-3 bg-[#1C1A17] rounded-md p-[14px_18px] shadow-lg animate-in slide-in-from-bottom-2">
           <svg
             width="17"
             height="17"
@@ -614,7 +623,7 @@ export default function AdminTaxonomiaPage() {
           <span className="text-[14px] text-[#FAF8F4]">{toastMessage}</span>
           <button
             onClick={() => setToastMessage(null)}
-            className="ml-5 text-[13px] text-[#A29A90] hover:text-white cursor-pointer"
+            className="ml-auto pl-5 shrink-0 coarse:h-11 text-[13px] text-[#A29A90] hover:text-white cursor-pointer"
           >
             Fechar
           </button>

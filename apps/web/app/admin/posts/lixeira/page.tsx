@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { PostStatus } from '@davidev/domain';
 import { useAdminAuth } from '@/lib/admin-auth-context';
+import { AdminDialog } from '../../components/admin-dialog';
 
 interface TrashPostItem {
   id: string;
@@ -86,7 +87,7 @@ export default function AdminTrashPage() {
   };
 
   return (
-    <main className="p-7 md:p-[28px_36px_48px] flex flex-col gap-6 font-sans">
+    <main className="p-4 sm:p-7 lg:p-[28px_36px_48px] flex flex-col gap-6 font-sans">
       {/* Title */}
       <div className="flex flex-col gap-1">
         <h1 className="text-[25px] font-semibold text-[#1C1A17] m-0">Lixeira</h1>
@@ -120,7 +121,7 @@ export default function AdminTrashPage() {
       {/* Table */}
       <div className="bg-white border border-[#E4DFD7] rounded-lg overflow-hidden shadow-sm">
         {/* Table Header */}
-        <div className="hidden md:grid grid-cols-[1fr_150px_160px_240px] gap-4 p-[13px_20px] bg-[#FAF8F4] border-b border-[#E4DFD7] font-mono text-[10.5px] tracking-[0.1em] uppercase text-[#857D74]">
+        <div className="hidden xl:grid grid-cols-[minmax(0,1fr)_150px_160px_296px] gap-4 p-[13px_20px] bg-[#FAF8F4] border-b border-[#E4DFD7] font-mono text-[10.5px] tracking-[0.1em] uppercase text-[#857D74]">
           <span>Título</span>
           <span>Estava como</span>
           <span>Enviado à lixeira</span>
@@ -148,19 +149,21 @@ export default function AdminTrashPage() {
             return (
               <div
                 key={post.id}
-                className={`grid grid-cols-1 md:grid-cols-[1fr_150px_160px_240px] gap-3 md:gap-4 p-4 md:p-[16px_20px] border-b border-[#F0ECE4] items-center ${
+                className={`grid grid-cols-1 xl:grid-cols-[minmax(0,1fr)_150px_160px_296px] gap-3 xl:gap-4 p-4 xl:p-[16px_20px] border-b border-[#F0ECE4] last:border-b-0 items-center ${
                   isAlternate ? 'bg-[#FBFAF7]' : 'bg-white'
                 }`}
               >
                 {/* Title & info */}
-                <div className="flex flex-col gap-1">
-                  <span className="text-[15px] font-medium text-[#1C1A17]">{post.title}</span>
+                <div className="flex flex-col gap-1 min-w-0">
+                  <span className="text-[15px] font-medium text-[#1C1A17] break-words">{post.title}</span>
                   <span className="font-mono text-[11px] text-[#A29A90]">
                     {post.currentVersion} {post.currentVersion === 1 ? 'versão' : 'versões'}
                     {historicalCount > 0 ? ` · ${historicalCount} slug histórico` : ''}
                   </span>
                 </div>
 
+                {/* Abaixo de xl, uma linha sob o título; a partir de xl, cada item é uma coluna. */}
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-1 xl:contents">
                 {/* Status before trash */}
                 <div>
                   {wasPublished ? (
@@ -178,20 +181,22 @@ export default function AdminTrashPage() {
 
                 {/* Sent to trash date */}
                 <span className="font-mono text-[12.5px] text-[#55504A]">
+                  <span className="xl:hidden">na lixeira desde </span>
                   {formatDate(post.updatedAt)}
                 </span>
+                </div>
 
                 {/* Actions */}
-                <div className="flex gap-2 justify-end">
+                <div className="flex flex-wrap gap-2 xl:flex-nowrap xl:justify-end">
                   <button
                     onClick={() => handleRestore(post.id)}
-                    className="h-[34px] px-3.5 border border-[#DDD6CB] rounded bg-white text-[#38332E] hover:bg-[#FAF8F4] text-[13.5px] transition-colors cursor-pointer"
+                    className="grow xl:grow-0 h-[34px] coarse:h-11 px-3.5 border border-[#DDD6CB] rounded bg-white text-[#38332E] hover:bg-[#FAF8F4] text-[13.5px] transition-colors cursor-pointer"
                   >
                     Restaurar
                   </button>
                   <button
                     onClick={() => setPostToDelete(post)}
-                    className="h-[34px] px-3.5 border border-[#E7C9BF] rounded bg-[#FDF6F4] text-[#B5442B] hover:bg-[#FBEBE7] text-[13.5px] transition-colors cursor-pointer"
+                    className="grow xl:grow-0 h-[34px] coarse:h-11 px-3.5 border border-[#E7C9BF] rounded bg-[#FDF6F4] text-[#B5442B] hover:bg-[#FBEBE7] text-[13.5px] transition-colors cursor-pointer whitespace-nowrap"
                   >
                     Excluir definitivamente
                   </button>
@@ -203,9 +208,12 @@ export default function AdminTrashPage() {
 
       {/* Confirmation Modal */}
       {postToDelete && (
-        <div className="fixed inset-0 z-50 bg-[#1C1A17]/40 flex items-center justify-center p-5">
-          <div className="w-full max-w-[540px] bg-white rounded-lg shadow-2xl overflow-hidden flex flex-col animate-in fade-in zoom-in-95 duration-150">
-            <div className="p-8 pb-6 flex flex-col gap-4">
+        <AdminDialog
+          labelledBy="delete-post-title"
+          onClose={() => setPostToDelete(null)}
+          className="max-w-[540px]"
+        >
+            <div className="p-5 sm:p-8 sm:pb-6 flex flex-col gap-4">
               <div className="flex items-center gap-3">
                 <div className="w-[38px] h-[38px] rounded-full bg-[#FDF0EC] flex items-center justify-center shrink-0">
                   <svg
@@ -221,7 +229,7 @@ export default function AdminTrashPage() {
                     <path d="M12 10v4M12 17h.01" />
                   </svg>
                 </div>
-                <h2 className="text-[20px] font-semibold text-[#1C1A17] m-0">
+                <h2 id="delete-post-title" className="text-[20px] font-semibold text-[#1C1A17] m-0">
                   Excluir definitivamente?
                 </h2>
               </div>
@@ -236,7 +244,7 @@ export default function AdminTrashPage() {
               </p>
 
               <div className="bg-[#FAF8F4] border border-[#E4DFD7] rounded p-3.5 flex flex-col gap-1">
-                <span className="text-[14px] font-medium text-[#1C1A17]">
+                <span className="text-[14px] font-medium text-[#1C1A17] break-words">
                   {postToDelete.title}
                 </span>
                 <span className="font-mono text-[11.5px] text-[#857D74]">
@@ -246,7 +254,7 @@ export default function AdminTrashPage() {
               </div>
             </div>
 
-            <div className="flex items-center justify-end gap-2.5 p-4 sm:p-[18px_32px] bg-[#FAF8F4] border-t border-[#E4DFD7] flex-wrap">
+            <div className="flex flex-col-reverse sm:flex-row sm:flex-wrap sm:items-center sm:justify-end gap-2.5 p-4 sm:p-[18px_32px] bg-[#FAF8F4] border-t border-[#E4DFD7]">
               <button
                 onClick={() => setPostToDelete(null)}
                 className="h-[42px] px-4 border border-[#DDD6CB] rounded bg-white text-[#38332E] hover:bg-[#FAF8F4] text-[14px] transition-colors cursor-pointer"
@@ -267,8 +275,7 @@ export default function AdminTrashPage() {
                 {isDeleting ? 'Excluindo...' : 'Excluir definitivamente'}
               </button>
             </div>
-          </div>
-        </div>
+        </AdminDialog>
       )}
     </main>
   );
