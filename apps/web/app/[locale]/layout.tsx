@@ -22,11 +22,11 @@ export async function generateMetadata({
 
   const isPt = locale === 'pt-BR';
   const title = isPt
-    ? 'DaviDev: Portfólio, Blog & Engenharia de Software'
-    : 'DaviDev: Portfolio, Blog & Software Engineering';
+    ? 'Davi Afonso | Desenvolvedor Full Stack .NET e React | DaviDev'
+    : 'Davi Afonso | Full Stack Developer, .NET and React | DaviDev';
   const description = isPt
-    ? 'Construo sistemas e mostro como foram construídos. Arquitetura, backend e automação em produção com processo 100% público.'
-    : 'I build systems and show how they were made. Architecture, backend, and automation in production with an entirely public process.';
+    ? 'Desenvolvedor full stack em Lagoa Santa, MG. Crio sistemas web completos com .NET e React, uso agentes de IA dentro de um fluxo com PRD, arquitetura e testes, e curso pós-graduação em Arquitetura de Software com IA.'
+    : 'Full stack developer based in Brazil. I build complete web systems with .NET and React, use AI agents inside a flow with a PRD, architecture and tests, and am taking a postgraduate course in Software Architecture with AI.';
 
   const baseUrl = 'https://davidev.net.br';
 

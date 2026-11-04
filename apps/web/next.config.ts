@@ -21,6 +21,20 @@ const nextConfig: NextConfig = {
     'bcryptjs',
     'jsonwebtoken',
   ],
+  async redirects() {
+    return [
+      ...['habilidades', 'conhecimentos'].map((page) => ({
+        source: `/:locale(pt-BR|en)/${page}`,
+        destination: '/:locale/sobre',
+        permanent: true,
+      })),
+      ...['sales-web-mvc', 'api-de-produtos'].map((slug) => ({
+        source: `/:locale(pt-BR|en)/projetos/${slug}`,
+        destination: '/:locale/projetos',
+        permanent: true,
+      })),
+    ];
+  },
   async headers() {
     return [
       {

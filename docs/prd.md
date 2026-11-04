@@ -24,6 +24,8 @@
 | 0.1 | 2026-09-09 | Davi Chaves | Rascunho inicial derivado do Documento de Referência |
 | 0.2 | 2026-09-09 | Davi Chaves | Resolvidas as questões 1, 6, 8, 11–19. Entram no escopo: i18n (pt-BR/en) e tema claro/escuro. Backend definido em Render. Exclusão passa a ser física com lixeira. Novas questões 20–24 abertas. |
 | 0.3 | 2026-09-09 | Davi Chaves | Origem do conteúdo definida (LinkedIn + GitHub como matéria-prima, com transformação obrigatória). Novo risco e nova premissa a validar. Questão #25 aberta. Hospedagem do backend (#1) revista: **Fastify como função serverless na Vercel**, substituindo o Render — riscos de estado em memória e de pool de conexões passam a ser explícitos. |
+| 0.4 | 2026-11-03 | Davi Chaves | Área pública simplificada para leitura de recrutadores: Habilidades e Conhecimentos (F3 e F4, Story 3) passam a ser a seção de tecnologias de Sobre, com redirecionamento das URLs antigas; a home deixa de listar artigos (o Blog segue no menu). Projetos refeitos com dados verificados nos repositórios. |
+| 0.5 | 2026-11-03 | Davi Chaves | Nova página Como trabalho no menu, com o fluxo de criação de software do autor, o uso de agentes de IA e os estudos de arquitetura; a home passa a destacar esse método logo abaixo do topo. |
 
 ### Índice
 

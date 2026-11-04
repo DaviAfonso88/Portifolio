@@ -9,13 +9,12 @@ export interface Dictionary {
   nav: {
     home: string;
     about: string;
-    skills: string;
-    knowledge: string;
     experiences: string;
     projects: string;
     blog: string;
     contact: string;
     howItWasBuilt: string;
+    howIWork: string;
     privacy: string;
   };
   header: {
@@ -40,70 +39,37 @@ export interface Dictionary {
     copyright: string;
   };
   home: {
-    badge: string;
     headline: string;
     subheadline: string;
     ctaProjects: string;
-    ctaHowBuilt: string;
-    stackTitle: string;
-    stackItems: string[];
-    roleTitle: string;
-    roleValue: string;
-    locationTitle: string;
-    locationValue: string;
-    availabilityTitle: string;
-    availabilityValue: string;
-    featuredSectionNumber: string;
+    ctaContact: string;
+    photoAlt: string;
+    facts: { label: string; value: string }[];
     featuredTitle: string;
     allProjectsLink: string;
-    recentWritingNumber: string;
-    recentWritingTitle: string;
-    allArticlesLink: string;
-    differentialNumber: string;
-    differentialTitle: string;
-    differentialBody: string;
-    differentialCta: string;
+    aiTitleLines: string[];
+    aiBody: string;
+    aiCta: string;
+    aiFlow: string[];
+    contactTitle: string;
+    contactBody: string;
   };
   about: {
-    badge: string;
     headline: string;
     paragraphs: string[];
-    focusTitle: string;
-    focusValue: string;
+    methodLink: string;
     baseTitle: string;
     baseValue: string;
     languagesTitle: string;
     languagesValue: string;
-    photoPlaceholder: string;
+    photoAlt: string;
     trajectoryTitle: string;
     milestones: { year: string; description: string }[];
-  };
-  skills: {
-    badge: string;
-    headline: string;
-    intro: string;
-    categories: {
-      number: string;
-      title: string;
-      items: { name: string; description: string }[];
-    }[];
-  };
-  knowledge: {
-    badge: string;
-    headline: string;
-    intro: string;
-    items: {
-      title: string;
-      tag: string;
-      description: string;
-      costLabel: string;
-      cost: string;
-    }[];
+    stackTitle: string;
+    stackGroups: { title: string; items: string }[];
   };
   experiences: {
-    badge: string;
     headline: string;
-    intro: string;
     positions: {
       period: string;
       company: string;
@@ -113,28 +79,46 @@ export interface Dictionary {
       highlights: string[];
       technologies: string[];
     }[];
+    educationTitle: string;
+    education: { period: string; title: string; institution: string }[];
   };
   projects: {
-    badge: string;
     headline: string;
     intro: string;
+    labels: {
+      viewDetails: string;
+      role: string;
+      stack: string;
+      flow: string;
+      problem: string;
+      delivered: string;
+      decisions: string;
+      tradeoff: string;
+      result: string;
+      links: string;
+      privateNote: string;
+    };
     items: {
       slug: string;
       title: string;
+      kind: string;
       status: string;
+      isLive: boolean;
+      isPrivate: boolean;
       period: string;
-      stack: string[];
-      problem: string;
-      result: string;
-      role: string;
-      detailLink: string;
       summary: string;
-      engineeringChallenge?: string;
-      decisions?: { title: string; desc: string; tradeoff: string }[];
+      highlight: string;
+      role: string;
+      stack: string[];
+      flow: string[];
+      problem: string;
+      delivered: string[];
+      decisions: { title: string; desc: string; tradeoff: string }[];
+      result: string;
+      links: { label: string; href: string }[];
     }[];
   };
   contact: {
-    badge: string;
     headline: string;
     intro: string;
     emailLabel: string;
@@ -188,6 +172,35 @@ export interface Dictionary {
       rows: [string, string][];
     };
   };
+  howIWork: {
+    metaTitle: string;
+    metaDescription: string;
+    headlineLines: string[];
+    intro: string;
+    flowTitle: string;
+    flowIntro: string;
+    layers: { name: string; question: string; description: string }[];
+    authorityTitle: string;
+    authorityChainLabel: string;
+    authorityChain: string[];
+    authorityBody: string;
+    splitTitle: string;
+    splitAiTitle: string;
+    splitAiItems: string[];
+    splitMeTitle: string;
+    splitMeItems: string[];
+    studyTitle: string;
+    studyParagraphs: string[];
+    studyLink: { label: string; href: string };
+    appliedTitle: string;
+    applied: { topic: string; where: string }[];
+    appliedExtra: string;
+    proofTitle: string;
+    proof: { title: string; href: string; detail: string }[];
+    teachingBody: string;
+    ctaBuilt: string;
+    ctaContact: string;
+  };
   howItWasBuilt: {
     badge: string;
     headline: string;
@@ -216,13 +229,12 @@ const dictionaries: Record<string, Dictionary> = {
     nav: {
       home: 'Início',
       about: 'Sobre',
-      skills: 'Habilidades',
-      knowledge: 'Conhecimentos',
-      experiences: 'Experiências',
+      experiences: 'Experiência',
       projects: 'Projetos',
       blog: 'Blog',
       contact: 'Contato',
       howItWasBuilt: 'Como foi construído',
+      howIWork: 'Como trabalho',
       privacy: 'Privacidade',
     },
     header: {
@@ -231,7 +243,7 @@ const dictionaries: Record<string, Dictionary> = {
     },
     footer: {
       colophonTitle: 'Davi Afonso',
-      colophonLine1: 'Desenvolvedor Full Stack & Engenharia de IA',
+      colophonLine1: 'Desenvolvedor Full Stack (.NET e React)',
       colophonLine2: 'Lagoa Santa, Minas Gerais · Remoto e Híbrido',
       contactTitle: 'Contato',
       emailLabel: 'daviafonso5894@gmail.com',
@@ -246,548 +258,419 @@ const dictionaries: Record<string, Dictionary> = {
       copyright: '© 2026 Davi Afonso',
     },
     home: {
-      badge: 'Desenvolvedor Full Stack & Engenharia de IA · Brasil',
-      headline: 'Engenharia de software com rigor arquitetural e inteligência artificial de ponta a ponta.',
+      headline: 'Sou Davi Afonso, desenvolvedor full stack.',
       subheadline:
-        'Bacharel em Sistemas de Informação focado em C# / .NET, React, arquitetura limpa e Spec-Driven Development (SDD). Da concepção com Spec-Kit ao harness de execução com IA, construo sistemas robustos, auditáveis e de alto impacto corporativo.',
+        'Crio sistemas web completos com .NET e React, do banco de dados à tela. Uso a IA para entregar mais e sigo estudando código e arquitetura para decidir melhor.',
       ctaProjects: 'Ver projetos',
-      ctaHowBuilt: 'Como este site foi construído',
-      stackTitle: 'Stack principal',
-      stackItems: ['Claude Code', 'IA & Spec-Kit', 'C# / .NET', 'Node.js', 'React', 'TypeScript', 'Next.js', 'PostgreSQL', 'Docker'],
-      roleTitle: 'Atuação',
-      roleValue: 'Full Stack (.NET, React) & AI Engineering',
-      locationTitle: 'Base',
-      locationValue: 'Lagoa Santa, MG · Remoto / Híbrido',
-      availabilityTitle: 'Disponibilidade',
-      availabilityValue: 'PJ / CLT / Projetos',
-      featuredSectionNumber: '01',
-      featuredTitle: 'Em destaque',
-      allProjectsLink: 'Todos os projetos →',
-      recentWritingNumber: '02',
-      recentWritingTitle: 'Escrito recentemente',
-      allArticlesLink: 'Todos os artigos →',
-      differentialNumber: '03 — O diferencial',
-      differentialTitle: 'O processo guiado por especificação e harness de IA.',
-      differentialBody:
-        'Especificações como fonte única da verdade (SDD), Model Context Protocol (MCP), agentes ancorados em regras duráveis e ADRs documentadas. Mostro o raciocínio completo e auditável por trás de cada linha.',
-      differentialCta: 'Ver como foi construído',
+      ctaContact: 'Falar comigo',
+      photoAlt: 'Foto de Davi Afonso',
+      facts: [
+        { label: 'Hoje', value: 'Analista Desenvolvedor Júnior na Rumo Soluções' },
+        { label: 'Estudando', value: 'Pós-graduação em Arquitetura de Software com IA' },
+        { label: 'Stack', value: 'C#, .NET, React, Next.js, TypeScript, Node.js, PostgreSQL, Docker, Azure' },
+        { label: 'Base', value: 'Lagoa Santa, MG. Remoto ou híbrido' },
+        { label: 'Aberto a', value: 'CLT, PJ e projetos' },
+      ],
+      featuredTitle: 'Projetos em destaque',
+      allProjectsLink: 'Ver todos os projetos',
+      aiTitleLines: ['A IA potencializa o que eu sei.', 'Por isso sigo estudando.'],
+      aiBody:
+        'Antes de qualquer agente escrever código, defino o produto, a arquitetura e a especificação. Depois, só considero pronto o que passa nos testes e respeita essas decisões. Curso pós-graduação em Arquitetura de Software com IA e ensinei esse método na Rumo Soluções em treinamentos internos.',
+      aiCta: 'Ver como trabalho',
+      aiFlow: ['Produto', 'Arquitetura', 'Especificação', 'Agentes', 'Validação'],
+      contactTitle: 'Tem uma vaga ou um projeto?',
+      contactBody: 'Me conte o que você precisa. Respondo todas as mensagens.',
     },
     about: {
-      badge: 'Sobre mim',
-      headline: 'Bacharel em Sistemas de Informação e pós graduando em Arquitetura de Software com IA no Full Stack Club.',
+      headline: 'Sobre mim',
       paragraphs: [
-        'Sou desenvolvedor Full Stack e Bacharel em Sistemas de Informação, atualmente cursando pós graduação em Arquitetura de Software com IA no Full Stack Club. Minha trajetória une a solidez do desenvolvimento backend corporativo em C#, ecossistema .NET (ASP.NET Core e Entity Framework) e Node.js (TypeScript e Fastify), com a construção de interfaces web modernas e reativas em React e Next.js.',
-        'Como a inteligência artificial está escrevendo código com cada vez mais qualidade, direciono meu foco estratégico para a área de arquitetura de software, estruturando sistemas resilientes, contratos claros e domínios bem delimitados. Ao mesmo tempo, não deixo de estudar profundamente sobre código e utilizo inteligência artificial de forma contínua em todo o fluxo de trabalho, convicto de que ela potencializa minhas decisões e me torna um profissional muito melhor.',
-        'Aplico inteligência artificial com rigor e método, adotando codificação agêntica (Claude Code, OpenAI Codex, OpenCode e Kiro), Spec Driven Development (SDD) e Harness Engineering. Meu objetivo é garantir que os modelos operem sob rédeas firmes de arquitetura, contratos de API e testes automatizados. Acredito no código como consequência direta de uma especificação bem consolidada, seja em arquitetura hexagonal e DDD, seja conectando ferramentas avançadas via Model Context Protocol (MCP).',
+        'Sou Bacharel em Sistemas de Informação pela UNA e trabalho como Analista Desenvolvedor Júnior na Rumo Soluções, onde construo e mantenho sistemas em .NET e React, APIs e robôs de coleta de dados.',
+        'Acredito que a IA potencializa a minha carreira, mas ela só multiplica o que eu já sei. Por isso sigo estudando código e curso pós-graduação em Arquitetura de Software com IA no Full Stack Club: a IA escreve cada vez mais código, e quero ser quem define como o sistema é desenhado, testado e mantido.',
+        'Fora da empresa, desenvolvo projetos para a comunidade, como o portal e o controle de estoque da Primeira Igreja Batista em Lagoa Santa e o site do Lar de Idosos Recanto Vida.',
       ],
-      focusTitle: 'Foco',
-      focusValue: 'Arquitetura de Software, Full Stack (.NET, Next) e Engenharia com IA',
+      methodLink: 'Ver como trabalho com IA',
       baseTitle: 'Base',
-      baseValue: 'Lagoa Santa, Minas Gerais · Brasil',
+      baseValue: 'Lagoa Santa, Minas Gerais',
       languagesTitle: 'Idiomas',
-      languagesValue: 'Português (Nativo) · Inglês (Intermediário)',
-      photoPlaceholder: 'Davi Afonso',
+      languagesValue: 'Português (nativo) e inglês (intermediário)',
+      photoAlt: 'Foto de Davi Afonso',
       trajectoryTitle: 'Trajetória',
       milestones: [
-        {
-          year: '2021',
-          description: 'Início da graduação em Sistemas de Informação.',
-        },
-        {
-          year: '2023',
-          description: 'Evolução para o ecossistema Web Full Stack com Node.js, TypeScript e React, desenvolvendo APIs REST e interfaces dinâmicas.',
-        },
-        {
-          year: '2024',
-          description: 'Desenvolvimento e entrega de projetos como SaltWeb e FIT.IA, combinando React, Tailwind CSS e serviços inteligentes com IA.',
-        },
-        {
-          year: '2025',
-          description: 'Atuação na Rumo Soluções, desenvolvimento de sistema OS do zero e liderança de workshops internos para todos os funcionários sobre IA, SDD e Harness Engineering.',
-        },
-        {
-          year: '2026',
-          description: 'Pós graduação em Arquitetura de Software com IA no Full Stack Club e lançamento do DaviDev com arquitetura hexagonal monorepo e engenharia guiada por especificações.',
-        },
+        { year: '2021', description: 'Início da graduação em Sistemas de Informação.' },
+        { year: '2023', description: 'Primeiros projetos em C# e .NET.' },
+        { year: '2024', description: 'Site da juventude da Primeira Igreja Batista em Lagoa Santa.' },
+        { year: '2025', description: 'Conclusão do bacharelado na UNA, início do estágio em desenvolvimento web na Rumo Soluções, sistema de almoxarifado para a igreja e site do Lar de Idosos Recanto Vida.' },
+        { year: '2026', description: 'Efetivado como Analista Desenvolvedor Júnior na Rumo Soluções, sistema de ordens de serviço da CRC Equipamentos e portal da igreja em produção, treinamentos de IA para a empresa e início da pós-graduação.' },
       ],
-    },
-    skills: {
-      badge: 'Habilidades',
-      headline: 'O que eu domino e onde aplico.',
-      intro:
-        'Minhas especializações em inteligência artificial e engenharia de contexto, acompanhada por arquitetura de software, backend, frontend e infraestrutura.',
-      categories: [
-        {
-          number: '01',
-          title: 'Inteligência Artificial & Engenharia de Contexto',
-          items: [
-            {
-              name: 'Spec Driven Development (SDD) & Spec Kit',
-              description:
-                'Metodologia em que a especificação é a fonte única da verdade. Hierarquia de autoridade rigorosa (PRD, Architecture, Spec, Plan, Tasks, Code), padronização com comandos Spec Kit e separação clara entre produto e especificação executável.',
-            },
-            {
-              name: 'Claude Code, Codex, OpenCode & Kiro',
-              description:
-                'Domínio prático de ferramentas líderes de codificação agêntica e ambientes CLI autônomos (Claude Code, OpenAI Codex, OpenCode e Kiro). Uso de agentes para refatoração semântica, execução automatizada de testes, integração com terminal e aplicação estrita de especificações.',
-            },
-            {
-              name: 'Model Context Protocol (MCP)',
-              description:
-                'Orquestração da conexão universal da IA ligando agentes a ferramentas e dados em tempo real: Context7 (documentação atualizada), Serena (navegação e refatoração semântica LSP) e TestSprite (geração e execução de testes de qualidade).',
-            },
-            {
-              name: 'Harness Engineering & Sandboxing',
-              description:
-                'Construção da infraestrutura ao redor dos LLMs: regras duráveis de governança (constitution.md), delimitação estrita de ferramentas e permissões de segurança, persistência de memória e loops de verificação contínua.',
-            },
-            {
-              name: 'Orquestração de Agentes & Subagentes',
-              description:
-                'Coordenação de equipes de subagentes especializados (code reviewer com níveis de severidade, dotnet best practices, explore, planner) e automação de procedimentos corporativos através de skills dedicadas.',
-            },
-            {
-              name: 'Engenharia de Prompts Estruturados & LLMs',
-              description:
-                'Modelos de linguagem avançados (Claude, GPT, Gemini) integrados com validação estrita de esquemas JSON e Zod, retentativas estruturadas e extração determinística.',
-            },
-          ],
-        },
-        {
-          number: '02',
-          title: 'Arquitetura de Software',
-          items: [
-            {
-              name: 'Escalabilidade',
-              description:
-                'Estratégias de escalabilidade horizontal e vertical, isolamento de falhas, desacoplamento de serviços e tolerância a picos de tráfego sem degradação do sistema.',
-            },
-            {
-              name: 'Cache Distribuído',
-              description:
-                'Camadas de cache com políticas de invalidação precisas, estratégias de cache aside e write through para redução drástica de latência e alívio do banco principal.',
-            },
-            {
-              name: 'Load Balancer',
-              description:
-                'Distribuição inteligente de tráfego entre instâncias, balanceamento de carga, monitoramento contínuo de integridade e terminação segura para alta disponibilidade.',
-            },
-            {
-              name: 'Índices',
-              description:
-                'Modelagem de índices compostos, B tree e parciais, otimização de planos de execução de consultas com explain analyze e eliminação de varreduras completas de tabelas.',
-            },
-            {
-              name: 'Paginação',
-              description:
-                'Implementação de paginação por cursor e keyset pagination para grandes volumes de dados, eliminando gargalos de performance e leituras redundantes do offset tradicional.',
-            },
-            {
-              name: 'Arquitetura Hexagonal & DDD',
-              description:
-                'Isolamento estrito do domínio e casos de uso, garantindo zero dependência de frameworks ou bancos no núcleo através de portas e adaptadores.',
-            },
-          ],
-        },
-        {
-          number: '03',
-          title: 'Backend & APIs',
-          items: [
-            {
-              name: 'APIs REST',
-              description:
-                'Desenvolvimento de serviços RESTful orientados a recursos, com verbos HTTP padronizados, códigos de status precisos, idempotência e documentação OpenAPI.',
-            },
-            {
-              name: 'JWT & Claims',
-              description:
-                'Emissão e validação de JSON Web Tokens com assinatura criptográfica, estruturação de Claims para autorização granular baseada em papéis e contexto.',
-            },
-            {
-              name: 'Access Token & Refresh Token',
-              description:
-                'Arquitetura de autenticação com Access Token de ciclo de vida curto e Refresh Token com rotação automática para renovação segura de credenciais.',
-            },
-            {
-              name: 'OAuth 2.0',
-              description:
-                'Implementação de fluxos de autorização para integração segura com provedores externos, concessão de escopos limitados e delegação de acesso.',
-            },
-            {
-              name: 'Cookies',
-              description:
-                'Armazenamento seguro de credenciais com flags HttpOnly, Secure e SameSite, mitigando vulnerabilidades como roubo de tokens por XSS e ataques CSRF.',
-            },
-            {
-              name: 'BCrypt',
-              description:
-                'Hashing unidirecional de senhas com salting automático e fator de custo ajustável, garantindo proteção contra ataques de dicionário e tabelas arco íris.',
-            },
-            {
-              name: 'CORS',
-              description:
-                'Gerenciamento de políticas de Cross Origin Resource Sharing, restringindo origens permitidas, métodos autorizados e cabeçalhos expostos.',
-            },
-            {
-              name: 'C# / .NET',
-              description:
-                'Desenvolvimento de APIs robustas e serviços com ASP.NET Core, Entity Framework Core e LINQ, aplicando padrões corporativos, injeção de dependência e MVC.',
-            },
-            {
-              name: 'Node.js · TypeScript',
-              description:
-                'Construção de APIs REST escaláveis com tipagem estrita, contratos de schemas validados com Zod e separação clara de camadas.',
-            },
-            {
-              name: 'Fastify & Express',
-              description:
-                'Desenvolvimento de servidores HTTP de alta performance com injeção de dependência e desacoplamento do núcleo de negócio.',
-            },
-          ],
-        },
-        {
-          number: '04',
-          title: 'Frontend & Interface',
-          items: [
-            {
-              name: 'React & Next.js 15',
-              description:
-                'Desenvolvimento de aplicações modernas com App Router, React Server Components (RSC), hooks customizados e otimização de renderização.',
-            },
-            {
-              name: 'Tailwind CSS & Design Tokens',
-              description:
-                'Criação de interfaces acessíveis, responsivas e semânticas com design tokens, suporte a tema claro ou escuro e padrões WCAG AA.',
-            },
-            {
-              name: 'TypeScript Avançado',
-              description:
-                'Tipagem avançada em todo o ciclo da aplicação, generics com constraints e discriminated unions prevenindo falhas de contrato.',
-            },
-          ],
-        },
-        {
-          number: '05',
-          title: 'Banco de Dados & Infraestrutura',
-          items: [
-            {
-              name: 'PostgreSQL & MySQL',
-              description:
-                'Modelagem relacional com integridade declarativa, foreign keys, constraints e migrations versionadas com Drizzle e EF Core.',
-            },
-            {
-              name: 'Neon & Supabase',
-              description:
-                'Bancos de dados PostgreSQL serverless com branching instantâneo de ambientes, pooling de conexões de alta escala e serviços de backend gerenciados.',
-            },
-            {
-              name: 'Upstash Redis',
-              description:
-                'Cache distribuído serverless e controle de taxa de requisições em borda com conexão via HTTP e REST de baixíssima latência.',
-            },
-            {
-              name: 'Pipelines e Releases CI/CD',
-              description:
-                'Automação completa com GitHub Actions, execução de suítes de testes, auditoria estática de regras arquiteturais e deploy contínuo sem intervenção manual.',
-            },
-            {
-              name: 'Docker',
-              description:
-                'Ambientes conteinerizados reprodutíveis para desenvolvimento e produção, garantindo paridade entre máquinas locais e servidores de nuvem.',
-            },
-            {
-              name: 'MongoDB',
-              description:
-                'Persistência orientada a documentos para catálogos flexíveis e coleções não relacionais com índices otimizados e consultas agregadas.',
-            },
-          ],
-        },
-      ],
-    },
-    knowledge: {
-      badge: 'Conhecimentos',
-      headline: 'Os conceitos que sustentam as escolhas.',
-      intro:
-        'Habilidade é a ferramenta; conhecimento é saber quando ela não serve. Aqui estão os fundamentos de IA, especificação e arquitetura que uso para tomar decisões técnicas e o custo que cada uma cobra.',
-      items: [
-        {
-          title: 'Spec Driven Development e Hierarquia de Autoridade',
-          tag: 'Aplico',
-          description:
-            'O código deixa de ser o ponto de partida e passa a ser a consequência final da especificação. Respeito rigoroso à hierarquia de autoridade dos artefatos: PRD para intenção de produto, Architecture para estrutura, Specification para contratos, Plan para design técnico, Tasks para execução e Code como resultado verificável. Nenhuma linha é escrita sem validação prévia.',
-          costLabel: 'O custo',
-          cost: 'Demanda disciplina e tempo investido antes da implementação. Quem queima essa etapa ganha velocidade aparente no primeiro dia e passa meses pagando retrabalho e desalinhamento entre produto e engenharia.',
-        },
-        {
-          title: 'Harness Engineering no Desenvolvimento com IA',
-          tag: 'Aplico',
-          description:
-            'O modelo de linguagem é apenas o motor de raciocínio; o harness é toda a infraestrutura ao redor que o guia, controla e torna confiável. Engloba regras duráveis de governança, ferramentas seguras de execução, controle estrito de permissões, contexto direcionado, persistência de memória e loops automatizados de verificação contínua.',
-          costLabel: 'O custo',
-          cost: 'Manter a infraestrutura de harness calibrada conforme o sistema evolui exige manutenção constante de contexto e regras. Sem esse suporte, até o modelo mais avançado alucina e quebra invariantes de domínio.',
-        },
-        {
-          title: 'Arquitetura Hexagonal (Ports e Adapters)',
-          tag: 'Aplico',
-          description:
-            'Domínio e casos de uso independentes de framework, servidores HTTP e bancos de dados. O ganho real não é elegância estética: é conseguir testar regras de negócio puras em memória sem subir infraestrutura externa e proteger a longevidade do software contra obsolescência.',
-          costLabel: 'O custo',
-          cost: 'Mais arquivos e mais indireção por funcionalidade. Em sistemas simples pode representar complexidade desnecessária, sendo justificável quando a longevidade e a testabilidade são prioridades.',
-        },
-        {
-          title: 'Cache Distribuído e Estratégias de Invalidação',
-          tag: 'Aplico',
-          description:
-            'Implementação de camadas de cache distribuído com Upstash Redis e padrões como cache aside e write through para alívio do banco de dados e latência mínima. Decisões arquiteturais ponderadas entre consistência estrita e consistência eventual com políticas previsíveis de expiração (TTL).',
-          costLabel: 'O custo',
-          cost: 'Invalidação de cache é um dos problemas clássicos da computação. Exige controle rigoroso para evitar leitura de dados obsoletos e adiciona dependência de sincronização no ecossistema.',
-        },
-        {
-          title: 'Autenticação Stateless e Defesa em Camadas',
-          tag: 'Aplico',
-          description:
-            'Segurança de ponta a ponta com JSON Web Tokens de curta duração, claims tipadas para autorização fina e rotação automática de Refresh Tokens. Proteção contra ataques XSS e CSRF através de cookies HttpOnly e políticas refinadas de CORS e criptografia com BCrypt.',
-          costLabel: 'O custo',
-          cost: 'Tokens stateless não podem ser revogados instantaneamente sem um mecanismo auxiliar de blacklist ou versão de credencial, exigindo equilíbrio fino no tempo de vida dos tokens.',
-        },
-        {
-          title: 'Integridade Relacional no Banco de Dados',
-          tag: 'Aplico',
-          description:
-            'Quando uma regra de negócio pode ser garantida por uma constraint relacional, ela deve ser. Unicidade, integridade referencial em cascata e transições de estado garantidas pelo PostgreSQL ou Neon são impossíveis de violar por falhas de código ou geração automática incorreta.',
-          costLabel: 'O custo',
-          cost: 'Menor flexibilidade em migrações dinâmicas e mensagens de erro do driver que exigem camadas de tradução de banco para o usuário da aplicação.',
-        },
+      stackTitle: 'Tecnologias e conhecimentos',
+      stackGroups: [
+        { title: 'Arquitetura', items: 'Clean Architecture, DDD, arquitetura hexagonal, monolito modular, ADRs, OpenAPI, APIs REST, JWT, permissões por perfil' },
+        { title: 'Escalabilidade e desempenho', items: 'Escalabilidade vertical e horizontal, cache distribuído, load balancer, índices, paginação' },
+        { title: 'IA', items: 'Spec-Driven Development (SDD) com Spec Kit, Harness Engineering, orquestração de agentes e subagentes, Claude Code, OpenAI Codex, OpenCode, Kiro, MCP, Context7, Serena, TestSprite, integração com OpenAI e Gemini' },
+        { title: 'Backend', items: 'C#, .NET, ASP.NET Core, Entity Framework Core, Node.js, Fastify, PHP, Laravel' },
+        { title: 'Frontend', items: 'React, Next.js, TypeScript, Tailwind CSS, TanStack Query, shadcn/ui' },
+        { title: 'Bancos de dados', items: 'PostgreSQL, SQL Server, MongoDB, MySQL, Supabase' },
+        { title: 'Infra e entrega', items: 'Docker, Azure, Azure DevOps, GitHub Actions, Nginx, VPS, Vercel' },
+        { title: 'Testes', items: 'xUnit, Vitest, Pest, Playwright' },
+        { title: 'Automação', items: 'Puppeteer, Azure Service Bus, SignalR' },
       ],
     },
     experiences: {
-      badge: 'Experiências',
-      headline: 'O que eu resolvi, e onde atuei.',
-      intro:
-        'Trajetória profissional combinando liderança técnica em inteligência artificial, capacitação corporativa, engenharia Full Stack (.NET, React) e automação de processos.',
+      headline: 'Experiência',
       positions: [
         {
-          period: '2026 — Atual',
+          period: 'ago. 2026 — Atual',
           company: 'Rumo Soluções',
           role: 'Analista Desenvolvedor Júnior',
           regime: 'CLT · Híbrido · Lagoa Santa, MG',
-          summary:
-            'Atuação no desenvolvimento de sistemas corporativos escaláveis, liderança em capacitação de Inteligência Artificial para equipes, automação de processos (RPA) e arquitetura de software orientada a especificações.',
+          summary: 'Desenvolvo sistemas para clientes e produtos da empresa, com .NET, React e automação de dados.',
           highlights: [
-            'Ministração de treinamentos e workshops internos para todos os funcionários da empresa sobre Inteligência Artificial Aplicada, Spec-Driven Development (SDD), Spec-Kit e Harness Engineering, capacitando a equipe na transição de geração desordenada de código para fluxos estruturados e auditáveis.',
-            'Concepção e desenvolvimento do sistema de Ordem de Serviço (OS / Projeto CRC) do zero utilizando .NET, React, Docker e práticas modernas de engenharia, estabelecendo um harness corporativo rigoroso com regras duráveis (snapshot congelado imutável, soft delete universal e fluxo linear de OS).',
-            'Desenvolvimento de soluções potencializadas por IA para geração automatizada de documentação técnica, wikis no Azure DevOps e padronização dos processos de engenharia de software.',
-            'Integração e orquestração de servidores Model Context Protocol (MCP) — incluindo Context7 para documentação em tempo real, Serena para navegação semântica via LSP e TestSprite para controle de qualidade automatizado.',
-            'Adoção e capacitação da equipe em ferramentas avançadas de desenvolvimento agêntico (Claude Code, OpenAI Codex, OpenCode e Kiro) integradas a Spec-Kit para acelerar a entrega e garantir conformidade arquitetural.',
-            'Desenvolvimento e sustentação de funcionalidades críticas para sistemas corporativos, com foco em disponibilidade, estabilidade e regras de negócio.',
-            'Construção de rotinas de automação (RPA) e pipelines eficientes para integração de dados entre sistemas e serviços.',
+            'Coloquei em produção o sistema de ordens de serviço da CRC Equipamentos.',
+            'Redesenhei, para o Datacar, o algoritmo que identifica o carro de cada oferta na tabela FIPE. Ele rodou em paralelo com o antigo para comparar resultados e está em produção desde outubro de 2026.',
+            'Reduzi de cerca de 3 s para menos de 1 s a abertura das principais telas da plataforma de preços do Datacar, com metade das requisições (mediana em ambiente local, com cache aquecido; entrega em revisão).',
+            'Mantive e evoluí, desde o estágio, 40 robôs e serviços de coleta de dados do Datacar, além da plataforma que os agenda e monitora.',
+            'Escrevi 9 playbooks que orientam agentes de IA na criação de robôs no padrão do time.',
           ],
-          technologies: [
-            'Claude Code',
-            'Codex',
-            'OpenCode',
-            'Kiro',
-            'Inteligência Artificial',
-            'Spec-Driven Dev',
-            'Spec-Kit',
-            'Harness Engineering',
-            'Model Context Protocol (MCP)',
-            '.NET / C#',
-            'React',
-            'Docker',
-            'TypeScript',
-            'PostgreSQL',
-            'RPA',
-          ],
+          technologies: ['C#', '.NET', 'React', 'TypeScript', 'PostgreSQL', 'MongoDB', 'SQL Server', 'Docker', 'Azure', 'Claude Code'],
         },
         {
-          period: '2025 — 2026',
+          period: 'nov. 2025 — ago. 2026',
           company: 'Rumo Soluções',
           role: 'Estagiário de Desenvolvimento Web',
           regime: 'Estágio · Híbrido · Lagoa Santa, MG',
-          summary:
-            'Apoio técnico no ciclo completo de desenvolvimento web, codificação de interfaces de usuário, manutenção de serviços backend, testes de integração e primeiras automações com IA.',
+          summary: 'Interfaces web, correção de bugs, refatoração e documentação técnica, trabalhando em equipe ágil.',
           highlights: [
-            'Implementação e estilização de interfaces web modernas e responsivas alinhadas às diretrizes de design e padrões visuais da empresa.',
-            'Correção de bugs, refatoração de código legado e apoio na elaboração de documentação técnica de endpoints e arquitetura.',
-            'Integração contínua em equipe ágil, participando de code reviews, reuniões diárias e planejamento de sprints.',
+            'Criei do zero, como único desenvolvedor, o sistema de ordens de serviço da CRC Equipamentos, empresa de manutenção industrial, no lugar de papel, Trello e planilhas.',
+            'Desenvolvi o painel administrativo e a API do site da PriceFleet, produto de precificação de frotas, com login, permissões, blog, upload de imagens e gestão de leads.',
+            'Preparei e ministrei 2 treinamentos internos de IA para a empresa (harness e MCP).',
           ],
-          technologies: ['JavaScript', 'TypeScript', 'HTML5 & CSS3', 'React', 'Node.js', 'Git', 'SQL'],
+          technologies: ['C#', '.NET', 'React', 'TypeScript', 'JavaScript', 'Node.js', 'PostgreSQL', 'Docker', 'Git'],
         },
         {
           period: '2023 — Atual',
-          company: 'Projetos Autônomos & Soluções Digitais',
+          company: 'Projetos independentes',
           role: 'Desenvolvedor Full Stack',
-          regime: 'Projetos · Remoto / Híbrido',
-          summary:
-            'Concepção, arquitetura e entrega de plataformas web completas para clientes e iniciativas comunitárias, integrando frontend reativo, backends resilientes e inteligência artificial aplicada.',
+          regime: 'Remoto',
+          summary: 'Sistemas para a comunidade e projetos próprios, do planejamento ao deploy.',
           highlights: [
-            'Construí o projeto DaviDev em arquitetura hexagonal estrita, monorepo pnpm, Next.js 15 e API Fastify in-process, com todo o processo de Spec-Driven Development publicado abertamente.',
-            'Desenvolvi a plataforma FIT.IA, integrando inteligência artificial generativa com backend em Express e frontend em React para montagem personalizada de rotinas de treino e nutrição.',
-            'Arquitetei e lancei a plataforma SaltWeb para a juventude da PIB Lagoa Santa, proporcionando experiência rápida e engajamento comunitário.',
+            'Portal da Primeira Igreja Batista em Lagoa Santa, em produção no lugar do antigo site em WordPress.',
+            'Controle de estoque do almoxarifado da igreja e site da juventude Salt, que está no ar.',
+            'FIT.AI, app de treinos com assistente de IA, no ar e com código aberto.',
+            'Site do Lar de Idosos Recanto Vida, no ar, com hospedagem, domínios e e-mails sob minha responsabilidade.',
           ],
-          technologies: ['React', 'Next.js 15', 'TypeScript', 'Node.js', 'Tailwind CSS', 'PostgreSQL', 'MongoDB', 'IA Generativa'],
+          technologies: ['React', 'Next.js', 'TypeScript', 'Node.js', 'Laravel', 'PostgreSQL', 'MySQL', 'WordPress'],
         },
+      ],
+      educationTitle: 'Formação',
+      education: [
+        { period: 'Em andamento', title: 'Pós-graduação em Arquitetura de Software com IA', institution: 'Full Stack Club' },
+        { period: '2025', title: 'Bacharelado em Sistemas de Informação', institution: 'UNA' },
       ],
     },
     projects: {
-      badge: 'Projetos',
-      headline: 'Problema, decisão, resultado.',
+      headline: 'Projetos',
       intro:
-        'Cada projeto abre pelo problema de negócio e pelo desfecho, de forma legível para quem contrata. O detalhe de arquitetura vem depois, para quem avalia tecnicamente.',
+        'Os sistemas feitos na Rumo Soluções não têm código público, então explico o problema e as decisões. A maioria dos projetos independentes tem link para o código.',
+      labels: {
+        viewDetails: 'Ver detalhes',
+        role: 'Meu papel',
+        stack: 'Tecnologias',
+        flow: 'Como funciona',
+        problem: 'O problema',
+        delivered: 'O que entreguei',
+        decisions: 'Decisões técnicas',
+        tradeoff: 'Custo da escolha:',
+        result: 'Resultado',
+        links: 'Links',
+        privateNote: 'Sistema feito na Rumo Soluções: o código e as telas não são públicos.',
+      },
       items: [
         {
-          slug: 'davidev-portfolio-produto',
-          title: 'DaviDev: Portfólio como Produto de Software',
+          slug: 'sistema-ordens-de-servico',
+          title: 'Sistema de Ordens de Serviço',
+          kind: 'Para a CRC Equipamentos',
           status: 'Em produção',
+          isLive: true,
+          isPrivate: true,
           period: '2026',
-          stack: ['Next.js 15', 'Fastify', 'PostgreSQL', 'Drizzle', 'Hexagonal'],
-          problem:
-            'Currículos estáticos em PDF não comprovam maturidade de código, qualidade de arquitetura ou rigor metodológico em engenharia de software.',
-          result:
-            'Portfólio construído como software de produção: arquitetura hexagonal com separação em monorepo pnpm, blog editorial com ISR, CMS protegido e PRD público.',
-          role: 'Engenheiro responsável por toda a especificação, arquitetura e implementação.',
-          detailLink: 'Ver o detalhe técnico →',
           summary:
-            'Blog editorial, CMS, API RESTful documentada com Swagger e arquitetura hexagonal, com todo o processo de engenharia publicado.',
-          engineeringChallenge:
-            'Garantir latência LCP menor que 2.5s global e zero dependências externas no pacote de domínio, com integração in process entre Next.js e Fastify.',
+            'Controla a manutenção de equipamentos industriais, da entrada na oficina até o relatório entregue ao cliente.',
+          highlight:
+            'Reúne em um só sistema o que estava em papel, Trello e planilhas, com histórico completo e relatório em PDF gerado automaticamente.',
+          role: 'Único desenvolvedor, do início no estágio até a produção: especificação, backend, frontend e deploy.',
+          stack: ['.NET 10', 'React 19', 'TypeScript', 'PostgreSQL', 'Docker', 'Azure DevOps', 'Spec Kit', 'Claude Code'],
+          flow: ['Em análise', 'Aguardando orçamento', 'Aguardando peças', 'Em execução', 'Finalização', 'Entregue'],
+          problem:
+            'A CRC Equipamentos acompanhava cada ordem de serviço em papel, Trello e planilhas, e montava à mão o relatório entregue ao cliente. Para saber o andamento de uma OS, era preciso perguntar a alguém.',
+          delivered: [
+            'Fluxo único da OS, registrando quem fez o quê e quando em cada etapa.',
+            'Checklist técnico com pontuação por peça, que calcula se o reparo compensa.',
+            'Fotos de evidência com marcação direto do celular e relatório em PDF gerado pelo sistema.',
+            'Quadro Kanban, painel operacional, permissões por perfil e importação de peças por Excel.',
+            '358 testes automatizados e entrega contínua com Azure DevOps e Docker.',
+          ],
           decisions: [
             {
-              title: 'Arquitetura Hexagonal estrita em Monorepo',
-              desc: 'O domínio (@davidev/domain) não possui nenhuma dependência externa, garantindo portabilidade absoluta de regras de negócio.',
-              tradeoff: 'Maior número de camadas e interfaces abstratas.',
+              title: 'Checklist congelado na entrega',
+              desc: 'Quando a OS é entregue, o checklist preenchido vira uma cópia imutável. Mudar o modelo depois não altera o histórico.',
+              tradeoff: 'exige versionar os modelos de checklist.',
             },
             {
-              title: 'Host híbrido Serverless Fastify dentro do Next.js',
-              desc: 'A mesma API Fastify com schemas Zod atende requisições HTTP e é consumida in process por Server Components sem round trip de rede.',
-              tradeoff: 'Configuração personalizada de handlers e adapters de request.',
+              title: 'Contrato único entre API e frontend',
+              desc: 'Os tipos e as chamadas do React são gerados a partir do OpenAPI com Orval. Uma mudança na API aparece como erro de compilação, não como bug na tela.',
+              tradeoff: 'um passo a mais de geração a cada mudança.',
             },
           ],
+          result: 'Em produção na CRC Equipamentos, depois de três versões entregues e validadas em homologação.',
+          links: [],
         },
         {
-          slug: 'saltweb',
-          title: 'SaltWeb: Plataforma Web da Juventude',
-          status: 'Concluído',
-          period: '2024',
-          stack: ['React', 'TypeScript', 'Tailwind CSS', 'Vite'],
-          problem:
-            'A comunidade de jovens da PIB Lagoa Santa necessitava de uma plataforma digital centralizada para divulgação de eventos, engajamento e identidade visual contemporânea.',
-          result:
-            'Plataforma web rápida, responsiva e moderna entregue, facilitando o acesso a informações, encontros e integração dos membros.',
-          role: 'Desenvolvedor Frontend e UI Designer da aplicação.',
-          detailLink: 'Ver o detalhe técnico →',
+          slug: 'matching-fipe',
+          title: 'Matching FIPE',
+          kind: 'Para o Datacar',
+          status: 'Em produção',
+          isLive: true,
+          isPrivate: true,
+          period: '2026',
           summary:
-            'Aplicação web interativa para comunidade jovem desenvolvida com React, TypeScript e Tailwind CSS com design responsivo e focado em engajamento.',
-          engineeringChallenge:
-            'Criar uma experiência fluida com carregamento instantâneo no mobile e layout responsivo com visual editorial alinhado à linguagem dos jovens.',
+            'Descobre o código FIPE de cada oferta de carro por assinatura, mesmo quando a descrição vem incompleta ou escrita de outro jeito.',
+          highlight:
+            'Algoritmo novo em produção desde outubro de 2026, guiado por uma regra simples: preço errado é pior do que preço ausente.',
+          role: 'Principal desenvolvedor da API: desenho do algoritmo, testes, auditoria e virada para produção.',
+          stack: ['.NET', 'C#', 'MongoDB', 'OpenAI', 'Docker', 'Azure DevOps', 'Spec Kit', 'Claude Code'],
+          flow: ['Oferta recebida', 'Normalização do texto', 'Busca da família do carro', 'Eliminação de versões', 'Associação ou retenção'],
+          problem:
+            'Cada locadora descreve o mesmo carro de um jeito. Um código FIPE errado vira preço errado para quem consulta o Datacar, e o algoritmo antigo se baseava só em semelhança de texto.',
+          delivered: [
+            'Processo em etapas que elimina as versões impossíveis e só associa quando há confiança e não há empate.',
+            'Ofertas duvidosas ficam retidas com o motivo registrado e podem ser reprocessadas depois.',
+            'Assistente de IA para resolver empates, com limite diário de consultas.',
+            'Tela de auditoria para conferir cada decisão do algoritmo.',
+            'API coberta por 518 testes automatizados, de unidade e de integração.',
+          ],
           decisions: [
             {
-              title: 'Tailwind CSS para consistência visual',
-              desc: 'Uso de utilitários Tailwind para garantir harmonia tipográfica e layout adaptável a diferentes dispositivos móveis.',
-              tradeoff: 'Classes utilitárias acumuladas que exigem organização modular de componentes.',
+              title: 'Precisão acima de cobertura',
+              desc: 'Na dúvida, o sistema não associa. O critério deixou de ser associar mais ofertas e passou a ser não errar.',
+              tradeoff: 'algumas ofertas ficam sem preço até serem revisadas.',
             },
             {
-              title: 'Vite como ferramenta de build',
-              desc: 'Adoção de Vite para builds ultrarrápidos e Hot Module Replacement (HMR) eficiente durante o ciclo de desenvolvimento.',
-              tradeoff: 'Configuração manual de roteamento client side.',
+              title: 'Modo sombra antes da virada',
+              desc: 'O algoritmo novo rodou em paralelo com o antigo em produção, sem afetar o resultado, para comparar as decisões dos dois.',
+              tradeoff: 'dois algoritmos para manter durante a transição.',
             },
+            {
+              title: 'IA só para o que sobra',
+              desc: 'O modelo entra apenas nos empates que as regras não resolvem, e a decisão vira uma regra que pode ser auditada.',
+              tradeoff: 'as regras criadas pela IA precisam de acompanhamento.',
+            },
+          ],
+          result: 'Milhares de ofertas por dia passam pelo algoritmo novo, e cada decisão pode ser auditada.',
+          links: [],
+        },
+        {
+          slug: 'portal-pibls',
+          title: 'Portal PIBLS',
+          kind: 'Projeto independente',
+          status: 'Em produção',
+          isLive: true,
+          isPrivate: false,
+          period: '2026',
+          summary:
+            'Site e painel administrativo da Primeira Igreja Batista em Lagoa Santa, que substituíram o WordPress sem aumentar o custo de hospedagem.',
+          highlight:
+            'Mais de 1.600 testes automatizados em um sistema planejado para durar mais de 5 anos com uma pessoa só na operação.',
+          role: 'Único desenvolvedor: arquitetura, backend, frontend e operação.',
+          stack: ['Laravel 13', 'PHP 8.4', 'React 19', 'TypeScript', 'MySQL', 'Playwright', 'Spec Kit', 'Claude Code'],
+          flow: [],
+          problem:
+            'A igreja precisava trocar o site em WordPress por um portal próprio, com painel para a equipe atualizar o conteúdo, sem gastar além da hospedagem compartilhada que já paga.',
+          delivered: [
+            'Site público pré-renderizado, com limite de 160 KB de JavaScript por página verificado a cada build.',
+            'Painel com permissões por papel, eventos, ministérios, conteúdo e atendimento.',
+            'Deploy por versões em hospedagem compartilhada, sem Node no servidor.',
+            'Backup cifrado e manuais de operação para uma pessoa só manter o sistema.',
+          ],
+          decisions: [
+            {
+              title: 'Sem Node em produção',
+              desc: 'A hospedagem compartilhada não roda Node. O React é pré-renderizado no CI e o servidor só entrega arquivos e a API em PHP.',
+              tradeoff: 'os dados dinâmicos dependem de chamadas à API no navegador.',
+            },
+            {
+              title: 'Operação enxuta registrada em ADR',
+              desc: 'Mantive só os alertas que uma pessoa consegue acompanhar: cópia externa do backup, um monitor e dois checks.',
+              tradeoff: 'menos visibilidade até o uso do portal crescer.',
+            },
+          ],
+          result: 'No ar em pibls.com, no lugar do antigo site em WordPress e na mesma hospedagem compartilhada.',
+          links: [
+            { label: 'Abrir o site', href: 'https://pibls.com' },
+            { label: 'Código no GitHub', href: 'https://github.com/DaviAfonso88/pibls' },
           ],
         },
         {
           slug: 'fit-ia',
-          title: 'FIT.IA: Assistente Inteligente de Treino & Nutrição',
-          status: 'Concluído',
-          period: '2024',
-          stack: ['Node.js', 'Express', 'React', 'IA Generativa', 'Tailwind CSS'],
-          problem:
-            'Praticantes de atividade física frequentemente enfrentam dificuldades para montar e adaptar planos de treino e nutrição alinhados aos seus objetivos específicos de forma acessível.',
-          result:
-            'Aplicação completa com geração automatizada de rotinas de treino e orientação nutricional personalizada com base no perfil físico e metas do usuário.',
-          role: 'Desenvolvedor Full Stack (API backend em Node.js/Express e interface React).',
-          detailLink: 'Ver o detalhe técnico →',
+          title: 'FIT.AI',
+          kind: 'Projeto independente',
+          status: 'No ar',
+          isLive: true,
+          isPrivate: false,
+          period: '2026',
           summary:
-            'Sistema integrado que utiliza inteligência artificial generativa para estruturar dietas e treinos personalizados através de uma interface intuitiva.',
-          engineeringChallenge:
-            'Estruturar prompts consistentes na API e tratar respostas não estruturadas de modelos de linguagem para garantir formatos previsíveis no frontend.',
+            'App de treinos com um personal trainer de IA que conversa com o usuário, monta o plano da semana e acompanha a evolução.',
+          highlight: 'Login com Google, chat com IA em tempo real e estatísticas de consistência, com código aberto.',
+          role: 'Desenvolvedor full stack. Criado no bootcamp Treinos do Full Stack Club.',
+          stack: ['Next.js 16', 'React 19', 'Fastify', 'Prisma', 'PostgreSQL', 'Gemini'],
+          flow: ['Conversa com a IA', 'Leitura do perfil', 'Plano de 7 dias', 'Registro dos treinos', 'Estatísticas de evolução'],
+          problem:
+            'Montar um plano de treino adequado ao próprio objetivo e acompanhar a rotina costuma exigir um profissional ou várias ferramentas diferentes.',
+          delivered: [
+            'Chat com Gemini que consulta e grava dados chamando funções da API, em vez de só gerar texto.',
+            'Plano semanal, sessões de treino com controle de tempo e estatísticas de sequência e consistência.',
+            'Login com Google via Better-Auth e cliente da API gerado com Orval a partir do OpenAPI.',
+          ],
           decisions: [
             {
-              title: 'Sanitização e Validação de Schemas',
-              desc: 'Validação rigorosa do payload de saída do modelo antes de repassar os dados ao frontend, prevenindo inconsistências no formato dos exercícios.',
-              tradeoff: 'Retentativas adicionais de geração caso o formato venha fora do schema.',
+              title: 'Chamada de funções em vez de texto livre',
+              desc: 'A IA cria o plano chamando uma função da API, então o resultado vira dado estruturado no banco, não um texto para interpretar.',
+              tradeoff: 'o prompt e as funções precisam evoluir junto com a API.',
             },
             {
-              title: 'Separação clara entre API e UI',
-              desc: 'Backend Express encapsula as chaves de API e a lógica de comunicação com o provedor de IA com total isolamento do cliente.',
-              tradeoff: 'Necessidade de gerenciar latência de requisições de rede assíncronas.',
+              title: 'Arquitetura simples em camadas',
+              desc: 'Rota, caso de uso e banco. Descartei a arquitetura hexagonal porque este projeto não precisava dela.',
+              tradeoff: 'menos isolamento da infraestrutura se o projeto crescer.',
             },
+          ],
+          result: 'Aplicação completa no ar, com código aberto no GitHub.',
+          links: [
+            { label: 'Abrir o app', href: 'https://www.fitai.davidev.net.br' },
+            { label: 'Código do app', href: 'https://github.com/DaviAfonso88/FIT.IA-Frontend' },
+            { label: 'Código da API', href: 'https://github.com/DaviAfonso88/FIT.IA-API' },
           ],
         },
         {
-          slug: 'sales-web-mvc',
-          title: 'SalesWebMvc: Gestão de Vendas e Departamentos',
-          status: 'Concluído',
-          period: '2023',
-          stack: ['C# / .NET', 'ASP.NET Core MVC', 'Entity Framework Core', 'MySQL'],
-          problem:
-            'Organizações necessitam de controle centralizado de registros de vendas, associação a vendedores e departamentos com relatórios sumarizados e filtros por período.',
-          result:
-            'Sistema corporativo em arquitetura MVC com operações CRUD completas, tratamento de exceções de integridade relacional e relatórios agrupados.',
-          role: 'Desenvolvedor Backend / C#.',
-          detailLink: 'Ver o detalhe técnico →',
-          summary:
-            'Aplicação web corporativa em ASP.NET Core MVC e Entity Framework Core para gerenciamento transacional de vendas com validações robustas.',
-          engineeringChallenge:
-            'Garantir consistência relacional e integridade referencial nas exclusões em cascata e consultas complexas com LINQ e agrupamentos.',
+          slug: 'davidev-portfolio-produto',
+          title: 'DaviDev',
+          kind: 'Projeto independente',
+          status: 'No ar',
+          isLive: true,
+          isPrivate: false,
+          period: '2026',
+          summary: 'Este site: portfólio, blog e painel de conteúdo, construído como um produto de software de verdade.',
+          highlight: 'Documentação aberta, testes automatizados e 10 verificações no CI a cada alteração.',
+          role: 'Único desenvolvedor: especificação, arquitetura e implementação.',
+          stack: ['Next.js 15', 'Fastify', 'PostgreSQL', 'Drizzle', 'Spec Kit', 'Arquitetura hexagonal'],
+          flow: [],
+          problem: 'Um currículo em PDF não mostra como alguém toma decisões técnicas nem a qualidade do que entrega.',
+          delivered: [
+            'Site em português e inglês, com tema claro e escuro.',
+            'Blog e painel de conteúdo com histórico de versões.',
+            'Arquitetura hexagonal em monorepo, com regras de dependência verificadas no CI.',
+            'PRD, arquitetura e decisões publicados junto com o código.',
+          ],
           decisions: [
             {
-              title: 'Entity Framework Core Code First',
-              desc: 'Modelagem de domínio primeiro em classes C# com mapeamento ORM e migrations automáticas no MySQL.',
-              tradeoff: 'Dependência do ciclo de migrações do framework.',
+              title: 'Arquitetura hexagonal em um projeto pequeno',
+              desc: 'As regras de negócio não dependem de nenhuma biblioteca externa e podem ser testadas sem banco de dados.',
+              tradeoff: 'mais camadas e arquivos do que um site deste tamanho exigiria.',
             },
             {
-              title: 'Camada de Serviços para Regras de Negócio',
-              desc: 'Desacoplamento entre Controllers e DbContext através de serviços dedicados com injeção de dependência nativa.',
-              tradeoff: 'Mais classes e injeções no construtor de controllers.',
+              title: 'API Fastify dentro do Next.js',
+              desc: 'A mesma API atende o painel por HTTP e é chamada direto pelas páginas no servidor, sem salto de rede.',
+              tradeoff: 'configuração própria para integrar os dois.',
             },
+          ],
+          result: 'Site no ar, com todo o processo aberto para consulta.',
+          links: [
+            { label: 'Código no GitHub', href: 'https://github.com/DaviAfonso88/Portifolio' },
+            { label: 'Como este site foi construído', href: '/pt-BR/como-foi-construido' },
           ],
         },
         {
-          slug: 'api-de-produtos',
-          title: 'API REST de Catálogo e Produtos',
+          slug: 'almoxarifado',
+          title: 'Almoxarifado PIBLS',
+          kind: 'Projeto independente',
           status: 'Concluído',
-          period: '2023',
-          stack: ['Node.js', 'Express', 'MongoDB', 'Mongoose'],
-          problem:
-            'Necessidade de um serviço de catálogo flexível para gerenciamento de inventário de produtos com esquemas mutáveis e alta velocidade de leitura.',
-          result:
-            'API RESTful eficiente com endpoints completos para criação, listagem, atualização e busca por atributos, documentada e com validação de dados.',
-          role: 'Desenvolvedor Backend.',
-          detailLink: 'Ver o detalhe técnico →',
-          summary:
-            'API backend com Node.js e MongoDB para gerenciamento de catálogos com paginação, filtros e persistência baseada em documentos.',
-          engineeringChallenge:
-            'Estruturar modelos Mongoose com validações de campos obrigatórios e tratamento uniforme de respostas e erros HTTP.',
+          isLive: false,
+          isPrivate: false,
+          period: '2025',
+          summary: 'Controle de estoque do almoxarifado da igreja, com alerta de estoque mínimo e relatórios.',
+          highlight: 'Entradas e saídas, painel com gráficos e relatórios em PDF e CSV com os itens críticos em destaque.',
+          role: 'Único desenvolvedor.',
+          stack: ['React', 'Node.js', 'Express', 'PostgreSQL', 'Supabase'],
+          flow: [],
+          problem: 'A igreja precisava saber o que tem no almoxarifado e o que está abaixo do estoque mínimo.',
+          delivered: [
+            'Cadastro de produtos e categorias, com busca e registro de entradas e saídas.',
+            'Painel com os produtos abaixo do mínimo e gráfico comparativo.',
+            'Exportação de relatórios em CSV e PDF.',
+          ],
+          decisions: [],
+          result: 'Sistema entregue para a igreja, com frontend e banco de dados na nuvem.',
+          links: [{ label: 'Código no GitHub', href: 'https://github.com/DaviAfonso88/Almoxarifado' }],
+        },
+        {
+          slug: 'saltweb',
+          title: 'SaltWeb',
+          kind: 'Projeto independente',
+          status: 'No ar',
+          isLive: true,
+          isPrivate: false,
+          period: '2024 — 2026',
+          summary: 'Site da juventude da Primeira Igreja Batista em Lagoa Santa, com eventos, devocionais e podcast.',
+          highlight: 'Reescrito do zero em Next.js a partir de um site antigo em HTML, CSS e JavaScript.',
+          role: 'Desenvolvedor e responsável pela interface.',
+          stack: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Vercel'],
+          flow: [],
+          problem: 'O site antigo era difícil de manter, e o formulário de contato precisava ficar mais confiável.',
+          delivered: [
+            'Páginas de eventos, podcast e devocionais com componentes reutilizáveis.',
+            'Formulário de contato com rota própria no Next.js.',
+            'Devocionais carregados de um arquivo externo, atualizados sem novo deploy.',
+          ],
           decisions: [
             {
-              title: 'MongoDB para flexibilidade de catálogo',
-              desc: 'Permite que diferentes categorias de produtos possuam atributos específicos sem necessidade de esquemas rígidos e migrations complexas.',
-              tradeoff: 'Sem integridade referencial relacional garantida a nível de banco.',
-            },
-            {
-              title: 'Middleware de tratamento de erros global',
-              desc: 'Centralização de tratamento de exceções do Express, retornando códigos de status HTTP semânticos (400, 404, 500).',
-              tradeoff: 'Exige propagação cuidadosa de erros com next(err) em blocos assíncronos.',
+              title: 'Conteúdo separado da interface',
+              desc: 'Eventos e podcasts ficam em arquivos de dados, e os devocionais vêm de um JSON no GitHub Pages.',
+              tradeoff: 'sem painel, atualizar eventos ainda exige editar arquivos.',
             },
           ],
+          result: 'Site oficial da juventude no ar.',
+          links: [
+            { label: 'Abrir o site', href: 'https://juventude-salt.vercel.app' },
+            { label: 'Código no GitHub', href: 'https://github.com/DaviAfonso88/SaltWeb' },
+          ],
+        },
+        {
+          slug: 'recanto-vida',
+          title: 'Site do Recanto Vida',
+          kind: 'Projeto independente',
+          status: 'No ar',
+          isLive: true,
+          isPrivate: false,
+          period: '2025 — Atual',
+          summary: 'Site do Lar de Idosos Recanto Vida, em Confins (MG), que apresenta o trabalho da instituição e convida a comunidade a contribuir e ser voluntária.',
+          highlight: 'Criei o site, contratei a hospedagem e sigo responsável pela hospedagem, pelos domínios e pelos e-mails da instituição.',
+          role: 'Responsável por todo o projeto: desenvolvimento do site, hospedagem, domínios e e-mails.',
+          stack: ['WordPress', 'Elementor', 'HostGator'],
+          flow: [],
+          problem: 'O lar precisava de um site mais acessível e acolhedor, que mostrasse sua missão e aproximasse a instituição da comunidade.',
+          delivered: [
+            'Site com páginas de apresentação, serviços, contribuição e contato, com convite para voluntários.',
+            'Seção de eventos e atividades da instituição.',
+            'Contratação da hospedagem na HostGator e administração dos domínios e dos e-mails institucionais.',
+          ],
+          decisions: [],
+          result: 'Site no ar, com domínio e e-mail próprios da instituição, e sigo cuidando da hospedagem.',
+          links: [{ label: 'Abrir o site', href: 'https://orecantovida.com.br/' }],
         },
       ],
     },
     contact: {
-      badge: 'Contato',
       headline: 'Vamos conversar.',
       intro:
-        'Vaga, projeto ou dúvida sobre engenharia e arquitetura, respondo todos os contatos. Se preferir, utilize os canais diretos abaixo.',
+        'Tem uma vaga ou um projeto? Escreva por aqui ou use os canais diretos.',
       emailLabel: 'Email direto',
       emailValue: 'daviafonso5894@gmail.com',
       linkedinLabel: 'LinkedIn',
@@ -872,6 +755,109 @@ const dictionaries: Record<string, Dictionary> = {
           ],
         },
       ],
+    },
+    howIWork: {
+      metaTitle: 'Como trabalho com IA e arquitetura de software',
+      metaDescription:
+        'Como uso agentes de IA dentro de um fluxo com PRD, arquitetura, especificação e validação, e por que sigo estudando código.',
+      headlineLines: ['A IA potencializa o que eu sei.', 'Por isso sigo estudando.'],
+      intro:
+        'Acredito que a IA potencializa a minha carreira: com ela, entrego mais e assumo problemas maiores. Mas ela só multiplica o que eu já sei. Quem não entende o código não percebe quando a resposta está errada, então sigo estudando programação e arquitetura de software.',
+      flowTitle: 'Meu fluxo: decidir antes de gerar código',
+      flowIntro: 'Escrevo o produto e a arquitetura primeiro. Só depois os agentes entram, seguindo o que já foi decidido.',
+      layers: [
+        {
+          name: 'Produto',
+          question: 'O quê e por quê',
+          description:
+            'O PRD, documento de produto, define o problema, o público, as regras de negócio, o escopo e as métricas de sucesso.',
+        },
+        {
+          name: 'Arquitetura',
+          question: 'Qual a estrutura técnica',
+          description:
+            'O documento de arquitetura fecha a estrutura e as especificações técnicas antes de qualquer implementação.',
+        },
+        {
+          name: 'Especificação',
+          question: 'O que fazer, exatamente',
+          description:
+            'Sigo o Spec-Driven Development (SDD): o Spec Kit transforma o PRD e a arquitetura em especificação, plano e tarefas, com critérios de qualidade pelo caminho.',
+        },
+        {
+          name: 'Agentes',
+          question: 'Quem executa',
+          description:
+            'Agentes de IA implementam as tarefas dentro do harness que monto em cada projeto, a infraestrutura em volta do modelo: regras, ferramentas, permissões, memória, subagentes, skills e verificações automáticas.',
+        },
+        {
+          name: 'Validação',
+          question: 'Tudo ainda faz sentido',
+          description:
+            'Confiro se o código continua coerente com o PRD, a arquitetura, a especificação, o plano e as tarefas.',
+        },
+      ],
+      authorityTitle: 'Qual decisão vale mais',
+      authorityChainLabel: 'Ordem de autoridade, da maior para a menor',
+      authorityChain: ['PRD', 'Arquitetura', 'Especificação', 'Plano', 'Tarefas', 'Código'],
+      authorityBody:
+        'Uma camada de baixo não contradiz uma decisão de cima sem revisão e aprovação explícitas. Se houver conflito, a decisão original é identificada e o conflito é explicado. Nada muda em silêncio.',
+      splitTitle: 'O que fica com a IA e o que fica comigo',
+      splitAiTitle: 'Com os agentes de IA',
+      splitAiItems: [
+        'Implementar as tarefas já especificadas.',
+        'Consultar documentação atualizada, navegar pelo código e testar, com Context7, Serena, TestSprite e MCP.',
+        'Repetir o trabalho até as verificações passarem.',
+      ],
+      splitMeTitle: 'Comigo',
+      splitMeItems: [
+        'Definir o problema, o escopo e a arquitetura.',
+        'Montar o harness de cada projeto e orquestrar os agentes e subagentes.',
+        'Revisar o que foi feito e responder pelo resultado.',
+        'Só considerar pronto o que passa nos testes.',
+      ],
+      studyTitle: 'Sigo estudando código e arquitetura',
+      studyParagraphs: [
+        'Preciso entender o que está por baixo para revisar o que a IA entrega e saber quando ela erra. A IA não substitui meus estudos: são eles que me permitem usá-la bem.',
+        'Curso pós-graduação em Arquitetura de Software com IA no Full Stack Club e continuo praticando em projetos de estudo, como o FIT.AI, criado no bootcamp Treinos.',
+      ],
+      studyLink: { label: 'Ver meus projetos no GitHub', href: 'https://github.com/DaviAfonso88?tab=repositories' },
+      appliedTitle: 'O que já levei para projetos reais',
+      applied: [
+        { topic: 'Clean Architecture com DDD e Repository Pattern', where: 'Sistema de Ordens de Serviço' },
+        { topic: 'Arquitetura hexagonal em monolito modular, com fronteiras verificadas por ferramenta', where: 'Este site' },
+        { topic: 'Decisões registradas em ADRs, com as alternativas descartadas', where: 'Sistema de Ordens de Serviço e Portal PIBLS' },
+        { topic: 'Contrato OpenAPI com cliente gerado por Orval', where: 'Sistema de Ordens de Serviço e FIT.AI' },
+        { topic: 'Índices de banco de dados e paginação', where: 'Sistema de Ordens de Serviço, Matching FIPE e Portal PIBLS' },
+      ],
+      appliedExtra: 'Também tenho conhecimento em escalabilidade vertical e horizontal, cache distribuído e load balancer.',
+      proofTitle: 'Onde esse método já rodou',
+      proof: [
+        {
+          title: 'Sistema de Ordens de Serviço',
+          href: '/projetos/sistema-ordens-de-servico',
+          detail: 'Spec Kit desde o primeiro commit, com PRD e arquitetura documentados. Em produção, com 358 testes.',
+        },
+        {
+          title: 'Matching FIPE',
+          href: '/projetos/matching-fipe',
+          detail: 'Spec Kit aplicado a um sistema que já existia. Em produção, com a API coberta por 518 testes.',
+        },
+        {
+          title: 'Portal PIBLS',
+          href: '/projetos/portal-pibls',
+          detail: 'Em produção, com PRD, arquitetura, decisões registradas em ADRs e mais de 1.600 testes.',
+        },
+        {
+          title: 'Este site',
+          href: '/como-foi-construido',
+          detail: 'PRD e arquitetura abertos para consulta, com o passo a passo publicado.',
+        },
+      ],
+      teachingBody:
+        'Também ensinei esse método na Rumo Soluções: preparei 2 treinamentos internos de IA (harness e MCP) e escrevi 9 playbooks que orientam agentes na criação de robôs no padrão do time.',
+      ctaBuilt: 'Ver como este site foi construído',
+      ctaContact: 'Falar comigo',
     },
     howItWasBuilt: {
       badge: 'Case study',
@@ -995,7 +981,7 @@ const dictionaries: Record<string, Dictionary> = {
         'PRD, documento de arquitetura completo, contratos OpenAPI e evidências do processo, sem maquiagem para a foto.',
       openDocsLinks: [
         { label: 'Documentação Interativa da API (/api/docs)', href: '/api/docs', isExternal: false },
-        { label: 'Relatório de Prontidão e Auditoria de Go Live', href: '/docs/go-live-readiness-report.md', isExternal: false },
+        { label: 'Relatório de Prontidão e Auditoria de Go Live', href: 'https://github.com/DaviAfonso88/Portifolio/blob/main/docs/go-live-readiness-report.md', isExternal: true },
         { label: 'PRD Completo (docs/prd.md)', href: 'https://github.com/DaviAfonso88/portifolio/blob/main/docs/prd.md', isExternal: true },
         { label: 'Decisões de Arquitetura (docs/architecture.md)', href: 'https://github.com/DaviAfonso88/portifolio/blob/main/docs/architecture.md', isExternal: true },
         { label: 'Repositório no GitHub', href: 'https://github.com/DaviAfonso88/portifolio', isExternal: true },
@@ -1007,13 +993,12 @@ const dictionaries: Record<string, Dictionary> = {
     nav: {
       home: 'Home',
       about: 'About',
-      skills: 'Skills',
-      knowledge: 'Knowledge',
       experiences: 'Experience',
       projects: 'Projects',
       blog: 'Blog',
       contact: 'Contact',
       howItWasBuilt: 'How it was built',
+      howIWork: 'How I work',
       privacy: 'Privacy',
     },
     header: {
@@ -1022,7 +1007,7 @@ const dictionaries: Record<string, Dictionary> = {
     },
     footer: {
       colophonTitle: 'Davi Afonso',
-      colophonLine1: 'Full Stack Developer & AI Engineering',
+      colophonLine1: 'Full Stack Developer (.NET and React)',
       colophonLine2: 'Lagoa Santa, Minas Gerais · Remote & Hybrid',
       contactTitle: 'Contact',
       emailLabel: 'daviafonso5894@gmail.com',
@@ -1037,548 +1022,419 @@ const dictionaries: Record<string, Dictionary> = {
       copyright: '© 2026 Davi Afonso',
     },
     home: {
-      badge: 'Full Stack Developer & AI Engineering · Brazil',
-      headline: 'Software engineering with architectural rigor and end-to-end artificial intelligence.',
+      headline: 'I’m Davi Afonso, a full stack developer.',
       subheadline:
-        'Information Systems graduate specializing in C# / .NET, React, clean architecture, and Spec-Driven Development (SDD). From Spec-Kit design to AI test harnessing, I build resilient, auditable enterprise systems.',
+        'I build complete web systems with .NET and React, from the database to the screen. I use AI to deliver more, and I keep studying code and architecture to make better decisions.',
       ctaProjects: 'View projects',
-      ctaHowBuilt: 'How this site was built',
-      stackTitle: 'Core stack',
-      stackItems: ['Claude Code', 'AI & Spec-Kit', 'C# / .NET', 'Node.js', 'React', 'TypeScript', 'Next.js', 'PostgreSQL', 'Docker'],
-      roleTitle: 'Role',
-      roleValue: 'Full Stack (.NET, React) & AI Engineering',
-      locationTitle: 'Location',
-      locationValue: 'Lagoa Santa, Brazil · Remote / Hybrid',
-      availabilityTitle: 'Availability',
-      availabilityValue: 'Contract / Full-time / Projects',
-      featuredSectionNumber: '01',
-      featuredTitle: 'Featured work',
-      allProjectsLink: 'All projects →',
-      recentWritingNumber: '02',
-      recentWritingTitle: 'Recently written',
-      allArticlesLink: 'All articles →',
-      differentialNumber: '03 — The difference',
-      differentialTitle: 'The specification-driven process and AI harness.',
-      differentialBody:
-        'Specifications as single source of truth (SDD), Model Context Protocol (MCP), agents grounded in durable rules, and documented ADRs. The complete and auditable engineering process behind every line.',
-      differentialCta: 'See how it was built',
+      ctaContact: 'Get in touch',
+      photoAlt: 'Photo of Davi Afonso',
+      facts: [
+        { label: 'Now', value: 'Junior Developer Analyst at Rumo Soluções' },
+        { label: 'Studying', value: 'Postgraduate course in Software Architecture with AI' },
+        { label: 'Stack', value: 'C#, .NET, React, Next.js, TypeScript, Node.js, PostgreSQL, Docker, Azure' },
+        { label: 'Based in', value: 'Lagoa Santa, Brazil. Remote or hybrid' },
+        { label: 'Open to', value: 'Full-time, contract and project work' },
+      ],
+      featuredTitle: 'Featured projects',
+      allProjectsLink: 'View all projects',
+      aiTitleLines: ['AI amplifies what I know.', 'That’s why I keep studying.'],
+      aiBody:
+        'Before any agent writes code, I define the product, the architecture and the specification. Then only what passes the tests and respects those decisions counts as done. I’m taking a postgraduate course in Software Architecture with AI and taught this method at Rumo Soluções in internal training sessions.',
+      aiCta: 'See how I work',
+      aiFlow: ['Product', 'Architecture', 'Specification', 'Agents', 'Validation'],
+      contactTitle: 'Have a role or a project in mind?',
+      contactBody: 'Tell me what you need. I reply to every message.',
     },
     about: {
-      badge: 'About me',
-      headline: 'Bachelor in Information Systems and postgraduate student in Software Architecture with AI at Full Stack Club.',
+      headline: 'About me',
       paragraphs: [
-        'I am a Full Stack Software Developer with a Bachelor degree in Information Systems, currently pursuing postgraduate studies in Software Architecture with AI at Full Stack Club. My work bridges enterprise backend engineering with C#, the .NET ecosystem (ASP.NET Core and Entity Framework), and Node.js (TypeScript and Fastify), with modern and responsive frontend interfaces built with React and Next.js.',
-        'As artificial intelligence models write increasingly high quality code, I strategically focus on software architecture, structuring resilient systems, clear contracts, and well bounded domains. At the same time, I never stop studying code deeply and consistently use artificial intelligence throughout my workflow, confident that it sharpens my decisions and makes me an even better professional.',
-        'I apply artificial intelligence with engineering discipline and rigor, adopting agentic coding environments (Claude Code, OpenAI Codex, OpenCode, and Kiro), Spec Driven Development (SDD), and Harness Engineering. My goal is ensuring models operate under strict architectural guardrails, API contracts, and automated tests, whether applying hexagonal architecture and DDD or connecting tools via the Model Context Protocol (MCP).',
+        'I hold a Bachelor’s degree in Information Systems from UNA and work as a Junior Developer Analyst at Rumo Soluções, where I build and maintain .NET and React systems, APIs and data collection bots.',
+        'I believe AI amplifies my career, but it only multiplies what I already know. That’s why I keep studying code and am taking a postgraduate course in Software Architecture with AI at Full Stack Club: AI writes more and more of the code, and I want to be the person who decides how a system is designed, tested and maintained.',
+        'Outside the company, I build projects for my community, such as the website and the inventory system of Primeira Igreja Batista em Lagoa Santa, a local church, and the website of the Recanto Vida care home.',
       ],
-      focusTitle: 'Focus',
-      focusValue: 'Software Architecture, Full Stack (.NET, Next), and AI Engineering',
-      baseTitle: 'Base',
-      baseValue: 'Lagoa Santa, Minas Gerais · Brazil',
+      methodLink: 'See how I work with AI',
+      baseTitle: 'Based in',
+      baseValue: 'Lagoa Santa, Minas Gerais, Brazil',
       languagesTitle: 'Languages',
-      languagesValue: 'Portuguese (Native) · English (Intermediate)',
-      photoPlaceholder: 'Davi Afonso',
+      languagesValue: 'Portuguese (native) and English (intermediate)',
+      photoAlt: 'Photo of Davi Afonso',
       trajectoryTitle: 'Timeline',
       milestones: [
-        {
-          year: '2021',
-          description: 'Started Information Systems degree.',
-        },
-        {
-          year: '2023',
-          description: 'Expanded into Web Full Stack with Node.js, TypeScript, and React, building REST APIs and dynamic user interfaces.',
-        },
-        {
-          year: '2024',
-          description: 'Delivered production platforms like SaltWeb and FIT.IA, combining React, Tailwind CSS, and AI services.',
-        },
-        {
-          year: '2025',
-          description: 'Engineering at Rumo Soluções, OS system built from scratch, and led internal company workshops on AI, SDD, and Harness Engineering.',
-        },
-        {
-          year: '2026',
-          description: 'Postgraduate studies in Software Architecture with AI at Full Stack Club and launch of DaviDev with hexagonal monorepo architecture and specification driven engineering.',
-        },
+        { year: '2021', description: 'Started my degree in Information Systems.' },
+        { year: '2023', description: 'First projects in C# and .NET.' },
+        { year: '2024', description: 'Website for the youth group of Primeira Igreja Batista em Lagoa Santa.' },
+        { year: '2025', description: 'Finished my degree at UNA, started a web development internship at Rumo Soluções, and built an inventory system for the church and the website of the Recanto Vida care home.' },
+        { year: '2026', description: 'Promoted to Junior Developer Analyst at Rumo Soluções, the CRC Equipamentos work order system and the church website in production, AI training for the company, and the start of my postgraduate course.' },
       ],
-    },
-    skills: {
-      badge: 'Skills',
-      headline: 'What I build with, and where I apply it.',
-      intro:
-        'My specializations in artificial intelligence and context engineering, backed by software architecture, backend, frontend, and infrastructure.',
-      categories: [
-        {
-          number: '01',
-          title: 'Artificial Intelligence & Context Engineering',
-          items: [
-            {
-              name: 'Spec Driven Development (SDD) & Spec Kit',
-              description:
-                'Methodology where the specification serves as the single source of truth. Strict artifact authority hierarchy (PRD, Architecture, Spec, Plan, Tasks, Code), standardized Spec Kit workflows, and clear separation between product intent and executable spec.',
-            },
-            {
-              name: 'Claude Code, Codex, OpenCode & Kiro',
-              description:
-                'Hands on mastery of leading agentic coding environments and autonomous CLI tools (Claude Code, OpenAI Codex, OpenCode, and Kiro). Leveraging terminal agents for semantic refactoring, automated test execution, shell integration, and rigorous specification adherence.',
-            },
-            {
-              name: 'Model Context Protocol (MCP)',
-              description:
-                'Orchestration of the universal connection of AI linking agents to real time tools and data: Context7 (up to date official docs), Serena (symbol level semantic code navigation via LSP), and TestSprite (automated test generation and quality verification).',
-            },
-            {
-              name: 'Harness Engineering & Sandboxing',
-              description:
-                'Building complete infrastructure around LLMs: durable governance rules (constitution.md), strict permission sandboxes, persistent memory, and automated verification feedback loops preventing hallucinations.',
-            },
-            {
-              name: 'Agent & Subagent Orchestration',
-              description:
-                'Coordinating specialized subagent teams (code reviewer with severity levels, dotnet best practices, explore, planner) and automating enterprise development procedures via packaged skills.',
-            },
-            {
-              name: 'Structured Prompt Engineering & LLMs',
-              description:
-                'Advanced foundation models (Claude, GPT, Gemini) integrated with strict JSON and Zod schema validation, structured retries, and deterministic outputs.',
-            },
-          ],
-        },
-        {
-          number: '02',
-          title: 'Software Architecture',
-          items: [
-            {
-              name: 'Scalability',
-              description:
-                'Horizontal and vertical scaling strategies, fault isolation, service decoupling, and traffic spike tolerance without system degradation.',
-            },
-            {
-              name: 'Distributed Cache',
-              description:
-                'Caching layers with precise invalidation policies, cache aside and write through patterns to drastically reduce latency and relieve the primary database.',
-            },
-            {
-              name: 'Load Balancers',
-              description:
-                'Intelligent traffic distribution across instances, health check monitoring, and secure connection termination to ensure high availability.',
-            },
-            {
-              name: 'Indexes',
-              description:
-                'Design of composite, B tree, and partial indexes, execution plan optimization with explain analyze, and elimination of expensive table scans.',
-            },
-            {
-              name: 'Pagination',
-              description:
-                'Implementation of cursor based and keyset pagination for high volume datasets, eliminating traditional offset bottlenecks and redundant reads.',
-            },
-            {
-              name: 'Hexagonal Architecture & DDD',
-              description:
-                'Strict isolation of core domain and use cases, ensuring zero framework or database dependencies in the business layer through ports and adapters.',
-            },
-          ],
-        },
-        {
-          number: '03',
-          title: 'Backend & APIs',
-          items: [
-            {
-              name: 'REST APIs',
-              description:
-                'Resource oriented RESTful services utilizing standard HTTP verbs, precise status codes, idempotency, and OpenAPI specification compliance.',
-            },
-            {
-              name: 'JWT & Claims',
-              description:
-                'Issuance and verification of signed JSON Web Tokens, structuring Claims for role and context based fine grained authorization.',
-            },
-            {
-              name: 'Access Token & Refresh Token',
-              description:
-                'Authentication architecture using short lived Access Tokens and rotating Refresh Tokens for resilient and secure credential renewal.',
-            },
-            {
-              name: 'OAuth 2.0',
-              description:
-                'Implementation of modern authorization flows with external providers, scoped permissions, and secure third party access delegation.',
-            },
-            {
-              name: 'Cookies',
-              description:
-                'Secure credential storage utilizing HttpOnly, Secure, and SameSite flags to mitigate token theft through XSS and prevent CSRF exploits.',
-            },
-            {
-              name: 'BCrypt',
-              description:
-                'One way password hashing with automatic salting and adaptable work factors, ensuring protection against dictionary and rainbow table attacks.',
-            },
-            {
-              name: 'CORS',
-              description:
-                'Granular Cross Origin Resource Sharing policies, strictly controlling permitted origins, allowed HTTP methods, and exposed headers.',
-            },
-            {
-              name: 'C# / .NET',
-              description:
-                'Robust API and service development with ASP.NET Core, Entity Framework Core, and LINQ, applying enterprise architecture, dependency injection, and MVC patterns.',
-            },
-            {
-              name: 'Node.js · TypeScript',
-              description:
-                'Scalable REST API development with strict TypeScript typing, validated schemas with Zod, and clear layer boundaries.',
-            },
-            {
-              name: 'Fastify & Express',
-              description:
-                'High performance HTTP server development with dependency injection and decoupling from core business logic.',
-            },
-          ],
-        },
-        {
-          number: '04',
-          title: 'Frontend & Interface',
-          items: [
-            {
-              name: 'React & Next.js 15',
-              description:
-                'Modern web applications utilizing App Router, React Server Components (RSC), custom hooks, and rendering optimizations.',
-            },
-            {
-              name: 'Tailwind CSS & Design Tokens',
-              description:
-                'Accessible, responsive, and semantic user interfaces with design tokens, native light or dark theme, and WCAG AA compliance.',
-            },
-            {
-              name: 'Advanced TypeScript',
-              description:
-                'Advanced static typing, constrained generics, and discriminated unions preventing runtime contract mismatches across stack boundaries.',
-            },
-          ],
-        },
-        {
-          number: '05',
-          title: 'Databases & Infrastructure',
-          items: [
-            {
-              name: 'PostgreSQL & MySQL',
-              description:
-                'Relational database design with declarative integrity, foreign keys, constraints, and versioned migrations via Drizzle and EF Core.',
-            },
-            {
-              name: 'Neon & Supabase',
-              description:
-                'Serverless PostgreSQL databases with instant environment branching, high scale connection pooling, and managed backend services.',
-            },
-            {
-              name: 'Upstash Redis',
-              description:
-                'Serverless distributed caching and edge rate limiting with ultra low latency HTTP and REST connectivity.',
-            },
-            {
-              name: 'Pipelines and Releases CI/CD',
-              description:
-                'Full automation with GitHub Actions, test suite execution, static architectural boundary audits, and continuous deployments without manual steps.',
-            },
-            {
-              name: 'Docker',
-              description:
-                'Reproducible containerized environments for development and production, ensuring parity between local machines and cloud servers.',
-            },
-            {
-              name: 'MongoDB',
-              description:
-                'Document oriented persistence for flexible catalogs and non relational collections with optimized indexing and aggregation queries.',
-            },
-          ],
-        },
-      ],
-    },
-    knowledge: {
-      badge: 'Knowledge',
-      headline: 'The concepts that guide my choices.',
-      intro:
-        'A skill is the tool; knowledge is knowing when not to use it. Here are the core foundations of AI, specification, and architecture I use to make engineering decisions and the price each one demands.',
-      items: [
-        {
-          title: 'Spec Driven Development and Authority Hierarchy',
-          tag: 'Applied',
-          description:
-            'Code is not the starting point; it is the final consequence of specification. Strict respect for artifact authority: PRD for product intent, Architecture for structure, Specification for contracts, Plan for technical design, Tasks for execution, and Code as the verifiable result. No line is produced without verified contracts.',
-          costLabel: 'The Tradeoff',
-          cost: 'Requires discipline and upfront time before implementation. Skipping this yields short term speed on day one, followed by months of architectural debt and product misalignment.',
-        },
-        {
-          title: 'Harness Engineering in the AI Era',
-          tag: 'Applied',
-          description:
-            'The language model is only the reasoning engine; the harness is the complete surrounding infrastructure that guides, controls, and makes it reliable. It encompasses durable house rules, safe execution tools, strict permission guardrails, targeted context, persistent memory, and continuous automated verification loops.',
-          costLabel: 'The Tradeoff',
-          cost: 'Keeping the harness calibrated as the system grows requires continuous maintenance of rules and context. Without this infrastructure, even the most capable model hallucinates and violates domain invariants.',
-        },
-        {
-          title: 'Hexagonal Architecture (Ports and Adapters)',
-          tag: 'Applied',
-          description:
-            'Domain logic and use cases completely decoupled from frameworks, HTTP servers, and database drivers. The primary benefit is testability of pure business logic in memory without running external infrastructure, protecting software longevity against obsolescence.',
-          costLabel: 'The Tradeoff',
-          cost: 'More files and indirection per feature. For small CRUD applications it introduces unnecessary complexity, becoming justified when testability and long term maintenance are primary goals.',
-        },
-        {
-          title: 'Distributed Caching and Invalidation Strategies',
-          tag: 'Applied',
-          description:
-            'Deploying distributed caching layers with Upstash Redis, applying cache aside and write through patterns for database relief and ultra low latency. Balanced engineering decisions between strong and eventual consistency with predictable time to live (TTL) expiration policies.',
-          costLabel: 'The Tradeoff',
-          cost: 'Cache invalidation is a classic computing challenge. It requires careful governance to prevent reading stale data and introduces distributed state synchronization into the system.',
-        },
-        {
-          title: 'Stateless Authentication and Defense in Depth',
-          tag: 'Applied',
-          description:
-            'End to end security with short lived JSON Web Tokens, typed claims for fine grained authorization, and automatic rotation of Refresh Tokens. Mitigating XSS and CSRF vectors through HttpOnly cookies, CORS policies, and BCrypt password hashing.',
-          costLabel: 'The Tradeoff',
-          cost: 'Stateless tokens cannot be revoked instantly without an auxiliary blocklist or credential versioning mechanism, requiring careful balance in token expiration windows.',
-        },
-        {
-          title: 'Relational Integrity at the Database Level',
-          tag: 'Applied',
-          description:
-            'Whenever a business invariant can be enforced by a database constraint, it must be. Uniqueness, cascade deletion, and state transitions guaranteed by PostgreSQL or Neon cannot be bypassed by buggy code or incorrect automated changes.',
-          costLabel: 'The Tradeoff',
-          cost: 'Less flexibility during rapid migrations and raw database error messages requiring translation layers for user feedback.',
-        },
+      stackTitle: 'Technologies and skills',
+      stackGroups: [
+        { title: 'Architecture', items: 'Clean Architecture, DDD, hexagonal architecture, modular monolith, ADRs, OpenAPI, REST APIs, JWT, role-based access' },
+        { title: 'Scalability and performance', items: 'Vertical and horizontal scaling, distributed caching, load balancing, indexes, pagination' },
+        { title: 'AI', items: 'Spec-Driven Development (SDD) with Spec Kit, Harness Engineering, orchestration of agents and subagents, Claude Code, OpenAI Codex, OpenCode, Kiro, MCP, Context7, Serena, TestSprite, OpenAI and Gemini integration' },
+        { title: 'Backend', items: 'C#, .NET, ASP.NET Core, Entity Framework Core, Node.js, Fastify' },
+        { title: 'Frontend', items: 'React, Next.js, TypeScript, Tailwind CSS, TanStack Query, shadcn/ui' },
+        { title: 'Databases', items: 'PostgreSQL, SQL Server, MongoDB, MySQL, Supabase' },
+        { title: 'Infrastructure', items: 'Docker, Azure, Azure DevOps, GitHub Actions, Nginx, VPS, Vercel' },
+        { title: 'Testing', items: 'xUnit, Vitest, Pest, Playwright, TestSprite' },
+        { title: 'Automation', items: 'Puppeteer, Azure Service Bus, SignalR' },
       ],
     },
     experiences: {
-      badge: 'Experience',
-      headline: 'What I built, and where I delivered value.',
-      intro:
-        'Professional trajectory uniting technical leadership in artificial intelligence, corporate enablement, Full Stack engineering (.NET, React), and process automation.',
+      headline: 'Experience',
       positions: [
         {
-          period: '2026 — Present',
+          period: 'Aug 2026 — Present',
           company: 'Rumo Soluções',
           role: 'Junior Developer Analyst',
           regime: 'Full-time · Hybrid · Lagoa Santa, Brazil',
-          summary:
-            'Engineering scalable enterprise systems, leading corporate Artificial Intelligence training initiatives, business process automation (RPA), and specification-driven software architecture.',
+          summary: 'I build systems for the company’s clients and products with .NET, React and data automation.',
           highlights: [
-            'Conducted company-wide internal training sessions and workshops for all employees on Applied AI, Spec-Driven Development (SDD), Spec-Kit, and Harness Engineering, empowering the team to transition from ad-hoc prompt generation to disciplined, auditable workflows.',
-            'Architected and built the Work Order (OS / CRC Project) management system from scratch using .NET, React, and Docker, establishing a strict corporate harness with durable rules (immutable frozen snapshot, universal soft delete, and linear OS lifecycle).',
-            'Engineered AI-powered solutions for automated technical documentation generation, Azure DevOps wikis, and development process standardization.',
-            'Integrated and orchestrated Model Context Protocol (MCP) servers — including Context7 for real-time documentation, Serena for LSP semantic navigation, and TestSprite for automated quality control.',
-            'Adopted and trained engineering staff on advanced agentic coding tools (Claude Code, OpenAI Codex, OpenCode, and Kiro) integrated with Spec-Kit to accelerate delivery and enforce software quality standards.',
-            'Engineered and scaled critical enterprise features focused on high availability, stability, and business domain requirements.',
-            'Built automated process workflows (RPA) and efficient data pipelines across distributed enterprise platforms.',
+            'Took the CRC Equipamentos work order system into production.',
+            'Redesigned, for Datacar, the algorithm that matches each car offer to its entry in FIPE, Brazil’s vehicle price table. It ran alongside the old one to compare results and has been in production since October 2026.',
+            'Cut the load time of the main screens of Datacar’s pricing platform from about 3 s to under 1 s, with half the requests (median in a local environment, warm cache; delivery under review).',
+            'Maintained and improved, since my internship, 40 Datacar data collection bots and services, plus the platform that schedules and monitors them.',
+            'Wrote 9 playbooks that guide AI agents in building bots to the team’s standard.',
           ],
-          technologies: [
-            'Claude Code',
-            'Codex',
-            'OpenCode',
-            'Kiro',
-            'Artificial Intelligence',
-            'Spec-Driven Dev',
-            'Spec-Kit',
-            'Harness Engineering',
-            'Model Context Protocol (MCP)',
-            '.NET / C#',
-            'React',
-            'Docker',
-            'TypeScript',
-            'PostgreSQL',
-            'RPA',
-          ],
+          technologies: ['C#', '.NET', 'React', 'TypeScript', 'PostgreSQL', 'MongoDB', 'SQL Server', 'Docker', 'Azure', 'Claude Code'],
         },
         {
-          period: '2025 — 2026',
+          period: 'Nov 2025 — Aug 2026',
           company: 'Rumo Soluções',
           role: 'Web Development Intern',
           regime: 'Internship · Hybrid · Lagoa Santa, Brazil',
-          summary:
-            'Technical support across the full web development lifecycle, crafting user interfaces, maintaining backend services, integration testing, and early AI automations.',
+          summary: 'Web interfaces, bug fixes, refactoring and technical documentation, working in an agile team.',
           highlights: [
-            'Built responsive, modern web interfaces matching corporate design guidelines, usability standards, and design tokens.',
-            'Investigated and resolved bugs, refactored legacy components, and authored technical documentation for API endpoints and system architectures.',
-            'Collaborated within an agile team participating in daily standups, sprint planning, and peer code reviews.',
+            'Built from scratch, as the only developer, the work order system for CRC Equipamentos, an industrial maintenance company, replacing paper, Trello and spreadsheets.',
+            'Built the admin panel and API for the PriceFleet website, a fleet pricing product, with login, permissions, blog, image uploads and lead management.',
+            'Prepared and ran 2 internal AI training sessions for the company (harnesses and MCP).',
           ],
-          technologies: ['JavaScript', 'TypeScript', 'HTML5 & CSS3', 'React', 'Node.js', 'Git', 'SQL'],
+          technologies: ['C#', '.NET', 'React', 'TypeScript', 'JavaScript', 'Node.js', 'PostgreSQL', 'Docker', 'Git'],
         },
         {
           period: '2023 — Present',
-          company: 'Independent Software Projects & Digital Solutions',
-          role: 'Full Stack Software Developer',
-          regime: 'Projects · Remote / Hybrid',
-          summary:
-            'End-to-end design, architecture, and delivery of web applications for clients and community organizations, uniting responsive frontends, resilient backends, and applied AI.',
+          company: 'Independent projects',
+          role: 'Full Stack Developer',
+          regime: 'Remote',
+          summary: 'Systems for my community and my own projects, from planning to deployment.',
           highlights: [
-            'Built the DaviDev platform with strict hexagonal architecture, pnpm monorepo structure, Next.js 15, and in-process Fastify, with the entire Spec-Driven Development process open-sourced.',
-            'Engineered the FIT.IA assistant, integrating generative AI with an Express backend and React frontend for customized fitness and nutrition plans.',
-            'Architected and deployed the SaltWeb platform for PIB Lagoa Santa youth, delivering high performance and community engagement.',
+            'Website for Primeira Igreja Batista em Lagoa Santa, now in production, replacing the old WordPress site.',
+            'Inventory system for the church storeroom and the live website of its youth group, Salt.',
+            'FIT.AI, a workout app with an AI assistant, live and open source.',
+            'Website for the Recanto Vida care home, live, with hosting, domains and email under my care.',
           ],
-          technologies: ['React', 'Next.js 15', 'TypeScript', 'Node.js', 'Hexagonal Architecture', 'Fastify', 'Generative AI', 'PostgreSQL', 'Docker'],
+          technologies: ['React', 'Next.js', 'TypeScript', 'Node.js', 'Laravel', 'PostgreSQL', 'MySQL', 'WordPress'],
         },
+      ],
+      educationTitle: 'Education',
+      education: [
+        { period: 'In progress', title: 'Postgraduate course in Software Architecture with AI', institution: 'Full Stack Club' },
+        { period: '2025', title: 'Bachelor’s degree in Information Systems', institution: 'UNA' },
       ],
     },
     projects: {
-      badge: 'Projects',
-      headline: 'Problem, decision, outcome.',
+      headline: 'Projects',
       intro:
-        'Every project starts with the business problem and the concrete outcome, clear for hiring managers. Deep technical architecture follows for engineering review.',
+        'Systems built at Rumo Soluções have no public code, so I explain the problem and the decisions instead. Most independent projects link to their code.',
+      labels: {
+        viewDetails: 'View details',
+        role: 'My role',
+        stack: 'Technologies',
+        flow: 'How it works',
+        problem: 'The problem',
+        delivered: 'What I delivered',
+        decisions: 'Technical decisions',
+        tradeoff: 'Trade-off:',
+        result: 'Outcome',
+        links: 'Links',
+        privateNote: 'Built at Rumo Soluções: the code and screens are not public.',
+      },
       items: [
         {
-          slug: 'davidev-portfolio-produto',
-          title: 'DaviDev: Portfolio as a Software Product',
+          slug: 'sistema-ordens-de-servico',
+          title: 'Work Order System',
+          kind: 'For CRC Equipamentos',
           status: 'In production',
+          isLive: true,
+          isPrivate: true,
           period: '2026',
-          stack: ['Next.js 15', 'Fastify', 'PostgreSQL', 'Drizzle', 'Hexagonal'],
-          problem:
-            'Static resume PDFs fail to demonstrate code maturity, architectural quality, and true software engineering rigor.',
-          result:
-            'Engineered as a production software product: hexagonal architecture in a pnpm monorepo, editorial blog with ISR, protected CMS, and public PRD.',
-          role: 'Sole engineer responsible for specification, architecture, and implementation.',
-          detailLink: 'View technical details →',
           summary:
-            'Editorial blog, CMS, documented REST API, and hexagonal monorepo with the complete engineering process open source.',
-          engineeringChallenge:
-            'Enforce global LCP under 2.5s and zero external dependencies in domain package, with in process serverless execution between Next.js and Fastify.',
+            'Manages the maintenance of industrial equipment, from arrival at the workshop to the report delivered to the customer.',
+          highlight:
+            'Brings together in one system what used to live in paper, Trello and spreadsheets, with a full history and an automatic PDF report.',
+          role: 'Only developer, from the start as an intern through to production: specification, backend, frontend and deployment.',
+          stack: ['.NET 10', 'React 19', 'TypeScript', 'PostgreSQL', 'Docker', 'Azure DevOps', 'Spec Kit', 'Claude Code'],
+          flow: ['Under review', 'Awaiting quote', 'Awaiting parts', 'In progress', 'Final checks', 'Delivered'],
+          problem:
+            'CRC Equipamentos tracked each work order on paper, Trello and spreadsheets, and put together the customer report by hand. To find out where an order stood, someone had to ask around.',
+          delivered: [
+            'A single work order flow that records who did what, and when, at each stage.',
+            'A technical checklist with per-part scoring that works out whether a repair is worth it.',
+            'Evidence photos annotated straight from a phone, and a PDF report generated by the system.',
+            'Kanban board, operations dashboard, role-based permissions and parts import from Excel.',
+            '358 automated tests and continuous delivery with Azure DevOps and Docker.',
+          ],
           decisions: [
             {
-              title: 'Strict Hexagonal Architecture in Monorepo',
-              desc: 'The core domain package (@davidev/domain) contains zero external dependencies, guaranteeing absolute business rule portability.',
-              tradeoff: 'Higher number of layers and abstraction interfaces.',
+              title: 'Checklist frozen on delivery',
+              desc: 'When a work order is delivered, its completed checklist becomes an immutable copy. Changing the template later does not alter the history.',
+              tradeoff: 'checklist templates need versioning.',
             },
             {
-              title: 'In Process Serverless Fastify inside Next.js',
-              desc: 'The same Fastify API with Zod validation handles HTTP endpoints and can be executed in process by React Server Components without network overhead.',
-              tradeoff: 'Custom request translation adapters required.',
+              title: 'One contract between API and frontend',
+              desc: 'React types and calls are generated from OpenAPI with Orval. An API change shows up as a compile error, not as a bug on screen.',
+              tradeoff: 'one extra generation step for each change.',
             },
           ],
+          result: 'In production at CRC Equipamentos, after three versions delivered and validated in acceptance testing.',
+          links: [],
         },
         {
-          slug: 'saltweb',
-          title: 'SaltWeb: Youth Community Web Platform',
-          status: 'Completed',
-          period: '2024',
-          stack: ['React', 'TypeScript', 'Tailwind CSS', 'Vite'],
-          problem:
-            'The youth ministry of PIB Lagoa Santa needed a centralized digital platform for event management, youth engagement, and contemporary visual identity.',
-          result:
-            'Fast, responsive, and modern web platform delivered, streamlining event announcements, member integration, and youth communications.',
-          role: 'Frontend Developer and UI Designer.',
-          detailLink: 'View technical details →',
+          slug: 'matching-fipe',
+          title: 'FIPE Matching',
+          kind: 'For Datacar',
+          status: 'In production',
+          isLive: true,
+          isPrivate: true,
+          period: '2026',
           summary:
-            'Interactive web application for youth community developed with React, TypeScript, and Tailwind CSS with responsive, engagement first design.',
-          engineeringChallenge:
-            'Create a seamless experience with instantaneous mobile loading and a responsive design aligned with modern youth culture.',
+            'Finds the FIPE code (Brazil’s vehicle price table) for each car subscription offer, even when the description is incomplete or worded differently.',
+          highlight:
+            'New algorithm in production since October 2026, guided by one simple rule: a wrong price is worse than a missing price.',
+          role: 'Lead developer of the API: algorithm design, tests, auditing and the production rollout.',
+          stack: ['.NET', 'C#', 'MongoDB', 'OpenAI', 'Docker', 'Azure DevOps', 'Spec Kit', 'Claude Code'],
+          flow: ['Offer received', 'Text normalization', 'Car family lookup', 'Version elimination', 'Match or hold'],
+          problem:
+            'Each rental company describes the same car differently. A wrong FIPE code becomes a wrong price for people using Datacar, and the old algorithm relied only on text similarity.',
+          delivered: [
+            'A staged process that rules out impossible versions and only matches when it is confident and there is no tie.',
+            'Doubtful offers are held with the reason recorded, and can be reprocessed later.',
+            'An AI assistant to settle ties, with a daily query limit.',
+            'An audit screen to review every decision the algorithm makes.',
+            'An API covered by 518 automated unit and integration tests.',
+          ],
           decisions: [
             {
-              title: 'Tailwind CSS for Visual Consistency',
-              desc: 'Utilized Tailwind utility classes to ensure typographic harmony and adaptable mobile first layouts.',
-              tradeoff: 'Utility class accumulation requiring modular component breakdown.',
+              title: 'Precision over coverage',
+              desc: 'When in doubt, the system does not match. The goal stopped being matching more offers and became not getting them wrong.',
+              tradeoff: 'some offers have no price until they are reviewed.',
             },
             {
-              title: 'Vite as Fast Build Tool',
-              desc: 'Adopted Vite for ultra fast bundling and efficient Hot Module Replacement (HMR) during development.',
-              tradeoff: 'Manual client side routing configuration.',
+              title: 'Shadow mode before the switch',
+              desc: 'The new algorithm ran alongside the old one in production, without affecting results, to compare the decisions of both.',
+              tradeoff: 'two algorithms to maintain during the transition.',
             },
+            {
+              title: 'AI only for what is left',
+              desc: 'The model only steps in on ties the rules cannot settle, and its decision becomes a rule that can be audited.',
+              tradeoff: 'rules created by the AI need monitoring.',
+            },
+          ],
+          result: 'Thousands of offers a day go through the new algorithm, and every decision can be audited.',
+          links: [],
+        },
+        {
+          slug: 'portal-pibls',
+          title: 'PIBLS Website',
+          kind: 'Independent project',
+          status: 'In production',
+          isLive: true,
+          isPrivate: false,
+          period: '2026',
+          summary:
+            'Website and admin panel for Primeira Igreja Batista em Lagoa Santa, which replaced the WordPress site without raising hosting costs.',
+          highlight:
+            'More than 1,600 automated tests in a system planned to last over 5 years with a single person running it.',
+          role: 'Only developer: architecture, backend, frontend and operations.',
+          stack: ['Laravel 13', 'PHP 8.4', 'React 19', 'TypeScript', 'MySQL', 'Playwright', 'Spec Kit', 'Claude Code'],
+          flow: [],
+          problem:
+            'The church needed to replace its WordPress site with its own website, with a panel for the team to update content, without spending more than the shared hosting it already pays for.',
+          delivered: [
+            'A pre-rendered public site, with a 160 KB per-page JavaScript limit checked on every build.',
+            'An admin panel with role-based permissions, events, ministries, content and visitor requests.',
+            'Versioned deployments on shared hosting, with no Node on the server.',
+            'Encrypted backups and operating guides so one person can keep the system running.',
+          ],
+          decisions: [
+            {
+              title: 'No Node in production',
+              desc: 'Shared hosting does not run Node. React is pre-rendered in CI, and the server only delivers files and the PHP API.',
+              tradeoff: 'dynamic data depends on API calls from the browser.',
+            },
+            {
+              title: 'Lean operations, recorded in an ADR',
+              desc: 'I kept only the alerts one person can actually follow: an off-site backup copy, one monitor and two checks.',
+              tradeoff: 'less visibility until the website’s usage grows.',
+            },
+          ],
+          result: 'Live at pibls.com, replacing the old WordPress site on the same shared hosting.',
+          links: [
+            { label: 'Open the site', href: 'https://pibls.com' },
+            { label: 'Code on GitHub', href: 'https://github.com/DaviAfonso88/pibls' },
           ],
         },
         {
           slug: 'fit-ia',
-          title: 'FIT.IA: AI Powered Workout & Nutrition Assistant',
-          status: 'Completed',
-          period: '2024',
-          stack: ['Node.js', 'Express', 'React', 'Generative AI', 'Tailwind CSS'],
-          problem:
-            'Fitness enthusiasts often struggle to create and adapt workout and nutritional plans tailored to their specific fitness goals in an accessible manner.',
-          result:
-            'Complete application delivering automated, personalized workout routines and nutritional guidance based on individual profiles and goals.',
-          role: 'Full Stack Developer (Node.js/Express backend API and React frontend interface).',
-          detailLink: 'View technical details →',
+          title: 'FIT.AI',
+          kind: 'Independent project',
+          status: 'Live',
+          isLive: true,
+          isPrivate: false,
+          period: '2026',
           summary:
-            'Integrated system leveraging generative AI to structure personalized diets and workout plans through an intuitive user interface.',
-          engineeringChallenge:
-            'Engineer consistent prompt structures and sanitize LLM outputs to guarantee predictable, typed data schemas for the frontend.',
+            'Workout app with an AI personal trainer that talks to the user, builds the week’s plan and tracks progress.',
+          highlight: 'Google login, real-time AI chat and consistency stats, all open source.',
+          role: 'Full stack developer. Created in Full Stack Club’s Treinos bootcamp.',
+          stack: ['Next.js 16', 'React 19', 'Fastify', 'Prisma', 'PostgreSQL', 'Gemini'],
+          flow: ['Chat with the AI', 'Profile lookup', '7-day plan', 'Workout logging', 'Progress stats'],
+          problem:
+            'Building a workout plan suited to your own goal and keeping up with the routine usually takes a professional or several different tools.',
+          delivered: [
+            'A Gemini chat that reads and saves data by calling API functions, instead of only generating text.',
+            'Weekly plan, timed workout sessions, and streak and consistency stats.',
+            'Google login through Better-Auth and an API client generated with Orval from OpenAPI.',
+          ],
           decisions: [
             {
-              title: 'Schema Validation & Sanitization',
-              desc: 'Strict validation of model output payloads before returning data to the client, preventing UI layout breaks from malformed responses.',
-              tradeoff: 'Additional retry overhead if response violates expected schema.',
+              title: 'Function calling instead of free text',
+              desc: 'The AI creates the plan by calling an API function, so the result becomes structured data in the database, not text to interpret.',
+              tradeoff: 'the prompt and functions must evolve along with the API.',
             },
             {
-              title: 'Strict Client Server Decoupling',
-              desc: 'Express backend encapsulates API keys and prompt engineering logic, isolated from client side visibility.',
-              tradeoff: 'Need to manage asynchronous network latency states in the UI.',
+              title: 'Simple layered architecture',
+              desc: 'Route, use case and database. I ruled out hexagonal architecture because this project did not need it.',
+              tradeoff: 'less isolation from infrastructure if the project grows.',
             },
+          ],
+          result: 'Complete application live, with open source code on GitHub.',
+          links: [
+            { label: 'Open the app', href: 'https://www.fitai.davidev.net.br' },
+            { label: 'App code', href: 'https://github.com/DaviAfonso88/FIT.IA-Frontend' },
+            { label: 'API code', href: 'https://github.com/DaviAfonso88/FIT.IA-API' },
           ],
         },
         {
-          slug: 'sales-web-mvc',
-          title: 'SalesWebMvc: Sales & Department Management',
-          status: 'Completed',
-          period: '2023',
-          stack: ['C# / .NET', 'ASP.NET Core MVC', 'Entity Framework Core', 'MySQL'],
-          problem:
-            'Organizations require centralized tracking of sales records, seller associations, and departmental groupings with date filtered analytical reporting.',
-          result:
-            'Corporate MVC application featuring complete CRUD operations, relational integrity exception handling, and grouped analytical reporting.',
-          role: 'Backend / C# Developer.',
-          detailLink: 'View technical details →',
-          summary:
-            'Enterprise web application in ASP.NET Core MVC and Entity Framework Core for transactional sales management with robust domain validation.',
-          engineeringChallenge:
-            'Ensure relational consistency, foreign key constraints during cascade deletions, and optimized LINQ grouping queries.',
+          slug: 'davidev-portfolio-produto',
+          title: 'DaviDev',
+          kind: 'Independent project',
+          status: 'Live',
+          isLive: true,
+          isPrivate: false,
+          period: '2026',
+          summary: 'This website: portfolio, blog and content panel, built as a real software product.',
+          highlight: 'Open documentation, automated tests and 10 CI checks on every change.',
+          role: 'Only developer: specification, architecture and implementation.',
+          stack: ['Next.js 15', 'Fastify', 'PostgreSQL', 'Drizzle', 'Spec Kit', 'Hexagonal architecture'],
+          flow: [],
+          problem: 'A PDF résumé does not show how someone makes technical decisions or the quality of their work.',
+          delivered: [
+            'A site in Portuguese and English, with light and dark themes.',
+            'A blog and content panel with version history.',
+            'Hexagonal architecture in a monorepo, with dependency rules checked in CI.',
+            'PRD, architecture and decisions published alongside the code.',
+          ],
           decisions: [
             {
-              title: 'Entity Framework Core Code First',
-              desc: 'Domain modeling in C# POCO classes with ORM mapping and automated migrations in MySQL.',
-              tradeoff: 'Dependency on framework migration cycles.',
+              title: 'Hexagonal architecture on a small project',
+              desc: 'Business rules depend on no external library and can be tested without a database.',
+              tradeoff: 'more layers and files than a site this size would require.',
             },
             {
-              title: 'Service Layer for Business Logic',
-              desc: 'Decoupled Controllers from DbContext using dedicated service classes with native .NET dependency injection.',
-              tradeoff: 'More boilerplate classes and constructor injections.',
+              title: 'Fastify API inside Next.js',
+              desc: 'The same API serves the admin panel over HTTP and is called directly by pages on the server, with no network hop.',
+              tradeoff: 'custom setup to integrate the two.',
             },
+          ],
+          result: 'Site live, with the whole process open to review.',
+          links: [
+            { label: 'Code on GitHub', href: 'https://github.com/DaviAfonso88/Portifolio' },
+            { label: 'How this site was built', href: '/en/como-foi-construido' },
           ],
         },
         {
-          slug: 'api-de-produtos',
-          title: 'Product Catalog RESTful API',
+          slug: 'almoxarifado',
+          title: 'PIBLS Inventory',
+          kind: 'Independent project',
           status: 'Completed',
-          period: '2023',
-          stack: ['Node.js', 'Express', 'MongoDB', 'Mongoose'],
-          problem:
-            'Need for a flexible catalog service to manage product inventory with dynamic attributes and high read performance.',
-          result:
-            'Efficient RESTful API providing full CRUD endpoints, attribute based filtering, input validation, and document persistence.',
-          role: 'Backend Developer.',
-          detailLink: 'View technical details →',
-          summary:
-            'Backend API with Node.js and MongoDB for product catalog management with pagination, filtering, and document based persistence.',
-          engineeringChallenge:
-            'Structure Mongoose schemas with required field validations and uniform HTTP error response handling.',
+          isLive: false,
+          isPrivate: false,
+          period: '2025',
+          summary: 'Inventory control for the church storeroom, with minimum stock alerts and reports.',
+          highlight: 'Stock in and out, a dashboard with charts, and PDF and CSV reports highlighting critical items.',
+          role: 'Only developer.',
+          stack: ['React', 'Node.js', 'Express', 'PostgreSQL', 'Supabase'],
+          flow: [],
+          problem: 'The church needed to know what was in its storeroom and what had fallen below minimum stock.',
+          delivered: [
+            'Product and category registration, with search and stock movement records.',
+            'A dashboard with products below the minimum and a comparison chart.',
+            'Report export to CSV and PDF.',
+          ],
+          decisions: [],
+          result: 'System delivered to the church, with frontend and database in the cloud.',
+          links: [{ label: 'Code on GitHub', href: 'https://github.com/DaviAfonso88/Almoxarifado' }],
+        },
+        {
+          slug: 'saltweb',
+          title: 'SaltWeb',
+          kind: 'Independent project',
+          status: 'Live',
+          isLive: true,
+          isPrivate: false,
+          period: '2024 — 2026',
+          summary: 'Website for the youth group of Primeira Igreja Batista em Lagoa Santa, with events, devotionals and a podcast.',
+          highlight: 'Rewritten from scratch in Next.js from an old HTML, CSS and JavaScript site.',
+          role: 'Developer and interface owner.',
+          stack: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Vercel'],
+          flow: [],
+          problem: 'The old site was hard to maintain, and the contact form needed to be more reliable.',
+          delivered: [
+            'Event, podcast and devotional pages with reusable components.',
+            'A contact form with its own Next.js route.',
+            'Devotionals loaded from an external file and updated without a new deployment.',
+          ],
           decisions: [
             {
-              title: 'MongoDB for Catalog Flexibility',
-              desc: 'Allowed diverse product categories to have specific attributes without rigid SQL schema migrations.',
-              tradeoff: 'No database enforced foreign key relational constraints.',
-            },
-            {
-              title: 'Global Error Handling Middleware',
-              desc: 'Centralized Express error handling returning semantic HTTP status codes and structured error messages.',
-              tradeoff: 'Requires careful next(err) error forwarding across async functions.',
+              title: 'Content separate from the interface',
+              desc: 'Events and podcasts live in data files, and devotionals come from a JSON file on GitHub Pages.',
+              tradeoff: 'with no admin panel, updating events still means editing files.',
             },
           ],
+          result: 'Official youth group website live.',
+          links: [
+            { label: 'Open the site', href: 'https://juventude-salt.vercel.app' },
+            { label: 'Code on GitHub', href: 'https://github.com/DaviAfonso88/SaltWeb' },
+          ],
+        },
+        {
+          slug: 'recanto-vida',
+          title: 'Recanto Vida Website',
+          kind: 'Independent project',
+          status: 'Live',
+          isLive: true,
+          isPrivate: false,
+          period: '2025 — Present',
+          summary: 'Website for Lar de Idosos Recanto Vida, a care home in Confins, Brazil, presenting its work and inviting the community to contribute and volunteer.',
+          highlight: 'I built the site, contracted the hosting, and remain responsible for the institution’s hosting, domains and email.',
+          role: 'Owner of the whole project: site development, hosting, domains and email.',
+          stack: ['WordPress', 'Elementor', 'HostGator'],
+          flow: [],
+          problem: 'The care home needed a more accessible and welcoming website that showed its mission and brought the institution closer to the community.',
+          delivered: [
+            'A site with pages for the home’s story, services, donations and contact, with a call for volunteers.',
+            'A section for the institution’s events and activities.',
+            'Hosting contracted with HostGator, plus management of the domains and institutional email.',
+          ],
+          decisions: [],
+          result: 'Site live, with the institution’s own domain and email, and I still look after the hosting.',
+          links: [{ label: 'Open the site', href: 'https://orecantovida.com.br/' }],
         },
       ],
     },
     contact: {
-      badge: 'Contact',
       headline: 'Let’s talk.',
       intro:
-        'Career opportunities, projects, or questions regarding engineering and architecture, I respond to all messages. Direct channels are also available below.',
+        'Have a role or a project in mind? Write here or use the direct channels.',
       emailLabel: 'Direct email',
       emailValue: 'daviafonso5894@gmail.com',
       linkedinLabel: 'LinkedIn',
@@ -1663,6 +1519,109 @@ const dictionaries: Record<string, Dictionary> = {
           ],
         },
       ],
+    },
+    howIWork: {
+      metaTitle: 'How I work with AI and software architecture',
+      metaDescription:
+        'How I use AI agents inside a flow with a PRD, architecture, specification and validation, and why I keep studying code.',
+      headlineLines: ['AI amplifies what I know.', 'That’s why I keep studying.'],
+      intro:
+        'I believe AI amplifies my career: with it, I deliver more and take on bigger problems. But it only multiplies what I already know. Someone who doesn’t understand the code can’t tell when an answer is wrong, so I keep studying programming and software architecture.',
+      flowTitle: 'My flow: decide before generating code',
+      flowIntro: 'I write the product and the architecture first. Agents only come in after that, following what has already been decided.',
+      layers: [
+        {
+          name: 'Product',
+          question: 'What and why',
+          description:
+            'The PRD, the product document, defines the problem, the audience, the business rules, the scope and the success metrics.',
+        },
+        {
+          name: 'Architecture',
+          question: 'The technical structure',
+          description:
+            'The architecture document settles the structure and the technical specs before any implementation.',
+        },
+        {
+          name: 'Specification',
+          question: 'What to do, exactly',
+          description:
+            'I follow Spec-Driven Development (SDD): Spec Kit turns the PRD and the architecture into a specification, a plan and tasks, with quality gates along the way.',
+        },
+        {
+          name: 'Agents',
+          question: 'Who does the work',
+          description:
+            'AI agents implement the tasks inside the harness I build for each project, the infrastructure around the model: rules, tools, permissions, memory, subagents, skills and automated checks.',
+        },
+        {
+          name: 'Validation',
+          question: 'Does it all still fit',
+          description:
+            'I check that the code is still consistent with the PRD, the architecture, the specification, the plan and the tasks.',
+        },
+      ],
+      authorityTitle: 'Which decision wins',
+      authorityChainLabel: 'Order of authority, from highest to lowest',
+      authorityChain: ['PRD', 'Architecture', 'Specification', 'Plan', 'Tasks', 'Code'],
+      authorityBody:
+        'A lower layer can’t contradict a decision from a higher one without explicit review and approval. If there is a conflict, the original decision is identified and the conflict is explained. Nothing changes silently.',
+      splitTitle: 'What goes to AI and what stays with me',
+      splitAiTitle: 'With AI agents',
+      splitAiItems: [
+        'Implementing tasks that are already specified.',
+        'Looking up current documentation, navigating the code and testing, with Context7, Serena, TestSprite and MCP.',
+        'Repeating the work until the checks pass.',
+      ],
+      splitMeTitle: 'With me',
+      splitMeItems: [
+        'Defining the problem, the scope and the architecture.',
+        'Building the harness for each project and orchestrating the agents and subagents.',
+        'Reviewing what was done and answering for the result.',
+        'Only calling something done when it passes the tests.',
+      ],
+      studyTitle: 'I keep studying code and architecture',
+      studyParagraphs: [
+        'I need to understand what’s underneath to review what AI delivers and to know when it’s wrong. AI doesn’t replace my studies: they’re what let me use it well.',
+        'I’m taking a postgraduate course in Software Architecture with AI at Full Stack Club and keep practicing in study projects, such as FIT.AI, created in the Treinos bootcamp.',
+      ],
+      studyLink: { label: 'See my projects on GitHub', href: 'https://github.com/DaviAfonso88?tab=repositories' },
+      appliedTitle: 'What I’ve already taken into real projects',
+      applied: [
+        { topic: 'Clean Architecture with DDD and the Repository Pattern', where: 'Work Order System' },
+        { topic: 'Hexagonal architecture in a modular monolith, with boundaries checked by tooling', where: 'This site' },
+        { topic: 'Decisions recorded in ADRs, including the rejected alternatives', where: 'Work Order System and PIBLS Website' },
+        { topic: 'OpenAPI contract with a client generated by Orval', where: 'Work Order System and FIT.AI' },
+        { topic: 'Database indexes and pagination', where: 'Work Order System, FIPE Matching and PIBLS Website' },
+      ],
+      appliedExtra: 'I also have knowledge of vertical and horizontal scaling, distributed caching and load balancing.',
+      proofTitle: 'Where this method has already run',
+      proof: [
+        {
+          title: 'Work Order System',
+          href: '/projetos/sistema-ordens-de-servico',
+          detail: 'Spec Kit from the first commit, with a documented PRD and architecture. In production, with 358 tests.',
+        },
+        {
+          title: 'FIPE Matching',
+          href: '/projetos/matching-fipe',
+          detail: 'Spec Kit applied to an existing system. In production, with the API covered by 518 tests.',
+        },
+        {
+          title: 'PIBLS Website',
+          href: '/projetos/portal-pibls',
+          detail: 'In production, with a PRD, architecture, decisions recorded in ADRs and more than 1,600 tests.',
+        },
+        {
+          title: 'This site',
+          href: '/como-foi-construido',
+          detail: 'PRD and architecture open for anyone to read, with the step-by-step published.',
+        },
+      ],
+      teachingBody:
+        'I also taught this method at Rumo Soluções: I prepared 2 internal AI training sessions (harnesses and MCP) and wrote 9 playbooks that guide agents in building bots to the team’s standard.',
+      ctaBuilt: 'See how this site was built',
+      ctaContact: 'Get in touch',
     },
     howItWasBuilt: {
       badge: 'Case study',
@@ -1786,7 +1745,7 @@ const dictionaries: Record<string, Dictionary> = {
         'PRD, comprehensive architecture spec, OpenAPI contracts, and process evidence, presented as they were written, without cosmetic cleaning.',
       openDocsLinks: [
         { label: 'Interactive API Documentation (/api/docs)', href: '/api/docs', isExternal: false },
-        { label: 'Go Live Readiness & Audit Report', href: '/docs/go-live-readiness-report.md', isExternal: false },
+        { label: 'Go Live Readiness & Audit Report', href: 'https://github.com/DaviAfonso88/Portifolio/blob/main/docs/go-live-readiness-report.md', isExternal: true },
         { label: 'Complete PRD (docs/prd.md)', href: 'https://github.com/DaviAfonso88/portifolio/blob/main/docs/prd.md', isExternal: true },
         { label: 'Architecture Decisions (docs/architecture.md)', href: 'https://github.com/DaviAfonso88/portifolio/blob/main/docs/architecture.md', isExternal: true },
         { label: 'Repository on GitHub', href: 'https://github.com/DaviAfonso88/portifolio', isExternal: true },
