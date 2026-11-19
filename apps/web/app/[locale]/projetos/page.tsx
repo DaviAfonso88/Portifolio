@@ -27,6 +27,7 @@ export default async function ProjetosPage({ params }: ProjetosPageProps) {
               key={project.slug}
               project={project}
               href={`/${locale}/projetos/${project.slug}`}
+              locale={locale}
               detailsLabel={dict.projects.labels.viewDetails}
               headingLevel="h2"
             />
