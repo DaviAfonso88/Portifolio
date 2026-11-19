@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { ArrowLeft, ArrowRight, ArrowUpRight } from 'lucide-react';
 import { getDictionary } from '../../../../lib/dictionary';
 import { formatStack, ProjectStatus } from '../../../../components/public/project-row';
+import { ProjectGallery, ProjectMedia } from '../../../../components/public/project-media';
 import { SUPPORTED_LOCALES } from '@davidev/domain';
 
 interface ProjetoDetalhePageProps {
@@ -93,6 +94,8 @@ export default async function ProjetoDetalhePage({ params }: ProjetoDetalhePageP
           </dl>
         </header>
 
+        <ProjectMedia slug={project.slug} locale={locale} steps={project.flow} variant="hero" />
+
         {project.flow.length > 0 && (
           <section aria-label={labels.flow} className="border-y border-rule py-6">
             <ol className="flex flex-col md:flex-row md:flex-wrap md:items-center gap-x-3 gap-y-2.5">
@@ -107,6 +110,8 @@ export default async function ProjetoDetalhePage({ params }: ProjetoDetalhePageP
             </ol>
           </section>
         )}
+
+        <ProjectGallery slug={project.slug} locale={locale} />
 
         <DetailSection title={labels.problem}>
           <p>{project.problem}</p>

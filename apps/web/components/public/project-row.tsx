@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import type { Dictionary } from '../../lib/dictionary';
+import { getProjectMedia } from '../../lib/project-media';
+import { ProjectMedia } from './project-media';
 
 type Project = Dictionary['projects']['items'][number];
 
@@ -26,20 +28,23 @@ export function ProjectStatus({ status, isLive }: { status: string; isLive: bool
 interface ProjectRowProps {
   project: Project;
   href: string;
+  locale: string;
   detailsLabel: string;
   headingLevel: 'h2' | 'h3';
 }
 
-export function ProjectRow({ project, href, detailsLabel, headingLevel: Heading }: ProjectRowProps) {
+export function ProjectRow({ project, href, locale, detailsLabel, headingLevel: Heading }: ProjectRowProps) {
+  const hasMedia = getProjectMedia(project.slug) !== undefined;
+
   return (
-    <article className="group relative grid grid-cols-1 md:grid-cols-[170px_1fr] gap-4 md:gap-10 py-9 border-t border-rule">
+    <article className={`group relative grid grid-cols-1 md:grid-cols-[170px_1fr] ${hasMedia ? 'lg:grid-cols-[170px_1fr_320px]' : ''} gap-4 md:gap-10 py-9 border-t border-rule`}>
       <div className="flex flex-wrap md:flex-col items-center md:items-start gap-x-3 gap-y-2">
         <ProjectStatus status={project.status} isLive={project.isLive} />
         <span className="text-sm text-ink-3">{project.kind}</span>
         <span className="font-mono text-xs text-ink-3">{project.period}</span>
       </div>
 
-      <div className="flex flex-col gap-3 max-w-[72ch]">
+      <div className="flex flex-col gap-3 max-w-[72ch] order-2 md:order-none">
         <Heading className="font-serif text-[28px] md:text-[34px] leading-[1.15] text-ink font-normal">
           <Link
             href={href}
@@ -56,6 +61,12 @@ export function ProjectRow({ project, href, detailsLabel, headingLevel: Heading 
           <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" />
         </span>
       </div>
+
+      {hasMedia && (
+        <div className="order-1 md:order-none md:col-start-2 lg:col-start-3 lg:row-start-1 self-start transition-transform duration-200 group-hover:-translate-y-0.5">
+          <ProjectMedia slug={project.slug} locale={locale} steps={project.flow} variant="card" />
+        </div>
+      )}
     </article>
   );
 }
